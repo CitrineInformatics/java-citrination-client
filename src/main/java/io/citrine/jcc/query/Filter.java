@@ -14,7 +14,7 @@ public class Filter {
     /**
      * Set the logic for the filter. Defaults to {@link Logic#SHOULD}.
      * 
-     * @param logic {@link Logic} object.
+     * @param logic  {@link Logic} object.
      * @return This object.
      */
     @JsonSetter("logic")
