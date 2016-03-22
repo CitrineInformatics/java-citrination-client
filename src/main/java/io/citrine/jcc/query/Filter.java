@@ -205,7 +205,7 @@ public class Filter {
         return this.exact;
     }
 
-    /** Logic for applying the filters */
+    /** Logic for applying the filters. */
     private Logic logic;
     
     /** String to match against. */
