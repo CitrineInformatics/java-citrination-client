@@ -23,7 +23,7 @@ public class PifSearchHit {
      * @return This object.
      */
     @JsonSetter("system")
-    protected PifSearchHit setSystem(final System system) {
+    public PifSearchHit setSystem(final System system) {
         this.system = system;
         return this;
     }
@@ -58,7 +58,7 @@ public class PifSearchHit {
      * @return This object.
      */
     @JsonIgnore
-    protected PifSearchHit addExtracted(final String key, final String value) {
+    public PifSearchHit addExtracted(final String key, final String value) {
         if (this.extracted == null) {
             this.extracted = new HashMap<>();
         }

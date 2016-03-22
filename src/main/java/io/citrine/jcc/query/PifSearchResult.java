@@ -33,7 +33,7 @@ public class PifSearchResult implements Iterable<PifSearchHit> {
      * @return This object.
      */
     @JsonSetter("took")
-    protected PifSearchResult setTook(final Long took) {
+    public PifSearchResult setTook(final Long took) {
         this.took = took;
         return this;
     }
@@ -56,7 +56,7 @@ public class PifSearchResult implements Iterable<PifSearchHit> {
      * @return This object.
      */
     @JsonSetter("totalNumHits")
-    protected PifSearchResult setTotalNumHits(final Long totalNumHits) {
+    public PifSearchResult setTotalNumHits(final Long totalNumHits) {
         this.totalNumHits = totalNumHits;
         return this;
     }
@@ -91,7 +91,7 @@ public class PifSearchResult implements Iterable<PifSearchHit> {
      * @return This object.
      */
     @JsonIgnore
-    protected PifSearchResult addHit(final PifSearchHit hit) {
+    public PifSearchResult addHit(final PifSearchHit hit) {
         if (this.hits == null) {
             this.hits = new ArrayList<>();
         }
