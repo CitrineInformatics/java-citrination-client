@@ -132,6 +132,18 @@ public class Filter {
      * @return This object.
      */
     @JsonSetter("max")
+    public Filter max(final String max) {
+        this.max = max;
+        return this;
+    }
+
+    /**
+     * Set the maximum value that should match.
+     *
+     * @param max Maximum value that should match.
+     * @return This object.
+     */
+    @JsonIgnore
     public Filter max(final Integer max) {
         this.max = Integer.toString(max);
         return this;
