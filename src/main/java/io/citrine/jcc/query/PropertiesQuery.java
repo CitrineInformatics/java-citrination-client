@@ -15,6 +15,28 @@ import java.util.List;
 public class PropertiesQuery {
 
     /**
+     * Set the logic that applies to the query.
+     *
+     * @param logic {@link Logic} to wrap around the query.
+     * @return This object.
+     */
+    @JsonSetter("logic")
+    public PropertiesQuery logic(final Logic logic) {
+        this.logic = logic;
+        return this;
+    }
+
+    /**
+     * Get the logic that applies to the query.
+     *
+     * @return {@link Logic} object or a null pointer if it has not been set.
+     */
+    @JsonGetter("logic")
+    public Logic logic() {
+        return this.logic;
+    }
+
+    /**
      * Set the list of name operations. This adds to any operations that already exist.
      *
      * @param name List of {@link FieldOperation} objects.
@@ -29,12 +51,37 @@ public class PropertiesQuery {
     /**
      * Add a single name operation.
      *
-     * @param name {@link FieldOperation} object.
+     * @param extractAs Alias to extract as.
+     * @param filters {@link Filters} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery name(final FieldOperation name) {
-        this.name = ListUtil.add(name, this.name);
+    public PropertiesQuery name(final String extractAs, final Filters filters) {
+        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs).filters(filters), this.name);
+        return this;
+    }
+
+    /**
+     * Add a single name operation.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery name(final String extractAs) {
+        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs), this.name);
+        return this;
+    }
+
+    /**
+     * Add a single name operation.
+     *
+     * @param filters {@link Filters} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery name(final Filters filters) {
+        this.name = ListUtil.add(new FieldOperation().filters(filters), this.name);
         return this;
     }
 
@@ -73,12 +120,37 @@ public class PropertiesQuery {
     /**
      * Add a single value operation.
      *
-     * @param value {@link FieldOperation} object.
+     * @param extractAs Alias to extract as.
+     * @param filters {@link Filters} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery value(final FieldOperation value) {
-        this.value = ListUtil.add(value, this.value);
+    public PropertiesQuery value(final String extractAs, final Filters filters) {
+        this.value = ListUtil.add(new FieldOperation().extractAs(extractAs).filters(filters), this.value);
+        return this;
+    }
+
+    /**
+     * Add a single value operation.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery value(final String extractAs) {
+        this.value = ListUtil.add(new FieldOperation().extractAs(extractAs), this.value);
+        return this;
+    }
+
+    /**
+     * Add a single value operation.
+     *
+     * @param filters {@link Filters} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery value(final Filters filters) {
+        this.value = ListUtil.add(new FieldOperation().filters(filters), this.value);
         return this;
     }
 
@@ -117,12 +189,37 @@ public class PropertiesQuery {
     /**
      * Add a single units operation.
      *
-     * @param units {@link FieldOperation} object.
+     * @param extractAs Alias to extract as.
+     * @param filters {@link Filters} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery units(final FieldOperation units) {
-        this.units = ListUtil.add(units, this.units);
+    public PropertiesQuery units(final String extractAs, final Filters filters) {
+        this.units = ListUtil.add(new FieldOperation().extractAs(extractAs).filters(filters), this.units);
+        return this;
+    }
+
+    /**
+     * Add a single units operation.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery units(final String extractAs) {
+        this.units = ListUtil.add(new FieldOperation().extractAs(extractAs), this.units);
+        return this;
+    }
+
+    /**
+     * Add a single units operation.
+     *
+     * @param filters {@link Filters} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery units(final Filters filters) {
+        this.units = ListUtil.add(new FieldOperation().filters(filters), this.units);
         return this;
     }
 
@@ -145,6 +242,9 @@ public class PropertiesQuery {
     public boolean hasUnits() {
         return ListUtil.hasContent(this.units);
     }
+
+    /** Logic that applies to the entire query. */
+    private Logic logic;
 
     /** List of name operations. */
     private List<FieldOperation> name;
