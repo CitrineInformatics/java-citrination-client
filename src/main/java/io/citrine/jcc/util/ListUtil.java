@@ -57,7 +57,7 @@ public abstract class ListUtil {
      *
      * @param list List to iterate over.
      * @param <T> Type of the values in the list.
-     * @return {@link Iterable<T>} for the input list or over an empty list.
+     * @return {@link Iterable} for the input list or over an empty list.
      */
     public static <T> Iterable<T> iterable(final List<T> list) {
         return (list == null) ? Collections.emptyList() : list;

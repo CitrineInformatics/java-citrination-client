@@ -20,7 +20,9 @@ public enum Logic {
     /** Should match. Similar to an OR query in that at least one value marked SHOULD must match. */
     SHOULD,
 
-    /** Optional to match. This has the effect of marking all {@link #SHOULD} queries as satisfied. */
+    /**
+     * Optional to match. This has the effect of marking all {@link #SHOULD} queries as satisfied.
+     */
     OPTIONAL,
 
     /** Can never match. */
