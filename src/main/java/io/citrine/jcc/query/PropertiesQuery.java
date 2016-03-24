@@ -15,6 +15,28 @@ import java.util.List;
 public class PropertiesQuery {
 
     /**
+     * Set whether the query is optional.
+     *
+     * @param optional True if the query should be treated as optional.
+     * @return This object.
+     */
+    @JsonSetter("optional")
+    public PropertiesQuery optional(final Boolean optional) {
+        this.optional = optional;
+        return this;
+    }
+
+    /**
+     * Get whether the query is optional.
+     *
+     * @return True if the query is optional or a null pointer if it has not been set.
+     */
+    @JsonGetter("optional")
+    public Boolean optional() {
+        return this.optional;
+    }
+
+    /**
      * Set the list of name operations. This adds to any operations that already exist.
      *
      * @param name List of {@link FieldOperation} objects.
@@ -127,6 +149,9 @@ public class PropertiesQuery {
     public List<FieldOperation> units() {
         return this.units;
     }
+
+    /** Whether the entire query is optional. */
+    private Boolean optional;
 
     /** List of name operations. */
     private List<FieldOperation> name = new ArrayList<>();
