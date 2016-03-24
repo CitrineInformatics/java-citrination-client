@@ -1,14 +1,10 @@
 package io.citrine.jcc.query;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Base class for all field queries.
+ * Class for all field queries.
  *
  * @author Kyle Michel
  */
@@ -37,46 +33,30 @@ public class FieldOperation {
     }
 
     /**
-     * Set the list of filters to apply to the field. This adds to any filters that are already stored.
+     * Set the filters that apply to the field.
      *
-     * @param filter List of {@link Filter} objects to apply.
+     * @param filters {@link Filters} to apply.
      * @return This object.
      */
-    @JsonSetter("filter")
-    public FieldOperation filter(final List<Filter> filter) {
-        if (filter != null) {
-            this.filter.addAll(filter);
-        }
+    @JsonSetter("filters")
+    public FieldOperation filters(final Filters filters) {
+        this.filters = filters;
         return this;
     }
 
     /**
-     * Add a single filter to the field.
+     * Get the filters that apply to the field.
      *
-     * @param filter {@link Filter} object to apply.
-     * @return This object.
+     * @return {@link Filters} object or a null pointer if one has not been set.
      */
-    @JsonIgnore
-    public FieldOperation filter(final Filter filter) {
-        if (filter != null) {
-            this.filter.add(filter);
-        }
-        return this;
-    }
-
-    /**
-     * Get the list of filters that apply to this object.
-     *
-     * @return List of {@link Filter} objects to apply.
-     */
-    @JsonGetter("filter")
-    public List<Filter> filter() {
-        return this.filter;
+    @JsonGetter("filters")
+    public Filters filters() {
+        return this.filters;
     }
 
     /** Alias to save this field under. */
     private String extractAs;
 
     /** List of filters to apply to this field. */
-    private List<Filter> filter = new ArrayList<>();
+    private Filters filters;
 }

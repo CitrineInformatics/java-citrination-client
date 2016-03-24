@@ -13,9 +13,18 @@ import java.util.Map;
  * @author Kyle Michel
  */
 public enum Logic {
+
+    /** Must always match. Similar to an AND query. */
     MUST,
+
+    /** Should match. Similar to an OR query in that at least one value marked SHOULD must match. */
     SHOULD,
-    NOT;
+
+    /** Optional to match. This has the effect of marking all {@link #SHOULD} queries as satisfied. */
+    OPTIONAL,
+
+    /** Can never match. */
+    MUST_NOT;
 
     /**
      * Get a {@link Logic} object by its name.

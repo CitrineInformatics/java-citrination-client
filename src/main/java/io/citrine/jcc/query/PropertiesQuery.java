@@ -3,8 +3,8 @@ package io.citrine.jcc.query;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,38 +15,14 @@ import java.util.List;
 public class PropertiesQuery {
 
     /**
-     * Set whether the query is optional.
-     *
-     * @param optional True if the query should be treated as optional.
-     * @return This object.
-     */
-    @JsonSetter("optional")
-    public PropertiesQuery optional(final Boolean optional) {
-        this.optional = optional;
-        return this;
-    }
-
-    /**
-     * Get whether the query is optional.
-     *
-     * @return True if the query is optional or a null pointer if it has not been set.
-     */
-    @JsonGetter("optional")
-    public Boolean optional() {
-        return this.optional;
-    }
-
-    /**
      * Set the list of name operations. This adds to any operations that already exist.
      *
      * @param name List of {@link FieldOperation} objects.
      * @return This object.
      */
     @JsonSetter("name")
-    public PropertiesQuery name(final List<FieldOperation> name) {
-        if (name != null) {
-            this.name.addAll(name);
-        }
+    private PropertiesQuery name(final List<FieldOperation> name) {
+        this.name = ListUtil.add(name, this.name);
         return this;
     }
 
@@ -58,20 +34,28 @@ public class PropertiesQuery {
      */
     @JsonIgnore
     public PropertiesQuery name(final FieldOperation name) {
-        if (name != null) {
-            this.name.add(name);
-        }
+        this.name = ListUtil.add(name, this.name);
         return this;
     }
 
     /**
-     * Get the list of field operations.
+     * Get an iterable object over the names fields.
      *
-     * @return List of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldOperation} objects.
      */
     @JsonGetter("name")
-    public List<FieldOperation> name() {
-        return this.name;
+    public Iterable<FieldOperation> name() {
+        return ListUtil.iterable(this.name);
+    }
+
+    /**
+     * Return whether any name operations exist.
+     *
+     * @return True if any name operations exist.
+     */
+    @JsonIgnore
+    public boolean hasName() {
+        return ListUtil.hasContent(this.name);
     }
 
     /**
@@ -81,10 +65,8 @@ public class PropertiesQuery {
      * @return This object.
      */
     @JsonSetter("value")
-    public PropertiesQuery value(final List<FieldOperation> value) {
-        if (value != null) {
-            this.value.addAll(value);
-        }
+    private PropertiesQuery value(final List<FieldOperation> value) {
+        this.value = ListUtil.add(value, this.value);
         return this;
     }
 
@@ -96,20 +78,28 @@ public class PropertiesQuery {
      */
     @JsonIgnore
     public PropertiesQuery value(final FieldOperation value) {
-        if (value != null) {
-            this.value.add(value);
-        }
+        this.value = ListUtil.add(value, this.value);
         return this;
     }
 
     /**
-     * Get the list of name operations.
+     * Get an iterable over the list of name operations.
      *
-     * @return List of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldOperation} objects.
      */
     @JsonGetter("value")
-    public List<FieldOperation> value() {
-        return this.value;
+    public Iterable<FieldOperation> value() {
+        return ListUtil.iterable(this.value);
+    }
+
+    /**
+     * Return whether any value operations exist.
+     *
+     * @return True if any value operations exist.
+     */
+    @JsonIgnore
+    public boolean hasValue() {
+        return ListUtil.hasContent(this.value);
     }
 
     /**
@@ -119,10 +109,8 @@ public class PropertiesQuery {
      * @return This object.
      */
     @JsonSetter("units")
-    public PropertiesQuery units(final List<FieldOperation> units) {
-        if (units != null) {
-            this.units.addAll(units);
-        }
+    private PropertiesQuery units(final List<FieldOperation> units) {
+        this.units = ListUtil.add(units, this.units);
         return this;
     }
 
@@ -134,31 +122,36 @@ public class PropertiesQuery {
      */
     @JsonIgnore
     public PropertiesQuery units(final FieldOperation units) {
-        if (units != null) {
-            this.units.add(units);
-        }
+        this.units = ListUtil.add(units, this.units);
         return this;
     }
 
     /**
      * Get the list of units operations.
      *
-     * @return List of {@link FieldOperation} objects.
+     * @return Iterator over {@link FieldOperation} objects.
      */
     @JsonGetter("units")
-    public List<FieldOperation> units() {
-        return this.units;
+    public Iterable<FieldOperation> units() {
+        return ListUtil.iterable(this.units);
     }
 
-    /** Whether the entire query is optional. */
-    private Boolean optional;
+    /**
+     * Return whether any units operations exists.
+     *
+     * @return True if any units operations exist.
+     */
+    @JsonIgnore
+    public boolean hasUnits() {
+        return ListUtil.hasContent(this.units);
+    }
 
     /** List of name operations. */
-    private List<FieldOperation> name = new ArrayList<>();
+    private List<FieldOperation> name;
 
     /** List of value operations. */
-    private List<FieldOperation> value = new ArrayList<>();
+    private List<FieldOperation> value;
 
     /** List of units operations. */
-    private List<FieldOperation> units = new ArrayList<>();
+    private List<FieldOperation> units;
 }

@@ -3,6 +3,7 @@ package io.citrine.jcc.query;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.ListUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,8 @@ public class SystemQuery {
      * @return This object.
      */
     @JsonSetter("chemicalFormula")
-    public SystemQuery chemicalFormula(final List<FieldOperation> chemicalFormula) {
-        if (chemicalFormula != null) {
-            this.chemicalFormula.addAll(chemicalFormula);
-        }
+    private SystemQuery chemicalFormula(final List<FieldOperation> chemicalFormula) {
+        this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
         return this;
     }
 
@@ -36,20 +35,28 @@ public class SystemQuery {
      */
     @JsonIgnore
     public SystemQuery chemicalFormula(final FieldOperation chemicalFormula) {
-        if (chemicalFormula != null) {
-            this.chemicalFormula.add(chemicalFormula);
-        }
+        this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
         return this;
     }
 
     /**
-     * Get the list of chemical formula operations.
+     * Get an iterable over chemical formula operations.
      *
-     * @return List of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldOperation} objects.
      */
     @JsonGetter("chemicalFormula")
-    public List<FieldOperation> chemicalFormula() {
-        return this.chemicalFormula;
+    public Iterable<FieldOperation> chemicalFormula() {
+        return ListUtil.iterable(this.chemicalFormula);
+    }
+
+    /**
+     * Return whether any chemical formula operations exist.
+     *
+     * @return True if any chemical formula operations exist.
+     */
+    @JsonIgnore
+    public boolean hasChemicalFormula() {
+        return ListUtil.hasContent(this.chemicalFormula);
     }
 
     /**
@@ -59,10 +66,8 @@ public class SystemQuery {
      * @return This object.
      */
     @JsonSetter("properties")
-    public SystemQuery properties(final List<PropertiesQuery> properties) {
-        if (properties != null) {
-            this.properties.addAll(properties);
-        }
+    private SystemQuery properties(final List<PropertiesQuery> properties) {
+        this.properties = ListUtil.add(properties, this.properties);
         return this;
     }
 
@@ -74,20 +79,28 @@ public class SystemQuery {
      */
     @JsonIgnore
     public SystemQuery properties(final PropertiesQuery properties) {
-        if (properties != null) {
-            this.properties.add(properties);
-        }
+        this.properties = ListUtil.add(properties, this.properties);
         return this;
     }
 
     /**
-     * Get the list of properties operations.
+     * Get an iterable of properties operations.
      *
-     * @return List of {@link PropertiesQuery} objects.
+     * @return Iterable of {@link PropertiesQuery} objects.
      */
     @JsonGetter("properties")
-    public List<PropertiesQuery> properties() {
+    public Iterable<PropertiesQuery> properties() {
         return this.properties;
+    }
+
+    /**
+     * Get whether an properties queries exist.
+     *
+     * @return True if any properties queries exist.
+     */
+    @JsonIgnore
+    public boolean hasProperties() {
+        return ListUtil.hasContent(this.properties);
     }
 
     /** List of chemical formula operations. */
@@ -95,12 +108,4 @@ public class SystemQuery {
 
     /** List of properties operations. */
     private List<PropertiesQuery> properties = new ArrayList<>();
-
-/*
-    conditions
-    method
-    datatype
-    references
-    contacts
-    licenses*/
 }
