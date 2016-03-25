@@ -12,25 +12,16 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class PropertiesQuery {
+public class PropertiesQuery implements HasLogic {
 
-    /**
-     * Set the logic that applies to the query.
-     *
-     * @param logic {@link Logic} to wrap around the query.
-     * @return This object.
-     */
+    @Override
     @JsonSetter("logic")
     public PropertiesQuery logic(final Logic logic) {
         this.logic = logic;
         return this;
     }
 
-    /**
-     * Get the logic that applies to the query.
-     *
-     * @return {@link Logic} object or a null pointer if it has not been set.
-     */
+    @Override
     @JsonGetter("logic")
     public Logic logic() {
         return this.logic;
@@ -52,12 +43,12 @@ public class PropertiesQuery {
      * Add a single name operation.
      *
      * @param extractAs Alias to extract as.
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery name(final String extractAs, final Filters filters) {
-        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs).filters(filters), this.name);
+    public PropertiesQuery name(final String extractAs, final FilterGroup filterGroup) {
+        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.name);
         return this;
     }
 
@@ -76,12 +67,12 @@ public class PropertiesQuery {
     /**
      * Add a single name operation.
      *
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery name(final Filters filters) {
-        this.name = ListUtil.add(new FieldOperation().filters(filters), this.name);
+    public PropertiesQuery name(final FilterGroup filterGroup) {
+        this.name = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.name);
         return this;
     }
 
@@ -121,12 +112,12 @@ public class PropertiesQuery {
      * Add a single value operation.
      *
      * @param extractAs Alias to extract as.
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery value(final String extractAs, final Filters filters) {
-        this.value = ListUtil.add(new FieldOperation().extractAs(extractAs).filters(filters), this.value);
+    public PropertiesQuery value(final String extractAs, final FilterGroup filterGroup) {
+        this.value = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.value);
         return this;
     }
 
@@ -145,12 +136,12 @@ public class PropertiesQuery {
     /**
      * Add a single value operation.
      *
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery value(final Filters filters) {
-        this.value = ListUtil.add(new FieldOperation().filters(filters), this.value);
+    public PropertiesQuery value(final FilterGroup filterGroup) {
+        this.value = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.value);
         return this;
     }
 
@@ -190,12 +181,12 @@ public class PropertiesQuery {
      * Add a single units operation.
      *
      * @param extractAs Alias to extract as.
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery units(final String extractAs, final Filters filters) {
-        this.units = ListUtil.add(new FieldOperation().extractAs(extractAs).filters(filters), this.units);
+    public PropertiesQuery units(final String extractAs, final FilterGroup filterGroup) {
+        this.units = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.units);
         return this;
     }
 
@@ -214,12 +205,12 @@ public class PropertiesQuery {
     /**
      * Add a single units operation.
      *
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery units(final Filters filters) {
-        this.units = ListUtil.add(new FieldOperation().filters(filters), this.units);
+    public PropertiesQuery units(final FilterGroup filterGroup) {
+        this.units = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.units);
         return this;
     }
 

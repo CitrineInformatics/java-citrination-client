@@ -9,25 +9,16 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * 
  * @author Kyle Michel
  */
-public class Filter {
+public class Filter implements HasLogic {
 
-    /**
-     * Set the logic for the filter. Defaults to {@link Logic#SHOULD}.
-     * 
-     * @param logic {@link Logic} object.
-     * @return This object.
-     */
+    @Override
     @JsonSetter("logic")
     public Filter logic(final Logic logic) {
         this.logic = logic;
         return this;
     }
 
-    /**
-     * Get the filter logic.
-     *
-     * @return {@link Logic} object or a null pointer if one has not been set.
-     */
+    @Override
     @JsonGetter("logic")
     public Logic logic() {
         return this.logic;

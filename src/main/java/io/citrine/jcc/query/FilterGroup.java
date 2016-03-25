@@ -12,25 +12,16 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class Filters {
+public class FilterGroup implements HasLogic {
 
-    /**
-     * Set the logic that applies to the filters.
-     *
-     * @param logic {@link Logic} to wrap around the filters.
-     * @return This object.
-     */
+    @Override
     @JsonSetter("logic")
-    public Filters logic(final Logic logic) {
+    public FilterGroup logic(final Logic logic) {
         this.logic = logic;
         return this;
     }
 
-    /**
-     * Get the logic that applies to the filters.
-     *
-     * @return {@link Logic} object or a null pointer if it has not been set.
-     */
+    @Override
     @JsonGetter("logic")
     public Logic logic() {
         return this.logic;
@@ -43,7 +34,7 @@ public class Filters {
      * @return This object.
      */
     @JsonSetter("filter")
-    private Filters filter(final List<Filter> filter) {
+    private FilterGroup filter(final List<Filter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
@@ -55,7 +46,7 @@ public class Filters {
      * @return This object.
      */
     @JsonIgnore
-    public Filters filter(final Filter filter) {
+    public FilterGroup filter(final Filter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
@@ -80,9 +71,58 @@ public class Filters {
         return ListUtil.hasContent(this.filter);
     }
 
+    /**
+     * Set the list of filter groups.
+     *
+     * @param filterGroup List of {@link FilterGroup} objects to add.
+     * @return This object.
+     */
+    @JsonSetter("filterGroup")
+    private FilterGroup filterGroup(final List<FilterGroup> filterGroup) {
+        this.filterGroup = ListUtil.add(filterGroup, this.filterGroup);
+        return this;
+    }
+
+    /**
+     * Add to the list of filter groups.
+     *
+     * @param filterGroup {@link FilterGroup} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public FilterGroup filterGroup(final FilterGroup filterGroup) {
+        this.filterGroup = ListUtil.add(filterGroup, this.filterGroup);
+        return this;
+    }
+
+    /**
+     * Get an iterable over the list of filter groups.
+     *
+     * @return Iterable of {@link FilterGroup} objects.
+     */
+    @JsonGetter("filterGroup")
+    public Iterable<FilterGroup> filterGroup() {
+        return ListUtil.iterable(this.filterGroup);
+    }
+
+    /**
+     * Return whether this object has any filter groups.
+     *
+     * @return True if this object has any filter groups.
+     */
+    @JsonIgnore
+    public boolean hasFilterGroup() {
+        return ListUtil.hasContent(this.filterGroup);
+    }
+
     /** Logic that the list of filters gets wrapped in. */
     private Logic logic;
 
     /** List of filters that apply to a field. */
     private List<Filter> filter;
+
+    /**
+     * List of {@link FilterGroup} objects inside of this one.
+     */
+    private List<FilterGroup> filterGroup;
 }

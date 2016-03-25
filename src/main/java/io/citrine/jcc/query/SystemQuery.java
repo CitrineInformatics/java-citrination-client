@@ -31,13 +31,13 @@ public class SystemQuery {
      * Add to the list of chemical formula operations.
      *
      * @param extractAs Alias to extract as.
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery chemicalFormula(final String extractAs, final Filters filters) {
+    public SystemQuery chemicalFormula(final String extractAs, final FilterGroup filterGroup) {
         this.chemicalFormula = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filters(filters),
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
                 this.chemicalFormula);
         return this;
     }
@@ -57,12 +57,12 @@ public class SystemQuery {
     /**
      * Add to the list of chemical formula operations.
      *
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery chemicalFormula(final Filters filters) {
-        this.chemicalFormula = ListUtil.add(new FieldOperation().filters(filters), this.chemicalFormula);
+    public SystemQuery chemicalFormula(final FilterGroup filterGroup) {
+        this.chemicalFormula = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.chemicalFormula);
         return this;
     }
 

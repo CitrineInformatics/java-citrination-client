@@ -35,28 +35,28 @@ public class FieldOperation {
     /**
      * Set the filters that apply to the field.
      *
-     * @param filters {@link Filters} to apply.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
-    @JsonSetter("filters")
-    public FieldOperation filters(final Filters filters) {
-        this.filters = filters;
+    @JsonSetter("filterGroup")
+    public FieldOperation filterGroup(final FilterGroup filterGroup) {
+        this.filterGroup = filterGroup;
         return this;
     }
 
     /**
      * Get the filters that apply to the field.
      *
-     * @return {@link Filters} object or a null pointer if one has not been set.
+     * @return {@link FilterGroup} object or a null pointer if one has not been set.
      */
-    @JsonGetter("filters")
-    public Filters filters() {
-        return this.filters;
+    @JsonGetter("filterGroup")
+    public FilterGroup filterGroup() {
+        return this.filterGroup;
     }
 
     /** Alias to save this field under. */
     private String extractAs;
 
     /** List of filters to apply to this field. */
-    private Filters filters;
+    private FilterGroup filterGroup;
 }
