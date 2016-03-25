@@ -17,6 +17,28 @@ import java.util.Set;
 public class PifSearchHit {
 
     /**
+     * Set the id of the record that was matched.
+     *
+     * @param id String with the id of the record.
+     * @return This object.
+     */
+    @JsonSetter("id")
+    public PifSearchHit setId(final String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get the id of the record that was matched.
+     *
+     * @return String with the id of the matched record or a null pointer if not set.
+     */
+    @JsonGetter("id")
+    public String getId() {
+        return this.id;
+    }
+
+    /**
      * Set the system that was matched.
      *
      * @param system {@link System} object to save in the result
@@ -108,6 +130,9 @@ public class PifSearchHit {
     public String getExtractedValueOrDefault(final String key, final String defaultValue) {
         return (this.extracted == null) ? defaultValue : this.extracted.getOrDefault(key, defaultValue);
     }
+
+    /** Id of the record. */
+    private String id;
 
     /** Pif system that was matched. */
     private System system;
