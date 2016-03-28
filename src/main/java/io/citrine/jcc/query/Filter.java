@@ -3,6 +3,9 @@ package io.citrine.jcc.query;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.ListUtil;
+
+import java.util.List;
 
 /**
  * Filter that can be applied to any object.
@@ -187,7 +190,7 @@ public class Filter implements HasLogic {
     }
 
     /**
-     * Set whether matches should be exact. Defaults to false.
+     * Set whether matches should be exact. This only applies when using the {@link #equal()} field. Defaults to false.
      *
      * @param exact True if matches should be exact.
      * @return This object.
@@ -208,6 +211,50 @@ public class Filter implements HasLogic {
         return this.exact;
     }
 
+    /**
+     * Set the nested list of filters that apply to the field.
+     *
+     * @param filter List of {@link Filter} objects.
+     * @return This object.
+     */
+    @JsonSetter("filter")
+    private Filter filter(final List<Filter> filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested filters.
+     *
+     * @param filter {@link Filter} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public Filter filter(final Filter filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    /**
+     * Get an iterable over the list of nested filters.
+     *
+     * @return Iterable of {@link Filter} objects.
+     */
+    @JsonGetter("filter")
+    public Iterable<Filter> filter() {
+        return ListUtil.iterable(this.filter);
+    }
+
+    /**
+     * Get whether any nested filters have been applied.
+     *
+     * @return True if there are any filters.
+     */
+    @JsonIgnore
+    public boolean hasFilter() {
+        return ListUtil.hasContent(this.filter);
+    }
+
     /** Logic for applying the filters. */
     private Logic logic;
     
@@ -222,4 +269,7 @@ public class Filter implements HasLogic {
 
     /** Whether to match exactly. */
     private Boolean exact;
+
+    /** List of sub-filters. */
+    private List<Filter> filter;
 }
