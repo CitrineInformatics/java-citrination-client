@@ -12,7 +12,7 @@ import java.util.List;
  * 
  * @author Kyle Michel
  */
-public class Filter implements HasLogic {
+public class Filter implements HasLogic, HasFilter {
 
     @Override
     @JsonSetter("logic")
@@ -223,33 +223,20 @@ public class Filter implements HasLogic {
         return this;
     }
 
-    /**
-     * Add to the list of nested filters.
-     *
-     * @param filter {@link Filter} object to add.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public Filter filter(final Filter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
-    /**
-     * Get an iterable over the list of nested filters.
-     *
-     * @return Iterable of {@link Filter} objects.
-     */
+    @Override
     @JsonGetter("filter")
     public Iterable<Filter> filter() {
         return ListUtil.iterable(this.filter);
     }
 
-    /**
-     * Get whether any nested filters have been applied.
-     *
-     * @return True if there are any filters.
-     */
+    @Override
     @JsonIgnore
     public boolean hasFilter() {
         return ListUtil.hasContent(this.filter);
