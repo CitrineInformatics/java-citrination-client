@@ -12,20 +12,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class FilterGroup implements HasLogic {
-
-    @Override
-    @JsonSetter("logic")
-    public FilterGroup logic(final Logic logic) {
-        this.logic = logic;
-        return this;
-    }
-
-    @Override
-    @JsonGetter("logic")
-    public Logic logic() {
-        return this.logic;
-    }
+public class FilterGroup {
 
     /**
      * Set the list of filters that apply to the field.
@@ -70,9 +57,6 @@ public class FilterGroup implements HasLogic {
     public boolean hasFilter() {
         return ListUtil.hasContent(this.filter);
     }
-
-    /** Logic that the list of filters gets wrapped in. */
-    private Logic logic;
 
     /** List of filters that apply to a field. */
     private List<Filter> filter;
