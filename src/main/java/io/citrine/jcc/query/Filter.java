@@ -215,12 +215,10 @@ public class Filter implements HasLogic, HasFilter {
      * Set the nested list of filters that apply to the field.
      *
      * @param filter List of {@link Filter} objects.
-     * @return This object.
      */
     @JsonSetter("filter")
-    private Filter filter(final List<Filter> filter) {
+    private void filter(final List<Filter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
-        return this;
     }
 
     @Override

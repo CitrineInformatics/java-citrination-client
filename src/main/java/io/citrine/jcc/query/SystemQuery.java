@@ -19,12 +19,10 @@ public class SystemQuery {
      * Set the list of chemical formula operations. This adds to any operations that are already saved.
      *
      * @param chemicalFormula List of {@link FieldOperation} objects.
-     * @return This object.
      */
     @JsonSetter("chemicalFormula")
-    private SystemQuery chemicalFormula(final List<FieldOperation> chemicalFormula) {
+    private void chemicalFormula(final List<FieldOperation> chemicalFormula) {
         this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
-        return this;
     }
 
     /**
@@ -90,12 +88,10 @@ public class SystemQuery {
      * Set the list of properties operations. This adds to any operations that are already saved.
      *
      * @param properties List of {@link PropertiesQuery} objects.
-     * @return This object.
      */
     @JsonSetter("properties")
-    private SystemQuery properties(final List<PropertiesQuery> properties) {
+    private void properties(final List<PropertiesQuery> properties) {
         this.properties = ListUtil.add(properties, this.properties);
-        return this;
     }
 
     /**

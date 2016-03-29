@@ -31,12 +31,10 @@ public class FilterGroup implements HasLogic, HasFilter {
      * Set the list of filters that apply to the field.
      *
      * @param filter List of {@link Filter} objects.
-     * @return This object.
      */
     @JsonSetter("filter")
-    private FilterGroup filter(final List<Filter> filter) {
+    private void filter(final List<Filter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
-        return this;
     }
 
     @Override

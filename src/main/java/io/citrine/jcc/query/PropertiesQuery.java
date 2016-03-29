@@ -1,248 +1,82 @@
 package io.citrine.jcc.query;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.citrine.jcc.util.ListUtil;
-
-import java.util.List;
 
 /**
  * Class used to match against a property.
  *
  * @author Kyle Michel
  */
-public class PropertiesQuery implements HasLogic {
+public class PropertiesQuery extends ValueQuery {
 
     @Override
     @JsonSetter("logic")
     public PropertiesQuery logic(final Logic logic) {
-        this.logic = logic;
+        super.logic(logic);
         return this;
     }
 
     @Override
-    @JsonGetter("logic")
-    public Logic logic() {
-        return this.logic;
-    }
-
-    /**
-     * Set the list of name operations. This adds to any operations that already exist.
-     *
-     * @param name List of {@link FieldOperation} objects.
-     * @return This object.
-     */
-    @JsonSetter("name")
-    private PropertiesQuery name(final List<FieldOperation> name) {
-        this.name = ListUtil.add(name, this.name);
-        return this;
-    }
-
-    /**
-     * Add a single name operation.
-     *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
-     */
     @JsonIgnore
     public PropertiesQuery name(final String extractAs, final FilterGroup filterGroup) {
-        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.name);
+        super.name(extractAs, filterGroup);
         return this;
     }
 
-    /**
-     * Add a single name operation.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public PropertiesQuery name(final String extractAs) {
-        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs), this.name);
+        super.name(extractAs);
         return this;
     }
 
-    /**
-     * Add a single name operation.
-     *
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public PropertiesQuery name(final FilterGroup filterGroup) {
-        this.name = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.name);
+        super.name(filterGroup);
         return this;
     }
 
-    /**
-     * Get an iterable object over the names fields.
-     *
-     * @return Iterable of {@link FieldOperation} objects.
-     */
-    @JsonGetter("name")
-    public Iterable<FieldOperation> name() {
-        return ListUtil.iterable(this.name);
-    }
-
-    /**
-     * Return whether any name operations exist.
-     *
-     * @return True if any name operations exist.
-     */
-    @JsonIgnore
-    public boolean hasName() {
-        return ListUtil.hasContent(this.name);
-    }
-
-    /**
-     * Set the list of value operations. This adds to any operations that already exist.
-     *
-     * @param value List of {@link FieldOperation} objects.
-     * @return This object.
-     */
-    @JsonSetter("value")
-    private PropertiesQuery value(final List<FieldOperation> value) {
-        this.value = ListUtil.add(value, this.value);
-        return this;
-    }
-
-    /**
-     * Add a single value operation.
-     *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public PropertiesQuery value(final String extractAs, final FilterGroup filterGroup) {
-        this.value = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.value);
+        super.value(extractAs, filterGroup);
         return this;
     }
 
-    /**
-     * Add a single value operation.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public PropertiesQuery value(final String extractAs) {
-        this.value = ListUtil.add(new FieldOperation().extractAs(extractAs), this.value);
+        super.value(extractAs);
         return this;
     }
 
-    /**
-     * Add a single value operation.
-     *
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public PropertiesQuery value(final FilterGroup filterGroup) {
-        this.value = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.value);
+        super.value(filterGroup);
         return this;
     }
 
-    /**
-     * Get an iterable over the list of name operations.
-     *
-     * @return Iterable of {@link FieldOperation} objects.
-     */
-    @JsonGetter("value")
-    public Iterable<FieldOperation> value() {
-        return ListUtil.iterable(this.value);
-    }
-
-    /**
-     * Return whether any value operations exist.
-     *
-     * @return True if any value operations exist.
-     */
-    @JsonIgnore
-    public boolean hasValue() {
-        return ListUtil.hasContent(this.value);
-    }
-
-    /**
-     * Set the list of units operations. This adds to any operations that already exist.
-     *
-     * @param units List of {@link FieldOperation} objects.
-     * @return This object.
-     */
-    @JsonSetter("units")
-    private PropertiesQuery units(final List<FieldOperation> units) {
-        this.units = ListUtil.add(units, this.units);
-        return this;
-    }
-
-    /**
-     * Add a single units operation.
-     *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public PropertiesQuery units(final String extractAs, final FilterGroup filterGroup) {
-        this.units = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.units);
+        super.units(extractAs, filterGroup);
         return this;
     }
 
-    /**
-     * Add a single units operation.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
-    public PropertiesQuery units(final String extractAs) {
-        this.units = ListUtil.add(new FieldOperation().extractAs(extractAs), this.units);
+    public ValueQuery units(final String extractAs) {
+        super.units(extractAs);
         return this;
     }
 
-    /**
-     * Add a single units operation.
-     *
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
-    public PropertiesQuery units(final FilterGroup filterGroup) {
-        this.units = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.units);
+    public ValueQuery units(final FilterGroup filterGroup) {
+        super.units(filterGroup);
         return this;
     }
-
-    /**
-     * Get the list of units operations.
-     *
-     * @return Iterator over {@link FieldOperation} objects.
-     */
-    @JsonGetter("units")
-    public Iterable<FieldOperation> units() {
-        return ListUtil.iterable(this.units);
-    }
-
-    /**
-     * Return whether any units operations exists.
-     *
-     * @return True if any units operations exist.
-     */
-    @JsonIgnore
-    public boolean hasUnits() {
-        return ListUtil.hasContent(this.units);
-    }
-
-    /** Logic that applies to the entire query. */
-    private Logic logic;
-
-    /** List of name operations. */
-    private List<FieldOperation> name;
-
-    /** List of value operations. */
-    private List<FieldOperation> value;
-
-    /** List of units operations. */
-    private List<FieldOperation> units;
 }
