@@ -43,56 +43,23 @@ public class PifSearchHit {
     /**
      * Set the system that was matched.
      *
-     * @param system String object to save in the result
+     * @param system {@link System} to save in the result
      * @return This object.
      */
     @JsonSetter("system")
-    public PifSearchHit setSystem(final String system) {
-        this.system = system;
-        return this;
-    }
-
-    /**
-     * Set the system that was matched. This function serializes the system when added. If serialization fails then
-     * the system is saved as a null pointer.
-     *
-     * @param system {@link System} object to save in the result.
-     * @return This object.
-     */
     public PifSearchHit setSystem(final System system) {
-        try {
-            this.setSystem(PifObjectMapper.getInstance().writeValueAsString(system));
-        }
-        catch (IOException e) {
-            this.system = null;
-        }
+        this.system = system;
         return this;
     }
 
     /**
      * Get the system that was matched.
      *
-     * @return String with the record that was matched or a null pointer if it has not been set.
+     * @return {@link System} with the record that was matched or a null pointer if it has not been set.
      */
     @JsonGetter("system")
-    public String getSystem() {
+    public System getSystem() {
         return this.system;
-    }
-
-    /**
-     * Get the system that was matched as a {@link System} object. This function deserializes the search result each
-     * time that it is called! If deserialization fails this returns a null pointer.
-     *
-     * @return {@link System} object that was matched.
-     */
-    @JsonIgnore
-    public System getSystemObject() {
-        try {
-            return PifObjectMapper.getInstance().readValue(this.system, System.class);
-        }
-        catch (IOException e) {
-            return null;
-        }
     }
 
     /**
@@ -170,7 +137,7 @@ public class PifSearchHit {
     private String id;
 
     /** Pif system that was matched. */
-    private String system;
+    private System system;
 
     /** Map of extracted fields. */
     private Map<String, String> extracted;
