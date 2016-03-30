@@ -55,6 +55,29 @@ public class PifQuery {
     }
 
     /**
+     * Whether to return the actual record that was matched. If extractions are being made in the query, then it may
+     * not be necessary to actually return the system. Defaults to true.
+     *
+     * @param returnSystem True to return systems in the results.
+     * @return This object.
+     */
+    @JsonSetter("returnSystem")
+    public PifQuery returnSystem(final Boolean returnSystem) {
+        this.returnSystem = returnSystem;
+        return this;
+    }
+
+    /**
+     * Get whether systems should be return in the results set.
+     *
+     * @return True if systems should be returned in the results or a null pointer if it is not set.
+     */
+    @JsonGetter("returnSystem")
+    public Boolean returnSystem() {
+        return this.returnSystem;
+    }
+
+    /**
      * Set the system query.
      *
      * @param system {@link SystemQuery} object to use.
@@ -81,6 +104,9 @@ public class PifQuery {
 
     /** Total number of hits the should be returned. */
     private Integer size;
+
+    /** Whether to include the system in the results. */
+    private Boolean returnSystem;
 
     /** System query to apply. */
     private SystemQuery system;
