@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jpif.obj.system.System;
-import io.citrine.jpif.util.PifObjectMapper;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -71,6 +69,23 @@ public class PifSearchHit {
     @JsonSetter("extracted")
     protected PifSearchHit setExtracted(final Map<String, String> extracted) {
         this.extracted = extracted;
+        return this;
+    }
+
+    /**
+     * Add to the map of extracted values.
+     *
+     * @param extracted Map of extracted value names to values.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PifSearchHit addExtract(final Map<String, String> extracted) {
+        if (extracted != null) {
+            if (this.extracted == null) {
+                this.extracted = new HashMap<>();
+            }
+            this.extracted.putAll(extracted);
+        }
         return this;
     }
 
