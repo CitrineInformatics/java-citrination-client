@@ -79,7 +79,7 @@ public class PifSearchHit {
      * @return This object.
      */
     @JsonIgnore
-    public PifSearchHit addExtract(final Map<String, String> extracted) {
+    public PifSearchHit addExtracted(final Map<String, String> extracted) {
         if (extracted != null) {
             if (this.extracted == null) {
                 this.extracted = new HashMap<>();
