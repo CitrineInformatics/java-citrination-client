@@ -88,11 +88,11 @@ public class PropertiesQuery extends ValueQuery {
     /**
      * Set the list of conditions operations. This adds to any operations that are already saved.
      *
-     * @param properties List of {@link ValueQuery} objects.
+     * @param conditions List of {@link ValueQuery} objects.
      */
     @JsonSetter("conditions")
-    private void conditions(final List<ValueQuery> properties) {
-        this.conditions = ListUtil.add(properties, this.conditions);
+    private void conditions(final List<ValueQuery> conditions) {
+        this.conditions = ListUtil.add(conditions, this.conditions);
     }
 
     /**
