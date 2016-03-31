@@ -68,14 +68,14 @@ public class PropertiesQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public ValueQuery units(final String extractAs) {
+    public PropertiesQuery units(final String extractAs) {
         super.units(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public ValueQuery units(final FilterGroup filterGroup) {
+    public PropertiesQuery units(final FilterGroup filterGroup) {
         super.units(filterGroup);
         return this;
     }
