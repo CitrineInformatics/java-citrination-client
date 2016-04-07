@@ -13,7 +13,20 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class SystemQuery {
+public class SystemQuery implements HasLogic {
+
+    @Override
+    @JsonSetter("logic")
+    public SystemQuery logic(final Logic logic) {
+        this.logic = logic;
+        return this;
+    }
+
+    @Override
+    @JsonGetter("logic")
+    public Logic logic() {
+        return this.logic;
+    }
 
     /**
      * Set the list of chemical formula operations. This adds to any operations that are already saved.
@@ -168,6 +181,120 @@ public class SystemQuery {
         return ListUtil.hasContent(this.preparation);
     }
 
+    /**
+     * Set the list of number of subsystem operations. This adds to any operations that are already saved.
+     *
+     * @param numSubSystems List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("numSubSystems")
+    private void numSubSystems(final List<FieldOperation> numSubSystems) {
+        this.numSubSystems = ListUtil.add(numSubSystems, this.numSubSystems);
+    }
+
+    /**
+     * Add to the list of number of subsystems operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery numSubSystems(final String extractAs, final FilterGroup filterGroup) {
+        this.numSubSystems = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.numSubSystems);
+        return this;
+    }
+
+    /**
+     * Add to the list of number of subsystems operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery numSubSystems(final String extractAs) {
+        this.numSubSystems = ListUtil.add(new FieldOperation().extractAs(extractAs), this.numSubSystems);
+        return this;
+    }
+
+    /**
+     * Add to the list of number of subystem operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery numSubSystems(final FilterGroup filterGroup) {
+        this.numSubSystems = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.numSubSystems);
+        return this;
+    }
+
+    /**
+     * Get an iterable over number of subsystem operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("numSubSystems")
+    public Iterable<FieldOperation> numSubSystems() {
+        return ListUtil.iterable(this.numSubSystems);
+    }
+
+    /**
+     * Return whether any number of subsystem operations exist.
+     *
+     * @return True if any number of subsystem operations exist.
+     */
+    @JsonIgnore
+    public boolean hasNumSubSystems() {
+        return ListUtil.hasContent(this.numSubSystems);
+    }
+
+    /**
+     * Set the list of subsystem operations. This adds to any operations that are already saved.
+     *
+     * @param subSystems List of {@link SystemQuery} objects.
+     */
+    @JsonSetter("subSystems")
+    private void subSystems(final List<SystemQuery> subSystems) {
+        this.subSystems = ListUtil.add(subSystems, this.subSystems);
+    }
+
+    /**
+     * Add to the list of subSystems operations.
+     *
+     * @param subSystems {@link SystemQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery subSystems(final SystemQuery subSystems) {
+        this.subSystems = ListUtil.add(subSystems, this.subSystems);
+        return this;
+    }
+
+    /**
+     * Get an iterable of subSystems operations.
+     *
+     * @return Iterable of {@link SystemQuery} objects.
+     */
+    @JsonGetter("subSystems")
+    public Iterable<SystemQuery> subSystems() {
+        return this.subSystems;
+    }
+
+    /**
+     * Get whether an subSystems queries exist.
+     *
+     * @return True if any subSystems queries exist.
+     */
+    @JsonIgnore
+    public boolean hasSubSystems() {
+        return ListUtil.hasContent(this.subSystems);
+    }
+
+    /** Logic that applies to the entire query. */
+    private Logic logic;
+
     /** List of chemical formula operations. */
     private List<FieldOperation> chemicalFormula = new ArrayList<>();
 
@@ -176,4 +303,10 @@ public class SystemQuery {
 
     /** List of process step operations. */
     private List<ProcessStepQuery> preparation = new ArrayList<>();
+
+    /** List of subsystems. */
+    private List<FieldOperation> numSubSystems = new ArrayList<>();
+
+    /** Subsystems. */
+    private List<SystemQuery> subSystems = new ArrayList<>();
 }

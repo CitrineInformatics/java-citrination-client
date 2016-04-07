@@ -13,7 +13,20 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class ProcessStepQuery {
+public class ProcessStepQuery implements HasLogic {
+
+    @Override
+    @JsonSetter("logic")
+    public ProcessStepQuery logic(final Logic logic) {
+        this.logic = logic;
+        return this;
+    }
+
+    @Override
+    @JsonGetter("logic")
+    public Logic logic() {
+        return this.logic;
+    }
 
     /**
      * Set the list of step number operations. This adds to any operations that are already saved.
@@ -194,6 +207,9 @@ public class ProcessStepQuery {
     public boolean hasDetails() {
         return ListUtil.hasContent(this.details);
     }
+
+    /** Logic that applies to the entire query. */
+    private Logic logic;
 
     /** Step number. */
     private List<FieldOperation> step = new ArrayList<>();
