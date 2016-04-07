@@ -126,9 +126,54 @@ public class SystemQuery {
         return ListUtil.hasContent(this.properties);
     }
 
+    /**
+     * Set the list of preparation operations. This adds to any operations that are already saved.
+     *
+     * @param preparation List of {@link ProcessStepQuery} objects.
+     */
+    @JsonSetter("preparation")
+    private void preparation(final List<ProcessStepQuery> preparation) {
+        this.preparation = ListUtil.add(preparation, this.preparation);
+    }
+
+    /**
+     * Add to the list of preparation operations.
+     *
+     * @param preparation {@link ProcessStepQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery preparation(final ProcessStepQuery preparation) {
+        this.preparation = ListUtil.add(preparation, this.preparation);
+        return this;
+    }
+
+    /**
+     * Get an iterable of preparation operations.
+     *
+     * @return Iterable of {@link ProcessStepQuery} objects.
+     */
+    @JsonGetter("preparation")
+    public Iterable<ProcessStepQuery> preparation() {
+        return this.preparation;
+    }
+
+    /**
+     * Get whether an preparation queries exist.
+     *
+     * @return True if any preparation queries exist.
+     */
+    @JsonIgnore
+    public boolean hasPreparation() {
+        return ListUtil.hasContent(this.preparation);
+    }
+
     /** List of chemical formula operations. */
     private List<FieldOperation> chemicalFormula = new ArrayList<>();
 
     /** List of properties operations. */
     private List<PropertiesQuery> properties = new ArrayList<>();
+
+    /** List of process step operations. */
+    private List<ProcessStepQuery> preparation = new ArrayList<>();
 }
