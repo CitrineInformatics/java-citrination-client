@@ -97,9 +97,54 @@ public class ReferenceQuery implements HasLogic {
         return ListUtil.hasContent(this.title);
     }
 
+    /**
+     * Set the list of authors operations. This adds to any operations that are already saved.
+     *
+     * @param authors List of {@link NameQuery} objects.
+     */
+    @JsonSetter("authors")
+    private void authors(final List<NameQuery> authors) {
+        this.authors = ListUtil.add(authors, this.authors);
+    }
+
+    /**
+     * Add to the list of authors operations.
+     *
+     * @param authors {@link NameQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery authors(final NameQuery authors) {
+        this.authors = ListUtil.add(authors, this.authors);
+        return this;
+    }
+
+    /**
+     * Get an iterable of authors operations.
+     *
+     * @return Iterable of {@link NameQuery} objects.
+     */
+    @JsonGetter("authors")
+    public Iterable<NameQuery> authors() {
+        return this.authors;
+    }
+
+    /**
+     * Get whether an authors queries exist.
+     *
+     * @return True if any authors queries exist.
+     */
+    @JsonIgnore
+    public boolean hasAuthors() {
+        return ListUtil.hasContent(this.authors);
+    }
+
     /** Logic that applies to the entire query. */
     private Logic logic;
 
     /** Title of the reference. */
     private List<FieldOperation> title = new ArrayList<>();
+
+    /** Authors of the reference. */
+    private List<NameQuery> authors = new ArrayList<>();
 }
