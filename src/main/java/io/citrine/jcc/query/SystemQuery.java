@@ -198,7 +198,7 @@ public class SystemQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery subSystreferencesems(final ReferenceQuery references) {
+    public SystemQuery references(final ReferenceQuery references) {
         this.references = ListUtil.add(references, this.references);
         return this;
     }
