@@ -182,6 +182,48 @@ public class SystemQuery implements HasLogic {
     }
 
     /**
+     * Set the list of references operations. This adds to any operations that are already saved.
+     *
+     * @param references List of {@link ReferenceQuery} objects.
+     */
+    @JsonSetter("references")
+    private void references(final List<ReferenceQuery> references) {
+        this.references = ListUtil.add(references, this.references);
+    }
+
+    /**
+     * Add to the list of references operations.
+     *
+     * @param references {@link ReferenceQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery subSystreferencesems(final ReferenceQuery references) {
+        this.references = ListUtil.add(references, this.references);
+        return this;
+    }
+
+    /**
+     * Get an iterable of references operations.
+     *
+     * @return Iterable of {@link ReferenceQuery} objects.
+     */
+    @JsonGetter("references")
+    public Iterable<ReferenceQuery> references() {
+        return this.references;
+    }
+
+    /**
+     * Get whether an references queries exist.
+     *
+     * @return True if any references queries exist.
+     */
+    @JsonIgnore
+    public boolean hasReferences() {
+        return ListUtil.hasContent(this.references);
+    }
+
+    /**
      * Set the list of number of subsystem operations. This adds to any operations that are already saved.
      *
      * @param numSubSystems List of {@link FieldOperation} objects.
@@ -306,6 +348,9 @@ public class SystemQuery implements HasLogic {
 
     /** List of subsystems. */
     private List<FieldOperation> numSubSystems = new ArrayList<>();
+
+    /** List of references. */
+    private List<ReferenceQuery> references = new ArrayList<>();
 
     /** Subsystems. */
     private List<SystemQuery> subSystems = new ArrayList<>();
