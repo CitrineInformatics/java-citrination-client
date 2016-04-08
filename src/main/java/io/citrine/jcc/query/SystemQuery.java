@@ -98,6 +98,48 @@ public class SystemQuery implements HasLogic {
     }
 
     /**
+     * Set the list of composition operations. This adds to any operations that are already saved.
+     *
+     * @param composition List of {@link CompositionQuery} objects.
+     */
+    @JsonSetter("composition")
+    private void composition(final List<CompositionQuery> composition) {
+        this.composition = ListUtil.add(composition, this.composition);
+    }
+
+    /**
+     * Add to the list of composition operations.
+     *
+     * @param composition {@link CompositionQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery composition(final CompositionQuery composition) {
+        this.composition = ListUtil.add(composition, this.composition);
+        return this;
+    }
+
+    /**
+     * Get an iterable of composition operations.
+     *
+     * @return Iterable of {@link CompositionQuery} objects.
+     */
+    @JsonGetter("composition")
+    public Iterable<CompositionQuery> composition() {
+        return this.composition;
+    }
+
+    /**
+     * Get whether an composition queries exist.
+     *
+     * @return True if any composition queries exist.
+     */
+    @JsonIgnore
+    public boolean hasComposition() {
+        return ListUtil.hasContent(this.composition);
+    }
+
+    /**
      * Set the list of properties operations. This adds to any operations that are already saved.
      *
      * @param properties List of {@link PropertiesQuery} objects.
@@ -339,6 +381,9 @@ public class SystemQuery implements HasLogic {
 
     /** List of chemical formula operations. */
     private List<FieldOperation> chemicalFormula = new ArrayList<>();
+
+    /** List of composition operations. */
+    private List<CompositionQuery> composition = new ArrayList<>();
 
     /** List of properties operations. */
     private List<PropertiesQuery> properties = new ArrayList<>();
