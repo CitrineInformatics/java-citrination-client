@@ -100,33 +100,60 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Set the list of authors operations. This adds to any operations that are already saved.
      *
-     * @param authors List of {@link NameQuery} objects.
+     * @param authors List of {@link FieldOperation} objects.
      */
     @JsonSetter("authors")
-    private void authors(final List<NameQuery> authors) {
+    private void authors(final List<FieldOperation> authors) {
         this.authors = ListUtil.add(authors, this.authors);
     }
 
     /**
      * Add to the list of authors operations.
      *
-     * @param authors {@link NameQuery} object to add.
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery authors(final NameQuery authors) {
-        this.authors = ListUtil.add(authors, this.authors);
+    public ReferenceQuery authors(final String extractAs, final FilterGroup filterGroup) {
+        this.authors = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.authors);
         return this;
     }
 
     /**
-     * Get an iterable of authors operations.
+     * Add to the list of authors operations.
      *
-     * @return Iterable of {@link NameQuery} objects.
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery authors(final String extractAs) {
+        this.authors = ListUtil.add(new FieldOperation().extractAs(extractAs), this.authors);
+        return this;
+    }
+
+    /**
+     * Add to the list of authors operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery authors(final FilterGroup filterGroup) {
+        this.authors = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.authors);
+        return this;
+    }
+
+    /**
+     * Get an iterable over authors operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
      */
     @JsonGetter("authors")
-    public Iterable<NameQuery> authors() {
-        return this.authors;
+    public Iterable<FieldOperation> authors() {
+        return ListUtil.iterable(this.authors);
     }
 
     /**
@@ -146,5 +173,5 @@ public class ReferenceQuery implements HasLogic {
     private List<FieldOperation> title = new ArrayList<>();
 
     /** Authors of the reference. */
-    private List<NameQuery> authors = new ArrayList<>();
+    private List<FieldOperation> authors = new ArrayList<>();
 }
