@@ -33,6 +33,28 @@ public class FieldOperation {
     }
 
     /**
+     * Set the offset to use when the extracted field is a list.
+     *
+     * @param extractOffset Offset to use when the extracted field is a list (inclusive of 0).
+     * @return This object.
+     */
+    @JsonSetter("extractOffset")
+    public FieldOperation extractOffset(final Integer extractOffset) {
+        this.extractOffset = extractOffset;
+        return this;
+    }
+
+    /**
+     * Get the offset to use when the extracted field is a list.
+     *
+     * @return Offset to use when the extracted field is a list.
+     */
+    @JsonGetter("extractOffset")
+    public Integer extractOffset() {
+        return this.extractOffset;
+    }
+
+    /**
      * Set the filters that apply to the field.
      *
      * @param filterGroup {@link FilterGroup} to apply.
@@ -56,6 +78,9 @@ public class FieldOperation {
 
     /** Alias to save this field under. */
     private String extractAs;
+
+    /** Offset to use when the extracted field is a list. */
+    private Integer extractOffset;
 
     /** List of filters to apply to this field. */
     private FilterGroup filterGroup;
