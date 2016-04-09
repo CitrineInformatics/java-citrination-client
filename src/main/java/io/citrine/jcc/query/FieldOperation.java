@@ -55,6 +55,27 @@ public class FieldOperation {
     }
 
     /**
+     * Set whether top level filters should be floated. This is intended to be a private method since it should only
+     * be used by templates.
+     *
+     * @param floatTopFilters True to float top level filters.
+     */
+    @JsonSetter("floatTopFilters")
+    private void floatTopFilters(final Boolean floatTopFilters) {
+        this.floatTopFilters = floatTopFilters;
+    }
+
+    /**
+     * Get whether top level filters should be floated.
+     *
+     * @return True if top level filters should be floated or a null pointer if it has not been set.
+     */
+    @JsonGetter("floatTopFilters")
+    public Boolean floatTopFilters() {
+        return this.floatTopFilters;
+    }
+
+    /**
      * Set the filters that apply to the field.
      *
      * @param filterGroup {@link FilterGroup} to apply.
@@ -81,6 +102,9 @@ public class FieldOperation {
 
     /** Offset to use when the extracted field is a list. */
     private Integer extractOffset;
+
+    /** Set whether top level filters should be floated out into their own objects. */
+    private Boolean floatTopFilters;
 
     /** List of filters to apply to this field. */
     private FilterGroup filterGroup;
