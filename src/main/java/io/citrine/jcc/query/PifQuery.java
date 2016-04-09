@@ -78,6 +78,28 @@ public class PifQuery {
     }
 
     /**
+     * Set whether Latex formatting should be added.
+     *
+     * @param addLatex True to add latex.
+     * @return This object.
+     */
+    @JsonSetter("addLatex")
+    public PifQuery addLatex(final Boolean addLatex) {
+        this.addLatex = addLatex;
+        return this;
+    }
+
+    /**
+     * Get whether latex formatting should be added to results.
+     *
+     * @return True if Latex should be added to results.
+     */
+    @JsonGetter("addLatex")
+    public Boolean addLatex() {
+        return this.addLatex;
+    }
+
+    /**
      * Set the system query.
      *
      * @param system {@link SystemQuery} object to use.
@@ -107,6 +129,9 @@ public class PifQuery {
 
     /** Whether to include the system in the results. */
     private Boolean returnSystem;
+
+    /** Whether to add latex formatting to results. */
+    private Boolean addLatex;
 
     /** System query to apply. */
     private SystemQuery system;
