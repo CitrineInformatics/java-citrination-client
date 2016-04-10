@@ -2,6 +2,7 @@ package io.citrine.jcc.query;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jpif.obj.system.System;
 
@@ -14,6 +15,7 @@ import java.util.Set;
  *
  * @author Kyle Michel
  */
+@JsonInclude(JsonInclude.Include.ALWAYS)
 public class PifSearchHit {
 
     /**
@@ -155,5 +157,5 @@ public class PifSearchHit {
     private System system;
 
     /** Map of extracted fields. */
-    private Map<String, String> extracted;
+    private Map<String, String> extracted = new HashMap<>();
 }

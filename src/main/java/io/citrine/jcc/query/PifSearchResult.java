@@ -2,6 +2,7 @@ package io.citrine.jcc.query;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
+@JsonInclude(JsonInclude.Include.ALWAYS)
 public class PifSearchResult implements Iterable<PifSearchHit> {
 
     /**
