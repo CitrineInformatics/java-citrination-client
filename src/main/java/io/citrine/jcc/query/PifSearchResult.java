@@ -25,7 +25,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-@JsonInclude(JsonInclude.Include.ALWAYS)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PifSearchResult implements Iterable<PifSearchHit> {
 
     /**

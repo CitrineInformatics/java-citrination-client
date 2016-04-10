@@ -15,7 +15,7 @@ import java.util.Set;
  *
  * @author Kyle Michel
  */
-@JsonInclude(JsonInclude.Include.ALWAYS)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PifSearchHit {
 
     /**
