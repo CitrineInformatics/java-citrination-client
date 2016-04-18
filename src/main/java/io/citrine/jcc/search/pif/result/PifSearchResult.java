@@ -1,4 +1,4 @@
-package io.citrine.jcc.query;
+package io.citrine.jcc.search.pif.result;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;

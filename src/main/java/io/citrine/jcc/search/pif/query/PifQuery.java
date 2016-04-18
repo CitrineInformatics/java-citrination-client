@@ -1,4 +1,4 @@
-package io.citrine.jcc.query;
+package io.citrine.jcc.search.pif.query;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -100,6 +100,28 @@ public class PifQuery {
     }
 
     /**
+     * Set information about a field to sort on. This works on fields that have been marked with an extractAs value.
+     *
+     * @param extractAsSort {@link ExtractAsSort} with information about the extracted field to sort on.
+     * @return This object.
+     */
+    @JsonSetter("extractAsSort")
+    public PifQuery extractAsSort(final ExtractAsSort extractAsSort) {
+        this.extractAsSort = extractAsSort;
+        return this;
+    }
+
+    /**
+     * Get information about an extracted field to sort on.
+     *
+     * @return {@link ExtractAsSort} object or a null pointer if it has not been set.
+     */
+    @JsonGetter("extractAsSort")
+    public ExtractAsSort extractAsSort() {
+        return this.extractAsSort;
+    }
+
+    /**
      * Set the system query.
      *
      * @param system {@link SystemQuery} object to use.
@@ -132,6 +154,9 @@ public class PifQuery {
 
     /** Whether to add latex formatting to results. */
     private Boolean addLatex;
+
+    /** Information about an extracted field to sort on. */
+    private ExtractAsSort extractAsSort;
 
     /** System query to apply. */
     private SystemQuery system;
