@@ -31,6 +31,75 @@ public class SystemQuery implements HasLogic {
     }
 
     /**
+     * Set the list of names operations. This adds to any operations that are already saved.
+     *
+     * @param names List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("names")
+    private void names(final List<FieldOperation> names) {
+        this.names = ListUtil.add(names, this.names);
+    }
+
+    /**
+     * Add to the list of names operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery names(final String extractAs, final FilterGroup filterGroup) {
+        this.names = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.names);
+        return this;
+    }
+
+    /**
+     * Add to the list of names operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery names(final String extractAs) {
+        this.names = ListUtil.add(new FieldOperation().extractAs(extractAs), this.names);
+        return this;
+    }
+
+    /**
+     * Add to the list of names operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery names(final FilterGroup filterGroup) {
+        this.names = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.names);
+        return this;
+    }
+
+    /**
+     * Get an iterable over names operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("names")
+    public Iterable<FieldOperation> names() {
+        return ListUtil.iterable(this.names);
+    }
+
+    /**
+     * Return whether any names operations exist.
+     *
+     * @return True if any names operations exist.
+     */
+    @JsonIgnore
+    public boolean hasNames() {
+        return ListUtil.hasContent(this.names);
+    }
+
+    /**
      * Set the list of chemical formula operations. This adds to any operations that are already saved.
      *
      * @param chemicalFormula List of {@link FieldOperation} objects.
@@ -380,6 +449,9 @@ public class SystemQuery implements HasLogic {
 
     /** Logic that applies to the entire query. */
     private Logic logic;
+
+    /** List of names operations. */
+    private List<FieldOperation> names = new ArrayList<>();
 
     /** List of chemical formula operations. */
     private List<FieldOperation> chemicalFormula = new ArrayList<>();
