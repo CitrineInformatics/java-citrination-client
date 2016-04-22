@@ -1,7 +1,11 @@
 package io.citrine.jcc.search.pif.query;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.ListUtil;
+
+import java.util.List;
 
 /**
  * Class for all field queries.
@@ -33,36 +37,13 @@ public class FieldOperation {
     }
 
     /**
-     * Set the offset to use when the extracted field is a list. Note that this only applies to fields that contain
-     * objects, not ones that contain simple lists of strings or numbers.
-     *
-     * @param offset Offset to use when the extracted field is a list (inclusive of 0).
-     * @return This object.
-     */
-    @JsonSetter("offset")
-    public FieldOperation offset(final Integer offset) {
-        this.offset = offset;
-        return this;
-    }
-
-    /**
-     * Get the offset to use when the extracted field is a list.
-     *
-     * @return Offset to use when the extracted field is a list.
-     */
-    @JsonGetter("offset")
-    public Integer offset() {
-        return this.offset;
-    }
-
-    /**
      * Set whether top level filters should be floated. This is intended to be a private method since it should only
      * be used by templates.
      *
      * @param floatTopFilters True to float top level filters.
      */
     @JsonSetter("floatTopFilters")
-    private void floatTopFilters(final Boolean floatTopFilters) {
+    private void floatTopFilters(final Boolean floatTopFilters) {  // Private since only Jackson should use it
         this.floatTopFilters = floatTopFilters;
     }
 
@@ -98,15 +79,156 @@ public class FieldOperation {
         return this.filterGroup;
     }
 
+    /**
+     * Set the length operations. This adds to any operations that are already saved.
+     *
+     * @param length List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("length")
+    private void length(final List<FieldOperation> length) {
+        this.length = ListUtil.add(length, this.length);
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public FieldOperation length(final String extractAs, final FilterGroup filterGroup) {
+        this.length = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.length);
+        return this;
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public FieldOperation length(final String extractAs) {
+        this.length = ListUtil.add(new FieldOperation().extractAs(extractAs), this.length);
+        return this;
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public FieldOperation length(final FilterGroup filterGroup) {
+        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+        return this;
+    }
+
+    /**
+     * Get an iterable over length operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("length")
+    public Iterable<FieldOperation> length() {
+        return ListUtil.iterable(this.length);
+    }
+
+    /**
+     * Return whether any length operations exist.
+     *
+     * @return True if any length operations exist.
+     */
+    @JsonIgnore
+    public boolean hasLength() {
+        return ListUtil.hasContent(this.length);
+    }
+
+    /**
+     * Set the offset operations. This adds to any operations that are already saved.
+     *
+     * @param offset List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("offset")
+    private void offset(final List<FieldOperation> offset) {
+        this.offset = ListUtil.add(offset, this.offset);
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public FieldOperation offset(final String extractAs, final FilterGroup filterGroup) {
+        this.offset = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.offset);
+        return this;
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public FieldOperation offset(final String extractAs) {
+        this.offset = ListUtil.add(new FieldOperation().extractAs(extractAs), this.offset);
+        return this;
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public FieldOperation offset(final FilterGroup filterGroup) {
+        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+        return this;
+    }
+
+    /**
+     * Get an iterable over offset operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("offset")
+    public Iterable<FieldOperation> offset() {
+        return ListUtil.iterable(this.offset);
+    }
+
+    /**
+     * Return whether any offset operations exist.
+     *
+     * @return True if any offset operations exist.
+     */
+    @JsonIgnore
+    public boolean hasOffset() {
+        return ListUtil.hasContent(this.offset);
+    }
+
     /** Alias to save this field under. */
     private String extractAs;
-
-    /** Offset to use when the extracted field is a list. */
-    private Integer offset;
 
     /** Set whether top level filters should be floated out into their own objects. */
     private Boolean floatTopFilters;
 
     /** List of filters to apply to this field. */
     private FilterGroup filterGroup;
+
+    /** Length of that array that this object appears in. */
+    private List<FieldOperation> length;
+
+    /** Offset of this object in the array that it appears in. */
+    private List<FieldOperation> offset;
 }
