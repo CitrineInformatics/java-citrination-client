@@ -86,6 +86,48 @@ public class PropertiesQuery extends ValueQuery {
         return this;
     }
 
+    @Override
+    @JsonIgnore
+    public PropertiesQuery length(final String extractAs, final FilterGroup filterGroup) {
+        super.length(extractAs, filterGroup);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public PropertiesQuery length(final String extractAs) {
+        super.length(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public PropertiesQuery length(final FilterGroup filterGroup) {
+        super.length(filterGroup);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public PropertiesQuery offset(final String extractAs, final FilterGroup filterGroup) {
+        super.offset(extractAs, filterGroup);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public PropertiesQuery offset(final String extractAs) {
+        super.offset(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public PropertiesQuery offset(final FilterGroup filterGroup) {
+        super.offset(filterGroup);
+        return this;
+    }
+
     /**
      * Set the list of conditions operations. This adds to any operations that are already saved.
      *
@@ -129,5 +171,5 @@ public class PropertiesQuery extends ValueQuery {
     }
 
     /** List of conditions queries. */
-    private List<ValueQuery> conditions = new ArrayList<>();
+    private List<ValueQuery> conditions;
 }

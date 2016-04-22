@@ -379,21 +379,165 @@ public class CompositionQuery implements HasLogic {
         return ListUtil.hasContent(this.idealAtomicPercent);
     }
 
+    /**
+     * Set the length operations. This adds to any operations that are already saved.
+     *
+     * @param length List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("length")
+    private void length(final List<FieldOperation> length) {
+        this.length = ListUtil.add(length, this.length);
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public CompositionQuery length(final String extractAs, final FilterGroup filterGroup) {
+        this.length = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.length);
+        return this;
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public CompositionQuery length(final String extractAs) {
+        this.length = ListUtil.add(new FieldOperation().extractAs(extractAs), this.length);
+        return this;
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public CompositionQuery length(final FilterGroup filterGroup) {
+        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+        return this;
+    }
+
+    /**
+     * Get an iterable over length operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("length")
+    public Iterable<FieldOperation> length() {
+        return ListUtil.iterable(this.length);
+    }
+
+    /**
+     * Return whether any length operations exist.
+     *
+     * @return True if any length operations exist.
+     */
+    @JsonIgnore
+    public boolean hasLength() {
+        return ListUtil.hasContent(this.length);
+    }
+
+    /**
+     * Set the offset operations. This adds to any operations that are already saved.
+     *
+     * @param offset List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("offset")
+    private void offset(final List<FieldOperation> offset) {
+        this.offset = ListUtil.add(offset, this.offset);
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public CompositionQuery offset(final String extractAs, final FilterGroup filterGroup) {
+        this.offset = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.offset);
+        return this;
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public CompositionQuery offset(final String extractAs) {
+        this.offset = ListUtil.add(new FieldOperation().extractAs(extractAs), this.offset);
+        return this;
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public CompositionQuery offset(final FilterGroup filterGroup) {
+        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+        return this;
+    }
+
+    /**
+     * Get an iterable over offset operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("offset")
+    public Iterable<FieldOperation> offset() {
+        return ListUtil.iterable(this.offset);
+    }
+
+    /**
+     * Return whether any offset operations exist.
+     *
+     * @return True if any offset operations exist.
+     */
+    @JsonIgnore
+    public boolean hasOffset() {
+        return ListUtil.hasContent(this.offset);
+    }
+
     /** Element for the composition. */
-    private List<FieldOperation> element = new ArrayList<>();
+    private List<FieldOperation> element;
 
     /** Actual weight percent of the element. */
-    private List<FieldOperation> actualWeightPercent = new ArrayList<>();
+    private List<FieldOperation> actualWeightPercent;
 
     /** Actual atomic percent of the element. */
-    private List<FieldOperation> actualAtomicPercent = new ArrayList<>();
+    private List<FieldOperation> actualAtomicPercent;
 
     /** Ideal weight percent of the element. */
-    private List<FieldOperation> idealWeightPercent = new ArrayList<>();
+    private List<FieldOperation> idealWeightPercent;
 
     /** Ideal atomic percent of the element. */
-    private List<FieldOperation> idealAtomicPercent = new ArrayList<>();
+    private List<FieldOperation> idealAtomicPercent;
 
     /** Logic that applies to the entire query. */
     private Logic logic;
+
+    /** Length of the array that this object appears in. */
+    private List<FieldOperation> length;
+
+    /** Offset for this object in the array that it appears in. */
+    private List<FieldOperation> offset;
 }

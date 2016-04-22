@@ -337,75 +337,6 @@ public class SystemQuery implements HasLogic {
     }
 
     /**
-     * Set the list of number of subsystem operations. This adds to any operations that are already saved.
-     *
-     * @param numSubSystems List of {@link FieldOperation} objects.
-     */
-    @JsonSetter("numSubSystems")
-    private void numSubSystems(final List<FieldOperation> numSubSystems) {
-        this.numSubSystems = ListUtil.add(numSubSystems, this.numSubSystems);
-    }
-
-    /**
-     * Add to the list of number of subsystems operations.
-     *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
-     */
-    @JsonIgnore
-    public SystemQuery numSubSystems(final String extractAs, final FilterGroup filterGroup) {
-        this.numSubSystems = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.numSubSystems);
-        return this;
-    }
-
-    /**
-     * Add to the list of number of subsystems operations.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
-    @JsonIgnore
-    public SystemQuery numSubSystems(final String extractAs) {
-        this.numSubSystems = ListUtil.add(new FieldOperation().extractAs(extractAs), this.numSubSystems);
-        return this;
-    }
-
-    /**
-     * Add to the list of number of subystem operations.
-     *
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
-     */
-    @JsonIgnore
-    public SystemQuery numSubSystems(final FilterGroup filterGroup) {
-        this.numSubSystems = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.numSubSystems);
-        return this;
-    }
-
-    /**
-     * Get an iterable over number of subsystem operations.
-     *
-     * @return Iterable of {@link FieldOperation} objects.
-     */
-    @JsonGetter("numSubSystems")
-    public Iterable<FieldOperation> numSubSystems() {
-        return ListUtil.iterable(this.numSubSystems);
-    }
-
-    /**
-     * Return whether any number of subsystem operations exist.
-     *
-     * @return True if any number of subsystem operations exist.
-     */
-    @JsonIgnore
-    public boolean hasNumSubSystems() {
-        return ListUtil.hasContent(this.numSubSystems);
-    }
-
-    /**
      * Set the list of subsystem operations. This adds to any operations that are already saved.
      *
      * @param subSystems List of {@link SystemQuery} objects.
@@ -447,30 +378,171 @@ public class SystemQuery implements HasLogic {
         return ListUtil.hasContent(this.subSystems);
     }
 
+    /**
+     * Set the length operations. This adds to any operations that are already saved.
+     *
+     * @param length List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("length")
+    private void length(final List<FieldOperation> length) {
+        this.length = ListUtil.add(length, this.length);
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery length(final String extractAs, final FilterGroup filterGroup) {
+        this.length = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.length);
+        return this;
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery length(final String extractAs) {
+        this.length = ListUtil.add(new FieldOperation().extractAs(extractAs), this.length);
+        return this;
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery length(final FilterGroup filterGroup) {
+        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+        return this;
+    }
+
+    /**
+     * Get an iterable over length operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("length")
+    public Iterable<FieldOperation> length() {
+        return ListUtil.iterable(this.length);
+    }
+
+    /**
+     * Return whether any length operations exist.
+     *
+     * @return True if any length operations exist.
+     */
+    @JsonIgnore
+    public boolean hasLength() {
+        return ListUtil.hasContent(this.length);
+    }
+
+    /**
+     * Set the offset operations. This adds to any operations that are already saved.
+     *
+     * @param offset List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("offset")
+    private void offset(final List<FieldOperation> offset) {
+        this.offset = ListUtil.add(offset, this.offset);
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery offset(final String extractAs, final FilterGroup filterGroup) {
+        this.offset = ListUtil.add(
+                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
+                this.offset);
+        return this;
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery offset(final String extractAs) {
+        this.offset = ListUtil.add(new FieldOperation().extractAs(extractAs), this.offset);
+        return this;
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery offset(final FilterGroup filterGroup) {
+        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+        return this;
+    }
+
+    /**
+     * Get an iterable over offset operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("offset")
+    public Iterable<FieldOperation> offset() {
+        return ListUtil.iterable(this.offset);
+    }
+
+    /**
+     * Return whether any offset operations exist.
+     *
+     * @return True if any offset operations exist.
+     */
+    @JsonIgnore
+    public boolean hasOffset() {
+        return ListUtil.hasContent(this.offset);
+    }
+
     /** Logic that applies to the entire query. */
     private Logic logic;
 
     /** List of names operations. */
-    private List<FieldOperation> names = new ArrayList<>();
+    private List<FieldOperation> names;
 
     /** List of chemical formula operations. */
-    private List<FieldOperation> chemicalFormula = new ArrayList<>();
+    private List<FieldOperation> chemicalFormula;
 
     /** List of composition operations. */
-    private List<CompositionQuery> composition = new ArrayList<>();
+    private List<CompositionQuery> composition;
 
     /** List of properties operations. */
-    private List<PropertiesQuery> properties = new ArrayList<>();
+    private List<PropertiesQuery> properties;
 
     /** List of process step operations. */
-    private List<ProcessStepQuery> preparation = new ArrayList<>();
-
-    /** List of subsystems. */
-    private List<FieldOperation> numSubSystems = new ArrayList<>();
+    private List<ProcessStepQuery> preparation;
 
     /** List of references. */
-    private List<ReferenceQuery> references = new ArrayList<>();
+    private List<ReferenceQuery> references;
 
     /** Subsystems. */
-    private List<SystemQuery> subSystems = new ArrayList<>();
+    private List<SystemQuery> subSystems;
+
+    /** Length of the array this system appears in. */
+    private List<FieldOperation> length;
+
+    /** Offset for this system in the array that it appears in. */
+    private List<FieldOperation> offset;
 }

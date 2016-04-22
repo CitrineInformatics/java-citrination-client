@@ -33,6 +33,29 @@ public class FieldOperation {
     }
 
     /**
+     * Set the offset to use when the extracted field is a list. Note that this only applies to fields that contain
+     * objects, not ones that contain simple lists of strings or numbers.
+     *
+     * @param offset Offset to use when the extracted field is a list (inclusive of 0).
+     * @return This object.
+     */
+    @JsonSetter("offset")
+    public FieldOperation offset(final Integer offset) {
+        this.offset = offset;
+        return this;
+    }
+
+    /**
+     * Get the offset to use when the extracted field is a list.
+     *
+     * @return Offset to use when the extracted field is a list.
+     */
+    @JsonGetter("offset")
+    public Integer offset() {
+        return this.offset;
+    }
+
+    /**
      * Set whether top level filters should be floated. This is intended to be a private method since it should only
      * be used by templates.
      *
@@ -77,6 +100,9 @@ public class FieldOperation {
 
     /** Alias to save this field under. */
     private String extractAs;
+
+    /** Offset to use when the extracted field is a list. */
+    private Integer offset;
 
     /** Set whether top level filters should be floated out into their own objects. */
     private Boolean floatTopFilters;
