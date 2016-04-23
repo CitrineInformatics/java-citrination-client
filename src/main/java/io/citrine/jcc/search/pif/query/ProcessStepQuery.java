@@ -7,7 +7,6 @@ import io.citrine.jcc.search.core.HasLogic;
 import io.citrine.jcc.search.core.Logic;
 import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,15 +42,12 @@ public class ProcessStepQuery implements HasLogic {
     /**
      * Add to the list of name operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ProcessStepQuery name(final String extractAs, final FilterGroup filterGroup) {
-        this.name = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.name);
+    public ProcessStepQuery name(final FieldOperation fieldOperation) {
+        this.name = ListUtil.add(fieldOperation, this.name);
         return this;
     }
 
@@ -154,15 +150,12 @@ public class ProcessStepQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ProcessStepQuery length(final String extractAs, final FilterGroup filterGroup) {
-        this.length = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.length);
+    public ProcessStepQuery length(final FieldOperation fieldOperation) {
+        this.length = ListUtil.add(fieldOperation, this.length);
         return this;
     }
 
@@ -223,15 +216,12 @@ public class ProcessStepQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ProcessStepQuery offset(final String extractAs, final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.offset);
+    public ProcessStepQuery offset(final FieldOperation fieldOperation) {
+        this.offset = ListUtil.add(fieldOperation, this.offset);
         return this;
     }
 

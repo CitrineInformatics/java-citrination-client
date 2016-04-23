@@ -7,7 +7,6 @@ import io.citrine.jcc.search.core.HasLogic;
 import io.citrine.jcc.search.core.Logic;
 import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,15 +42,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of title operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery title(final String extractAs, final FilterGroup filterGroup) {
-        this.title = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.title);
+    public ReferenceQuery title(final FieldOperation fieldOperation) {
+        this.title = ListUtil.add(fieldOperation, this.title);
         return this;
     }
 
@@ -112,15 +108,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of authors operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery authors(final String extractAs, final FilterGroup filterGroup) {
-        this.authors = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.authors);
+    public ReferenceQuery authors(final FieldOperation fieldOperation) {
+        this.authors = ListUtil.add(fieldOperation, this.authors);
         return this;
     }
 
@@ -181,15 +174,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery length(final String extractAs, final FilterGroup filterGroup) {
-        this.length = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.length);
+    public ReferenceQuery length(final FieldOperation fieldOperation) {
+        this.length = ListUtil.add(fieldOperation, this.length);
         return this;
     }
 
@@ -250,15 +240,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery offset(final String extractAs, final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.offset);
+    public ReferenceQuery offset(final FieldOperation fieldOperation) {
+        this.offset = ListUtil.add(fieldOperation, this.offset);
         return this;
     }
 

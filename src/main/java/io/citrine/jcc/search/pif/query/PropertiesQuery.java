@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.Logic;
 import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,8 +24,8 @@ public class PropertiesQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertiesQuery name(final String extractAs, final FilterGroup filterGroup) {
-        super.name(extractAs, filterGroup);
+    public PropertiesQuery name(final FieldOperation fieldOperation) {
+        super.name(fieldOperation);
         return this;
     }
 
@@ -46,8 +45,8 @@ public class PropertiesQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertiesQuery value(final String extractAs, final FilterGroup filterGroup) {
-        super.value(extractAs, filterGroup);
+    public PropertiesQuery value(final FieldOperation fieldOperation) {
+        super.value(fieldOperation);
         return this;
     }
 
@@ -67,8 +66,8 @@ public class PropertiesQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertiesQuery units(final String extractAs, final FilterGroup filterGroup) {
-        super.units(extractAs, filterGroup);
+    public PropertiesQuery units(final FieldOperation fieldOperation) {
+        super.units(fieldOperation);
         return this;
     }
 
@@ -88,8 +87,8 @@ public class PropertiesQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertiesQuery length(final String extractAs, final FilterGroup filterGroup) {
-        super.length(extractAs, filterGroup);
+    public PropertiesQuery length(final FieldOperation fieldOperation) {
+        super.length(fieldOperation);
         return this;
     }
 
@@ -109,8 +108,8 @@ public class PropertiesQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertiesQuery offset(final String extractAs, final FilterGroup filterGroup) {
-        super.offset(extractAs, filterGroup);
+    public PropertiesQuery offset(final FieldOperation fieldOperation) {
+        super.offset(fieldOperation);
         return this;
     }
 

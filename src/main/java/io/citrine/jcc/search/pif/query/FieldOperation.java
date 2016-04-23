@@ -92,15 +92,12 @@ public class FieldOperation {
     /**
      * Add to the list of length operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation length(final String extractAs, final FilterGroup filterGroup) {
-        this.length = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.length);
+    public FieldOperation length(final FieldOperation fieldOperation) {
+        this.length = ListUtil.add(fieldOperation, this.length);
         return this;
     }
 
@@ -161,15 +158,12 @@ public class FieldOperation {
     /**
      * Add to the list of offset operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation offset(final String extractAs, final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.offset);
+    public FieldOperation offset(final FieldOperation fieldOperation) {
+        this.offset = ListUtil.add(fieldOperation, this.offset);
         return this;
     }
 

@@ -7,7 +7,6 @@ import io.citrine.jcc.search.core.HasLogic;
 import io.citrine.jcc.search.core.Logic;
 import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,15 +42,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of names operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery names(final String extractAs, final FilterGroup filterGroup) {
-        this.names = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.names);
+    public SystemQuery names(final FieldOperation fieldOperation) {
+        this.names = ListUtil.add(fieldOperation, this.names);
         return this;
     }
 
@@ -112,15 +108,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of chemical formula operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery chemicalFormula(final String extractAs, final FilterGroup filterGroup) {
-        this.chemicalFormula = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.chemicalFormula);
+    public SystemQuery chemicalFormula(final FieldOperation fieldOperation) {
+        this.chemicalFormula = ListUtil.add(fieldOperation, this.chemicalFormula);
         return this;
     }
 
@@ -391,15 +384,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery length(final String extractAs, final FilterGroup filterGroup) {
-        this.length = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.length);
+    public SystemQuery length(final FieldOperation fieldOperation) {
+        this.length = ListUtil.add(fieldOperation, this.length);
         return this;
     }
 
@@ -460,15 +450,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery offset(final String extractAs, final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.offset);
+    public SystemQuery offset(final FieldOperation fieldOperation) {
+        this.offset = ListUtil.add(fieldOperation, this.offset);
         return this;
     }
 

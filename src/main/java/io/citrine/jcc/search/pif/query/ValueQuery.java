@@ -42,13 +42,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add a single name operation.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery name(final String extractAs, final FilterGroup filterGroup) {
-        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.name);
+    public ValueQuery name(final FieldOperation fieldOperation) {
+        this.name = ListUtil.add(fieldOperation, this.name);
         return this;
     }
 
@@ -109,13 +108,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add a single value operation.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery value(final String extractAs, final FilterGroup filterGroup) {
-        this.value = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.value);
+    public ValueQuery value(final FieldOperation fieldOperation) {
+        this.value = ListUtil.add(fieldOperation, this.value);
         return this;
     }
 
@@ -176,13 +174,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add a single units operation.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery units(final String extractAs, final FilterGroup filterGroup) {
-        this.units = ListUtil.add(new FieldOperation().extractAs(extractAs).filterGroup(filterGroup), this.units);
+    public ValueQuery units(final FieldOperation fieldOperation) {
+        this.units = ListUtil.add(fieldOperation, this.units);
         return this;
     }
 
@@ -243,15 +240,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery length(final String extractAs, final FilterGroup filterGroup) {
-        this.length = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.length);
+    public ValueQuery length(final FieldOperation fieldOperation) {
+        this.length = ListUtil.add(fieldOperation, this.length);
         return this;
     }
 
@@ -312,15 +306,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery offset(final String extractAs, final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.offset);
+    public ValueQuery offset(final FieldOperation fieldOperation) {
+        this.offset = ListUtil.add(fieldOperation, this.offset);
         return this;
     }
 

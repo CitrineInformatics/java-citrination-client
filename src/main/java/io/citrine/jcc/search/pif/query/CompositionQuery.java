@@ -7,7 +7,6 @@ import io.citrine.jcc.search.core.HasLogic;
 import io.citrine.jcc.search.core.Logic;
 import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,15 +42,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of element operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery element(final String extractAs, final FilterGroup filterGroup) {
-        this.element = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.element);
+    public CompositionQuery element(final FieldOperation fieldOperation) {
+        this.element = ListUtil.add(fieldOperation, this.element);
         return this;
     }
 
@@ -112,15 +108,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of actual weight percent operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery actualWeightPercent(final String extractAs, final FilterGroup filterGroup) {
-        this.actualWeightPercent = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.actualWeightPercent);
+    public CompositionQuery actualWeightPercent(final FieldOperation fieldOperation) {
+        this.actualWeightPercent = ListUtil.add(fieldOperation, this.actualAtomicPercent);
         return this;
     }
 
@@ -182,15 +175,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of actual atomic percent operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery actualAtomicPercent(final String extractAs, final FilterGroup filterGroup) {
-        this.actualAtomicPercent = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.actualAtomicPercent);
+    public CompositionQuery actualAtomicPercent(final FieldOperation fieldOperation) {
+        this.actualAtomicPercent = ListUtil.add(fieldOperation, this.actualAtomicPercent);
         return this;
     }
 
@@ -252,15 +242,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of ideal weight percent operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery idealWeightPercent(final String extractAs, final FilterGroup filterGroup) {
-        this.idealWeightPercent = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.idealWeightPercent);
+    public CompositionQuery idealWeightPercent(final FieldOperation fieldOperation) {
+        this.idealWeightPercent = ListUtil.add(fieldOperation, this.idealWeightPercent);
         return this;
     }
 
@@ -322,15 +309,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of ideal atomic percent operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery idealAtomicPercent(final String extractAs, final FilterGroup filterGroup) {
-        this.idealAtomicPercent = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.idealAtomicPercent);
+    public CompositionQuery idealAtomicPercent(final FieldOperation fieldOperation) {
+        this.idealAtomicPercent = ListUtil.add(fieldOperation, this.idealAtomicPercent);
         return this;
     }
 
@@ -392,15 +376,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery length(final String extractAs, final FilterGroup filterGroup) {
-        this.length = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.length);
+    public CompositionQuery length(final FieldOperation fieldOperation) {
+        this.length = ListUtil.add(fieldOperation, this.length);
         return this;
     }
 
@@ -461,15 +442,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param extractAs Alias to extract as.
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery offset(final String extractAs, final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(
-                new FieldOperation().extractAs(extractAs).filterGroup(filterGroup),
-                this.offset);
+    public CompositionQuery offset(final FieldOperation fieldOperation) {
+        this.offset = ListUtil.add(fieldOperation, this.offset);
         return this;
     }
 
