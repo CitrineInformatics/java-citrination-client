@@ -124,7 +124,7 @@ public class ProcessStepQuery implements HasLogic {
      */
     @JsonGetter("details")
     public Iterable<ValueQuery> details() {
-        return this.details;
+        return ListUtil.iterable(this.details);
     }
 
     /**

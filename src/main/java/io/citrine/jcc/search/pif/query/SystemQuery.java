@@ -190,7 +190,7 @@ public class SystemQuery implements HasLogic {
      */
     @JsonGetter("composition")
     public Iterable<CompositionQuery> composition() {
-        return this.composition;
+        return ListUtil.iterable(this.composition);
     }
 
     /**
@@ -232,7 +232,7 @@ public class SystemQuery implements HasLogic {
      */
     @JsonGetter("properties")
     public Iterable<PropertiesQuery> properties() {
-        return this.properties;
+        return ListUtil.iterable(this.properties);
     }
 
     /**
@@ -274,7 +274,7 @@ public class SystemQuery implements HasLogic {
      */
     @JsonGetter("preparation")
     public Iterable<ProcessStepQuery> preparation() {
-        return this.preparation;
+        return ListUtil.iterable(this.preparation);
     }
 
     /**
@@ -316,7 +316,7 @@ public class SystemQuery implements HasLogic {
      */
     @JsonGetter("references")
     public Iterable<ReferenceQuery> references() {
-        return this.references;
+        return ListUtil.iterable(this.references);
     }
 
     /**
@@ -358,7 +358,7 @@ public class SystemQuery implements HasLogic {
      */
     @JsonGetter("subSystems")
     public Iterable<SystemQuery> subSystems() {
-        return this.subSystems;
+        return ListUtil.iterable(this.subSystems);
     }
 
     /**

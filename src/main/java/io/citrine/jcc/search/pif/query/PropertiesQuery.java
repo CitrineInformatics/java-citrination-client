@@ -156,7 +156,7 @@ public class PropertiesQuery extends ValueQuery {
      */
     @JsonGetter("conditions")
     public Iterable<ValueQuery> conditions() {
-        return this.conditions;
+        return ListUtil.iterable(this.conditions);
     }
 
     /**
