@@ -1,7 +1,11 @@
 package io.citrine.jcc.search.pif.query;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.ListUtil;
+
+import java.util.List;
 
 /**
  * Class for defining queries against PIF records on Citrination.
@@ -100,14 +104,25 @@ public class PifQuery {
     }
 
     /**
+     * Set information about all of the fields to sort on.
+     *
+     * @param sortExtracted List of {@link SortExtracted} objects to sort on.
+     * @return This object.
+     */
+    @JsonSetter("sortExtracted")
+    private void sortExtracted(final List<SortExtracted> sortExtracted) {  // Private since only Jackson should use it
+        this.sortExtracted = ListUtil.add(sortExtracted, this.sortExtracted);
+    }
+
+    /**
      * Set information about a field to sort on. This works on fields that have been marked with an extractAs value.
      *
      * @param sortExtracted {@link SortExtracted} with information about the extracted field to sort on.
      * @return This object.
      */
-    @JsonSetter("sortExtracted")
+    @JsonIgnore
     public PifQuery sortExtracted(final SortExtracted sortExtracted) {
-        this.sortExtracted = sortExtracted;
+        this.sortExtracted = ListUtil.add(sortExtracted, this.sortExtracted);
         return this;
     }
 
@@ -117,8 +132,18 @@ public class PifQuery {
      * @return {@link SortExtracted} object or a null pointer if it has not been set.
      */
     @JsonGetter("sortExtracted")
-    public SortExtracted sortExtracted() {
-        return this.sortExtracted;
+    public Iterable<SortExtracted> sortExtracted() {
+        return ListUtil.iterable(this.sortExtracted);
+    }
+
+    /**
+     * Return whether this object contains any sorts.
+     *
+     * @return True if this object contains any sorts.
+     */
+    @JsonIgnore
+    public boolean hasSortExtracted() {
+        return ListUtil.hasContent(this.sortExtracted);
     }
 
     /**
@@ -156,7 +181,7 @@ public class PifQuery {
     private Boolean addLatex;
 
     /** Information about an extracted field to sort on. */
-    private SortExtracted sortExtracted;
+    private List<SortExtracted> sortExtracted;
 
     /** System query to apply. */
     private SystemQuery system;
