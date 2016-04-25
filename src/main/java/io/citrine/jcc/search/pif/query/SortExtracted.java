@@ -9,7 +9,7 @@ import io.citrine.jcc.search.core.Sort;
  *
  * @author Kyle Michel
  */
-public class ExtractAsSort {
+public class SortExtracted {
 
     /**
      * Set the name of the extracted field to sort by.
@@ -18,7 +18,7 @@ public class ExtractAsSort {
      * @return This object.
      */
     @JsonSetter("extractAs")
-    public ExtractAsSort extractAs(final String extractAs) {
+    public SortExtracted extractAs(final String extractAs) {
         this.extractAs = extractAs;
         return this;
     }
@@ -40,7 +40,7 @@ public class ExtractAsSort {
      * @return This object.
      */
     @JsonSetter("sort")
-    public ExtractAsSort sort(final Sort sort) {
+    public SortExtracted sort(final Sort sort) {
         this.sort = sort;
         return this;
     }

@@ -102,23 +102,23 @@ public class PifQuery {
     /**
      * Set information about a field to sort on. This works on fields that have been marked with an extractAs value.
      *
-     * @param extractAsSort {@link ExtractAsSort} with information about the extracted field to sort on.
+     * @param sortExtracted {@link SortExtracted} with information about the extracted field to sort on.
      * @return This object.
      */
-    @JsonSetter("extractAsSort")
-    public PifQuery extractAsSort(final ExtractAsSort extractAsSort) {
-        this.extractAsSort = extractAsSort;
+    @JsonSetter("sortExtracted")
+    public PifQuery sortExtracted(final SortExtracted sortExtracted) {
+        this.sortExtracted = sortExtracted;
         return this;
     }
 
     /**
      * Get information about an extracted field to sort on.
      *
-     * @return {@link ExtractAsSort} object or a null pointer if it has not been set.
+     * @return {@link SortExtracted} object or a null pointer if it has not been set.
      */
-    @JsonGetter("extractAsSort")
-    public ExtractAsSort extractAsSort() {
-        return this.extractAsSort;
+    @JsonGetter("sortExtracted")
+    public SortExtracted sortExtracted() {
+        return this.sortExtracted;
     }
 
     /**
@@ -156,7 +156,7 @@ public class PifQuery {
     private Boolean addLatex;
 
     /** Information about an extracted field to sort on. */
-    private ExtractAsSort extractAsSort;
+    private SortExtracted sortExtracted;
 
     /** System query to apply. */
     private SystemQuery system;
