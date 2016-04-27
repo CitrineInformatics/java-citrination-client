@@ -169,6 +169,75 @@ public class PropertiesQuery extends ValueQuery {
         return ListUtil.hasContent(this.conditions);
     }
 
+    /**
+     * Set the list of data type operations. This adds to any operations that are already saved.
+     *
+     * @param dataType List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("dataType")
+    private void dataType(final List<FieldOperation> dataType) {
+        this.dataType = ListUtil.add(dataType, this.dataType);
+    }
+
+    /**
+     * Add to the list of data type operations.
+     *
+     * @param fieldOperation {@link FieldOperation} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery dataType(final FieldOperation fieldOperation) {
+        this.dataType = ListUtil.add(fieldOperation, this.dataType);
+        return this;
+    }
+
+    /**
+     * Add to the list of data type operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery dataType(final String extractAs) {
+        this.dataType = ListUtil.add(new FieldOperation().extractAs(extractAs), this.dataType);
+        return this;
+    }
+
+    /**
+     * Add to the list of data type operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertiesQuery dataType(final FilterGroup filterGroup) {
+        this.dataType = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.dataType);
+        return this;
+    }
+
+    /**
+     * Get an iterable over data type operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("dataType")
+    public Iterable<FieldOperation> dataType() {
+        return ListUtil.iterable(this.dataType);
+    }
+
+    /**
+     * Return whether any data type operations exist.
+     *
+     * @return True if any data type operations exist.
+     */
+    @JsonIgnore
+    public boolean hasDataType() {
+        return ListUtil.hasContent(this.dataType);
+    }
+
     /** List of conditions queries. */
     private List<ValueQuery> conditions;
+
+    /** List of data type queries. */
+    private List<FieldOperation> dataType;
 }
