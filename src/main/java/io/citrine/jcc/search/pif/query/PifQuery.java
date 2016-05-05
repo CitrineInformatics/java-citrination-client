@@ -107,7 +107,6 @@ public class PifQuery {
      * Set information about all of the fields to sort on.
      *
      * @param sortExtracted List of {@link SortExtracted} objects to sort on.
-     * @return This object.
      */
     @JsonSetter("sortExtracted")
     private void sortExtracted(final List<SortExtracted> sortExtracted) {  // Private since only Jackson should use it
