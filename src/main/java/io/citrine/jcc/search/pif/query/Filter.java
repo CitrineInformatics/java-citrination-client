@@ -242,25 +242,6 @@ public class Filter implements HasLogic, HasFilter {
         return ListUtil.hasContent(this.filter);
     }
 
-    /**
-     * Default constructor.
-     */
-    public Filter() {}
-
-    /**
-     * Copy constructor.
-     *
-     * @param copy {@link Filter} to copy.
-     */
-    public Filter(final Filter copy) {
-        this.logic(copy.logic());
-        this.equal(copy.equal());
-        this.min(copy.min());
-        this.max(copy.max());
-        this.exact(copy.exact());
-        copy.filter().forEach(i -> this.filter(new Filter(i)));
-    }
-
     /** Logic for applying the filters. */
     private Logic logic;
     
