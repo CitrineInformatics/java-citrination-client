@@ -211,6 +211,24 @@ public class FieldOperation {
         return ListUtil.hasContent(this.offset);
     }
 
+    /**
+     * Default constructor.
+     */
+    public FieldOperation() {}
+
+    /**
+     * Copy constructor.
+     *
+     * @param copy {@link FieldOperation} to copy.
+     */
+    public FieldOperation(final FieldOperation copy) {
+        this.extractAs(copy.extractAs());
+        this.floatTopFilters(copy.floatTopFilters());
+        this.filterGroup(new FilterGroup(copy.filterGroup()));
+        copy.length().forEach(i -> this.length(new FieldOperation(i)));
+        copy.offset().forEach(i -> this.offset(new FieldOperation(i)));
+    }
+
     /** Alias to save this field under. */
     private String extractAs;
 

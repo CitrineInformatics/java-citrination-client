@@ -58,6 +58,21 @@ public class FilterGroup implements HasLogic, HasFilter {
         return ListUtil.hasContent(this.filter);
     }
 
+    /**
+     * Default constructor.
+     */
+    public FilterGroup() {}
+
+    /**
+     * Copy constructor.
+     *
+     * @param copy {@link FilterGroup} to copy.
+     */
+    public FilterGroup(final FilterGroup copy) {
+        this.logic(copy.logic());
+        copy.filter().forEach(i -> this.filter(new Filter(i)));
+    }
+
     /** Logic that the list of filters gets wrapped in. */
     private Logic logic;
 
