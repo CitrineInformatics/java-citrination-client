@@ -112,7 +112,7 @@ public class ReferenceQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery author(final NameQuery author) {
+    public ReferenceQuery authors(final NameQuery author) {
         this.authors = ListUtil.add(author, this.authors);
         return this;
     }
