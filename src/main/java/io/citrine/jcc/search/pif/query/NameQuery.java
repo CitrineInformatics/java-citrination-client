@@ -30,6 +30,28 @@ public class NameQuery implements HasLogic {
     }
 
     /**
+     * Set the alias to save this field under.
+     *
+     * @param extractAs String with the alias to save this field under.
+     * @return This object.
+     */
+    @JsonSetter("extractAs")
+    public NameQuery extractAs(final String extractAs) {
+        this.extractAs = extractAs;
+        return this;
+    }
+
+    /**
+     * Get the alias to save this field under.
+     *
+     * @return String with the alias to save this field under or a null pointer if not set.
+     */
+    @JsonGetter("extractAs")
+    public String extractAs() {
+        return this.extractAs;
+    }
+
+    /**
      * Set the list of given name operations. This adds to any operations that are already saved.
      *
      * @param given List of {@link FieldOperation} objects.
@@ -439,6 +461,9 @@ public class NameQuery implements HasLogic {
 
     /** Logic that applies to the entire query. */
     private Logic logic;
+
+    /** Alias to save this field under. */
+    private String extractAs;
 
     /** Length of the array that this object appears in. */
     private List<FieldOperation> length;
