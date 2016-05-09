@@ -138,6 +138,138 @@ public class ReferenceQuery implements HasLogic {
     }
 
     /**
+     * Set the list of affiliations operations. This adds to any operations that are already saved.
+     *
+     * @param affiliations List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("affiliations")
+    private void affiliations(final List<FieldOperation> affiliations) {
+        this.affiliations = ListUtil.add(affiliations, this.affiliations);
+    }
+
+    /**
+     * Add to the list of affiliations operations.
+     *
+     * @param fieldOperation {@link FieldOperation} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery affiliations(final FieldOperation fieldOperation) {
+        this.affiliations = ListUtil.add(fieldOperation, this.affiliations);
+        return this;
+    }
+
+    /**
+     * Add to the list of affiliations operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery affiliations(final String extractAs) {
+        this.affiliations = ListUtil.add(new FieldOperation().extractAs(extractAs), this.affiliations);
+        return this;
+    }
+
+    /**
+     * Add to the list of affiliations operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery affiliations(final FilterGroup filterGroup) {
+        this.affiliations = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.affiliations);
+        return this;
+    }
+
+    /**
+     * Get an iterable over affiliations operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("affiliations")
+    public Iterable<FieldOperation> affiliations() {
+        return ListUtil.iterable(this.affiliations);
+    }
+
+    /**
+     * Return whether any affiliations operations exist.
+     *
+     * @return True if any affiliations operations exist.
+     */
+    @JsonIgnore
+    public boolean hasAffiliations() {
+        return ListUtil.hasContent(this.affiliations);
+    }
+
+    /**
+     * Set the list of acknowledgements operations. This adds to any operations that are already saved.
+     *
+     * @param acknowledgements List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("acknowledgements")
+    private void acknowledgements(final List<FieldOperation> acknowledgements) {
+        this.acknowledgements = ListUtil.add(acknowledgements, this.acknowledgements);
+    }
+
+    /**
+     * Add to the list of acknowledgements operations.
+     *
+     * @param fieldOperation {@link FieldOperation} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery acknowledgements(final FieldOperation fieldOperation) {
+        this.acknowledgements = ListUtil.add(fieldOperation, this.acknowledgements);
+        return this;
+    }
+
+    /**
+     * Add to the list of acknowledgements operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery acknowledgements(final String extractAs) {
+        this.acknowledgements = ListUtil.add(new FieldOperation().extractAs(extractAs), this.acknowledgements);
+        return this;
+    }
+
+    /**
+     * Add to the list of acknowledgements operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery acknowledgements(final FilterGroup filterGroup) {
+        this.acknowledgements = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.acknowledgements);
+        return this;
+    }
+
+    /**
+     * Get an iterable over acknowledgements operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("acknowledgements")
+    public Iterable<FieldOperation> acknowledgements() {
+        return ListUtil.iterable(this.acknowledgements);
+    }
+
+    /**
+     * Return whether any acknowledgements operations exist.
+     *
+     * @return True if any acknowledgements operations exist.
+     */
+    @JsonIgnore
+    public boolean hasAcknowledgements() {
+        return ListUtil.hasContent(this.acknowledgements);
+    }
+
+    /**
      * Set the length operations. This adds to any operations that are already saved.
      *
      * @param length List of {@link FieldOperation} objects.
@@ -277,6 +409,12 @@ public class ReferenceQuery implements HasLogic {
 
     /** Authors of the reference. */
     private List<NameQuery> authors;
+
+    /** Affiliations of the authors. */
+    private List<FieldOperation> affiliations;
+
+    /** Acknowledgements. */
+    private List<FieldOperation> acknowledgements;
 
     /** Length of that array that this object appears in. */
     private List<FieldOperation> length;
