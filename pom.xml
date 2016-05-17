@@ -13,7 +13,7 @@
         <dependency>
             <groupId>io.citrine</groupId>
             <artifactId>jpif</artifactId>
-            <version>0.0.15</version>
+            <version>0.0.17</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
