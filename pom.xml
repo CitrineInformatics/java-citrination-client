@@ -6,14 +6,14 @@
 
     <groupId>io.citrine</groupId>
     <artifactId>jcc</artifactId>
-    <version>0.0.30</version>
+    <version>0.0.31</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>io.citrine</groupId>
             <artifactId>jpif</artifactId>
-            <version>0.0.17</version>
+            <version>0.0.18</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
