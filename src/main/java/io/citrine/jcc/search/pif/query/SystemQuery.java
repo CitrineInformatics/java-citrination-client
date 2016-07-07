@@ -206,21 +206,21 @@ public class SystemQuery implements HasLogic {
     /**
      * Set the list of properties operations. This adds to any operations that are already saved.
      *
-     * @param properties List of {@link PropertiesQuery} objects.
+     * @param properties List of {@link PropertyQuery} objects.
      */
     @JsonSetter("properties")
-    private void properties(final List<PropertiesQuery> properties) {
+    private void properties(final List<PropertyQuery> properties) {
         this.properties = ListUtil.add(properties, this.properties);
     }
 
     /**
      * Add to the list of properties operations.
      *
-     * @param properties {@link PropertiesQuery} object to add.
+     * @param properties {@link PropertyQuery} object to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery properties(final PropertiesQuery properties) {
+    public SystemQuery properties(final PropertyQuery properties) {
         this.properties = ListUtil.add(properties, this.properties);
         return this;
     }
@@ -228,10 +228,10 @@ public class SystemQuery implements HasLogic {
     /**
      * Get an iterable of properties operations.
      *
-     * @return Iterable of {@link PropertiesQuery} objects.
+     * @return Iterable of {@link PropertyQuery} objects.
      */
     @JsonGetter("properties")
-    public Iterable<PropertiesQuery> properties() {
+    public Iterable<PropertyQuery> properties() {
         return ListUtil.iterable(this.properties);
     }
 
@@ -582,7 +582,7 @@ public class SystemQuery implements HasLogic {
     private List<CompositionQuery> composition;
 
     /** List of properties operations. */
-    private List<PropertiesQuery> properties;
+    private List<PropertyQuery> properties;
 
     /** List of process step operations. */
     private List<ProcessStepQuery> preparation;
