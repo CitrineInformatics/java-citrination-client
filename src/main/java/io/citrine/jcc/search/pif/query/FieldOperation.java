@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class FieldOperation {
+public class FieldOperation implements HasFilter {
 
     /**
      * Set the alias to save this field under.
@@ -58,25 +58,42 @@ public class FieldOperation {
     }
 
     /**
-     * Set the filters that apply to the field.
+     * Set the filters that applies to the field.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
-     * @return This object.
+     * @param filter List of {@link Filter} objects to apply.
      */
     @JsonSetter("filterGroup")
-    public FieldOperation filterGroup(final FilterGroup filterGroup) {
-        this.filterGroup = filterGroup;
-        return this;
+    private void filterGroup(final List<Filter> filter) {  // Private since only Jackson should use it
+        this.filter(filter);
     }
 
     /**
-     * Get the filters that apply to the field.
+     * Set the list of filters that apply to the field.
      *
-     * @return {@link FilterGroup} object or a null pointer if one has not been set.
+     * @param filter List of {@link Filter} objects.
      */
-    @JsonGetter("filterGroup")
-    public FilterGroup filterGroup() {
-        return this.filterGroup;
+    @JsonSetter("filter")
+    private void filter(final List<Filter> filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+    }
+
+    @Override
+    @JsonIgnore
+    public FieldOperation filter(final Filter filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    @Override
+    @JsonGetter("filter")
+    public Iterable<Filter> filter() {
+        return ListUtil.iterable(this.filter);
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean hasFilter() {
+        return ListUtil.hasContent(this.filter);
     }
 
     /**
@@ -116,12 +133,12 @@ public class FieldOperation {
     /**
      * Add to the list of length operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} object to apply.
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation length(final FilterGroup filterGroup) {
-        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+    public FieldOperation length(final Filter filter) {
+        this.length = ListUtil.add(new FieldOperation().filter(filter), this.length);
         return this;
     }
 
@@ -182,12 +199,12 @@ public class FieldOperation {
     /**
      * Add to the list of offset operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation offset(final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+    public FieldOperation offset(final Filter filter) {
+        this.offset = ListUtil.add(new FieldOperation().filter(filter), this.offset);
         return this;
     }
 
@@ -217,8 +234,8 @@ public class FieldOperation {
     /** Set whether top level filters should be floated out into their own objects. */
     private Boolean floatTopFilters;
 
-    /** List of filters to apply to this field. */
-    private FilterGroup filterGroup;
+    /** List of filters. */
+    private List<Filter> filter;
 
     /** Length of that array that this object appears in. */
     private List<FieldOperation> length;

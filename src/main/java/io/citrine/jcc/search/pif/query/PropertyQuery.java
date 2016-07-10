@@ -38,8 +38,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery name(final FilterGroup filterGroup) {
-        super.name(filterGroup);
+    public PropertyQuery name(final Filter filter) {
+        super.name(filter);
         return this;
     }
 
@@ -59,8 +59,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery value(final FilterGroup filterGroup) {
-        super.value(filterGroup);
+    public PropertyQuery value(final Filter filter) {
+        super.value(filter);
         return this;
     }
 
@@ -80,8 +80,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery units(final FilterGroup filterGroup) {
-        super.units(filterGroup);
+    public PropertyQuery units(final Filter filter) {
+        super.units(filter);
         return this;
     }
 
@@ -101,8 +101,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery tags(final FilterGroup filterGroup) {
-        super.tags(filterGroup);
+    public PropertyQuery tags(final Filter filter) {
+        super.tags(filter);
         return this;
     }
 
@@ -122,8 +122,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery length(final FilterGroup filterGroup) {
-        super.length(filterGroup);
+    public PropertyQuery length(final Filter filter) {
+        super.length(filter);
         return this;
     }
 
@@ -143,8 +143,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery offset(final FilterGroup filterGroup) {
-        super.offset(filterGroup);
+    public PropertyQuery offset(final Filter filter) {
+        super.offset(filter);
         return this;
     }
 
@@ -227,12 +227,12 @@ public class PropertyQuery extends ValueQuery {
     /**
      * Add to the list of data type operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertyQuery dataType(final FilterGroup filterGroup) {
-        this.dataType = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.dataType);
+    public PropertyQuery dataType(final Filter filter) {
+        this.dataType = ListUtil.add(new FieldOperation().filter(filter), this.dataType);
         return this;
     }
 

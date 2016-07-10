@@ -66,12 +66,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of title operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery title(final FilterGroup filterGroup) {
-        this.title = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.title);
+    public ReferenceQuery title(final Filter filter) {
+        this.title = ListUtil.add(new FieldOperation().filter(filter), this.title);
         return this;
     }
 
@@ -174,12 +174,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of affiliations operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery affiliations(final FilterGroup filterGroup) {
-        this.affiliations = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.affiliations);
+    public ReferenceQuery affiliations(final Filter filter) {
+        this.affiliations = ListUtil.add(new FieldOperation().filter(filter), this.affiliations);
         return this;
     }
 
@@ -240,12 +240,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of acknowledgements operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery acknowledgements(final FilterGroup filterGroup) {
-        this.acknowledgements = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.acknowledgements);
+    public ReferenceQuery acknowledgements(final Filter filter) {
+        this.acknowledgements = ListUtil.add(new FieldOperation().filter(filter), this.acknowledgements);
         return this;
     }
 
@@ -306,12 +306,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of tags operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery tags(final FilterGroup filterGroup) {
-        this.tags = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.tags);
+    public ReferenceQuery tags(final Filter filter) {
+        this.tags = ListUtil.add(new FieldOperation().filter(filter), this.tags);
         return this;
     }
 
@@ -372,12 +372,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery length(final FilterGroup filterGroup) {
-        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+    public ReferenceQuery length(final Filter filter) {
+        this.length = ListUtil.add(new FieldOperation().filter(filter), this.length);
         return this;
     }
 
@@ -438,12 +438,12 @@ public class ReferenceQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ReferenceQuery offset(final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+    public ReferenceQuery offset(final Filter filter) {
+        this.offset = ListUtil.add(new FieldOperation().filter(filter), this.offset);
         return this;
     }
 

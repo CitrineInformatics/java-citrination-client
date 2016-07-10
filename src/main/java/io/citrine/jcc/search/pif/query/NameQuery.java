@@ -88,12 +88,12 @@ public class NameQuery implements HasLogic {
     /**
      * Add to the list of given name operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery given(final FilterGroup filterGroup) {
-        this.given = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.given);
+    public NameQuery given(final Filter filter) {
+        this.given = ListUtil.add(new FieldOperation().filter(filter), this.given);
         return this;
     }
 
@@ -154,12 +154,12 @@ public class NameQuery implements HasLogic {
     /**
      * Add to the list of family name operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery family(final FilterGroup filterGroup) {
-        this.family = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.family);
+    public NameQuery family(final Filter filter) {
+        this.family = ListUtil.add(new FieldOperation().filter(filter), this.family);
         return this;
     }
 
@@ -220,12 +220,12 @@ public class NameQuery implements HasLogic {
     /**
      * Add to the list of title operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery title(final FilterGroup filterGroup) {
-        this.title = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.title);
+    public NameQuery title(final Filter filter) {
+        this.title = ListUtil.add(new FieldOperation().filter(filter), this.title);
         return this;
     }
 
@@ -286,12 +286,12 @@ public class NameQuery implements HasLogic {
     /**
      * Add to the list of suffix operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery suffix(final FilterGroup filterGroup) {
-        this.suffix = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.suffix);
+    public NameQuery suffix(final Filter filter) {
+        this.suffix = ListUtil.add(new FieldOperation().filter(filter), this.suffix);
         return this;
     }
 
@@ -352,12 +352,12 @@ public class NameQuery implements HasLogic {
     /**
      * Add to the list of tags operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery tags(final FilterGroup filterGroup) {
-        this.tags = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.tags);
+    public NameQuery tags(final Filter filter) {
+        this.tags = ListUtil.add(new FieldOperation().filter(filter), this.tags);
         return this;
     }
 
@@ -418,12 +418,12 @@ public class NameQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery length(final FilterGroup filterGroup) {
-        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+    public NameQuery length(final Filter filter) {
+        this.length = ListUtil.add(new FieldOperation().filter(filter), this.length);
         return this;
     }
 
@@ -484,12 +484,12 @@ public class NameQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery offset(final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+    public NameQuery offset(final Filter filter) {
+        this.offset = ListUtil.add(new FieldOperation().filter(filter), this.offset);
         return this;
     }
 

@@ -52,8 +52,30 @@ public abstract class ListUtil {
     }
 
     /**
+     * Get an iterable over a single object. If the input object is a null pointer, then return an iterable over
+     * an empty list.
+     *
+     * @param obj Object to get an iterable on.
+     * @param <T> Type of the object to get the
+     */
+    public static <T> Iterable<T> singletonIterable(final T obj) {
+        return (obj == null) ? Collections.emptyList() : Collections.singletonList(obj);
+    }
+
+    /**
+     * Return whether the object is not null.
+     *
+     * @param obj Object to check as a null pointer.
+     * @param <T> Type of the input object.
+     * @return True if the input object is not a null pointer.
+     */
+    public static <T> boolean singletonHasContent(final T obj) {
+        return !(obj == null);
+    }
+
+    /**
      * Get an iterable object from the input list. If the input list is a null pointer, then return an iterable over
-     * and empty list.
+     * an empty list.
      *
      * @param list List to iterate over.
      * @param <T> Type of the values in the list.

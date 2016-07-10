@@ -66,12 +66,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of element operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery element(final FilterGroup filterGroup) {
-        this.element = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.element);
+    public CompositionQuery element(final Filter filter) {
+        this.element = ListUtil.add(new FieldOperation().filter(filter), this.element);
         return this;
     }
 
@@ -132,13 +132,13 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of actual weight percent operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery actualWeightPercent(final FilterGroup filterGroup) {
+    public CompositionQuery actualWeightPercent(final Filter filter) {
         this.actualWeightPercent =
-                ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.actualWeightPercent);
+                ListUtil.add(new FieldOperation().filter(filter), this.actualWeightPercent);
         return this;
     }
 
@@ -199,13 +199,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of actual atomic percent operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery actualAtomicPercent(final FilterGroup filterGroup) {
-        this.actualAtomicPercent =
-                ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.actualAtomicPercent);
+    public CompositionQuery actualAtomicPercent(final Filter filter) {
+        this.actualAtomicPercent = ListUtil.add(new FieldOperation().filter(filter), this.actualAtomicPercent);
         return this;
     }
 
@@ -266,13 +265,13 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of ideal weight percent operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery idealWeightPercent(final FilterGroup filterGroup) {
+    public CompositionQuery idealWeightPercent(final Filter filter) {
         this.idealWeightPercent =
-                ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.idealWeightPercent);
+                ListUtil.add(new FieldOperation().filter(filter), this.idealWeightPercent);
         return this;
     }
 
@@ -333,13 +332,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of ideal atomic percent operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery idealAtomicPercent(final FilterGroup filterGroup) {
-        this.idealAtomicPercent =
-                ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.idealAtomicPercent);
+    public CompositionQuery idealAtomicPercent(final Filter filter) {
+        this.idealAtomicPercent = ListUtil.add(new FieldOperation().filter(filter), this.idealAtomicPercent);
         return this;
     }
 
@@ -400,12 +398,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of tags operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery tags(final FilterGroup filterGroup) {
-        this.tags = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.tags);
+    public CompositionQuery tags(final Filter filter) {
+        this.tags = ListUtil.add(new FieldOperation().filter(filter), this.tags);
         return this;
     }
 
@@ -466,12 +464,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery length(final FilterGroup filterGroup) {
-        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+    public CompositionQuery length(final Filter filter) {
+        this.length = ListUtil.add(new FieldOperation().filter(filter), this.length);
         return this;
     }
 
@@ -532,12 +530,12 @@ public class CompositionQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery offset(final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+    public CompositionQuery offset(final Filter filter) {
+        this.offset = ListUtil.add(new FieldOperation().filter(filter), this.offset);
         return this;
     }
 

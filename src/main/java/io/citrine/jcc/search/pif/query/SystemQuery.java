@@ -66,12 +66,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of names operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery names(final FilterGroup filterGroup) {
-        this.names = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.names);
+    public SystemQuery names(final Filter filter) {
+        this.names = ListUtil.add(new FieldOperation().filter(filter), this.names);
         return this;
     }
 
@@ -132,12 +132,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of chemical formula operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery chemicalFormula(final FilterGroup filterGroup) {
-        this.chemicalFormula = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.chemicalFormula);
+    public SystemQuery chemicalFormula(final Filter filter) {
+        this.chemicalFormula = ListUtil.add(new FieldOperation().filter(filter), this.chemicalFormula);
         return this;
     }
 
@@ -408,12 +408,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of tags operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery tags(final FilterGroup filterGroup) {
-        this.tags = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.tags);
+    public SystemQuery tags(final Filter filter) {
+        this.tags = ListUtil.add(new FieldOperation().filter(filter), this.tags);
         return this;
     }
 
@@ -474,12 +474,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery length(final FilterGroup filterGroup) {
-        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+    public SystemQuery length(final Filter filter) {
+        this.length = ListUtil.add(new FieldOperation().filter(filter), this.length);
         return this;
     }
 
@@ -540,12 +540,12 @@ public class SystemQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery offset(final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+    public SystemQuery offset(final Filter filter) {
+        this.offset = ListUtil.add(new FieldOperation().filter(filter), this.offset);
         return this;
     }
 
