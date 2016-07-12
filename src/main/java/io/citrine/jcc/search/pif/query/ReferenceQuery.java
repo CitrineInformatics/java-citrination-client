@@ -270,6 +270,72 @@ public class ReferenceQuery implements HasLogic {
     }
 
     /**
+     * Set the list of tags operations. This adds to any operations that are already saved.
+     *
+     * @param tags List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("tags")
+    private void tags(final List<FieldOperation> tags) {
+        this.tags = ListUtil.add(tags, this.tags);
+    }
+
+    /**
+     * Add to the list of tags operations.
+     *
+     * @param fieldOperation {@link FieldOperation} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery tags(final FieldOperation fieldOperation) {
+        this.tags = ListUtil.add(fieldOperation, this.tags);
+        return this;
+    }
+
+    /**
+     * Add to the list of tags operations.
+     *
+     * @param extractAs Alias to extract as.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery tags(final String extractAs) {
+        this.tags = ListUtil.add(new FieldOperation().extractAs(extractAs), this.tags);
+        return this;
+    }
+
+    /**
+     * Add to the list of tags operations.
+     *
+     * @param filterGroup {@link FilterGroup} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery tags(final FilterGroup filterGroup) {
+        this.tags = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.tags);
+        return this;
+    }
+
+    /**
+     * Get an iterable over tags operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("tags")
+    public Iterable<FieldOperation> tags() {
+        return ListUtil.iterable(this.tags);
+    }
+
+    /**
+     * Return whether any tags operations exist.
+     *
+     * @return True if any tags operations exist.
+     */
+    @JsonIgnore
+    public boolean hasTags() {
+        return ListUtil.hasContent(this.tags);
+    }
+
+    /**
      * Set the length operations. This adds to any operations that are already saved.
      *
      * @param length List of {@link FieldOperation} objects.
@@ -415,6 +481,9 @@ public class ReferenceQuery implements HasLogic {
 
     /** Acknowledgements. */
     private List<FieldOperation> acknowledgements;
+
+    /** List of tag operations. */
+    private List<FieldOperation> tags;
 
     /** Length of that array that this object appears in. */
     private List<FieldOperation> length;
