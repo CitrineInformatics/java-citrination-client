@@ -87,6 +87,27 @@ public class PropertiesQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
+    public PropertiesQuery tags(final FieldOperation fieldOperation) {
+        super.tags(fieldOperation);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public PropertiesQuery tags(final String extractAs) {
+        super.tags(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public PropertiesQuery tags(final FilterGroup filterGroup) {
+        super.tags(filterGroup);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
     public PropertiesQuery length(final FieldOperation fieldOperation) {
         super.length(fieldOperation);
         return this;
