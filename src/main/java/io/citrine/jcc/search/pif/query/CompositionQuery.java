@@ -327,6 +327,26 @@ public class CompositionQuery extends BaseObjectQuery {
         return this;
     }
 
+    /**
+     * Get an iterable over ideal atomic percent operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("idealAtomicPercent")
+    public Iterable<FieldOperation> idealAtomicPercent() {
+        return ListUtil.iterable(this.idealAtomicPercent);
+    }
+
+    /**
+     * Return whether any ideal atomic percent operations exist.
+     *
+     * @return True if any ideal atomic percent operations exist.
+     */
+    @JsonIgnore
+    public boolean hasIdealAtomicPercent() {
+        return ListUtil.hasContent(this.idealAtomicPercent);
+    }
+
     @Override
     @JsonSetter("logic")
     public CompositionQuery logic(final Logic logic) {
