@@ -3,7 +3,6 @@ package io.citrine.jcc.search.pif.query;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.citrine.jcc.search.core.HasLogic;
 import io.citrine.jcc.search.core.Logic;
 import io.citrine.jcc.util.ListUtil;
 
@@ -14,20 +13,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class ReferenceQuery implements HasLogic {
-
-    @Override
-    @JsonSetter("logic")
-    public ReferenceQuery logic(final Logic logic) {
-        this.logic = logic;
-        return this;
-    }
-
-    @Override
-    @JsonGetter("logic")
-    public Logic logic() {
-        return this.logic;
-    }
+public class ReferenceQuery extends BaseObjectQuery {
 
     /**
      * Set the list of title operations. This adds to any operations that are already saved.
@@ -269,206 +255,75 @@ public class ReferenceQuery implements HasLogic {
         return ListUtil.hasContent(this.acknowledgements);
     }
 
-    /**
-     * Set the list of tags operations. This adds to any operations that are already saved.
-     *
-     * @param tags List of {@link FieldOperation} objects.
-     */
-    @JsonSetter("tags")
-    private void tags(final List<FieldOperation> tags) {
-        this.tags = ListUtil.add(tags, this.tags);
+    @Override
+    @JsonSetter("logic")
+    public ReferenceQuery logic(final Logic logic) {
+        super.logic(logic);
+        return this;
     }
 
-    /**
-     * Add to the list of tags operations.
-     *
-     * @param fieldOperation {@link FieldOperation} to add.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery tags(final FieldOperation fieldOperation) {
-        this.tags = ListUtil.add(fieldOperation, this.tags);
+        super.tags(fieldOperation);
         return this;
     }
 
-    /**
-     * Add to the list of tags operations.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery tags(final String extractAs) {
-        this.tags = ListUtil.add(new FieldOperation().extractAs(extractAs), this.tags);
+        super.tags(extractAs);
         return this;
     }
 
-    /**
-     * Add to the list of tags operations.
-     *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery tags(final Filter filter) {
-        this.tags = ListUtil.add(new FieldOperation().filter(filter), this.tags);
+        super.tags(filter);
         return this;
     }
 
-    /**
-     * Get an iterable over tags operations.
-     *
-     * @return Iterable of {@link FieldOperation} objects.
-     */
-    @JsonGetter("tags")
-    public Iterable<FieldOperation> tags() {
-        return ListUtil.iterable(this.tags);
-    }
-
-    /**
-     * Return whether any tags operations exist.
-     *
-     * @return True if any tags operations exist.
-     */
-    @JsonIgnore
-    public boolean hasTags() {
-        return ListUtil.hasContent(this.tags);
-    }
-
-    /**
-     * Set the length operations. This adds to any operations that are already saved.
-     *
-     * @param length List of {@link FieldOperation} objects.
-     */
-    @JsonSetter("length")
-    private void length(final List<FieldOperation> length) {
-        this.length = ListUtil.add(length, this.length);
-    }
-
-    /**
-     * Add to the list of length operations.
-     *
-     * @param fieldOperation {@link FieldOperation} to add.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery length(final FieldOperation fieldOperation) {
-        this.length = ListUtil.add(fieldOperation, this.length);
+        super.length(fieldOperation);
         return this;
     }
 
-    /**
-     * Add to the list of length operations.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery length(final String extractAs) {
-        this.length = ListUtil.add(new FieldOperation().extractAs(extractAs), this.length);
+        super.length(extractAs);
         return this;
     }
 
-    /**
-     * Add to the list of length operations.
-     *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery length(final Filter filter) {
-        this.length = ListUtil.add(new FieldOperation().filter(filter), this.length);
+        super.length(filter);
         return this;
     }
 
-    /**
-     * Get an iterable over length operations.
-     *
-     * @return Iterable of {@link FieldOperation} objects.
-     */
-    @JsonGetter("length")
-    public Iterable<FieldOperation> length() {
-        return ListUtil.iterable(this.length);
-    }
-
-    /**
-     * Return whether any length operations exist.
-     *
-     * @return True if any length operations exist.
-     */
-    @JsonIgnore
-    public boolean hasLength() {
-        return ListUtil.hasContent(this.length);
-    }
-
-    /**
-     * Set the offset operations. This adds to any operations that are already saved.
-     *
-     * @param offset List of {@link FieldOperation} objects.
-     */
-    @JsonSetter("offset")
-    private void offset(final List<FieldOperation> offset) {
-        this.offset = ListUtil.add(offset, this.offset);
-    }
-
-    /**
-     * Add to the list of offset operations.
-     *
-     * @param fieldOperation {@link FieldOperation} to add.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery offset(final FieldOperation fieldOperation) {
-        this.offset = ListUtil.add(fieldOperation, this.offset);
+        super.offset(fieldOperation);
         return this;
     }
 
-    /**
-     * Add to the list of offset operations.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery offset(final String extractAs) {
-        this.offset = ListUtil.add(new FieldOperation().extractAs(extractAs), this.offset);
+        super.offset(extractAs);
         return this;
     }
 
-    /**
-     * Add to the list of offset operations.
-     *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
-     */
+    @Override
     @JsonIgnore
     public ReferenceQuery offset(final Filter filter) {
-        this.offset = ListUtil.add(new FieldOperation().filter(filter), this.offset);
+        super.offset(filter);
         return this;
     }
-
-    /**
-     * Get an iterable over offset operations.
-     *
-     * @return Iterable of {@link FieldOperation} objects.
-     */
-    @JsonGetter("offset")
-    public Iterable<FieldOperation> offset() {
-        return ListUtil.iterable(this.offset);
-    }
-
-    /**
-     * Return whether any offset operations exist.
-     *
-     * @return True if any offset operations exist.
-     */
-    @JsonIgnore
-    public boolean hasOffset() {
-        return ListUtil.hasContent(this.offset);
-    }
-
-    /** Logic that applies to the entire query. */
-    private Logic logic;
 
     /** Title of the reference. */
     private List<FieldOperation> title;
@@ -481,13 +336,4 @@ public class ReferenceQuery implements HasLogic {
 
     /** Acknowledgements. */
     private List<FieldOperation> acknowledgements;
-
-    /** List of tag operations. */
-    private List<FieldOperation> tags;
-
-    /** Length of that array that this object appears in. */
-    private List<FieldOperation> length;
-
-    /** Offset of this object in the array that it appears in. */
-    private List<FieldOperation> offset;
 }

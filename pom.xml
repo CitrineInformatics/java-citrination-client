@@ -6,14 +6,14 @@
 
     <groupId>io.citrine</groupId>
     <artifactId>jcc</artifactId>
-    <version>0.0.33</version>
+    <version>0.0.34</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>io.citrine</groupId>
             <artifactId>jpif</artifactId>
-            <version>0.0.20</version>
+            <version>0.0.22</version>
         </dependency>
         <dependency>
             <groupId>io.citrine</groupId>
