@@ -66,12 +66,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add a single name operation.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery name(final FilterGroup filterGroup) {
-        this.name = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.name);
+    public ValueQuery name(final Filter filter) {
+        this.name = ListUtil.add(new FieldOperation().filter(filter), this.name);
         return this;
     }
 
@@ -132,12 +132,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add a single value operation.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery value(final FilterGroup filterGroup) {
-        this.value = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.value);
+    public ValueQuery value(final Filter filter) {
+        this.value = ListUtil.add(new FieldOperation().filter(filter), this.value);
         return this;
     }
 
@@ -198,12 +198,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add a single units operation.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery units(final FilterGroup filterGroup) {
-        this.units = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.units);
+    public ValueQuery units(final Filter filter) {
+        this.units = ListUtil.add(new FieldOperation().filter(filter), this.units);
         return this;
     }
 
@@ -264,12 +264,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add to the list of tags operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery tags(final FilterGroup filterGroup) {
-        this.tags = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.tags);
+    public ValueQuery tags(final Filter filter) {
+        this.tags = ListUtil.add(new FieldOperation().filter(filter), this.tags);
         return this;
     }
 
@@ -330,12 +330,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery length(final FilterGroup filterGroup) {
-        this.length = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.length);
+    public ValueQuery length(final Filter filter) {
+        this.length = ListUtil.add(new FieldOperation().filter(filter), this.length);
         return this;
     }
 
@@ -396,12 +396,12 @@ public class ValueQuery implements HasLogic {
     /**
      * Add to the list of offset operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public ValueQuery offset(final FilterGroup filterGroup) {
-        this.offset = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.offset);
+    public ValueQuery offset(final Filter filter) {
+        this.offset = ListUtil.add(new FieldOperation().filter(filter), this.offset);
         return this;
     }
 

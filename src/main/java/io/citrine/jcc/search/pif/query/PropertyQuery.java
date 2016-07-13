@@ -13,138 +13,138 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class PropertiesQuery extends ValueQuery {
+public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonSetter("logic")
-    public PropertiesQuery logic(final Logic logic) {
+    public PropertyQuery logic(final Logic logic) {
         super.logic(logic);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery name(final FieldOperation fieldOperation) {
+    public PropertyQuery name(final FieldOperation fieldOperation) {
         super.name(fieldOperation);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery name(final String extractAs) {
+    public PropertyQuery name(final String extractAs) {
         super.name(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery name(final FilterGroup filterGroup) {
-        super.name(filterGroup);
+    public PropertyQuery name(final Filter filter) {
+        super.name(filter);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery value(final FieldOperation fieldOperation) {
+    public PropertyQuery value(final FieldOperation fieldOperation) {
         super.value(fieldOperation);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery value(final String extractAs) {
+    public PropertyQuery value(final String extractAs) {
         super.value(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery value(final FilterGroup filterGroup) {
-        super.value(filterGroup);
+    public PropertyQuery value(final Filter filter) {
+        super.value(filter);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery units(final FieldOperation fieldOperation) {
+    public PropertyQuery units(final FieldOperation fieldOperation) {
         super.units(fieldOperation);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery units(final String extractAs) {
+    public PropertyQuery units(final String extractAs) {
         super.units(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery units(final FilterGroup filterGroup) {
-        super.units(filterGroup);
+    public PropertyQuery units(final Filter filter) {
+        super.units(filter);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery tags(final FieldOperation fieldOperation) {
+    public PropertyQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery tags(final String extractAs) {
+    public PropertyQuery tags(final String extractAs) {
         super.tags(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery tags(final FilterGroup filterGroup) {
-        super.tags(filterGroup);
+    public PropertyQuery tags(final Filter filter) {
+        super.tags(filter);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery length(final FieldOperation fieldOperation) {
+    public PropertyQuery length(final FieldOperation fieldOperation) {
         super.length(fieldOperation);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery length(final String extractAs) {
+    public PropertyQuery length(final String extractAs) {
         super.length(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery length(final FilterGroup filterGroup) {
-        super.length(filterGroup);
+    public PropertyQuery length(final Filter filter) {
+        super.length(filter);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery offset(final FieldOperation fieldOperation) {
+    public PropertyQuery offset(final FieldOperation fieldOperation) {
         super.offset(fieldOperation);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery offset(final String extractAs) {
+    public PropertyQuery offset(final String extractAs) {
         super.offset(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PropertiesQuery offset(final FilterGroup filterGroup) {
-        super.offset(filterGroup);
+    public PropertyQuery offset(final Filter filter) {
+        super.offset(filter);
         return this;
     }
 
@@ -165,7 +165,7 @@ public class PropertiesQuery extends ValueQuery {
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery conditions(final ValueQuery conditions) {
+    public PropertyQuery conditions(final ValueQuery conditions) {
         this.conditions = ListUtil.add(conditions, this.conditions);
         return this;
     }
@@ -207,7 +207,7 @@ public class PropertiesQuery extends ValueQuery {
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery dataType(final FieldOperation fieldOperation) {
+    public PropertyQuery dataType(final FieldOperation fieldOperation) {
         this.dataType = ListUtil.add(fieldOperation, this.dataType);
         return this;
     }
@@ -219,7 +219,7 @@ public class PropertiesQuery extends ValueQuery {
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery dataType(final String extractAs) {
+    public PropertyQuery dataType(final String extractAs) {
         this.dataType = ListUtil.add(new FieldOperation().extractAs(extractAs), this.dataType);
         return this;
     }
@@ -227,12 +227,12 @@ public class PropertiesQuery extends ValueQuery {
     /**
      * Add to the list of data type operations.
      *
-     * @param filterGroup {@link FilterGroup} to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public PropertiesQuery dataType(final FilterGroup filterGroup) {
-        this.dataType = ListUtil.add(new FieldOperation().filterGroup(filterGroup), this.dataType);
+    public PropertyQuery dataType(final Filter filter) {
+        this.dataType = ListUtil.add(new FieldOperation().filter(filter), this.dataType);
         return this;
     }
 
