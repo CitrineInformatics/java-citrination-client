@@ -82,6 +82,90 @@ public class SystemQuery extends BaseObjectQuery {
     }
 
     /**
+     * Set the list of source operations. This adds to any operations that are already saved.
+     *
+     * @param source List of {@link SourceQuery} objects.
+     */
+    @JsonSetter("source")
+    private void source(final List<SourceQuery> source) {
+        this.source = ListUtil.add(source, this.source);
+    }
+
+    /**
+     * Add to the list of source operations.
+     *
+     * @param source {@link SourceQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery source(final SourceQuery source) {
+        this.source = ListUtil.add(source, this.source);
+        return this;
+    }
+
+    /**
+     * Get an iterable of source operations.
+     *
+     * @return Iterable of {@link SourceQuery} objects.
+     */
+    @JsonGetter("source")
+    public Iterable<SourceQuery> source() {
+        return ListUtil.iterable(this.source);
+    }
+
+    /**
+     * Get whether an source queries exist.
+     *
+     * @return True if any source queries exist.
+     */
+    @JsonIgnore
+    public boolean hasSource() {
+        return ListUtil.hasContent(this.source);
+    }
+
+    /**
+     * Set the list of quantity operations. This adds to any operations that are already saved.
+     *
+     * @param quantity List of {@link QuantityQuery} objects.
+     */
+    @JsonSetter("quantity")
+    private void quantity(final List<QuantityQuery> quantity) {
+        this.quantity = ListUtil.add(quantity, this.quantity);
+    }
+
+    /**
+     * Add to the list of quantity operations.
+     *
+     * @param quantity {@link QuantityQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery quantity(final QuantityQuery quantity) {
+        this.quantity = ListUtil.add(quantity, this.quantity);
+        return this;
+    }
+
+    /**
+     * Get an iterable of quantity operations.
+     *
+     * @return Iterable of {@link QuantityQuery} objects.
+     */
+    @JsonGetter("quantity")
+    public Iterable<QuantityQuery> quantity() {
+        return ListUtil.iterable(this.quantity);
+    }
+
+    /**
+     * Get whether an quantity queries exist.
+     *
+     * @return True if any quantity queries exist.
+     */
+    @JsonIgnore
+    public boolean hasQuantity() {
+        return ListUtil.hasContent(this.quantity);
+    }
+
+    /**
      * Set the list of chemical formula operations. This adds to any operations that are already saved.
      *
      * @param chemicalFormula List of {@link FieldOperation} objects.
@@ -429,7 +513,13 @@ public class SystemQuery extends BaseObjectQuery {
 
     /** List of names operations. */
     private List<FieldOperation> names;
-
+    
+    /** List of source operations. */
+    private List<SourceQuery> source;
+    
+    /** List of quantity operations. */
+    private List<QuantityQuery> quantity;
+    
     /** List of chemical formula operations. */
     private List<FieldOperation> chemicalFormula;
 
