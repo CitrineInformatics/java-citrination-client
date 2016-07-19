@@ -96,5 +96,15 @@ public abstract class ListUtil {
         return (list != null) && (list.size() > 0);
     }
 
+    /**
+     * Get the length of a list.
+     *
+     * @return Number of elements in a list.
+     */
+    public static int length(final List<?> list) {
+        return (list == null) ? 0 : list.size();
+    }
+
     // Make sure that objects of this class cannot be instantiated
+    private ListUtil() {}
 }
