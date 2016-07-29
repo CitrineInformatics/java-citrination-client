@@ -86,6 +86,13 @@ public class PropertyQuery extends ValueQuery {
     }
 
     @Override
+    @JsonSetter("unitsNormalization")
+    public PropertyQuery unitsNormalization(final UnitsNormalization unitsNormalization) {
+        super.unitsNormalization(unitsNormalization);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public PropertyQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

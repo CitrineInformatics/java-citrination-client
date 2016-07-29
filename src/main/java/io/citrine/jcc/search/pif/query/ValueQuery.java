@@ -213,6 +213,38 @@ public class ValueQuery extends BaseObjectQuery {
         return ListUtil.hasContent(this.units);
     }
 
+    /**
+     * Set the normalization for units.
+     *
+     * @param unitsNormalization {@link UnitsNormalization} to use.
+     * @return This object.
+     */
+    @JsonSetter("unitsNormalization")
+    public ValueQuery unitsNormalization(final UnitsNormalization unitsNormalization) {
+        this.unitsNormalization = unitsNormalization;
+        return this;
+    }
+
+    /**
+     * Get the units normalizations.
+     *
+     * @return {@link UnitsNormalization} object or a null pointer if it has not been set.
+     */
+    @JsonGetter("unitsNormalization")
+    public UnitsNormalization unitsNormalization() {
+        return this.unitsNormalization;
+    }
+
+    /**
+     * Whether unit normalizations are set.
+     *
+     * @return True if unit normalization has been set.
+     */
+    @JsonIgnore
+    public boolean hasUnitsNormalization() {
+        return this.unitsNormalization != null;
+    }
+
     @Override
     @JsonSetter("logic")
     public ValueQuery logic(final Logic logic) {
@@ -291,4 +323,7 @@ public class ValueQuery extends BaseObjectQuery {
 
     /** List of units operations. */
     private List<FieldOperation> units;
+
+    /** Unit normalization. */
+    private UnitsNormalization unitsNormalization;
 }
