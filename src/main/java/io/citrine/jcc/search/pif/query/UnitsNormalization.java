@@ -15,12 +15,12 @@ public class UnitsNormalization {
     /**
      * Set the units that the query is being run against.
      *
-     * @param from {@link Units} to run the query against.
+     * @param search {@link Units} to run the query against.
      * @return This object.
      */
-    @JsonSetter("from")
-    public UnitsNormalization from(final Units from) {
-        this.from = from;
+    @JsonSetter("search")
+    public UnitsNormalization search(final Units search) {
+        this.search = search;
         return this;
     }
 
@@ -29,30 +29,30 @@ public class UnitsNormalization {
      *
      * @return {@link Units} for the query.
      */
-    @JsonGetter("from")
-    public Units from() {
-        return this.from;
+    @JsonGetter("search")
+    public Units search() {
+        return this.search;
     }
 
     /**
-     * Return whether this object has units being converted from.
+     * Return whether this object has units being converted search.
      *
-     * @return True if this object has units being converted from.
+     * @return True if this object has units being converted search.
      */
     @JsonIgnore
-    public boolean hasFrom() {
-        return this.from != null;
+    public boolean hasSearch() {
+        return this.search != null;
     }
 
     /**
      * Set the units that should be converted to.
      *
-     * @param extractTo {@link Units} to normalize extractions to.
+     * @param extract {@link Units} to normalize extractions to.
      * @return This object.
      */
-    @JsonSetter("extractTo")
-    public UnitsNormalization extractTo(final Units extractTo) {
-        this.extractTo = extractTo;
+    @JsonSetter("extract")
+    public UnitsNormalization extract(final Units extract) {
+        this.extract = extract;
         return this;
     }
 
@@ -61,9 +61,9 @@ public class UnitsNormalization {
      *
      * @return {@link Units} to convert extractions to.
      */
-    @JsonGetter("extractTo")
-    public Units extractTo() {
-        return this.extractTo;
+    @JsonGetter("extract")
+    public Units extract() {
+        return this.extract;
     }
 
     /**
@@ -72,48 +72,13 @@ public class UnitsNormalization {
      * @return True if this object has units being converted to.
      */
     @JsonIgnore
-    public boolean hasExtractTo() {
-        return this.extractTo != null;
+    public boolean hasExtract() {
+        return this.extract != null;
     }
 
-    /**
-     * Set the label under which units should be extracted.
-     *
-     * @param extractAs String with the label under which units should be extracted.
-     * @return This object.
-     */
-    @JsonSetter("extractAs")
-    public UnitsNormalization extractAs(final String extractAs) {
-        this.extractAs = extractAs;
-        return this;
-    }
+    /** Set of units being searched on. */
+    private Units search;
 
-    /**
-     * Label under which unit extractions should appear.
-     *
-     * @return String for unit extraction labels.
-     */
-    @JsonGetter("extractAs")
-    public String extractAs() {
-        return this.extractAs;
-    }
-
-    /**
-     * Get whether an extraction label has been set.
-     *
-     * @return True if a label has been set for unit extractions.
-     */
-    @JsonIgnore
-    public boolean hasExtractAs() {
-        return this.extractAs != null;
-    }
-
-    /** Set of units that the query is being run against. */
-    private Units from;
-
-    /** Set of units to normalize to. */
-    private Units extractTo;
-
-    /** Label to apply to extracted units. */
-    private String extractAs;
+    /** Set of units to normalize extractions to. */
+    private Units extract;
 }
