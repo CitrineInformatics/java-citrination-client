@@ -17,7 +17,10 @@ public enum Units {
     KELVIN,
 
     /** Temperature units of Celsius. */
-    CELSIUS;
+    CELSIUS,
+
+    /** Temperature units of Fahrenheit. */
+    FAHRENHEIT;
 
     /**
      * Get the name of the units.
