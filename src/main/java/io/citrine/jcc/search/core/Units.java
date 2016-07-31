@@ -20,7 +20,16 @@ public enum Units {
     CELSIUS,
 
     /** Temperature units of Fahrenheit. */
-    FAHRENHEIT;
+    FAHRENHEIT,
+
+    /** Energy units of Joules. */
+    JOULE,
+
+    /** Energy units of Hartrees. */
+    HARTREE,
+
+    /** Energy units of electronvolts. */
+    ELECTRONVOLT;
 
     /**
      * Get the name of the units.
