@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.Logic;
+import io.citrine.jcc.search.pif.query.chemical.ChemicalFieldOperation;
+import io.citrine.jcc.search.pif.query.chemical.ChemicalFilter;
 import io.citrine.jcc.search.pif.query.chemical.CompositionQuery;
 import io.citrine.jcc.util.ListUtil;
 
@@ -169,21 +171,21 @@ public class SystemQuery extends BaseObjectQuery {
     /**
      * Set the list of chemical formula operations. This adds to any operations that are already saved.
      *
-     * @param chemicalFormula List of {@link FieldOperation} objects.
+     * @param chemicalFormula List of {@link ChemicalFieldOperation} objects.
      */
     @JsonSetter("chemicalFormula")
-    private void chemicalFormula(final List<FieldOperation> chemicalFormula) {
+    private void chemicalFormula(final List<ChemicalFieldOperation> chemicalFormula) {
         this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
     }
 
     /**
      * Add to the list of chemical formula operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldOperation {@link ChemicalFieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery chemicalFormula(final FieldOperation fieldOperation) {
+    public SystemQuery chemicalFormula(final ChemicalFieldOperation fieldOperation) {
         this.chemicalFormula = ListUtil.add(fieldOperation, this.chemicalFormula);
         return this;
     }
@@ -196,29 +198,29 @@ public class SystemQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public SystemQuery chemicalFormula(final String extractAs) {
-        this.chemicalFormula = ListUtil.add(new FieldOperation().extractAs(extractAs), this.chemicalFormula);
+        this.chemicalFormula = ListUtil.add(new ChemicalFieldOperation().extractAs(extractAs), this.chemicalFormula);
         return this;
     }
 
     /**
      * Add to the list of chemical formula operations.
      *
-     * @param filter {@link Filter} to apply.
+     * @param filter {@link ChemicalFilter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery chemicalFormula(final Filter filter) {
-        this.chemicalFormula = ListUtil.add(new FieldOperation().filter(filter), this.chemicalFormula);
+    public SystemQuery chemicalFormula(final ChemicalFilter filter) {
+        this.chemicalFormula = ListUtil.add(new ChemicalFieldOperation().filter(filter), this.chemicalFormula);
         return this;
     }
 
     /**
      * Get an iterable over chemical formula operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link ChemicalFieldOperation} objects.
      */
     @JsonGetter("chemicalFormula")
-    public Iterable<FieldOperation> chemicalFormula() {
+    public Iterable<ChemicalFieldOperation> chemicalFormula() {
         return ListUtil.iterable(this.chemicalFormula);
     }
 
@@ -522,7 +524,7 @@ public class SystemQuery extends BaseObjectQuery {
     private List<QuantityQuery> quantity;
     
     /** List of chemical formula operations. */
-    private List<FieldOperation> chemicalFormula;
+    private List<ChemicalFieldOperation> chemicalFormula;
 
     /** List of composition operations. */
     private List<CompositionQuery> composition;
