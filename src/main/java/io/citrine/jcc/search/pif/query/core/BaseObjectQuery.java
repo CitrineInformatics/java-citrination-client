@@ -1,99 +1,98 @@
-package io.citrine.jcc.search.pif.query;
+package io.citrine.jcc.search.pif.query.core;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.search.core.HasLogic;
+import io.citrine.jcc.search.core.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
 
 /**
- * Class for all field queries.
- *
+ * Base class for all PIF object queries.
+ * 
  * @author Kyle Michel
  */
-public class FieldOperation implements HasFilter {
+public abstract class BaseObjectQuery implements HasLogic {
+
+    @Override
+    @JsonSetter("logic")
+    public BaseObjectQuery logic(final Logic logic) {
+        this.logic = logic;
+        return this;
+    }
+
+    @Override
+    @JsonGetter("logic")
+    public Logic logic() {
+        return this.logic;
+    }
 
     /**
-     * Set the alias to save this field under.
+     * Set the list of tags operations. This adds to any operations that are already saved.
      *
-     * @param extractAs String with the alias to save this field under.
+     * @param tags List of {@link FieldOperation} objects.
+     */
+    @JsonSetter("tags")
+    private void tags(final List<FieldOperation> tags) {
+        this.tags = ListUtil.add(tags, this.tags);
+    }
+
+    /**
+     * Add to the list of tags operations.
+     *
+     * @param fieldOperation {@link FieldOperation} to add.
      * @return This object.
      */
-    @JsonSetter("extractAs")
-    public FieldOperation extractAs(final String extractAs) {
-        this.extractAs = extractAs;
+    @JsonIgnore
+    public BaseObjectQuery tags(final FieldOperation fieldOperation) {
+        this.tags = ListUtil.add(fieldOperation, this.tags);
         return this;
     }
 
     /**
-     * Get the alias to save this field under.
+     * Add to the list of tags operations.
      *
-     * @return String with the alias to save this field under or a null pointer if not set.
+     * @param extractAs Alias to extract as.
+     * @return This object.
      */
-    @JsonGetter("extractAs")
-    public String extractAs() {
-        return this.extractAs;
-    }
-
-    /**
-     * Set whether top level filters should be floated. This is intended to be a private method since it should only
-     * be used by templates.
-     *
-     * @param floatTopFilters True to float top level filters.
-     */
-    @JsonSetter("floatTopFilters")
-    private void floatTopFilters(final Boolean floatTopFilters) {  // Private since only Jackson should use it
-        this.floatTopFilters = floatTopFilters;
-    }
-
-    /**
-     * Get whether top level filters should be floated.
-     *
-     * @return True if top level filters should be floated or a null pointer if it has not been set.
-     */
-    @JsonGetter("floatTopFilters")
-    public Boolean floatTopFilters() {
-        return this.floatTopFilters;
-    }
-
-    /**
-     * Set the filters that applies to the field.
-     *
-     * @param filter List of {@link Filter} objects to apply.
-     */
-    @JsonSetter("filterGroup")
-    private void filterGroup(final List<Filter> filter) {  // Private since only Jackson should use it
-        this.filter(filter);
-    }
-
-    /**
-     * Set the list of filters that apply to the field.
-     *
-     * @param filter List of {@link Filter} objects.
-     */
-    @JsonSetter("filter")
-    private void filter(final List<Filter> filter) {
-        this.filter = ListUtil.add(filter, this.filter);
-    }
-
-    @Override
     @JsonIgnore
-    public FieldOperation filter(final Filter filter) {
-        this.filter = ListUtil.add(filter, this.filter);
+    public BaseObjectQuery tags(final String extractAs) {
+        this.tags = ListUtil.add(new FieldOperation().extractAs(extractAs), this.tags);
         return this;
     }
 
-    @Override
-    @JsonGetter("filter")
-    public Iterable<Filter> filter() {
-        return ListUtil.iterable(this.filter);
+    /**
+     * Add to the list of tags operations.
+     *
+     * @param filter {@link Filter} to apply.
+     * @return This object.
+     */
+    @JsonIgnore
+    public BaseObjectQuery tags(final Filter filter) {
+        this.tags = ListUtil.add(new FieldOperation().filter(filter), this.tags);
+        return this;
     }
 
-    @Override
+    /**
+     * Get an iterable over tags operations.
+     *
+     * @return Iterable of {@link FieldOperation} objects.
+     */
+    @JsonGetter("tags")
+    public Iterable<FieldOperation> tags() {
+        return ListUtil.iterable(this.tags);
+    }
+
+    /**
+     * Return whether any tags operations exist.
+     *
+     * @return True if any tags operations exist.
+     */
     @JsonIgnore
-    public boolean hasFilter() {
-        return ListUtil.hasContent(this.filter);
+    public boolean hasTags() {
+        return ListUtil.hasContent(this.tags);
     }
 
     /**
@@ -113,7 +112,7 @@ public class FieldOperation implements HasFilter {
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation length(final FieldOperation fieldOperation) {
+    public BaseObjectQuery length(final FieldOperation fieldOperation) {
         this.length = ListUtil.add(fieldOperation, this.length);
         return this;
     }
@@ -125,7 +124,7 @@ public class FieldOperation implements HasFilter {
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation length(final String extractAs) {
+    public BaseObjectQuery length(final String extractAs) {
         this.length = ListUtil.add(new FieldOperation().extractAs(extractAs), this.length);
         return this;
     }
@@ -133,11 +132,11 @@ public class FieldOperation implements HasFilter {
     /**
      * Add to the list of length operations.
      *
-     * @param filter {@link Filter} object to apply.
+     * @param filter {@link Filter} to apply.
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation length(final Filter filter) {
+    public BaseObjectQuery length(final Filter filter) {
         this.length = ListUtil.add(new FieldOperation().filter(filter), this.length);
         return this;
     }
@@ -179,7 +178,7 @@ public class FieldOperation implements HasFilter {
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation offset(final FieldOperation fieldOperation) {
+    public BaseObjectQuery offset(final FieldOperation fieldOperation) {
         this.offset = ListUtil.add(fieldOperation, this.offset);
         return this;
     }
@@ -191,7 +190,7 @@ public class FieldOperation implements HasFilter {
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation offset(final String extractAs) {
+    public BaseObjectQuery offset(final String extractAs) {
         this.offset = ListUtil.add(new FieldOperation().extractAs(extractAs), this.offset);
         return this;
     }
@@ -203,7 +202,7 @@ public class FieldOperation implements HasFilter {
      * @return This object.
      */
     @JsonIgnore
-    public FieldOperation offset(final Filter filter) {
+    public BaseObjectQuery offset(final Filter filter) {
         this.offset = ListUtil.add(new FieldOperation().filter(filter), this.offset);
         return this;
     }
@@ -228,18 +227,15 @@ public class FieldOperation implements HasFilter {
         return ListUtil.hasContent(this.offset);
     }
 
-    /** Alias to save this field under. */
-    private String extractAs;
+    /** Logic that applies to the entire query. */
+    private Logic logic;
 
-    /** Set whether top level filters should be floated out into their own objects. */
-    private Boolean floatTopFilters;
+    /** List of tag operations. */
+    private List<FieldOperation> tags;
 
-    /** List of filters. */
-    private List<Filter> filter;
-
-    /** Length of that array that this object appears in. */
+    /** Length of the array that this object appears in. */
     private List<FieldOperation> length;
 
-    /** Offset of this object in the array that it appears in. */
+    /** Offset for this object in the array that it appears in. */
     private List<FieldOperation> offset;
 }

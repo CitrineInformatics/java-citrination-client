@@ -1,9 +1,12 @@
-package io.citrine.jcc.search.pif.query;
+package io.citrine.jcc.search.pif.query.chemical;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.Logic;
+import io.citrine.jcc.search.pif.query.core.BaseObjectQuery;
+import io.citrine.jcc.search.pif.query.core.FieldOperation;
+import io.citrine.jcc.search.pif.query.core.Filter;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -18,21 +21,21 @@ public class CompositionQuery extends BaseObjectQuery {
     /**
      * Set the list of element operations. This adds to any operations that are already saved.
      *
-     * @param element List of {@link FieldOperation} objects.
+     * @param element List of {@link ChemicalFieldOperation} objects.
      */
     @JsonSetter("element")
-    private void element(final List<FieldOperation> element) {
+    private void element(final List<ChemicalFieldOperation> element) {
         this.element = ListUtil.add(element, this.element);
     }
 
     /**
      * Add to the list of element operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldOperation {@link ChemicalFieldOperation} to add.
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery element(final FieldOperation fieldOperation) {
+    public CompositionQuery element(final ChemicalFieldOperation fieldOperation) {
         this.element = ListUtil.add(fieldOperation, this.element);
         return this;
     }
@@ -45,7 +48,7 @@ public class CompositionQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public CompositionQuery element(final String extractAs) {
-        this.element = ListUtil.add(new FieldOperation().extractAs(extractAs), this.element);
+        this.element = ListUtil.add(new ChemicalFieldOperation().extractAs(extractAs), this.element);
         return this;
     }
 
@@ -56,18 +59,18 @@ public class CompositionQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public CompositionQuery element(final Filter filter) {
-        this.element = ListUtil.add(new FieldOperation().filter(filter), this.element);
+    public CompositionQuery element(final ChemicalFilter filter) {
+        this.element = ListUtil.add(new ChemicalFieldOperation().filter(filter), this.element);
         return this;
     }
 
     /**
      * Get an iterable over element operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link ChemicalFieldOperation} objects.
      */
     @JsonGetter("element")
-    public Iterable<FieldOperation> element() {
+    public Iterable<ChemicalFieldOperation> element() {
         return ListUtil.iterable(this.element);
     }
 
@@ -418,7 +421,7 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     /** Element for the composition. */
-    private List<FieldOperation> element;
+    private List<ChemicalFieldOperation> element;
 
     /** Actual weight percent of the element. */
     private List<FieldOperation> actualWeightPercent;

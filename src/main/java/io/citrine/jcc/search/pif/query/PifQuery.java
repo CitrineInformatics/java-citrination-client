@@ -3,6 +3,8 @@ package io.citrine.jcc.search.pif.query;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.search.pif.query.core.SortExtracted;
+import io.citrine.jcc.search.pif.query.core.SystemQuery;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -37,7 +39,9 @@ public class PifQuery {
     }
 
     /**
-     * Set the maximum number of records that should be returned.
+     * Set the maximum number of records that should be returned. If set to 0, then no results are saved, but the
+     * total number of hits will still be returned from the query. This can be used to count the number of records
+     * that will match a query.
      *
      * @param size Maximum number of records to return.
      * @return This object.

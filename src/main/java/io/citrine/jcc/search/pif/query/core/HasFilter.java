@@ -1,4 +1,4 @@
-package io.citrine.jcc.search.pif.query;
+package io.citrine.jcc.search.pif.query.core;
 
 /**
  * Interface for classes that have a list of filters associated with them.
