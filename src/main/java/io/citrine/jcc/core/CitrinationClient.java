@@ -2,9 +2,7 @@ package io.citrine.jcc.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.citrine.jcc.search.pif.query.PifQuery;
-import io.citrine.jcc.search.pif.query.core.SystemQuery;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
-import io.citrine.jpif.util.PifObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
