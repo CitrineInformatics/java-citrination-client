@@ -30,6 +30,28 @@ public class Filter implements HasLogic, HasFilter {
     }
 
     /**
+     * Set whether to check for existence.
+     *
+     * @param exists True if the field must exist.
+     * @return This object.
+     */
+    @JsonSetter("exists")
+    public Filter exists(final Boolean exists) {
+        this.exists = exists;
+        return this;
+    }
+
+    /**
+     * Get whether to check for existence.
+     *
+     * @return True if the field must exist or a null pointer if it has not been set.
+     */
+    @JsonGetter("exists")
+    public Boolean exists() {
+        return this.exists;
+    }
+
+    /**
      * Set the string to match against.
      * 
      * @param equal String to match against.
@@ -244,6 +266,9 @@ public class Filter implements HasLogic, HasFilter {
 
     /** Logic for applying the filters. */
     private Logic logic;
+
+    /** Just check for existence. */
+    private Boolean exists;
     
     /** String to match against. */
     private String equal;
