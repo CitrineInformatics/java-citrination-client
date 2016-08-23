@@ -48,7 +48,7 @@ public enum Units {
      * @return {@link Units} object.
      */
     @JsonCreator
-    public Units get(final String name) {
+    public static Units get(final String name) {
         return (name == null)
                 ? null
                 : NAME_TO_UNITS_MAP.get(normalizeName(name));
