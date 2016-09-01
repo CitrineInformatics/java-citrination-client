@@ -17,6 +17,19 @@ import java.util.List;
 public class PifQuery {
 
     /**
+     * Index of the first hit that should be returned. This method is here just to be compatible with the python
+     * client.
+     *
+     * @param fromIndex Index of the first hit (inclusive of zero) that should be returned.
+     * @return This object.
+     */
+    @JsonSetter("fromIndex")
+    protected PifQuery fromIndex(final Integer fromIndex) {  // Private since only Jackson should use it
+        this.from = fromIndex;
+        return this;
+    }
+
+    /**
      * Index of the first hit that should be returned.
      *
      * @param from Index of the first hit (inclusive of zero) that should be returned.
