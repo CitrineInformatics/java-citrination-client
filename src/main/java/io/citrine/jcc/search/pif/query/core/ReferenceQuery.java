@@ -744,7 +744,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link NameQuery} objects.
      */
-    @JsonGetter("author")
+    @JsonGetter("authors")
     public Iterable<NameQuery> authors() {
         return ListUtil.iterable(this.authors);
     }
@@ -786,7 +786,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link NameQuery} objects.
      */
-    @JsonGetter("author")
+    @JsonGetter("editors")
     public Iterable<NameQuery> editors() {
         return ListUtil.iterable(this.editors);
     }
