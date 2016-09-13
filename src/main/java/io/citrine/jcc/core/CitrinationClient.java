@@ -1,5 +1,7 @@
 package io.citrine.jcc.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.citrine.jcc.search.pif.query.PifQuery;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
@@ -26,6 +28,7 @@ public class CitrinationClient {
      * @param pifQuery {@link PifQuery} to make against the site.
      * @return {@link PifSearchResult} with the result of the query.
      * @throws IOException if thrown from within this function.
+     * @throws RuntimeException if a non-200 response is received.
      */
     public PifSearchResult search(final PifQuery pifQuery) throws IOException {
         final HttpPost post = buildSearchRequest(pifQuery);
@@ -44,7 +47,7 @@ public class CitrinationClient {
      * @throws IOException if thrown from within this function.
      */
     private HttpPost buildSearchRequest(final PifQuery pifQuery) throws IOException {
-        final HttpPost post = new HttpPost(this.host);
+        final HttpPost post = new HttpPost(this.host + "/api/search/pif_search");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
         post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(pifQuery)));
@@ -57,12 +60,15 @@ public class CitrinationClient {
      * @param response {@link HttpResponse} with the result of the query.
      * @return {@link PifSearchResult} with the result of the query.
      * @throws IOException if thrown from within this function.
+     * @throws RuntimeException if a non-200 response is received.
      */
     private PifSearchResult buildSearchResult(final HttpResponse response) throws IOException {
         if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-            throw new IOException("Received " + response.getStatusLine().getStatusCode() + " response");
+            throw new RuntimeException("Received " + response.getStatusLine().getStatusCode() + " response: "
+                    + response.getStatusLine().getReasonPhrase());
         }
-        return OBJECT_MAPPER.readValue(response.getEntity().getContent(), PifSearchResult.class);
+        return OBJECT_MAPPER.readValue(response.getEntity().getContent(), PifSearchResponseWrapper.class)
+                .pifSearchResult;
     }
 
     /**
@@ -153,5 +159,18 @@ public class CitrinationClient {
 
         /** API key for making the connection. */
         private String apiKey;
+    }
+
+    /**
+     * Object that wraps the response received from an API request.
+     *
+     * @author Kyle Michel
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private static class PifSearchResponseWrapper {
+
+        /** Results field. */
+        @JsonProperty("results")
+        public PifSearchResult pifSearchResult;
     }
 }
