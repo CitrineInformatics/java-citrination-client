@@ -6,7 +6,7 @@
 
     <groupId>io.citrine</groupId>
     <artifactId>jcc</artifactId>
-    <version>0.0.46</version>
+    <version>0.0.47</version>
     <packaging>jar</packaging>
 
     <dependencies>

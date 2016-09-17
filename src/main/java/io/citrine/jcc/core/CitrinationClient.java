@@ -11,7 +11,8 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.LaxRedirectStrategy;
 
 import java.io.IOException;
 
@@ -32,7 +33,8 @@ public class CitrinationClient {
      */
     public PifSearchResult search(final PifQuery pifQuery) throws IOException {
         final HttpPost post = buildSearchRequest(pifQuery);
-        try (final CloseableHttpClient client = HttpClients.createDefault()) {
+        try (final CloseableHttpClient client =
+                     HttpClientBuilder.create().setRedirectStrategy(new LaxRedirectStrategy()).build()) {
             try (final CloseableHttpResponse response = client.execute(post)) {
                 return buildSearchResult(response);
             }
