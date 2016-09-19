@@ -33,12 +33,29 @@ public class CitrinationClient {
      */
     public PifSearchResult search(final PifQuery pifQuery) throws IOException {
         final HttpPost post = buildSearchRequest(pifQuery);
-        try (final CloseableHttpClient client =
-                     HttpClientBuilder.create().setRedirectStrategy(new LaxRedirectStrategy()).build()) {
+        try (final CloseableHttpClient client = buildHttpClient()) {
             try (final CloseableHttpResponse response = client.execute(post)) {
                 return buildSearchResult(response);
             }
         }
+    }
+
+    /**
+     * Get an HTTP client to use.
+     *
+     * @return {@link CloseableHttpClient} to use.
+     */
+    CloseableHttpClient buildHttpClient() {
+        return createDefaultHttpClient();
+    }
+
+    /**
+     * Get the default HTTP client to use.
+     *
+     * @return {@link CloseableHttpClient} to use.
+     */
+    CloseableHttpClient createDefaultHttpClient() {
+        return HttpClientBuilder.create().setRedirectStrategy(new LaxRedirectStrategy()).build();
     }
 
     /**
