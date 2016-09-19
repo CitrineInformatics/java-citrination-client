@@ -46,16 +46,16 @@ public class CitrinationClient {
      * @return {@link CloseableHttpClient} to use.
      */
     CloseableHttpClient buildHttpClient() {
-        return createDefaultHttpClient();
+        return createDefaultHttpClientBuilder().build();
     }
 
     /**
      * Get the default HTTP client to use.
      *
-     * @return {@link CloseableHttpClient} to use.
+     * @return {@link HttpClientBuilder} to use.
      */
-    CloseableHttpClient createDefaultHttpClient() {
-        return HttpClientBuilder.create().setRedirectStrategy(new LaxRedirectStrategy()).build();
+    HttpClientBuilder createDefaultHttpClientBuilder() {
+        return HttpClientBuilder.create().setRedirectStrategy(new LaxRedirectStrategy());
     }
 
     /**
