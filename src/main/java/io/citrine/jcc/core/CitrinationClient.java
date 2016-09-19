@@ -48,7 +48,7 @@ public class CitrinationClient {
      * @return {@link HttpPost} object with the POST request to make.
      * @throws IOException if thrown from within this function.
      */
-    private HttpPost buildSearchRequest(final PifQuery pifQuery) throws IOException {
+    HttpPost buildSearchRequest(final PifQuery pifQuery) throws IOException {
         final HttpPost post = new HttpPost(this.host + "/api/search/pif_search");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
@@ -82,7 +82,7 @@ public class CitrinationClient {
      * @throws IllegalArgumentException if project and host are both set.
      * @throws IllegalArgumentException if apiKey is not set.
      */
-    private CitrinationClient(final String project, final String host, final String apiKey) {
+    CitrinationClient(final String project, final String host, final String apiKey) {
         if (((project != null) && (host != null)) || ((project == null) && (host == null))) {
             throw new IllegalArgumentException("Must set exactly one of 'project' or 'host'");
         }
