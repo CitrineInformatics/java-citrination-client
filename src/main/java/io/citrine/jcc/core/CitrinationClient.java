@@ -49,6 +49,17 @@ public class CitrinationClient {
      * @throws IOException if thrown from within this function.
      */
     HttpPost buildSearchRequest(final PifQuery pifQuery) throws IOException {
+        return createCommonSearchRequest(pifQuery);
+    }
+
+    /**
+     * Build the POST request with the query to execute.
+     *
+     * @param pifQuery {@link PifQuery} to run.
+     * @return {@link HttpPost} object with the POST request to make.
+     * @throws IOException if thrown from within this function.
+     */
+    HttpPost createCommonSearchRequest(final PifQuery pifQuery) throws IOException {
         final HttpPost post = new HttpPost(this.host + "/api/search/pif_search");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
