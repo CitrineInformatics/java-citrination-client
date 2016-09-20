@@ -111,15 +111,21 @@ public class CitrinationClient {
      * @throws IllegalArgumentException if apiKey is not set.
      */
     CitrinationClient(final String project, final String host, final String apiKey) {
-        if (((project != null) && (host != null)) || ((project == null) && (host == null))) {
-            throw new IllegalArgumentException("Must set exactly one of 'project' or 'host'");
+        if ((project != null) && (host != null)) {
+            throw new IllegalArgumentException("Cannot set both 'project' and 'host'");
         }
         if (apiKey == null) {
             throw new IllegalArgumentException("Must set 'apiKey'");
         }
-        this.host = (host != null)
-                ? host
-                : "https://" + project + ".citrination.com";
+        if (host != null) {
+            this.host = host;
+        }
+        else if (project != null) {
+            this.host = "https://" + project + ".citrination.com";
+        }
+        else {
+            this.host  = "https://www.citrination.com";
+        }
         this.apiKey = apiKey;
     }
 
