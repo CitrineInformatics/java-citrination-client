@@ -121,6 +121,28 @@ public class PifQuery {
     }
 
     /**
+     * Set whether relevancy should be used in results.
+     *
+     * @param scoreRelevance True to add latex.
+     * @return This object.
+     */
+    @JsonSetter("scoreRelevance")
+    public PifQuery scoreRelevance(final Boolean scoreRelevance) {
+        this.scoreRelevance = scoreRelevance;
+        return this;
+    }
+
+    /**
+     * Get relevancy should be used in results.
+     *
+     * @return True if relevancy should be used in results.
+     */
+    @JsonGetter("scoreRelevance")
+    public Boolean scoreRelevance() {
+        return this.scoreRelevance;
+    }
+
+    /**
      * Set information about all of the fields to sort on.
      *
      * @param sortExtracted List of {@link SortExtracted} objects to sort on.
@@ -195,6 +217,9 @@ public class PifQuery {
 
     /** Whether to add latex formatting to results. */
     private Boolean addLatex;
+
+    /** Whether to use relevance scoring. */
+    private Boolean scoreRelevance;
 
     /** Information about an extracted field to sort on. */
     private List<SortExtracted> sortExtracted;
