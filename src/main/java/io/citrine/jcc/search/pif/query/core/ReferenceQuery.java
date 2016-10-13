@@ -702,7 +702,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link PagesQuery} objects.
      */
-    @JsonGetter("page")
+    @JsonGetter("pages")
     public Iterable<PagesQuery> pages() {
         return ListUtil.iterable(this.pages);
     }
