@@ -41,6 +41,50 @@ public class PifSearchHit {
     }
 
     /**
+     * Set the dataset of the record that was matched.
+     *
+     * @param dataset Long with the dataset of the record.
+     * @return This object.
+     */
+    @JsonSetter("dataset")
+    public PifSearchHit setDataset(final Long dataset) {
+        this.dataset = dataset;
+        return this;
+    }
+
+    /**
+     * Get the dataset of the record that was matched.
+     *
+     * @return String with the dataset of the matched record or a null pointer if not set.
+     */
+    @JsonGetter("dataset")
+    public Long getDataset() {
+        return this.dataset;
+    }
+
+    /**
+     * Set the dataset version of the record that was matched.
+     *
+     * @param datasetVersion Long with the dataset version of the record.
+     * @return This object.
+     */
+    @JsonSetter("datasetVersion")
+    public PifSearchHit setDatasetVersion(final Long datasetVersion) {
+        this.datasetVersion = datasetVersion;
+        return this;
+    }
+
+    /**
+     * Get the dataset version of the record that was matched.
+     *
+     * @return String with the dataset version of the matched record or a null pointer if not set.
+     */
+    @JsonGetter("datasetVersion")
+    public Long getDatasetVersion() {
+        return this.datasetVersion;
+    }
+
+    /**
      * Set the system that was matched.
      *
      * @param system {@link System} to save in the result
@@ -152,6 +196,12 @@ public class PifSearchHit {
 
     /** Id of the record. */
     private String id;
+
+    /** Dataset that the record belongs to. */
+    private Long dataset;
+
+    /** Version of the dataset. */
+    private Long datasetVersion;
 
     /** Pif system that was matched. */
     private System system;
