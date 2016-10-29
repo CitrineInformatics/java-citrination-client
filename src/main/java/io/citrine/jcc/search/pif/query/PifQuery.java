@@ -185,25 +185,129 @@ public class PifQuery {
     }
 
     /**
-     * Set the system query.
+     * Set the system queries.
      *
-     * @param system {@link SystemQuery} object to use.
-     * @return This object.
+     * @param system List of {@link SystemQuery} objects to search on.
      */
     @JsonSetter("system")
+    private void system(final List<SystemQuery> system) {  // Private since only Jackson should use it
+        this.system = ListUtil.add(system, this.system);
+    }
+
+    /**
+     * Add to the list of system queries.
+     *
+     * @param system {@link SystemQuery} to add.
+     * @return This object.
+     */
+    @JsonIgnore
     public PifQuery system(final SystemQuery system) {
-        this.system = system;
+        this.system = ListUtil.add(system, this.system);
         return this;
     }
 
     /**
-     * Get the system query to apply.
+     * Get the system queries.
      *
-     * @return {@link SystemQuery} object or a null pointer if one has not been set.
+     * @return Iterable over {@link SystemQuery} object.
      */
     @JsonGetter("system")
-    public SystemQuery system() {
-        return this.system;
+    public Iterable<SystemQuery> system() {
+        return ListUtil.iterable(this.system);
+    }
+
+    /**
+     * Return whether this object contains any system queries.
+     *
+     * @return True if this object contains any system queries.
+     */
+    @JsonIgnore
+    public boolean hasSystem() {
+        return ListUtil.hasContent(this.system);
+    }
+
+    /**
+     * Add to the list of datasets to include.
+     *
+     * @param includeDataset Long with the dataset to include.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PifQuery includeDataset(final Long includeDataset) {
+        this.includeDatasets = ListUtil.add(includeDataset, this.includeDatasets);
+        return this;
+    }
+
+    /**
+     * Set information about all datasets to include.
+     *
+     * @param includeDatasets List of longs with datasets to include.
+     */
+    @JsonSetter("includeDatasets")
+    private void includeDatasets(final List<Long> includeDatasets) {  // Private since only Jackson should use it
+        this.includeDatasets = ListUtil.add(includeDatasets, this.includeDatasets);
+    }
+
+    /**
+     * Get an iterable over datasets to include.
+     *
+     * @return Iterable over longs with the datasets to include.
+     */
+    @JsonGetter("includeDatasets")
+    public Iterable<Long> includeDatasets() {
+        return ListUtil.iterable(this.includeDatasets);
+    }
+
+    /**
+     * Return whether this object contains any datasets to include.
+     *
+     * @return True if this object contains any datasets to include.
+     */
+    @JsonIgnore
+    public boolean hasIncludeDatasets() {
+        return ListUtil.hasContent(this.includeDatasets);
+    }
+
+    /**
+     * Add to the list of datasets to exclude.
+     *
+     * @param excludeDataset Long with the dataset to exclude.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PifQuery excludeDataset(final Long excludeDataset) {
+        this.excludeDatasets = ListUtil.add(excludeDataset, this.excludeDatasets);
+        return this;
+    }
+
+    /**
+     * Set information about all datasets to exclude.
+     *
+     * @param excludeDatasets List of longs with datasets to exclude.
+     */
+    @JsonSetter("excludeDatasets")
+    private void excludeDatasets(final List<Long> excludeDatasets) {  // Private since only Jackson should use it
+        this.excludeDatasets = ListUtil.add(excludeDatasets, this.excludeDatasets);
+    }
+
+    /**
+     * Get an iterable over datasets to exclude.
+     *
+     * @return Iterable over longs with the datasets to exclude.
+     */
+    @JsonGetter("excludeDatasets")
+    public Iterable<Long> excludeDatasets() {
+        return ListUtil.iterable(this.excludeDatasets);
+    }
+
+    /**
+     * Return whether this object contains any datasets to exclude.
+     *
+     * @return True if this object contains any datasets to exclude.
+     */
+    @JsonIgnore
+    public boolean hasExcludeDatasets() {
+        return ListUtil.hasContent(this.excludeDatasets);
     }
 
     /** Index of the first hit that should be returned. */
@@ -224,6 +328,12 @@ public class PifQuery {
     /** Information about an extracted field to sort on. */
     private List<SortExtracted> sortExtracted;
 
-    /** System query to apply. */
-    private SystemQuery system;
+    /** System queries to apply. */
+    private List<SystemQuery> system;
+
+    /** List of datasets to include. */
+    private List<Long> includeDatasets;
+
+    /** List of datasets to exclude. */
+    private List<Long> excludeDatasets;
 }
