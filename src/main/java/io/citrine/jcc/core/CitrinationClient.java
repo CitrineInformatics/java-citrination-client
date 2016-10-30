@@ -2,6 +2,7 @@ package io.citrine.jcc.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.citrine.jcc.search.pif.query.PifQuery;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
@@ -136,7 +137,8 @@ public class CitrinationClient {
     final String apiKey;
 
     /** ObjectMapper for serializing queries. */
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     /**
      * Builder class to generate a new client.
