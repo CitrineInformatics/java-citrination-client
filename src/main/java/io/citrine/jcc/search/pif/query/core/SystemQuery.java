@@ -85,6 +85,48 @@ public class SystemQuery extends BaseObjectQuery {
     }
 
     /**
+     * Set the list of ids operations. This adds to any operations that are already saved.
+     *
+     * @param ids List of {@link IdQuery} objects.
+     */
+    @JsonSetter("ids")
+    private void ids(final List<IdQuery> ids) {
+        this.ids = ListUtil.add(ids, this.ids);
+    }
+
+    /**
+     * Add to the list of ids operations.
+     *
+     * @param ids {@link IdQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery ids(final IdQuery ids) {
+        this.ids = ListUtil.add(ids, this.ids);
+        return this;
+    }
+
+    /**
+     * Get an iterable of ids operations.
+     *
+     * @return Iterable of {@link IdQuery} objects.
+     */
+    @JsonGetter("ids")
+    public Iterable<IdQuery> ids() {
+        return ListUtil.iterable(this.ids);
+    }
+
+    /**
+     * Get whether an ids queries exist.
+     *
+     * @return True if any ids queries exist.
+     */
+    @JsonIgnore
+    public boolean hasIds() {
+        return ListUtil.hasContent(this.ids);
+    }
+
+    /**
      * Set the list of source operations. This adds to any operations that are already saved.
      *
      * @param source List of {@link SourceQuery} objects.
@@ -516,6 +558,9 @@ public class SystemQuery extends BaseObjectQuery {
 
     /** List of names operations. */
     private List<FieldOperation> names;
+    
+    /** List of id operations. */
+    private List<IdQuery> ids;
     
     /** List of source operations. */
     private List<SourceQuery> source;
