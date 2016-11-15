@@ -6,14 +6,43 @@
 
     <groupId>io.citrine</groupId>
     <artifactId>jcc</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>
+        This package includes tools for interacting with the APIs at www.citrination.com or any projects based on that
+        platform, e.g. project.citrination.com.
+    </description>
+    <url>https://github.com/CitrineInformatics/java-citrination-client</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Kyle Michel</name>
+            <email>kyle@citrine.io</email>
+            <organization>Citrine Informatics</organization>
+            <organizationUrl>http://www.citrine.io</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/CitrineInformatics/java-citrination-client.git</connection>
+        <developerConnection>scm:git:ssh://github.com:CitrineInformatics/java-citrination-client.git</developerConnection>
+        <url>http://github.com/CitrineInformatics/java-citrination-client/tree/master</url>
+    </scm>
 
     <dependencies>
         <dependency>
             <groupId>io.citrine</groupId>
             <artifactId>jpif</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
