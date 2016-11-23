@@ -24,20 +24,8 @@ public class PifQuery {
      * @return This object.
      */
     @JsonSetter("fromIndex")
-    protected PifQuery fromIndex(final Integer fromIndex) {  // Private since only Jackson should use it
-        this.from = fromIndex;
-        return this;
-    }
-
-    /**
-     * Index of the first hit that should be returned.
-     *
-     * @param from Index of the first hit (inclusive of zero) that should be returned.
-     * @return This object.
-     */
-    @JsonSetter("from")
-    public PifQuery from(final Integer from) {
-        this.from = from;
+    public PifQuery fromIndex(final Integer fromIndex) {
+        this.fromIndex = fromIndex;
         return this;
     }
 
@@ -46,9 +34,30 @@ public class PifQuery {
      *
      * @return Index of the first hit that should be returned or a null pointer if not set.
      */
-    @JsonGetter("from")
+    @JsonGetter("fromIndex")
+    public Integer fromIndex() {
+        return this.fromIndex;
+    }
+
+    /**
+     * Index of the first hit that should be returned. This is an alias for {@link #fromIndex(Integer)}.
+     *
+     * @param from Index of the first hit (inclusive of zero) that should be returned.
+     * @return This object.
+     */
+    @JsonSetter("from")
+    public PifQuery from(final Integer from) {
+        return fromIndex(from);
+    }
+
+    /**
+     * Get the index of the first hit that should be returned. This is an alias for {@link #fromIndex()}.
+     *
+     * @return Index of the first hit that should be returned or a null pointer if not set.
+     */
+    @JsonIgnore
     public Integer from() {
-        return this.from;
+        return fromIndex();
     }
 
     /**
@@ -311,7 +320,7 @@ public class PifQuery {
     }
 
     /** Index of the first hit that should be returned. */
-    private Integer from;
+    private Integer fromIndex;
 
     /** Total number of hits the should be returned. */
     private Integer size;
