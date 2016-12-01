@@ -207,5 +207,5 @@ public class PifSearchHit {
     private System system;
 
     /** Map of extracted fields. */
-    private Map<String, String> extracted = new HashMap<>();
+    private Map<String, String> extracted;
 }
