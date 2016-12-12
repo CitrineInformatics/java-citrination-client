@@ -85,6 +85,28 @@ public class PifSearchHit {
     }
 
     /**
+     * Set the score for a hit.
+     *
+     * @param score Double with the score for the hit.
+     * @return This object.
+     */
+    @JsonSetter("score")
+    public PifSearchHit setScore(final Double score) {
+        this.score = score;
+        return this;
+    }
+
+    /**
+     * Get the score for a hit.
+     *
+     * @return Double with the score for the hit or a null pointer if not set.
+     */
+    @JsonGetter("score")
+    public Double getScore() {
+        return this.score;
+    }
+
+    /**
      * Set the system that was matched.
      *
      * @param system {@link System} to save in the result
@@ -202,6 +224,9 @@ public class PifSearchHit {
 
     /** Version of the dataset. */
     private Long datasetVersion;
+
+    /** Score of the record. */
+    private Double score;
 
     /** Pif system that was matched. */
     private System system;
