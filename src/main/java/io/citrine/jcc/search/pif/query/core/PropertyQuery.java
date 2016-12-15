@@ -158,22 +158,22 @@ public class PropertyQuery extends ValueQuery {
     /**
      * Set the list of file reference operations. This adds to any operations that are already saved.
      *
-     * @param files List of {@link FileReferenceQuery} objects.
+     * @param file List of {@link FileReferenceQuery} objects.
      */
-    @JsonSetter("files")
-    private void files(final List<FileReferenceQuery> files) {
-        this.files = ListUtil.add(files, this.files);
+    @JsonSetter("file")
+    private void file(final List<FileReferenceQuery> file) {
+        this.file = ListUtil.add(file, this.file);
     }
 
     /**
      * Add to the list of file reference operations.
      *
-     * @param files {@link FileReferenceQuery} object to add.
+     * @param file {@link FileReferenceQuery} object to add.
      * @return This object.
      */
     @JsonIgnore
-    public PropertyQuery files(final FileReferenceQuery files) {
-        this.files = ListUtil.add(files, this.files);
+    public PropertyQuery file(final FileReferenceQuery file) {
+        this.file = ListUtil.add(file, this.file);
         return this;
     }
 
@@ -182,9 +182,9 @@ public class PropertyQuery extends ValueQuery {
      *
      * @return Iterable of {@link FileReferenceQuery} objects.
      */
-    @JsonGetter("files")
-    public Iterable<FileReferenceQuery> files() {
-        return ListUtil.iterable(this.files);
+    @JsonGetter("file")
+    public Iterable<FileReferenceQuery> file() {
+        return ListUtil.iterable(this.file);
     }
 
     /**
@@ -193,8 +193,8 @@ public class PropertyQuery extends ValueQuery {
      * @return True if any file reference queries exist.
      */
     @JsonIgnore
-    public boolean hasFiles() {
-        return ListUtil.hasContent(this.files);
+    public boolean hasFile() {
+        return ListUtil.hasContent(this.file);
     }
 
     /**
@@ -306,7 +306,7 @@ public class PropertyQuery extends ValueQuery {
     }
     
     /** List of file reference queries. */
-    private List<FileReferenceQuery> files;
+    private List<FileReferenceQuery> file;
 
     /** List of conditions queries. */
     private List<ValueQuery> conditions;
