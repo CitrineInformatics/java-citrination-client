@@ -156,6 +156,48 @@ public class PropertyQuery extends ValueQuery {
     }
 
     /**
+     * Set the list of file reference operations. This adds to any operations that are already saved.
+     *
+     * @param files List of {@link FileReferenceQuery} objects.
+     */
+    @JsonSetter("files")
+    private void files(final List<FileReferenceQuery> files) {
+        this.files = ListUtil.add(files, this.files);
+    }
+
+    /**
+     * Add to the list of file reference operations.
+     *
+     * @param files {@link FileReferenceQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PropertyQuery files(final FileReferenceQuery files) {
+        this.files = ListUtil.add(files, this.files);
+        return this;
+    }
+
+    /**
+     * Get an iterable of file reference operations.
+     *
+     * @return Iterable of {@link FileReferenceQuery} objects.
+     */
+    @JsonGetter("files")
+    public Iterable<FileReferenceQuery> files() {
+        return ListUtil.iterable(this.files);
+    }
+
+    /**
+     * Get whether an file reference queries exist.
+     *
+     * @return True if any file reference queries exist.
+     */
+    @JsonIgnore
+    public boolean hasFiles() {
+        return ListUtil.hasContent(this.files);
+    }
+
+    /**
      * Set the list of conditions operations. This adds to any operations that are already saved.
      *
      * @param conditions List of {@link ValueQuery} objects.
@@ -262,6 +304,9 @@ public class PropertyQuery extends ValueQuery {
     public boolean hasDataType() {
         return ListUtil.hasContent(this.dataType);
     }
+    
+    /** List of file reference queries. */
+    private List<FileReferenceQuery> files;
 
     /** List of conditions queries. */
     private List<ValueQuery> conditions;
