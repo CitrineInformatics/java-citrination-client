@@ -1,8 +1,7 @@
-package io.citrine.jcc.search.pif.result;
+package io.citrine.jcc.search.dataset.result;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.result.BaseSearchResult;
 
@@ -26,19 +25,18 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class PifSearchResult extends BaseSearchResult implements Iterable<PifSearchHit> {
+public class DatasetSearchResult extends BaseSearchResult implements Iterable<DatasetSearchHit> {
 
     @Override
     @JsonSetter("took")
-    public PifSearchResult setTook(final Long took) {
+    public DatasetSearchResult setTook(final Long took) {
         super.setTook(took);
         return this;
     }
 
     @Override
     @JsonSetter("totalNumHits")
-    public PifSearchResult setTotalNumHits(final Long totalNumHits) {
+    public DatasetSearchResult setTotalNumHits(final Long totalNumHits) {
         super.setTotalNumHits(totalNumHits);
         return this;
     }
@@ -46,11 +44,11 @@ public class PifSearchResult extends BaseSearchResult implements Iterable<PifSea
     /**
      * Set the list of hits that were matched. This overwrites any hits that are already saved.
      *
-     * @param hits List of {@link PifSearchHit} objects.
+     * @param hits List of {@link DatasetSearchHit} objects.
      * @return This object.
      */
     @JsonSetter("hits")
-    protected PifSearchResult setHits(final List<PifSearchHit> hits) {
+    protected DatasetSearchResult setHits(final List<DatasetSearchHit> hits) {
         this.hits = hits;
         return this;
     }
@@ -58,11 +56,11 @@ public class PifSearchResult extends BaseSearchResult implements Iterable<PifSea
     /**
      * Add a single hit that was matched.
      *
-     * @param hit {@link PifSearchHit} to add to the results set.
+     * @param hit {@link DatasetSearchHit} to add to the results set.
      * @return This object.
      */
     @JsonIgnore
-    public PifSearchResult addHit(final PifSearchHit hit) {
+    public DatasetSearchResult addHit(final DatasetSearchHit hit) {
         if (this.hits == null) {
             this.hits = new ArrayList<>();
         }
@@ -73,10 +71,10 @@ public class PifSearchResult extends BaseSearchResult implements Iterable<PifSea
     /**
      * Get the list of hits that were matched.
      *
-     * @return List of {@link PifSearchHit} objects.
+     * @return List of {@link DatasetSearchHit} objects.
      */
     @JsonGetter("hits")
-    protected List<PifSearchHit> getHits() {
+    protected List<DatasetSearchHit> getHits() {
         return this.hits;
     }
 
@@ -94,11 +92,11 @@ public class PifSearchResult extends BaseSearchResult implements Iterable<PifSea
      * Get a hit at the set index.
      *
      * @param index Index of the hit to return.
-     * @return {@link PifSearchHit} at the input index.
+     * @return {@link DatasetSearchHit} at the input index.
      * @throws IllegalArgumentException if the index is out of bounds.
      */
     @JsonIgnore
-    public PifSearchHit getHit(final int index) {
+    public DatasetSearchHit getHit(final int index) {
         if (this.hits == null) {
             throw new IndexOutOfBoundsException("Index out of range: " + index + " of 0");
         }
@@ -107,10 +105,10 @@ public class PifSearchResult extends BaseSearchResult implements Iterable<PifSea
 
     @Override
     @JsonIgnore
-    public Iterator<PifSearchHit> iterator() {
+    public Iterator<DatasetSearchHit> iterator() {
         return (this.hits == null) ? Collections.emptyIterator() : hits.iterator();
     }
 
     /** List of hits. */
-    private List<PifSearchHit> hits;
+    private List<DatasetSearchHit> hits;
 }

@@ -2,7 +2,7 @@ package io.citrine.jcc.search.pif.query.core;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.citrine.jcc.search.core.Sort;
+import io.citrine.jcc.search.core.query.Sort;
 
 /**
  * Information about sorting on an extracted field.

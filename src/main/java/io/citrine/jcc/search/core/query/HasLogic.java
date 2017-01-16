@@ -1,4 +1,4 @@
-package io.citrine.jcc.search.core;
+package io.citrine.jcc.search.core.query;
 
 /**
  * Interface for classes that have boolean logic associated with them.
