@@ -3,8 +3,8 @@ package io.citrine.jcc.search.pif.query.chemical;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.citrine.jcc.search.core.HasLogic;
-import io.citrine.jcc.search.core.Logic;
+import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
