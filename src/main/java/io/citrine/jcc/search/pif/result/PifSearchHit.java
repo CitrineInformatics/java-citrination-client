@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.system.System;
+import io.citrine.jpif.util.PifObjectMapper;
 
+import javax.validation.constraints.Null;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -135,7 +138,7 @@ public class PifSearchHit {
      * @return This object.
      */
     @JsonSetter("extracted")
-    protected PifSearchHit setExtracted(final Map<String, String> extracted) {
+    protected PifSearchHit setExtracted(final Map<String, Object> extracted) {
         this.extracted = extracted;
         return this;
     }
@@ -147,7 +150,7 @@ public class PifSearchHit {
      * @return This object.
      */
     @JsonIgnore
-    public PifSearchHit addExtracted(final Map<String, String> extracted) {
+    public PifSearchHit addExtracted(final Map<String, Object> extracted) {
         if (extracted != null) {
             if (this.extracted == null) {
                 this.extracted = new HashMap<>();
@@ -165,7 +168,7 @@ public class PifSearchHit {
      * @return This object.
      */
     @JsonIgnore
-    public PifSearchHit addExtracted(final String key, final String value) {
+    public PifSearchHit addExtracted(final String key, final Object value) {
         if (this.extracted == null) {
             this.extracted = new HashMap<>();
         }
@@ -179,7 +182,7 @@ public class PifSearchHit {
      * @return Map of extracted field keys to values.
      */
     @JsonGetter("extracted")
-    protected Map<String, String> getExtracted() {
+    protected Map<String, Object> getExtracted() {
         return this.extracted;
     }
 
@@ -200,8 +203,23 @@ public class PifSearchHit {
      * @return String with the value of the input key or a null pointer if that key is not available.
      */
     @JsonIgnore
-    public String getExtractedValue(final String key) {
+    public Object getExtractedValue(final String key) {
         return (this.extracted == null) ? null : this.extracted.get(key);
+    }
+
+    /**
+     * Get an extracted value an convert it to the type of valueClass. This method assumes that the value can be
+     * converted to the specified class by serialized the value to JSON then deserializing to the class type.
+     *
+     * @param key String with the key of the extracted value.
+     * @param valueClass Class to convert the extracted value to.
+     * @param <T> Type of the value to extract.
+     * @return Instance of the input class type generated from the value at the input key or a null pointer if the
+     * key is not available.
+     */
+    @JsonIgnore
+    public <T extends Pio> T getExtractValue(final String key, final Class<T> valueClass) {
+        return (this.extracted == null) ? null : convert(this.extracted.get(key), valueClass);
     }
 
     /**
@@ -212,8 +230,50 @@ public class PifSearchHit {
      * @return Value with the input key or the input default.
      */
     @JsonIgnore
-    public String getExtractedValueOrDefault(final String key, final String defaultValue) {
+    public Object getExtractedValueOrDefault(final String key, final Object defaultValue) {
         return (this.extracted == null) ? defaultValue : this.extracted.getOrDefault(key, defaultValue);
+    }
+
+    /**
+     * Get an extracted value by its key or return a default value.
+     *
+     * @param key String with the key of the extracted value.
+     * @param defaultValue String with the default value to return if the key does not exist.
+     * @param valueClass Class to convert the extracted value to.
+     * @param <T> Type of the value to extract.
+     * @return Value with the input key or the input default.
+     */
+    @JsonIgnore
+    public <T extends Pio> T getExtractedValueOrDefault(
+            final String key, final T defaultValue, final Class<T> valueClass) {
+        final T converted = (this.extracted == null) ? defaultValue : convert(this.extracted.get(key), valueClass);
+        return (converted == null) ? defaultValue : converted;
+    }
+
+    /**
+     * Convert the input object to an instance of the specified class by serializing it to JSON then deserializing to
+     * the requested class.
+     *
+     * @param object Object to convert.
+     * @param objectClass Class to convert the extracted value to.
+     * @param <T> Type of the value to convert to.
+     * @return Converted value.
+     * @throws RuntimeException if the value cannot be converted.
+     */
+    @JsonIgnore
+    private <T extends Pio> T convert(final Object object, final Class<T> objectClass) {
+        if (object == null) {
+            return null;
+        }
+        else {
+            try {
+                final byte[] serialized = PifObjectMapper.getInstance().writeValueAsBytes(object);
+                return PifObjectMapper.getInstance().readValue(serialized, objectClass);
+            }
+            catch (Exception e) {
+                throw new RuntimeException("Failed to convert value", e);
+            }
+        }
     }
 
     /** Id of the record. */
@@ -232,5 +292,5 @@ public class PifSearchHit {
     private System system;
 
     /** Map of extracted fields. */
-    private Map<String, String> extracted = new HashMap<>();
+    private Map<String, Object> extracted = new HashMap<>();
 }
