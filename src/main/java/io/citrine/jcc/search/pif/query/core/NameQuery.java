@@ -22,26 +22,18 @@ public class NameQuery extends BaseObjectQuery {
         return this;
     }
 
-    /**
-     * Set the alias to save this field under.
-     *
-     * @param extractAs String with the alias to save this field under.
-     * @return This object.
-     */
+    @Override
     @JsonSetter("extractAs")
     public NameQuery extractAs(final String extractAs) {
-        this.extractAs = extractAs;
+        super.extractAs(extractAs);
         return this;
     }
 
-    /**
-     * Get the alias to save this field under.
-     *
-     * @return String with the alias to save this field under or a null pointer if not set.
-     */
-    @JsonGetter("extractAs")
-    public String extractAs() {
-        return this.extractAs;
+    @Override
+    @JsonSetter("extractAll")
+    public NameQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
     }
 
     /**
@@ -382,7 +374,4 @@ public class NameQuery extends BaseObjectQuery {
 
     /** Suffix of the person. */
     private List<FieldOperation> suffix;
-
-    /** Alias to save this field under. */
-    private String extractAs;
 }

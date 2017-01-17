@@ -253,6 +253,20 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractAs")
+    public ValueQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public ValueQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public ValueQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

@@ -64,6 +64,13 @@ public class ChemicalFieldOperation extends BaseFieldOperation implements HasChe
     }
 
     @Override
+    @JsonSetter("extractAll")
+    public ChemicalFieldOperation extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public ChemicalFieldOperation length(final FieldOperation fieldOperation) {
         super.length(fieldOperation);

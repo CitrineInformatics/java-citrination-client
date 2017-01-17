@@ -22,6 +22,20 @@ public class FileReferenceQuery extends BaseObjectQuery {
         return this;
     }
 
+    @Override
+    @JsonSetter("extractAs")
+    public FileReferenceQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public FileReferenceQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
     /**
      * Set the list of relative path operations. This adds to any operations that are already saved.
      *

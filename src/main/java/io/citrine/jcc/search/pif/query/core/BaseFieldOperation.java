@@ -37,6 +37,28 @@ public abstract class BaseFieldOperation {
     }
 
     /**
+     * Set whether to extract all values in an array.
+     *
+     * @param extractAll True to extract all values from an array.
+     * @return This object.
+     */
+    @JsonSetter("extractAll")
+    public BaseFieldOperation extractAll(final Boolean extractAll) {
+        this.extractAll = extractAll;
+        return this;
+    }
+
+    /**
+     * Get whether to extract all values in an array.
+     *
+     * @return True if all values should be extracted from an array.
+     */
+    @JsonGetter("extractAll")
+    public Boolean extractAll() {
+        return this.extractAll;
+    }
+
+    /**
      * Set whether top level filters should be floated. This is intended to be a private method since it should only
      * be used by templates.
      *
@@ -191,6 +213,9 @@ public abstract class BaseFieldOperation {
 
     /** Alias to save this field under. */
     private String extractAs;
+
+    /** Whether to extract all values in an array. */
+    private Boolean extractAll;
 
     /** Set whether top level filters should be floated out into their own objects. */
     private Boolean floatTopFilters;

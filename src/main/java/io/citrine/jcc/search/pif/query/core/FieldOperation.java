@@ -61,6 +61,13 @@ public class FieldOperation extends BaseFieldOperation implements HasFilter {
     }
 
     @Override
+    @JsonSetter("extractAll")
+    public FieldOperation extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public FieldOperation length(final FieldOperation fieldOperation) {
         super.length(fieldOperation);

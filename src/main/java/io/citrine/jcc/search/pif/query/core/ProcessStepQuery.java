@@ -131,6 +131,20 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractAs")
+    public ProcessStepQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public ProcessStepQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public ProcessStepQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

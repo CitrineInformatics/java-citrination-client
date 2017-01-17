@@ -22,6 +22,20 @@ public class IdQuery extends BaseObjectQuery {
         return this;
     }
 
+    @Override
+    @JsonSetter("extractAs")
+    public IdQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public IdQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
     /**
      * Set the list of id name operations. This adds to any operations that are already saved.
      *
