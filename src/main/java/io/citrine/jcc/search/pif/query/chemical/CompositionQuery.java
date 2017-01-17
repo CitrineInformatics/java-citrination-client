@@ -358,6 +358,20 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractAs")
+    public CompositionQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public CompositionQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public CompositionQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

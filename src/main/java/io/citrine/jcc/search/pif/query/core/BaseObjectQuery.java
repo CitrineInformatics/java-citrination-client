@@ -30,6 +30,50 @@ public abstract class BaseObjectQuery implements HasLogic {
     }
 
     /**
+     * Set the alias to save this field under.
+     *
+     * @param extractAs String with the alias to save this field under.
+     * @return This object.
+     */
+    @JsonSetter("extractAs")
+    public BaseObjectQuery extractAs(final String extractAs) {
+        this.extractAs = extractAs;
+        return this;
+    }
+
+    /**
+     * Get the alias to save this field under.
+     *
+     * @return String with the alias to save this field under or a null pointer if not set.
+     */
+    @JsonGetter("extractAs")
+    public String extractAs() {
+        return this.extractAs;
+    }
+
+    /**
+     * Set whether to extract all values in an array.
+     *
+     * @param extractAll True to extract all values from an array.
+     * @return This object.
+     */
+    @JsonSetter("extractAll")
+    public BaseObjectQuery extractAll(final Boolean extractAll) {
+        this.extractAll = extractAll;
+        return this;
+    }
+
+    /**
+     * Get whether to extract all values in an array.
+     *
+     * @return True if all values should be extracted from an array.
+     */
+    @JsonGetter("extractAll")
+    public Boolean extractAll() {
+        return this.extractAll;
+    }
+
+    /**
      * Set the list of tags operations. This adds to any operations that are already saved.
      *
      * @param tags List of {@link FieldOperation} objects.
@@ -229,6 +273,12 @@ public abstract class BaseObjectQuery implements HasLogic {
 
     /** Logic that applies to the entire query. */
     private Logic logic;
+
+    /** Alias to save this field under. */
+    private String extractAs;
+
+    /** Whether to extract all values in an array. */
+    private Boolean extractAll;
 
     /** List of tag operations. */
     private List<FieldOperation> tags;

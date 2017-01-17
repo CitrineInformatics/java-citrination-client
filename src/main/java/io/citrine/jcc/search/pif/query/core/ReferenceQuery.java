@@ -983,6 +983,20 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractAs")
+    public ReferenceQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public ReferenceQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public ReferenceQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

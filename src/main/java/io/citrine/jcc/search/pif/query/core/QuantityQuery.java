@@ -419,6 +419,20 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractAs")
+    public QuantityQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public QuantityQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public QuantityQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

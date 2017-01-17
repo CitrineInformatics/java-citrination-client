@@ -23,6 +23,20 @@ public class PagesQuery extends BaseObjectQuery {
         return this;
     }
 
+    @Override
+    @JsonSetter("extractAs")
+    public PagesQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public PagesQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
     /**
      * Set the list of starting page operations. This adds to any operations that are already saved.
      *

@@ -494,6 +494,20 @@ public class SystemQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractAs")
+    public SystemQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public SystemQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public SystemQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

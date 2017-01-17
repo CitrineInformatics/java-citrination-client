@@ -23,6 +23,20 @@ public class PropertyQuery extends ValueQuery {
     }
 
     @Override
+    @JsonSetter("extractAs")
+    public PropertyQuery extractAs(final String extractAs) {
+        super.extractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("extractAll")
+    public PropertyQuery extractAll(final Boolean extractAll) {
+        super.extractAll(extractAll);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public PropertyQuery name(final FieldOperation fieldOperation) {
         super.name(fieldOperation);
