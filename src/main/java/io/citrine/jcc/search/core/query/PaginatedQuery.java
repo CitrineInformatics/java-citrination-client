@@ -81,9 +81,35 @@ public abstract class PaginatedQuery {
         return this.size;
     }
 
+    /**
+     * Set whether a random assortment of results should be returned. This produces a different set of hits in a
+     * different order with every query if set to true. There is not any kind of memory between queries.
+     *
+     * @param randomResults True to return random records.
+     * @return This object.
+     */
+    @JsonSetter("randomResults")
+    public PaginatedQuery randomResults(final Boolean randomResults) {
+        this.randomResults = randomResults;
+        return this;
+    }
+
+    /**
+     * Get whether a random assortment of results should be returned.
+     *
+     * @return True to return random records.
+     */
+    @JsonGetter("randomResults")
+    public Boolean randomResults() {
+        return this.randomResults;
+    }
+
     /** Index of the first hit that should be returned. */
     private Integer fromIndex;
 
     /** Total number of hits the should be returned. */
     private Integer size;
+
+    /** Whether to return a random set of records. */
+    private Boolean randomResults;
 }
