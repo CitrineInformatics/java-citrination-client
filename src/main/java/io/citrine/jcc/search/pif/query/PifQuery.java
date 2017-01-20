@@ -39,6 +39,13 @@ public class PifQuery extends HasSystemsPaginatedQuery {
     }
 
     @Override
+    @JsonSetter("randomResults")
+    public PifQuery randomResults(final Boolean randomResults) {
+        super.randomResults(randomResults);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public PifQuery system(final SystemQuery system) {
         super.system(system);

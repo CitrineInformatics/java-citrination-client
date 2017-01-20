@@ -35,6 +35,13 @@ public class DatasetQuery extends HasSystemsPaginatedQuery {
     }
 
     @Override
+    @JsonSetter("randomResults")
+    public DatasetQuery randomResults(final Boolean randomResults) {
+        super.randomResults(randomResults);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public DatasetQuery system(final SystemQuery system) {
         super.system(system);
