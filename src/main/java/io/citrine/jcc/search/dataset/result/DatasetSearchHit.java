@@ -54,9 +54,35 @@ public class DatasetSearchHit {
         return this.score;
     }
 
+    /**
+     * Set the number of PIFs in the dataset.
+     *
+     * @param numPifs Number of PIFs in the dataset.
+     * @return This object.
+     */
+    @JsonSetter("numPifs")
+    public DatasetSearchHit setNumPifs(final Long numPifs) {
+        this.numPifs = numPifs;
+        return this;
+    }
+
+    /**
+     * Get the number of PIFs in the dataset. If one or more {@link io.citrine.jcc.search.pif.query.core.SystemQuery}
+     * queries were passed into the search request, then this value is the number of PIFs that matched those queries.
+     *
+     * @return Number of PIFs in the dataset.
+     */
+    @JsonGetter("numPifs")
+    public Long getNumPifs() {
+        return this.numPifs;
+    }
+
     /** ID of the dataset. */
     private Long id;
 
     /** Version of the dataset. */
     private Double score;
+
+    /** Number of PIFs in the dataset. */
+    private Long numPifs;
 }

@@ -70,6 +70,31 @@ public class DatasetQuery extends HasSystemsPaginatedQuery {
         return this.scoreRelevance;
     }
 
+    /**
+     * Set whether the number of PIFs should be counted.
+     *
+     * @param countPifs True to return the number of PIFs.
+     * @return This object.
+     */
+    @JsonSetter("countPifs")
+    public DatasetQuery setCountPifs(final Boolean countPifs) {
+        this.countPifs = countPifs;
+        return this;
+    }
+
+    /**
+     * Get whether to count the number of PIFs.
+     *
+     * @return True if the number of PIFs should be returned.
+     */
+    @JsonGetter("countPifs")
+    public Boolean getCountPifs() {
+        return this.countPifs;
+    }
+
     /** Whether to use relevance scoring. */
     private Boolean scoreRelevance;
+
+    /** Whether to get the count of PIFs in each dataset. */
+    private Boolean countPifs;
 }
