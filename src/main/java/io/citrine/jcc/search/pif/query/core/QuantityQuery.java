@@ -433,6 +433,13 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public QuantityQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public QuantityQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

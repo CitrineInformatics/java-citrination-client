@@ -508,6 +508,13 @@ public class SystemQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public SystemQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public SystemQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

@@ -36,6 +36,13 @@ public class FileReferenceQuery extends BaseObjectQuery {
         return this;
     }
 
+    @Override
+    @JsonSetter("extractWhenMissing")
+    public FileReferenceQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
     /**
      * Set the list of relative path operations. This adds to any operations that are already saved.
      *

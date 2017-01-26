@@ -267,6 +267,13 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public ValueQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public ValueQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

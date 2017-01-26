@@ -145,6 +145,13 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public ProcessStepQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public ProcessStepQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

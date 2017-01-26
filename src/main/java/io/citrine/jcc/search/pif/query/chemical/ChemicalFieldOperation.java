@@ -71,6 +71,13 @@ public class ChemicalFieldOperation extends BaseFieldOperation implements HasChe
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public ChemicalFieldOperation extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public ChemicalFieldOperation length(final FieldOperation fieldOperation) {
         super.length(fieldOperation);

@@ -37,6 +37,13 @@ public class PagesQuery extends BaseObjectQuery {
         return this;
     }
 
+    @Override
+    @JsonSetter("extractWhenMissing")
+    public PagesQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
     /**
      * Set the list of starting page operations. This adds to any operations that are already saved.
      *

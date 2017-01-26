@@ -997,6 +997,13 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public ReferenceQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public ReferenceQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);
