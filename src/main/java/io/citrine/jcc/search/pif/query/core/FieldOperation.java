@@ -68,6 +68,13 @@ public class FieldOperation extends BaseFieldOperation implements HasFilter {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public FieldOperation extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public FieldOperation length(final FieldOperation fieldOperation) {
         super.length(fieldOperation);

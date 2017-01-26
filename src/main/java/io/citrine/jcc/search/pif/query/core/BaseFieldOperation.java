@@ -59,6 +59,29 @@ public abstract class BaseFieldOperation {
     }
 
     /**
+     * Set the value to return when an extract value is not found. This value is only returned when an optional query
+     * misses or when a SHOULD query misses but another query in that SHOULD block does hit.
+     *
+     * @param extractWhenMissing Object to return when the overall query is satisfied but the extract value is missing.
+     * @return This object.
+     */
+    @JsonSetter("extractWhenMissing")
+    public BaseFieldOperation extractWhenMissing(final Object extractWhenMissing) {
+        this.extractWhenMissing = extractWhenMissing;
+        return this;
+    }
+
+    /**
+     * Get the value to return whether an extracted value is missing.
+     *
+     * @return Object with the value to return when an extracted value is missing.
+     */
+    @JsonGetter
+    public Object getExtractWhenMissing() {
+        return this.extractWhenMissing;
+    }
+
+    /**
      * Set whether top level filters should be floated. This is intended to be a private method since it should only
      * be used by templates.
      *
@@ -216,6 +239,9 @@ public abstract class BaseFieldOperation {
 
     /** Whether to extract all values in an array. */
     private Boolean extractAll;
+
+    /** Default value to return if a field is missing and the query part is optional. */
+    private Object extractWhenMissing;
 
     /** Set whether top level filters should be floated out into their own objects. */
     private Boolean floatTopFilters;

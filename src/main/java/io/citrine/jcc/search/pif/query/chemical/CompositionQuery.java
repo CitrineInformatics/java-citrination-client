@@ -372,6 +372,13 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public CompositionQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public CompositionQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

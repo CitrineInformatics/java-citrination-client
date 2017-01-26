@@ -36,6 +36,13 @@ public class IdQuery extends BaseObjectQuery {
         return this;
     }
 
+    @Override
+    @JsonSetter("extractWhenMissing")
+    public IdQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
     /**
      * Set the list of id name operations. This adds to any operations that are already saved.
      *

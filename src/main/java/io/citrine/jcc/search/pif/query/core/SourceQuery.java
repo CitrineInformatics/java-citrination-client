@@ -169,6 +169,13 @@ public class SourceQuery extends BaseObjectQuery {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public SourceQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public SourceQuery tags(final FieldOperation fieldOperation) {
         super.tags(fieldOperation);

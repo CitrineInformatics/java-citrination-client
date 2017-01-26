@@ -36,6 +36,13 @@ public class NameQuery extends BaseObjectQuery {
         return this;
     }
 
+    @Override
+    @JsonSetter("extractWhenMissing")
+    public NameQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
     /**
      * Set the list of given name operations. This adds to any operations that are already saved.
      *

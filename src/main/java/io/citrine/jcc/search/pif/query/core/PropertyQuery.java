@@ -37,6 +37,13 @@ public class PropertyQuery extends ValueQuery {
     }
 
     @Override
+    @JsonSetter("extractWhenMissing")
+    public PropertyQuery extractWhenMissing(final Object extractWhenMissing) {
+        super.extractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public PropertyQuery name(final FieldOperation fieldOperation) {
         super.name(fieldOperation);
