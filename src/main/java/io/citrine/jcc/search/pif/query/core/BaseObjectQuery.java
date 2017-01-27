@@ -92,7 +92,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return Object with the value to return when an extracted value is missing.
      */
     @JsonGetter
-    public Object getExtractWhenMissing() {
+    public Object extractWhenMissing() {
         return this.extractWhenMissing;
     }
 
