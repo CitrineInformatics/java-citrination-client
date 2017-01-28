@@ -148,6 +148,48 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     /**
+     * Set the list of file reference operations. This adds to any operations that are already saved.
+     *
+     * @param file List of {@link FileReferenceQuery} objects.
+     */
+    @JsonSetter("file")
+    private void file(final List<FileReferenceQuery> file) {
+        this.file = ListUtil.add(file, this.file);
+    }
+
+    /**
+     * Add to the list of file reference operations.
+     *
+     * @param file {@link FileReferenceQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ValueQuery file(final FileReferenceQuery file) {
+        this.file = ListUtil.add(file, this.file);
+        return this;
+    }
+
+    /**
+     * Get an iterable of file reference operations.
+     *
+     * @return Iterable of {@link FileReferenceQuery} objects.
+     */
+    @JsonGetter("file")
+    public Iterable<FileReferenceQuery> file() {
+        return ListUtil.iterable(this.file);
+    }
+
+    /**
+     * Get whether an file reference queries exist.
+     *
+     * @return True if any file reference queries exist.
+     */
+    @JsonIgnore
+    public boolean hasFile() {
+        return ListUtil.hasContent(this.file);
+    }
+
+    /**
      * Set the list of units operations. This adds to any operations that already exist.
      *
      * @param units List of {@link FieldOperation} objects.
@@ -341,6 +383,9 @@ public class ValueQuery extends BaseObjectQuery {
 
     /** List of value operations. */
     private List<FieldOperation> value;
+
+    /** List of file reference queries. */
+    private List<FileReferenceQuery> file;
 
     /** List of units operations. */
     private List<FieldOperation> units;
