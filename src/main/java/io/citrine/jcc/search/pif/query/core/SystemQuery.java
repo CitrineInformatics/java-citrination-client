@@ -127,6 +127,48 @@ public class SystemQuery extends BaseObjectQuery {
     }
 
     /**
+     * Set the list of classifications operations. This adds to any operations that are already saved.
+     *
+     * @param classifications List of {@link ClassificationQuery} objects.
+     */
+    @JsonSetter("classifications")
+    private void classifications(final List<ClassificationQuery> classifications) {
+        this.classifications = ListUtil.add(classifications, this.classifications);
+    }
+
+    /**
+     * Add to the list of classifications operations.
+     *
+     * @param classifications {@link ClassificationQuery} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public SystemQuery classifications(final ClassificationQuery classifications) {
+        this.classifications = ListUtil.add(classifications, this.classifications);
+        return this;
+    }
+
+    /**
+     * Get an iterable of classifications operations.
+     *
+     * @return Iterable of {@link ClassificationQuery} objects.
+     */
+    @JsonGetter("classifications")
+    public Iterable<ClassificationQuery> classifications() {
+        return ListUtil.iterable(this.classifications);
+    }
+
+    /**
+     * Get whether an classifications queries exist.
+     *
+     * @return True if any classifications queries exist.
+     */
+    @JsonIgnore
+    public boolean hasClassifications() {
+        return ListUtil.hasContent(this.classifications);
+    }
+
+    /**
      * Set the list of source operations. This adds to any operations that are already saved.
      *
      * @param source List of {@link SourceQuery} objects.
@@ -582,6 +624,9 @@ public class SystemQuery extends BaseObjectQuery {
     
     /** List of id operations. */
     private List<IdQuery> ids;
+
+    /** List of classification operations. */
+    private List<ClassificationQuery> classifications;
     
     /** List of source operations. */
     private List<SourceQuery> source;
