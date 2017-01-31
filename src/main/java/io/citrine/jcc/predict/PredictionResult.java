@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Class used to direct deserialization of results from the predict API
+ * Class used to direct deserialization of results from the predict API.
  *
  * Created by maxhutch on 1/30/17.
  */
 public class PredictionResult {
 
     /**
-     * Setter for candidates
+     * Setter for candidates.
      * @param candidates as a list of Map from property names to [value, loss]
      * @return calling object
      */
@@ -21,7 +21,7 @@ public class PredictionResult {
     }
 
     /**
-     * Getter for candidates
+     * Getter for candidates.
      * @return the candidates as a list of Map from property names to [value, loss]
      */
     public List<Map<String, List<String>>> getCandidates() {

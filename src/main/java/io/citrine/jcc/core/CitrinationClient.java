@@ -49,7 +49,7 @@ public class CitrinationClient {
      * Request predictions from a model.
      *
      * @param modelName to make the prediction against
-     * @param inputs    list of materials, as Maps<String, Object>, to make predictions on
+     * @param inputs    list of materials, as Maps[String, Object], to make predictions on
      * @return {@link PredictionResult} containing the results
      * @throws IOException      when there are serialization issues
      * @throws RuntimeException if a non-200 response is received.
