@@ -1,5 +1,6 @@
 package io.citrine.jcc.core;
 
+import io.citrine.jcc.predict.PredictionRequest;
 import io.citrine.jcc.predict.PredictionResult;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,8 +24,10 @@ public class CitrinationClientTest {
         input.put("CHEMICAL_FORMULA", "AlCu");
         List<Map<String, Object>> inputs = new ArrayList();
         inputs.add(input);
+
+        PredictionRequest req = new PredictionRequest().setCandidates(inputs);
         try {
-            PredictionResult res = client.predict("betterdensitydemo", inputs);
+            PredictionResult res = client.predict("betterdensitydemo", req);
             Assert.assertEquals(5.786, Double.parseDouble(res.getCandidates().get(0).get("Density").get(0)), 0.1);
         } catch (IOException except) {
             System.out.println("Caught an exception" + except.toString());

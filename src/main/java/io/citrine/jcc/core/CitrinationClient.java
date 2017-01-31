@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.citrine.jcc.predict.PredictionRequest;
 import io.citrine.jcc.predict.PredictionResult;
 import io.citrine.jcc.search.pif.query.PifQuery;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
@@ -54,16 +55,13 @@ public class CitrinationClient {
      * @throws IOException      when there are serialization issues
      * @throws RuntimeException if a non-200 response is received.
      */
-    public PredictionResult predict(String modelName, List<Map<String, Object>> inputs) throws IOException {
+    public PredictionResult predict(String modelName, PredictionRequest inputs) throws IOException {
         final HttpPost post = new HttpPost(this.host + "/api/csv_to_models/" + modelName + "/predict");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
-        Map<String, Object> request = new HashMap<String, Object>();
-        request.put("predictionSource", "scalar");
-        request.put("usePrior", "true");
-        request.put("candidates", inputs);
+
         Map<String, Object> wrapper = new HashMap<String, Object>();
-        wrapper.put("predictionRequest", request);
+        wrapper.put("predictionRequest", inputs);
         post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(wrapper)));
 
         try (final CloseableHttpClient client = buildHttpClient()) {
@@ -164,19 +162,13 @@ public class CitrinationClient {
         this.apiKey = apiKey;
     }
 
-    /**
-     * Host to connect to.
-     */
+    /** Host to connect to. */
     final String host;
 
-    /**
-     * API key for making the connection.
-     */
+    /** API key for making the connection. */
     final String apiKey;
 
-    /**
-     * ObjectMapper for serializing queries.
-     */
+    /** ObjectMapper for serializing queries. */
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
@@ -231,19 +223,13 @@ public class CitrinationClient {
             return this;
         }
 
-        /**
-         * Host to connect to.
-         */
+        /** Host to connect to. */
         private String host;
 
-        /**
-         * Project to connect to.
-         */
+        /** Project to connect to. */
         private String project;
 
-        /**
-         * API key for making the connection.
-         */
+        /** API key for making the connection. */
         private String apiKey;
     }
 
@@ -255,9 +241,7 @@ public class CitrinationClient {
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class PifSearchResponseWrapper {
 
-        /**
-         * Results field.
-         */
+        /** Results field. */
         @JsonProperty("results")
         public PifSearchResult pifSearchResult;
     }
