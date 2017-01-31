@@ -15,7 +15,7 @@ public class PredictionResult {
      * @param candidates as a list of Map from property names to [value, loss]
      * @return calling object
      */
-    public PredictionResult setCandidates(List<Map<String, List<String>>> candidates) {
+    public PredictionResult setCandidates(List<Map<String, PredictedValue>> candidates) {
         this.candidates = candidates;
         return this;
     }
@@ -24,10 +24,10 @@ public class PredictionResult {
      * Getter for candidates.
      * @return the candidates as a list of Map from property names to [value, loss]
      */
-    public List<Map<String, List<String>>> getCandidates() {
+    public List<Map<String, PredictedValue>> getCandidates() {
         return this.candidates;
     }
 
     /** The candidates. */
-    List<Map<String, List<String>>> candidates;
+    List<Map<String, PredictedValue>> candidates;
 }

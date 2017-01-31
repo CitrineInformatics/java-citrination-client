@@ -28,7 +28,7 @@ public class CitrinationClientTest {
         PredictionRequest req = new PredictionRequest().setCandidates(inputs);
         try {
             PredictionResult res = client.predict("betterdensitydemo", req);
-            Assert.assertEquals(5.786, Double.parseDouble(res.getCandidates().get(0).get("Density").get(0)), 0.1);
+            Assert.assertEquals(5.786, Double.parseDouble(res.getCandidates().get(0).get("Density").getValue()), 0.1);
         } catch (IOException except) {
             System.out.println("Caught an exception" + except.toString());
             Assert.fail("Exception in processing prediction");
