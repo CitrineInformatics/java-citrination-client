@@ -46,22 +46,22 @@ public class FileReferenceQuery extends BaseObjectQuery {
     /**
      * Set the list of relative path operations. This adds to any operations that are already saved.
      *
-     * @param relativePath List of {@link FieldOperation} objects.
+     * @param relativePath List of {@link FieldQuery} objects.
      */
     @JsonSetter("relativePath")
-    private void relativePath(final List<FieldOperation> relativePath) {
+    private void relativePath(final List<FieldQuery> relativePath) {
         this.relativePath = ListUtil.add(relativePath, this.relativePath);
     }
 
     /**
      * Add to the list of relative path operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public FileReferenceQuery relativePath(final FieldOperation fieldOperation) {
-        this.relativePath = ListUtil.add(fieldOperation, this.relativePath);
+    public FileReferenceQuery relativePath(final FieldQuery fieldQuery) {
+        this.relativePath = ListUtil.add(fieldQuery, this.relativePath);
         return this;
     }
 
@@ -73,7 +73,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public FileReferenceQuery relativePath(final String extractAs) {
-        this.relativePath = ListUtil.add(new FieldOperation().extractAs(extractAs), this.relativePath);
+        this.relativePath = ListUtil.add(new FieldQuery().extractAs(extractAs), this.relativePath);
         return this;
     }
 
@@ -85,17 +85,17 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public FileReferenceQuery relativePath(final Filter filter) {
-        this.relativePath = ListUtil.add(new FieldOperation().filter(filter), this.relativePath);
+        this.relativePath = ListUtil.add(new FieldQuery().filter(filter), this.relativePath);
         return this;
     }
 
     /**
      * Get an iterable over relative path operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("relativePath")
-    public Iterable<FieldOperation> relativePath() {
+    public Iterable<FieldQuery> relativePath() {
         return ListUtil.iterable(this.relativePath);
     }
 
@@ -112,22 +112,22 @@ public class FileReferenceQuery extends BaseObjectQuery {
     /**
      * Set the list of mime type operations. This adds to any operations that are already saved.
      *
-     * @param mimeType List of {@link FieldOperation} objects.
+     * @param mimeType List of {@link FieldQuery} objects.
      */
     @JsonSetter("mimeType")
-    private void mimeType(final List<FieldOperation> mimeType) {
+    private void mimeType(final List<FieldQuery> mimeType) {
         this.mimeType = ListUtil.add(mimeType, this.mimeType);
     }
 
     /**
      * Add to the list of mime type operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public FileReferenceQuery mimeType(final FieldOperation fieldOperation) {
-        this.mimeType = ListUtil.add(fieldOperation, this.mimeType);
+    public FileReferenceQuery mimeType(final FieldQuery fieldQuery) {
+        this.mimeType = ListUtil.add(fieldQuery, this.mimeType);
         return this;
     }
 
@@ -139,7 +139,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public FileReferenceQuery mimeType(final String extractAs) {
-        this.mimeType = ListUtil.add(new FieldOperation().extractAs(extractAs), this.mimeType);
+        this.mimeType = ListUtil.add(new FieldQuery().extractAs(extractAs), this.mimeType);
         return this;
     }
 
@@ -151,17 +151,17 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public FileReferenceQuery mimeType(final Filter filter) {
-        this.mimeType = ListUtil.add(new FieldOperation().filter(filter), this.mimeType);
+        this.mimeType = ListUtil.add(new FieldQuery().filter(filter), this.mimeType);
         return this;
     }
 
     /**
      * Get an iterable over mime type operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("mimeType")
-    public Iterable<FieldOperation> mimeType() {
+    public Iterable<FieldQuery> mimeType() {
         return ListUtil.iterable(this.mimeType);
     }
 
@@ -178,22 +178,22 @@ public class FileReferenceQuery extends BaseObjectQuery {
     /**
      * Set the list of sha256 hash operations. This adds to any operations that are already saved.
      *
-     * @param sha256 List of {@link FieldOperation} objects.
+     * @param sha256 List of {@link FieldQuery} objects.
      */
     @JsonSetter("sha256")
-    private void sha256(final List<FieldOperation> sha256) {
+    private void sha256(final List<FieldQuery> sha256) {
         this.sha256 = ListUtil.add(sha256, this.sha256);
     }
 
     /**
      * Add to the list of sha256 hash operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public FileReferenceQuery sha256(final FieldOperation fieldOperation) {
-        this.sha256 = ListUtil.add(fieldOperation, this.sha256);
+    public FileReferenceQuery sha256(final FieldQuery fieldQuery) {
+        this.sha256 = ListUtil.add(fieldQuery, this.sha256);
         return this;
     }
 
@@ -205,7 +205,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public FileReferenceQuery sha256(final String extractAs) {
-        this.sha256 = ListUtil.add(new FieldOperation().extractAs(extractAs), this.sha256);
+        this.sha256 = ListUtil.add(new FieldQuery().extractAs(extractAs), this.sha256);
         return this;
     }
 
@@ -217,17 +217,17 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public FileReferenceQuery sha256(final Filter filter) {
-        this.sha256 = ListUtil.add(new FieldOperation().filter(filter), this.sha256);
+        this.sha256 = ListUtil.add(new FieldQuery().filter(filter), this.sha256);
         return this;
     }
 
     /**
      * Get an iterable over sha256 hash operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("sha256")
-    public Iterable<FieldOperation> sha256() {
+    public Iterable<FieldQuery> sha256() {
         return ListUtil.iterable(this.sha256);
     }
 
@@ -244,22 +244,22 @@ public class FileReferenceQuery extends BaseObjectQuery {
     /**
      * Set the list of md5 sum operations. This adds to any operations that are already saved.
      *
-     * @param md5 List of {@link FieldOperation} objects.
+     * @param md5 List of {@link FieldQuery} objects.
      */
     @JsonSetter("md5")
-    private void md5(final List<FieldOperation> md5) {
+    private void md5(final List<FieldQuery> md5) {
         this.md5 = ListUtil.add(md5, this.md5);
     }
 
     /**
      * Add to the list of md5 sum operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public FileReferenceQuery md5(final FieldOperation fieldOperation) {
-        this.md5 = ListUtil.add(fieldOperation, this.md5);
+    public FileReferenceQuery md5(final FieldQuery fieldQuery) {
+        this.md5 = ListUtil.add(fieldQuery, this.md5);
         return this;
     }
 
@@ -271,7 +271,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public FileReferenceQuery md5(final String extractAs) {
-        this.md5 = ListUtil.add(new FieldOperation().extractAs(extractAs), this.md5);
+        this.md5 = ListUtil.add(new FieldQuery().extractAs(extractAs), this.md5);
         return this;
     }
 
@@ -283,17 +283,17 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public FileReferenceQuery md5(final Filter filter) {
-        this.md5 = ListUtil.add(new FieldOperation().filter(filter), this.md5);
+        this.md5 = ListUtil.add(new FieldQuery().filter(filter), this.md5);
         return this;
     }
 
     /**
      * Get an iterable over md5 sum operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("md5")
-    public Iterable<FieldOperation> md5() {
+    public Iterable<FieldQuery> md5() {
         return ListUtil.iterable(this.md5);
     }
 
@@ -309,8 +309,8 @@ public class FileReferenceQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public FileReferenceQuery tags(final FieldOperation fieldOperation) {
-        super.tags(fieldOperation);
+    public FileReferenceQuery tags(final FieldQuery fieldQuery) {
+        super.tags(fieldQuery);
         return this;
     }
 
@@ -330,8 +330,8 @@ public class FileReferenceQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public FileReferenceQuery length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public FileReferenceQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
@@ -351,8 +351,8 @@ public class FileReferenceQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public FileReferenceQuery offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public FileReferenceQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
@@ -371,14 +371,14 @@ public class FileReferenceQuery extends BaseObjectQuery {
     }
 
     /** Operations against the relative path. */
-    private List<FieldOperation> relativePath;
+    private List<FieldQuery> relativePath;
 
     /** Operation against the mimetype. */
-    private List<FieldOperation> mimeType;
+    private List<FieldQuery> mimeType;
 
     /** Operation against the sha256 hash. */
-    private List<FieldOperation> sha256;
+    private List<FieldQuery> sha256;
     
     /** Operations against the md5 sum. */
-    private List<FieldOperation> md5;
+    private List<FieldQuery> md5;
 }

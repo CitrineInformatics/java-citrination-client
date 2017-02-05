@@ -18,22 +18,22 @@ public class ProcessStepQuery extends BaseObjectQuery {
     /**
      * Set the list of name number operations. This adds to any operations that are already saved.
      *
-     * @param name List of {@link FieldOperation} objects.
+     * @param name List of {@link FieldQuery} objects.
      */
     @JsonSetter("name")
-    private void name(final List<FieldOperation> name) {
+    private void name(final List<FieldQuery> name) {
         this.name = ListUtil.add(name, this.name);
     }
 
     /**
      * Add to the list of name operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ProcessStepQuery name(final FieldOperation fieldOperation) {
-        this.name = ListUtil.add(fieldOperation, this.name);
+    public ProcessStepQuery name(final FieldQuery fieldQuery) {
+        this.name = ListUtil.add(fieldQuery, this.name);
         return this;
     }
 
@@ -45,7 +45,7 @@ public class ProcessStepQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public ProcessStepQuery name(final String extractAs) {
-        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs), this.name);
+        this.name = ListUtil.add(new FieldQuery().extractAs(extractAs), this.name);
         return this;
     }
 
@@ -57,17 +57,17 @@ public class ProcessStepQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public ProcessStepQuery name(final Filter filter) {
-        this.name = ListUtil.add(new FieldOperation().filter(filter), this.name);
+        this.name = ListUtil.add(new FieldQuery().filter(filter), this.name);
         return this;
     }
 
     /**
      * Get an iterable over name operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("name")
-    public Iterable<FieldOperation> name() {
+    public Iterable<FieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
 
@@ -153,8 +153,8 @@ public class ProcessStepQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public ProcessStepQuery tags(final FieldOperation fieldOperation) {
-        super.tags(fieldOperation);
+    public ProcessStepQuery tags(final FieldQuery fieldQuery) {
+        super.tags(fieldQuery);
         return this;
     }
 
@@ -174,8 +174,8 @@ public class ProcessStepQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public ProcessStepQuery length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public ProcessStepQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
@@ -195,8 +195,8 @@ public class ProcessStepQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public ProcessStepQuery offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public ProcessStepQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
@@ -215,7 +215,7 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     /** Name of the step. */
-    private List<FieldOperation> name;
+    private List<FieldQuery> name;
 
     /** Details of the step. */
     private List<ValueQuery> details;

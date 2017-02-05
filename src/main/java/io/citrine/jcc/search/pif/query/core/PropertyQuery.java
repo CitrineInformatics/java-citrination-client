@@ -45,8 +45,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery name(final FieldOperation fieldOperation) {
-        super.name(fieldOperation);
+    public PropertyQuery name(final FieldQuery fieldQuery) {
+        super.name(fieldQuery);
         return this;
     }
 
@@ -66,8 +66,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery value(final FieldOperation fieldOperation) {
-        super.value(fieldOperation);
+    public PropertyQuery value(final FieldQuery fieldQuery) {
+        super.value(fieldQuery);
         return this;
     }
 
@@ -87,8 +87,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery units(final FieldOperation fieldOperation) {
-        super.units(fieldOperation);
+    public PropertyQuery units(final FieldQuery fieldQuery) {
+        super.units(fieldQuery);
         return this;
     }
 
@@ -115,8 +115,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery tags(final FieldOperation fieldOperation) {
-        super.tags(fieldOperation);
+    public PropertyQuery tags(final FieldQuery fieldQuery) {
+        super.tags(fieldQuery);
         return this;
     }
 
@@ -136,8 +136,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public PropertyQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
@@ -157,8 +157,8 @@ public class PropertyQuery extends ValueQuery {
 
     @Override
     @JsonIgnore
-    public PropertyQuery offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public PropertyQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
@@ -228,22 +228,22 @@ public class PropertyQuery extends ValueQuery {
     /**
      * Set the list of data type operations. This adds to any operations that are already saved.
      *
-     * @param dataType List of {@link FieldOperation} objects.
+     * @param dataType List of {@link FieldQuery} objects.
      */
     @JsonSetter("dataType")
-    private void dataType(final List<FieldOperation> dataType) {
+    private void dataType(final List<FieldQuery> dataType) {
         this.dataType = ListUtil.add(dataType, this.dataType);
     }
 
     /**
      * Add to the list of data type operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public PropertyQuery dataType(final FieldOperation fieldOperation) {
-        this.dataType = ListUtil.add(fieldOperation, this.dataType);
+    public PropertyQuery dataType(final FieldQuery fieldQuery) {
+        this.dataType = ListUtil.add(fieldQuery, this.dataType);
         return this;
     }
 
@@ -255,7 +255,7 @@ public class PropertyQuery extends ValueQuery {
      */
     @JsonIgnore
     public PropertyQuery dataType(final String extractAs) {
-        this.dataType = ListUtil.add(new FieldOperation().extractAs(extractAs), this.dataType);
+        this.dataType = ListUtil.add(new FieldQuery().extractAs(extractAs), this.dataType);
         return this;
     }
 
@@ -267,17 +267,17 @@ public class PropertyQuery extends ValueQuery {
      */
     @JsonIgnore
     public PropertyQuery dataType(final Filter filter) {
-        this.dataType = ListUtil.add(new FieldOperation().filter(filter), this.dataType);
+        this.dataType = ListUtil.add(new FieldQuery().filter(filter), this.dataType);
         return this;
     }
 
     /**
      * Get an iterable over data type operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("dataType")
-    public Iterable<FieldOperation> dataType() {
+    public Iterable<FieldQuery> dataType() {
         return ListUtil.iterable(this.dataType);
     }
 
@@ -295,5 +295,5 @@ public class PropertyQuery extends ValueQuery {
     private List<ValueQuery> conditions;
 
     /** List of data type queries. */
-    private List<FieldOperation> dataType;
+    private List<FieldQuery> dataType;
 }

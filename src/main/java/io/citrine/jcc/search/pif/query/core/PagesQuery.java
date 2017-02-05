@@ -47,22 +47,22 @@ public class PagesQuery extends BaseObjectQuery {
     /**
      * Set the list of starting page operations. This adds to any operations that are already saved.
      *
-     * @param start List of {@link FieldOperation} objects.
+     * @param start List of {@link FieldQuery} objects.
      */
     @JsonSetter("start")
-    private void start(final List<FieldOperation> start) {
+    private void start(final List<FieldQuery> start) {
         this.start = ListUtil.add(start, this.start);
     }
 
     /**
      * Add to the list of starting page operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public PagesQuery start(final FieldOperation fieldOperation) {
-        this.start = ListUtil.add(fieldOperation, this.start);
+    public PagesQuery start(final FieldQuery fieldQuery) {
+        this.start = ListUtil.add(fieldQuery, this.start);
         return this;
     }
 
@@ -74,7 +74,7 @@ public class PagesQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public PagesQuery start(final String extractAs) {
-        this.start = ListUtil.add(new FieldOperation().extractAs(extractAs), this.start);
+        this.start = ListUtil.add(new FieldQuery().extractAs(extractAs), this.start);
         return this;
     }
 
@@ -86,17 +86,17 @@ public class PagesQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public PagesQuery start(final Filter filter) {
-        this.start = ListUtil.add(new FieldOperation().filter(filter), this.start);
+        this.start = ListUtil.add(new FieldQuery().filter(filter), this.start);
         return this;
     }
 
     /**
      * Get an iterable over starting page operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("start")
-    public Iterable<FieldOperation> start() {
+    public Iterable<FieldQuery> start() {
         return ListUtil.iterable(this.start);
     }
 
@@ -113,22 +113,22 @@ public class PagesQuery extends BaseObjectQuery {
     /**
      * Set the list of ending page operations. This adds to any operations that are already saved.
      *
-     * @param end List of {@link FieldOperation} objects.
+     * @param end List of {@link FieldQuery} objects.
      */
     @JsonSetter("end")
-    private void end(final List<FieldOperation> end) {
+    private void end(final List<FieldQuery> end) {
         this.end = ListUtil.add(end, this.end);
     }
 
     /**
      * Add to the list of ending page operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public PagesQuery end(final FieldOperation fieldOperation) {
-        this.end = ListUtil.add(fieldOperation, this.end);
+    public PagesQuery end(final FieldQuery fieldQuery) {
+        this.end = ListUtil.add(fieldQuery, this.end);
         return this;
     }
 
@@ -140,7 +140,7 @@ public class PagesQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public PagesQuery end(final String extractAs) {
-        this.end = ListUtil.add(new FieldOperation().extractAs(extractAs), this.end);
+        this.end = ListUtil.add(new FieldQuery().extractAs(extractAs), this.end);
         return this;
     }
 
@@ -152,17 +152,17 @@ public class PagesQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public PagesQuery end(final Filter filter) {
-        this.end = ListUtil.add(new FieldOperation().filter(filter), this.end);
+        this.end = ListUtil.add(new FieldQuery().filter(filter), this.end);
         return this;
     }
 
     /**
      * Get an iterable over ending page operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("end")
-    public Iterable<FieldOperation> end() {
+    public Iterable<FieldQuery> end() {
         return ListUtil.iterable(this.end);
     }
 
@@ -178,8 +178,8 @@ public class PagesQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public PagesQuery tags(final FieldOperation fieldOperation) {
-        super.tags(fieldOperation);
+    public PagesQuery tags(final FieldQuery fieldQuery) {
+        super.tags(fieldQuery);
         return this;
     }
 
@@ -199,8 +199,8 @@ public class PagesQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public PagesQuery length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public PagesQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
@@ -220,8 +220,8 @@ public class PagesQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public PagesQuery offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public PagesQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
@@ -240,8 +240,8 @@ public class PagesQuery extends BaseObjectQuery {
     }
 
     /** Operations against the starting page. */
-    private List<FieldOperation> start;
+    private List<FieldQuery> start;
 
     /** Operation against the ending page. */
-    private List<FieldOperation> end;
+    private List<FieldQuery> end;
 }

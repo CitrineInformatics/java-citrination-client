@@ -9,16 +9,17 @@ import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
 
+
 /**
- * Base class for all PIF object queries.
- * 
+ * Base class for all field queries.
+ *
  * @author Kyle Michel
  */
-public abstract class BaseObjectQuery implements HasLogic {
+public abstract class BaseFieldQuery implements HasLogic {
 
     @Override
     @JsonSetter("logic")
-    public BaseObjectQuery logic(final Logic logic) {
+    public BaseFieldQuery logic(final Logic logic) {
         this.logic = logic;
         return this;
     }
@@ -36,7 +37,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return This object.
      */
     @JsonSetter("extractAs")
-    public BaseObjectQuery extractAs(final String extractAs) {
+    public BaseFieldQuery extractAs(final String extractAs) {
         this.extractAs = extractAs;
         return this;
     }
@@ -58,7 +59,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return This object.
      */
     @JsonSetter("extractAll")
-    public BaseObjectQuery extractAll(final Boolean extractAll) {
+    public BaseFieldQuery extractAll(final Boolean extractAll) {
         this.extractAll = extractAll;
         return this;
     }
@@ -81,7 +82,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return This object.
      */
     @JsonSetter("extractWhenMissing")
-    public BaseObjectQuery extractWhenMissing(final Object extractWhenMissing) {
+    public BaseFieldQuery extractWhenMissing(final Object extractWhenMissing) {
         this.extractWhenMissing = extractWhenMissing;
         return this;
     }
@@ -97,69 +98,24 @@ public abstract class BaseObjectQuery implements HasLogic {
     }
 
     /**
-     * Set the list of tags operations. This adds to any operations that are already saved.
+     * Set whether top level filters should be floated. This is intended to be a private method since it should only
+     * be used by templates.
      *
-     * @param tags List of {@link FieldQuery} objects.
+     * @param floatTopFilters True to float top level filters.
      */
-    @JsonSetter("tags")
-    private void tags(final List<FieldQuery> tags) {
-        this.tags = ListUtil.add(tags, this.tags);
+    @JsonSetter("floatTopFilters")
+    private void floatTopFilters(final Boolean floatTopFilters) {  // Private since only Jackson should use it
+        this.floatTopFilters = floatTopFilters;
     }
 
     /**
-     * Add to the list of tags operations.
+     * Get whether top level filters should be floated.
      *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
+     * @return True if top level filters should be floated or a null pointer if it has not been set.
      */
-    @JsonIgnore
-    public BaseObjectQuery tags(final FieldQuery fieldQuery) {
-        this.tags = ListUtil.add(fieldQuery, this.tags);
-        return this;
-    }
-
-    /**
-     * Add to the list of tags operations.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
-    @JsonIgnore
-    public BaseObjectQuery tags(final String extractAs) {
-        this.tags = ListUtil.add(new FieldQuery().extractAs(extractAs), this.tags);
-        return this;
-    }
-
-    /**
-     * Add to the list of tags operations.
-     *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
-     */
-    @JsonIgnore
-    public BaseObjectQuery tags(final Filter filter) {
-        this.tags = ListUtil.add(new FieldQuery().filter(filter), this.tags);
-        return this;
-    }
-
-    /**
-     * Get an iterable over tags operations.
-     *
-     * @return Iterable of {@link FieldQuery} objects.
-     */
-    @JsonGetter("tags")
-    public Iterable<FieldQuery> tags() {
-        return ListUtil.iterable(this.tags);
-    }
-
-    /**
-     * Return whether any tags operations exist.
-     *
-     * @return True if any tags operations exist.
-     */
-    @JsonIgnore
-    public boolean hasTags() {
-        return ListUtil.hasContent(this.tags);
+    @JsonGetter("floatTopFilters")
+    public Boolean floatTopFilters() {
+        return this.floatTopFilters;
     }
 
     /**
@@ -168,7 +124,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @param length List of {@link FieldQuery} objects.
      */
     @JsonSetter("length")
-    private void length(final List<FieldQuery> length) {
+    private void length(final List<FieldQuery> length) {  // Private since only Jackson should use it
         this.length = ListUtil.add(length, this.length);
     }
 
@@ -179,7 +135,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery length(final FieldQuery fieldQuery) {
+    public BaseFieldQuery length(final FieldQuery fieldQuery) {
         this.length = ListUtil.add(fieldQuery, this.length);
         return this;
     }
@@ -191,7 +147,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery length(final String extractAs) {
+    public BaseFieldQuery length(final String extractAs) {
         this.length = ListUtil.add(new FieldQuery().extractAs(extractAs), this.length);
         return this;
     }
@@ -199,11 +155,11 @@ public abstract class BaseObjectQuery implements HasLogic {
     /**
      * Add to the list of length operations.
      *
-     * @param filter {@link Filter} to apply.
+     * @param filter {@link Filter} object to apply.
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery length(final Filter filter) {
+    public BaseFieldQuery length(final Filter filter) {
         this.length = ListUtil.add(new FieldQuery().filter(filter), this.length);
         return this;
     }
@@ -234,7 +190,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @param offset List of {@link FieldQuery} objects.
      */
     @JsonSetter("offset")
-    private void offset(final List<FieldQuery> offset) {
+    private void offset(final List<FieldQuery> offset) {  // Private since only Jackson should use it
         this.offset = ListUtil.add(offset, this.offset);
     }
 
@@ -245,7 +201,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery offset(final FieldQuery fieldQuery) {
+    public BaseFieldQuery offset(final FieldQuery fieldQuery) {
         this.offset = ListUtil.add(fieldQuery, this.offset);
         return this;
     }
@@ -257,7 +213,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery offset(final String extractAs) {
+    public BaseFieldQuery offset(final String extractAs) {
         this.offset = ListUtil.add(new FieldQuery().extractAs(extractAs), this.offset);
         return this;
     }
@@ -269,7 +225,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery offset(final Filter filter) {
+    public BaseFieldQuery offset(final Filter filter) {
         this.offset = ListUtil.add(new FieldQuery().filter(filter), this.offset);
         return this;
     }
@@ -306,12 +262,12 @@ public abstract class BaseObjectQuery implements HasLogic {
     /** Default value to return if a field is missing and the query part is optional. */
     private Object extractWhenMissing;
 
-    /** List of tag operations. */
-    private List<FieldQuery> tags;
+    /** Set whether top level filters should be floated out into their own objects. */
+    private Boolean floatTopFilters;
 
-    /** Length of the array that this object appears in. */
+    /** Length of that array that this object appears in. */
     private List<FieldQuery> length;
 
-    /** Offset for this object in the array that it appears in. */
+    /** Offset of this object in the array that it appears in. */
     private List<FieldQuery> offset;
 }
