@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
-import io.citrine.jcc.search.pif.query.chemical.ChemicalFieldOperation;
+import io.citrine.jcc.search.pif.query.chemical.ChemicalFieldQuery;
 import io.citrine.jcc.search.pif.query.chemical.ChemicalFilter;
 import io.citrine.jcc.search.pif.query.chemical.CompositionQuery;
 import io.citrine.jcc.util.ListUtil;
@@ -21,22 +21,22 @@ public class SystemQuery extends BaseObjectQuery {
     /**
      * Set the list of names operations. This adds to any operations that are already saved.
      *
-     * @param names List of {@link FieldOperation} objects.
+     * @param names List of {@link FieldQuery} objects.
      */
     @JsonSetter("names")
-    private void names(final List<FieldOperation> names) {
+    private void names(final List<FieldQuery> names) {
         this.names = ListUtil.add(names, this.names);
     }
 
     /**
      * Add to the list of names operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery names(final FieldOperation fieldOperation) {
-        this.names = ListUtil.add(fieldOperation, this.names);
+    public SystemQuery names(final FieldQuery fieldQuery) {
+        this.names = ListUtil.add(fieldQuery, this.names);
         return this;
     }
 
@@ -48,7 +48,7 @@ public class SystemQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public SystemQuery names(final String extractAs) {
-        this.names = ListUtil.add(new FieldOperation().extractAs(extractAs), this.names);
+        this.names = ListUtil.add(new FieldQuery().extractAs(extractAs), this.names);
         return this;
     }
 
@@ -60,17 +60,17 @@ public class SystemQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public SystemQuery names(final Filter filter) {
-        this.names = ListUtil.add(new FieldOperation().filter(filter), this.names);
+        this.names = ListUtil.add(new FieldQuery().filter(filter), this.names);
         return this;
     }
 
     /**
      * Get an iterable over names operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("names")
-    public Iterable<FieldOperation> names() {
+    public Iterable<FieldQuery> names() {
         return ListUtil.iterable(this.names);
     }
 
@@ -255,22 +255,22 @@ public class SystemQuery extends BaseObjectQuery {
     /**
      * Set the list of chemical formula operations. This adds to any operations that are already saved.
      *
-     * @param chemicalFormula List of {@link ChemicalFieldOperation} objects.
+     * @param chemicalFormula List of {@link ChemicalFieldQuery} objects.
      */
     @JsonSetter("chemicalFormula")
-    private void chemicalFormula(final List<ChemicalFieldOperation> chemicalFormula) {
+    private void chemicalFormula(final List<ChemicalFieldQuery> chemicalFormula) {
         this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
     }
 
     /**
      * Add to the list of chemical formula operations.
      *
-     * @param fieldOperation {@link ChemicalFieldOperation} to add.
+     * @param fieldQuery {@link ChemicalFieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery chemicalFormula(final ChemicalFieldOperation fieldOperation) {
-        this.chemicalFormula = ListUtil.add(fieldOperation, this.chemicalFormula);
+    public SystemQuery chemicalFormula(final ChemicalFieldQuery fieldQuery) {
+        this.chemicalFormula = ListUtil.add(fieldQuery, this.chemicalFormula);
         return this;
     }
 
@@ -282,7 +282,7 @@ public class SystemQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public SystemQuery chemicalFormula(final String extractAs) {
-        this.chemicalFormula = ListUtil.add(new ChemicalFieldOperation().extractAs(extractAs), this.chemicalFormula);
+        this.chemicalFormula = ListUtil.add(new ChemicalFieldQuery().extractAs(extractAs), this.chemicalFormula);
         return this;
     }
 
@@ -294,17 +294,17 @@ public class SystemQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public SystemQuery chemicalFormula(final ChemicalFilter filter) {
-        this.chemicalFormula = ListUtil.add(new ChemicalFieldOperation().filter(filter), this.chemicalFormula);
+        this.chemicalFormula = ListUtil.add(new ChemicalFieldQuery().filter(filter), this.chemicalFormula);
         return this;
     }
 
     /**
      * Get an iterable over chemical formula operations.
      *
-     * @return Iterable of {@link ChemicalFieldOperation} objects.
+     * @return Iterable of {@link ChemicalFieldQuery} objects.
      */
     @JsonGetter("chemicalFormula")
-    public Iterable<ChemicalFieldOperation> chemicalFormula() {
+    public Iterable<ChemicalFieldQuery> chemicalFormula() {
         return ListUtil.iterable(this.chemicalFormula);
     }
 
@@ -558,8 +558,8 @@ public class SystemQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public SystemQuery tags(final FieldOperation fieldOperation) {
-        super.tags(fieldOperation);
+    public SystemQuery tags(final FieldQuery fieldQuery) {
+        super.tags(fieldQuery);
         return this;
     }
 
@@ -579,8 +579,8 @@ public class SystemQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public SystemQuery length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public SystemQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
@@ -600,8 +600,8 @@ public class SystemQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public SystemQuery offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public SystemQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
@@ -620,7 +620,7 @@ public class SystemQuery extends BaseObjectQuery {
     }
 
     /** List of names operations. */
-    private List<FieldOperation> names;
+    private List<FieldQuery> names;
     
     /** List of id operations. */
     private List<IdQuery> ids;
@@ -635,7 +635,7 @@ public class SystemQuery extends BaseObjectQuery {
     private List<QuantityQuery> quantity;
     
     /** List of chemical formula operations. */
-    private List<ChemicalFieldOperation> chemicalFormula;
+    private List<ChemicalFieldQuery> chemicalFormula;
 
     /** List of composition operations. */
     private List<CompositionQuery> composition;

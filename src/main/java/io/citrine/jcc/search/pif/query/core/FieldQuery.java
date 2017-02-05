@@ -3,6 +3,7 @@ package io.citrine.jcc.search.pif.query.core;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -10,11 +11,16 @@ import java.util.List;
 /**
  * Class for all field queries.
  *
- * @deprecated As of version 1.3.0, use {@link FieldQuery} instead.
  * @author Kyle Michel
  */
-@Deprecated
-public class FieldOperation extends BaseFieldOperation implements HasFilter {
+public class FieldQuery extends BaseFieldQuery implements HasFilter {
+
+    @Override
+    @JsonSetter("logic")
+    public FieldQuery logic(final Logic logic) {
+        super.logic(logic);
+        return this;
+    }
 
     /**
      * Set the filters that applies to the field.
@@ -38,7 +44,7 @@ public class FieldOperation extends BaseFieldOperation implements HasFilter {
 
     @Override
     @JsonIgnore
-    public FieldOperation filter(final Filter filter) {
+    public FieldQuery filter(final Filter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
@@ -57,63 +63,63 @@ public class FieldOperation extends BaseFieldOperation implements HasFilter {
 
     @Override
     @JsonSetter("extractAs")
-    public FieldOperation extractAs(final String extractAs) {
+    public FieldQuery extractAs(final String extractAs) {
         super.extractAs(extractAs);
         return this;
     }
 
     @Override
     @JsonSetter("extractAll")
-    public FieldOperation extractAll(final Boolean extractAll) {
+    public FieldQuery extractAll(final Boolean extractAll) {
         super.extractAll(extractAll);
         return this;
     }
 
     @Override
     @JsonSetter("extractWhenMissing")
-    public FieldOperation extractWhenMissing(final Object extractWhenMissing) {
+    public FieldQuery extractWhenMissing(final Object extractWhenMissing) {
         super.extractWhenMissing(extractWhenMissing);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public FieldOperation length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public FieldQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public FieldOperation length(final String extractAs) {
+    public FieldQuery length(final String extractAs) {
         super.length(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public FieldOperation length(final Filter filter) {
+    public FieldQuery length(final Filter filter) {
         super.length(filter);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public FieldOperation offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public FieldQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public FieldOperation offset(final String extractAs) {
+    public FieldQuery offset(final String extractAs) {
         super.offset(extractAs);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public FieldOperation offset(final Filter filter) {
+    public FieldQuery offset(final Filter filter) {
         super.offset(filter);
         return this;
     }

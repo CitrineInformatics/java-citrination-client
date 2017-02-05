@@ -7,11 +7,14 @@ import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
 
+
 /**
  * Base class for all field operations.
  *
+ * @deprecated As of version 1.3.0, use {@link BaseFieldQuery} instead.
  * @author Kyle Michel
  */
+@Deprecated
 public abstract class BaseFieldOperation {
 
     /**

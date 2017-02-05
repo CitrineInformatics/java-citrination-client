@@ -18,22 +18,22 @@ public class QuantityQuery extends BaseObjectQuery {
     /**
      * Set the list of actual mass percent operations. This adds to any operations that already exist.
      *
-     * @param actualMassPercent List of {@link FieldOperation} objects.
+     * @param actualMassPercent List of {@link FieldQuery} objects.
      */
     @JsonSetter("actualMassPercent")
-    private void actualMassPercent(final List<FieldOperation> actualMassPercent) {
+    private void actualMassPercent(final List<FieldQuery> actualMassPercent) {
         this.actualMassPercent = ListUtil.add(actualMassPercent, this.actualMassPercent);
     }
 
     /**
      * Add a single actual mass percent operation.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public QuantityQuery actualMassPercent(final FieldOperation fieldOperation) {
-        this.actualMassPercent = ListUtil.add(fieldOperation, this.actualMassPercent);
+    public QuantityQuery actualMassPercent(final FieldQuery fieldQuery) {
+        this.actualMassPercent = ListUtil.add(fieldQuery, this.actualMassPercent);
         return this;
     }
 
@@ -45,7 +45,7 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery actualMassPercent(final String extractAs) {
-        this.actualMassPercent = ListUtil.add(new FieldOperation().extractAs(extractAs), this.actualMassPercent);
+        this.actualMassPercent = ListUtil.add(new FieldQuery().extractAs(extractAs), this.actualMassPercent);
         return this;
     }
 
@@ -57,17 +57,17 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery actualMassPercent(final Filter filter) {
-        this.actualMassPercent = ListUtil.add(new FieldOperation().filter(filter), this.actualMassPercent);
+        this.actualMassPercent = ListUtil.add(new FieldQuery().filter(filter), this.actualMassPercent);
         return this;
     }
 
     /**
      * Get an iterable object over the actual mass percent fields.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("actualMassPercent")
-    public Iterable<FieldOperation> actualMassPercent() {
+    public Iterable<FieldQuery> actualMassPercent() {
         return ListUtil.iterable(this.actualMassPercent);
     }
 
@@ -84,22 +84,22 @@ public class QuantityQuery extends BaseObjectQuery {
     /**
      * Set the list of actual volume percent operations. This adds to any operations that already exist.
      *
-     * @param actualVolumePercent List of {@link FieldOperation} objects.
+     * @param actualVolumePercent List of {@link FieldQuery} objects.
      */
     @JsonSetter("actualVolumePercent")
-    private void actualVolumePercent(final List<FieldOperation> actualVolumePercent) {
+    private void actualVolumePercent(final List<FieldQuery> actualVolumePercent) {
         this.actualVolumePercent = ListUtil.add(actualVolumePercent, this.actualVolumePercent);
     }
 
     /**
      * Add a single actual volume percent operation.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public QuantityQuery actualVolumePercent(final FieldOperation fieldOperation) {
-        this.actualVolumePercent = ListUtil.add(fieldOperation, this.actualVolumePercent);
+    public QuantityQuery actualVolumePercent(final FieldQuery fieldQuery) {
+        this.actualVolumePercent = ListUtil.add(fieldQuery, this.actualVolumePercent);
         return this;
     }
 
@@ -111,7 +111,7 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery actualVolumePercent(final String extractAs) {
-        this.actualVolumePercent = ListUtil.add(new FieldOperation().extractAs(extractAs), this.actualVolumePercent);
+        this.actualVolumePercent = ListUtil.add(new FieldQuery().extractAs(extractAs), this.actualVolumePercent);
         return this;
     }
 
@@ -123,17 +123,17 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery actualVolumePercent(final Filter filter) {
-        this.actualVolumePercent = ListUtil.add(new FieldOperation().filter(filter), this.actualVolumePercent);
+        this.actualVolumePercent = ListUtil.add(new FieldQuery().filter(filter), this.actualVolumePercent);
         return this;
     }
 
     /**
      * Get an iterable object over the actual volume percent fields.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("actualVolumePercent")
-    public Iterable<FieldOperation> actualVolumePercent() {
+    public Iterable<FieldQuery> actualVolumePercent() {
         return ListUtil.iterable(this.actualVolumePercent);
     }
 
@@ -150,22 +150,22 @@ public class QuantityQuery extends BaseObjectQuery {
     /**
      * Set the list of actual number percent operations. This adds to any operations that already exist.
      *
-     * @param actualNumberPercent List of {@link FieldOperation} objects.
+     * @param actualNumberPercent List of {@link FieldQuery} objects.
      */
     @JsonSetter("actualNumberPercent")
-    private void actualNumberPercent(final List<FieldOperation> actualNumberPercent) {
+    private void actualNumberPercent(final List<FieldQuery> actualNumberPercent) {
         this.actualNumberPercent = ListUtil.add(actualNumberPercent, this.actualNumberPercent);
     }
 
     /**
      * Add a single actual number percent operation.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public QuantityQuery actualNumberPercent(final FieldOperation fieldOperation) {
-        this.actualNumberPercent = ListUtil.add(fieldOperation, this.actualNumberPercent);
+    public QuantityQuery actualNumberPercent(final FieldQuery fieldQuery) {
+        this.actualNumberPercent = ListUtil.add(fieldQuery, this.actualNumberPercent);
         return this;
     }
 
@@ -177,7 +177,7 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery actualNumberPercent(final String extractAs) {
-        this.actualNumberPercent = ListUtil.add(new FieldOperation().extractAs(extractAs), this.actualNumberPercent);
+        this.actualNumberPercent = ListUtil.add(new FieldQuery().extractAs(extractAs), this.actualNumberPercent);
         return this;
     }
 
@@ -189,17 +189,17 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery actualNumberPercent(final Filter filter) {
-        this.actualNumberPercent = ListUtil.add(new FieldOperation().filter(filter), this.actualNumberPercent);
+        this.actualNumberPercent = ListUtil.add(new FieldQuery().filter(filter), this.actualNumberPercent);
         return this;
     }
 
     /**
      * Get an iterable object over the actual number percent fields.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("actualNumberPercent")
-    public Iterable<FieldOperation> actualNumberPercent() {
+    public Iterable<FieldQuery> actualNumberPercent() {
         return ListUtil.iterable(this.actualNumberPercent);
     }
 
@@ -216,22 +216,22 @@ public class QuantityQuery extends BaseObjectQuery {
     /**
      * Set the list of ideal mass percent operations. This adds to any operations that already exist.
      *
-     * @param idealMassPercent List of {@link FieldOperation} objects.
+     * @param idealMassPercent List of {@link FieldQuery} objects.
      */
     @JsonSetter("idealMassPercent")
-    private void idealMassPercent(final List<FieldOperation> idealMassPercent) {
+    private void idealMassPercent(final List<FieldQuery> idealMassPercent) {
         this.idealMassPercent = ListUtil.add(idealMassPercent, this.idealMassPercent);
     }
 
     /**
      * Add a single ideal mass percent operation.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public QuantityQuery idealMassPercent(final FieldOperation fieldOperation) {
-        this.idealMassPercent = ListUtil.add(fieldOperation, this.idealMassPercent);
+    public QuantityQuery idealMassPercent(final FieldQuery fieldQuery) {
+        this.idealMassPercent = ListUtil.add(fieldQuery, this.idealMassPercent);
         return this;
     }
 
@@ -243,7 +243,7 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery idealMassPercent(final String extractAs) {
-        this.idealMassPercent = ListUtil.add(new FieldOperation().extractAs(extractAs), this.idealMassPercent);
+        this.idealMassPercent = ListUtil.add(new FieldQuery().extractAs(extractAs), this.idealMassPercent);
         return this;
     }
 
@@ -255,17 +255,17 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery idealMassPercent(final Filter filter) {
-        this.idealMassPercent = ListUtil.add(new FieldOperation().filter(filter), this.idealMassPercent);
+        this.idealMassPercent = ListUtil.add(new FieldQuery().filter(filter), this.idealMassPercent);
         return this;
     }
 
     /**
      * Get an iterable object over the ideal mass percent fields.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("idealMassPercent")
-    public Iterable<FieldOperation> idealMassPercent() {
+    public Iterable<FieldQuery> idealMassPercent() {
         return ListUtil.iterable(this.idealMassPercent);
     }
 
@@ -282,22 +282,22 @@ public class QuantityQuery extends BaseObjectQuery {
     /**
      * Set the list of ideal volume percent operations. This adds to any operations that already exist.
      *
-     * @param idealVolumePercent List of {@link FieldOperation} objects.
+     * @param idealVolumePercent List of {@link FieldQuery} objects.
      */
     @JsonSetter("idealVolumePercent")
-    private void idealVolumePercent(final List<FieldOperation> idealVolumePercent) {
+    private void idealVolumePercent(final List<FieldQuery> idealVolumePercent) {
         this.idealVolumePercent = ListUtil.add(idealVolumePercent, this.idealVolumePercent);
     }
 
     /**
      * Add a single ideal volume percent operation.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public QuantityQuery idealVolumePercent(final FieldOperation fieldOperation) {
-        this.idealVolumePercent = ListUtil.add(fieldOperation, this.idealVolumePercent);
+    public QuantityQuery idealVolumePercent(final FieldQuery fieldQuery) {
+        this.idealVolumePercent = ListUtil.add(fieldQuery, this.idealVolumePercent);
         return this;
     }
 
@@ -309,7 +309,7 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery idealVolumePercent(final String extractAs) {
-        this.idealVolumePercent = ListUtil.add(new FieldOperation().extractAs(extractAs), this.idealVolumePercent);
+        this.idealVolumePercent = ListUtil.add(new FieldQuery().extractAs(extractAs), this.idealVolumePercent);
         return this;
     }
 
@@ -321,17 +321,17 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery idealVolumePercent(final Filter filter) {
-        this.idealVolumePercent = ListUtil.add(new FieldOperation().filter(filter), this.idealVolumePercent);
+        this.idealVolumePercent = ListUtil.add(new FieldQuery().filter(filter), this.idealVolumePercent);
         return this;
     }
 
     /**
      * Get an iterable object over the ideal volume percent fields.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("idealVolumePercent")
-    public Iterable<FieldOperation> idealVolumePercent() {
+    public Iterable<FieldQuery> idealVolumePercent() {
         return ListUtil.iterable(this.idealVolumePercent);
     }
 
@@ -348,22 +348,22 @@ public class QuantityQuery extends BaseObjectQuery {
     /**
      * Set the list of ideal number percent operations. This adds to any operations that already exist.
      *
-     * @param idealNumberPercent List of {@link FieldOperation} objects.
+     * @param idealNumberPercent List of {@link FieldQuery} objects.
      */
     @JsonSetter("idealNumberPercent")
-    private void idealNumberPercent(final List<FieldOperation> idealNumberPercent) {
+    private void idealNumberPercent(final List<FieldQuery> idealNumberPercent) {
         this.idealNumberPercent = ListUtil.add(idealNumberPercent, this.idealNumberPercent);
     }
 
     /**
      * Add a single ideal number percent operation.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public QuantityQuery idealNumberPercent(final FieldOperation fieldOperation) {
-        this.idealNumberPercent = ListUtil.add(fieldOperation, this.idealNumberPercent);
+    public QuantityQuery idealNumberPercent(final FieldQuery fieldQuery) {
+        this.idealNumberPercent = ListUtil.add(fieldQuery, this.idealNumberPercent);
         return this;
     }
 
@@ -375,7 +375,7 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery idealNumberPercent(final String extractAs) {
-        this.idealNumberPercent = ListUtil.add(new FieldOperation().extractAs(extractAs), this.idealNumberPercent);
+        this.idealNumberPercent = ListUtil.add(new FieldQuery().extractAs(extractAs), this.idealNumberPercent);
         return this;
     }
 
@@ -387,17 +387,17 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public QuantityQuery idealNumberPercent(final Filter filter) {
-        this.idealNumberPercent = ListUtil.add(new FieldOperation().filter(filter), this.idealNumberPercent);
+        this.idealNumberPercent = ListUtil.add(new FieldQuery().filter(filter), this.idealNumberPercent);
         return this;
     }
 
     /**
      * Get an iterable object over the ideal number percent fields.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("idealNumberPercent")
-    public Iterable<FieldOperation> idealNumberPercent() {
+    public Iterable<FieldQuery> idealNumberPercent() {
         return ListUtil.iterable(this.idealNumberPercent);
     }
 
@@ -441,8 +441,8 @@ public class QuantityQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public QuantityQuery tags(final FieldOperation fieldOperation) {
-        super.tags(fieldOperation);
+    public QuantityQuery tags(final FieldQuery fieldQuery) {
+        super.tags(fieldQuery);
         return this;
     }
 
@@ -462,8 +462,8 @@ public class QuantityQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public QuantityQuery length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public QuantityQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
@@ -483,8 +483,8 @@ public class QuantityQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public QuantityQuery offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public QuantityQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
@@ -503,20 +503,20 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     /** Actual percent of the total mass. */
-    private List<FieldOperation> actualMassPercent;
+    private List<FieldQuery> actualMassPercent;
 
     /** Actual percent of the total volume. */
-    private List<FieldOperation> actualVolumePercent;
+    private List<FieldQuery> actualVolumePercent;
 
     /** Actual percent of the total number. */
-    private List<FieldOperation> actualNumberPercent;
+    private List<FieldQuery> actualNumberPercent;
 
     /** Ideal percent of the total mass. */
-    private List<FieldOperation> idealMassPercent;
+    private List<FieldQuery> idealMassPercent;
 
     /** Ideal percent of the total volume. */
-    private List<FieldOperation> idealVolumePercent;
+    private List<FieldQuery> idealVolumePercent;
 
     /** Ideal percent of the total number. */
-    private List<FieldOperation> idealNumberPercent;
+    private List<FieldQuery> idealNumberPercent;
 }

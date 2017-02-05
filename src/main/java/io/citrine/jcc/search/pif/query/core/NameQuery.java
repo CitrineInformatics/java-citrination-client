@@ -46,22 +46,22 @@ public class NameQuery extends BaseObjectQuery {
     /**
      * Set the list of given name operations. This adds to any operations that are already saved.
      *
-     * @param given List of {@link FieldOperation} objects.
+     * @param given List of {@link FieldQuery} objects.
      */
     @JsonSetter("given")
-    private void given(final List<FieldOperation> given) {
+    private void given(final List<FieldQuery> given) {
         this.given = ListUtil.add(given, this.given);
     }
 
     /**
      * Add to the list of given name operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery given(final FieldOperation fieldOperation) {
-        this.given = ListUtil.add(fieldOperation, this.given);
+    public NameQuery given(final FieldQuery fieldQuery) {
+        this.given = ListUtil.add(fieldQuery, this.given);
         return this;
     }
 
@@ -73,7 +73,7 @@ public class NameQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public NameQuery given(final String extractAs) {
-        this.given = ListUtil.add(new FieldOperation().extractAs(extractAs), this.given);
+        this.given = ListUtil.add(new FieldQuery().extractAs(extractAs), this.given);
         return this;
     }
 
@@ -85,17 +85,17 @@ public class NameQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public NameQuery given(final Filter filter) {
-        this.given = ListUtil.add(new FieldOperation().filter(filter), this.given);
+        this.given = ListUtil.add(new FieldQuery().filter(filter), this.given);
         return this;
     }
 
     /**
      * Get an iterable over given name operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("given")
-    public Iterable<FieldOperation> given() {
+    public Iterable<FieldQuery> given() {
         return ListUtil.iterable(this.given);
     }
 
@@ -112,22 +112,22 @@ public class NameQuery extends BaseObjectQuery {
     /**
      * Set the list of family name operations. This adds to any operations that are already saved.
      *
-     * @param family List of {@link FieldOperation} objects.
+     * @param family List of {@link FieldQuery} objects.
      */
     @JsonSetter("family")
-    private void family(final List<FieldOperation> family) {
+    private void family(final List<FieldQuery> family) {
         this.family = ListUtil.add(family, this.family);
     }
 
     /**
      * Add to the list of family name operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery family(final FieldOperation fieldOperation) {
-        this.family = ListUtil.add(fieldOperation, this.family);
+    public NameQuery family(final FieldQuery fieldQuery) {
+        this.family = ListUtil.add(fieldQuery, this.family);
         return this;
     }
 
@@ -139,7 +139,7 @@ public class NameQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public NameQuery family(final String extractAs) {
-        this.family = ListUtil.add(new FieldOperation().extractAs(extractAs), this.family);
+        this.family = ListUtil.add(new FieldQuery().extractAs(extractAs), this.family);
         return this;
     }
 
@@ -151,17 +151,17 @@ public class NameQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public NameQuery family(final Filter filter) {
-        this.family = ListUtil.add(new FieldOperation().filter(filter), this.family);
+        this.family = ListUtil.add(new FieldQuery().filter(filter), this.family);
         return this;
     }
 
     /**
      * Get an iterable over family name operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("family")
-    public Iterable<FieldOperation> family() {
+    public Iterable<FieldQuery> family() {
         return ListUtil.iterable(this.family);
     }
 
@@ -178,22 +178,22 @@ public class NameQuery extends BaseObjectQuery {
     /**
      * Set the list of title operations. This adds to any operations that are already saved.
      *
-     * @param title List of {@link FieldOperation} objects.
+     * @param title List of {@link FieldQuery} objects.
      */
     @JsonSetter("title")
-    private void title(final List<FieldOperation> title) {
+    private void title(final List<FieldQuery> title) {
         this.title = ListUtil.add(title, this.title);
     }
 
     /**
      * Add to the list of title operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery title(final FieldOperation fieldOperation) {
-        this.title = ListUtil.add(fieldOperation, this.title);
+    public NameQuery title(final FieldQuery fieldQuery) {
+        this.title = ListUtil.add(fieldQuery, this.title);
         return this;
     }
 
@@ -205,7 +205,7 @@ public class NameQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public NameQuery title(final String extractAs) {
-        this.title = ListUtil.add(new FieldOperation().extractAs(extractAs), this.title);
+        this.title = ListUtil.add(new FieldQuery().extractAs(extractAs), this.title);
         return this;
     }
 
@@ -217,17 +217,17 @@ public class NameQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public NameQuery title(final Filter filter) {
-        this.title = ListUtil.add(new FieldOperation().filter(filter), this.title);
+        this.title = ListUtil.add(new FieldQuery().filter(filter), this.title);
         return this;
     }
 
     /**
      * Get an iterable over title operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("title")
-    public Iterable<FieldOperation> title() {
+    public Iterable<FieldQuery> title() {
         return ListUtil.iterable(this.title);
     }
 
@@ -244,22 +244,22 @@ public class NameQuery extends BaseObjectQuery {
     /**
      * Set the list of suffix operations. This adds to any operations that are already saved.
      *
-     * @param suffix List of {@link FieldOperation} objects.
+     * @param suffix List of {@link FieldQuery} objects.
      */
     @JsonSetter("suffix")
-    private void suffix(final List<FieldOperation> suffix) {
+    private void suffix(final List<FieldQuery> suffix) {
         this.suffix = ListUtil.add(suffix, this.suffix);
     }
 
     /**
      * Add to the list of suffix operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public NameQuery suffix(final FieldOperation fieldOperation) {
-        this.suffix = ListUtil.add(fieldOperation, this.suffix);
+    public NameQuery suffix(final FieldQuery fieldQuery) {
+        this.suffix = ListUtil.add(fieldQuery, this.suffix);
         return this;
     }
 
@@ -271,7 +271,7 @@ public class NameQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public NameQuery suffix(final String extractAs) {
-        this.suffix = ListUtil.add(new FieldOperation().extractAs(extractAs), this.suffix);
+        this.suffix = ListUtil.add(new FieldQuery().extractAs(extractAs), this.suffix);
         return this;
     }
 
@@ -283,17 +283,17 @@ public class NameQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public NameQuery suffix(final Filter filter) {
-        this.suffix = ListUtil.add(new FieldOperation().filter(filter), this.suffix);
+        this.suffix = ListUtil.add(new FieldQuery().filter(filter), this.suffix);
         return this;
     }
 
     /**
      * Get an iterable over suffix operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("suffix")
-    public Iterable<FieldOperation> suffix() {
+    public Iterable<FieldQuery> suffix() {
         return ListUtil.iterable(this.suffix);
     }
 
@@ -309,8 +309,8 @@ public class NameQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public NameQuery tags(final FieldOperation fieldOperation) {
-        super.tags(fieldOperation);
+    public NameQuery tags(final FieldQuery fieldQuery) {
+        super.tags(fieldQuery);
         return this;
     }
 
@@ -330,8 +330,8 @@ public class NameQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public NameQuery length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public NameQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
@@ -351,8 +351,8 @@ public class NameQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public NameQuery offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public NameQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
@@ -371,14 +371,14 @@ public class NameQuery extends BaseObjectQuery {
     }
 
     /** Given name for the query. */
-    private List<FieldOperation> given;
+    private List<FieldQuery> given;
 
     /** Family name for the query. */
-    private List<FieldOperation> family;
+    private List<FieldQuery> family;
 
     /** Title of the person. */
-    private List<FieldOperation> title;
+    private List<FieldQuery> title;
 
     /** Suffix of the person. */
-    private List<FieldOperation> suffix;
+    private List<FieldQuery> suffix;
 }

@@ -46,22 +46,22 @@ public class ClassificationQuery extends BaseObjectQuery {
     /**
      * Set the list of classification name operations. This adds to any operations that are already saved.
      *
-     * @param name List of {@link FieldOperation} objects.
+     * @param name List of {@link FieldQuery} objects.
      */
     @JsonSetter("name")
-    private void name(final List<FieldOperation> name) {
+    private void name(final List<FieldQuery> name) {
         this.name = ListUtil.add(name, this.name);
     }
 
     /**
      * Add to the list of classification name operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ClassificationQuery name(final FieldOperation fieldOperation) {
-        this.name = ListUtil.add(fieldOperation, this.name);
+    public ClassificationQuery name(final FieldQuery fieldQuery) {
+        this.name = ListUtil.add(fieldQuery, this.name);
         return this;
     }
 
@@ -73,7 +73,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public ClassificationQuery name(final String extractAs) {
-        this.name = ListUtil.add(new FieldOperation().extractAs(extractAs), this.name);
+        this.name = ListUtil.add(new FieldQuery().extractAs(extractAs), this.name);
         return this;
     }
 
@@ -85,17 +85,17 @@ public class ClassificationQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public ClassificationQuery name(final Filter filter) {
-        this.name = ListUtil.add(new FieldOperation().filter(filter), this.name);
+        this.name = ListUtil.add(new FieldQuery().filter(filter), this.name);
         return this;
     }
 
     /**
      * Get an iterable over classification name operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("name")
-    public Iterable<FieldOperation> name() {
+    public Iterable<FieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
 
@@ -112,22 +112,22 @@ public class ClassificationQuery extends BaseObjectQuery {
     /**
      * Set the list of classification value operations. This adds to any operations that are already saved.
      *
-     * @param value List of {@link FieldOperation} objects.
+     * @param value List of {@link FieldQuery} objects.
      */
     @JsonSetter("value")
-    private void value(final List<FieldOperation> value) {
+    private void value(final List<FieldQuery> value) {
         this.value = ListUtil.add(value, this.value);
     }
 
     /**
      * Add to the list of classification value operations.
      *
-     * @param fieldOperation {@link FieldOperation} to add.
+     * @param fieldQuery {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public ClassificationQuery value(final FieldOperation fieldOperation) {
-        this.value = ListUtil.add(fieldOperation, this.value);
+    public ClassificationQuery value(final FieldQuery fieldQuery) {
+        this.value = ListUtil.add(fieldQuery, this.value);
         return this;
     }
 
@@ -139,7 +139,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public ClassificationQuery value(final String extractAs) {
-        this.value = ListUtil.add(new FieldOperation().extractAs(extractAs), this.value);
+        this.value = ListUtil.add(new FieldQuery().extractAs(extractAs), this.value);
         return this;
     }
 
@@ -151,17 +151,17 @@ public class ClassificationQuery extends BaseObjectQuery {
      */
     @JsonIgnore
     public ClassificationQuery value(final Filter filter) {
-        this.value = ListUtil.add(new FieldOperation().filter(filter), this.value);
+        this.value = ListUtil.add(new FieldQuery().filter(filter), this.value);
         return this;
     }
 
     /**
      * Get an iterable over classification value operations.
      *
-     * @return Iterable of {@link FieldOperation} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
     @JsonGetter("value")
-    public Iterable<FieldOperation> value() {
+    public Iterable<FieldQuery> value() {
         return ListUtil.iterable(this.value);
     }
 
@@ -177,8 +177,8 @@ public class ClassificationQuery extends BaseObjectQuery {
     
     @Override
     @JsonIgnore
-    public ClassificationQuery tags(final FieldOperation fieldOperation) {
-        super.tags(fieldOperation);
+    public ClassificationQuery tags(final FieldQuery fieldQuery) {
+        super.tags(fieldQuery);
         return this;
     }
 
@@ -198,8 +198,8 @@ public class ClassificationQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public ClassificationQuery length(final FieldOperation fieldOperation) {
-        super.length(fieldOperation);
+    public ClassificationQuery length(final FieldQuery fieldQuery) {
+        super.length(fieldQuery);
         return this;
     }
 
@@ -219,8 +219,8 @@ public class ClassificationQuery extends BaseObjectQuery {
 
     @Override
     @JsonIgnore
-    public ClassificationQuery offset(final FieldOperation fieldOperation) {
-        super.offset(fieldOperation);
+    public ClassificationQuery offset(final FieldQuery fieldQuery) {
+        super.offset(fieldQuery);
         return this;
     }
 
@@ -239,10 +239,10 @@ public class ClassificationQuery extends BaseObjectQuery {
     }
 
     /** Name of the classification. */
-    private List<FieldOperation> name;
+    private List<FieldQuery> name;
 
     /** Value of the classification. */
-    private List<FieldOperation> value;
+    private List<FieldQuery> value;
     
     
 }
