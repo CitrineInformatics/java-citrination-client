@@ -11,18 +11,18 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class MultiPifQuery extends BaseMultiQuery<PifQuery> {
+public class PifMultiQuery extends BaseMultiQuery<PifQuery> {
 
     @Override
     @JsonSetter("queries")
-    protected MultiPifQuery setQueries(final List<PifQuery> queries) {
+    protected PifMultiQuery setQueries(final List<PifQuery> queries) {
         super.setQueries(queries);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public MultiPifQuery addQuery(final PifQuery query) {
+    public PifMultiQuery addQuery(final PifQuery query) {
         super.addQuery(query);
         return this;
     }
