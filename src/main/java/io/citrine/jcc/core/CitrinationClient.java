@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.citrine.jcc.predict.PredictionRequest;
 import io.citrine.jcc.predict.PredictionResult;
 import io.citrine.jcc.search.pif.query.PifQuery;
+import io.citrine.jcc.search.pif.result.PifMultiSearchResult;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -42,6 +43,23 @@ public class CitrinationClient {
         try (final CloseableHttpClient client = buildHttpClient()) {
             try (final CloseableHttpResponse response = client.execute(post)) {
                 return buildSearchResult(response);
+            }
+        }
+    }
+
+    /**
+     * Execute a multi-search request.
+     *
+     * @param pifQueries List of {@link PifQuery} objects.
+     * @return {@link PifMultiSearchResult} with all of the results.
+     * @throws IOException if thrown from within this function.
+     * @throws RuntimeException if a non-200 response is received.
+     */
+    public PifMultiSearchResult multiPifSearch(final List<PifQuery> pifQueries) throws IOException {
+        final HttpPost post = buildMultiSearchRequest(pifQueries);
+        try (final CloseableHttpClient client = buildHttpClient()) {
+            try (final CloseableHttpResponse response = client.execute(post)) {
+                return buildMultiSearchResult(response);
             }
         }
     }
@@ -120,6 +138,32 @@ public class CitrinationClient {
     }
 
     /**
+     * Build the POST request with the multi-query to execute.
+     *
+     * @param pifQueries List of {@link PifQuery} objects to run.
+     * @return {@link HttpPost} object with the POST request to make.
+     * @throws IOException if thrown from within this function.
+     */
+    HttpPost buildMultiSearchRequest(final List<PifQuery> pifQueries) throws IOException {
+        return createCommonMultiSearchRequest(pifQueries);
+    }
+
+    /**
+     * Build the POST request with the multi-query to execute.
+     *
+     * @param pifQueries List of {@link PifQuery} objects to run.
+     * @return {@link HttpPost} object with the POST request to make.
+     * @throws IOException if thrown from within this function.
+     */
+    HttpPost createCommonMultiSearchRequest(final List<PifQuery> pifQueries) throws IOException {
+        final HttpPost post = new HttpPost(this.host + "/api/search/pif_multi_search");
+        post.addHeader("X-API-Key", this.apiKey);
+        post.addHeader("Content-type", "application/json");
+        post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(pifQueries)));
+        return post;
+    }
+
+    /**
      * Convert the response from a search result to a {@link PifSearchResult} object.
      *
      * @param response {@link HttpResponse} with the result of the query.
@@ -134,6 +178,23 @@ public class CitrinationClient {
         }
         return OBJECT_MAPPER.readValue(response.getEntity().getContent(), PifSearchResponseWrapper.class)
                 .pifSearchResult;
+    }
+
+    /**
+     * Convert the response from a search result to a {@link PifMultiSearchResult} object.
+     *
+     * @param response {@link HttpResponse} with the result of the query.
+     * @return {@link PifMultiSearchResult} with the result of the query.
+     * @throws IOException      if thrown from within this function.
+     * @throws RuntimeException if a non-200 response is received.
+     */
+    private PifMultiSearchResult buildMultiSearchResult(final HttpResponse response) throws IOException {
+        if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+            throw new RuntimeException("Received " + response.getStatusLine().getStatusCode() + " response: "
+                    + response.getStatusLine().getReasonPhrase());
+        }
+        return OBJECT_MAPPER.readValue(response.getEntity().getContent(), PifMultiSearchResponseWrapper.class)
+                .pifMultiSearchResult;
     }
 
     /**
@@ -244,5 +305,18 @@ public class CitrinationClient {
         /** Results field. */
         @JsonProperty("results")
         public PifSearchResult pifSearchResult;
+    }
+
+    /**
+     * Object that wraps the response received from an API request.
+     *
+     * @author Kyle Michel
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private static class PifMultiSearchResponseWrapper {
+
+        /** Results field. */
+        @JsonProperty("results")
+        public PifMultiSearchResult pifMultiSearchResult;
     }
 }
