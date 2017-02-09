@@ -21,7 +21,6 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,7 +55,7 @@ public class CitrinationClient {
      * @throws IOException if thrown from within this function.
      * @throws RuntimeException if a non-200 response is received.
      */
-    public PifMultiSearchResult multiPifSearch(final MultiPifQuery multiPifQuery) throws IOException {
+    public PifMultiSearchResult search(final MultiPifQuery multiPifQuery) throws IOException {
         final HttpPost post = buildMultiSearchRequest(multiPifQuery);
         try (final CloseableHttpClient client = buildHttpClient()) {
             try (final CloseableHttpResponse response = client.execute(post)) {
