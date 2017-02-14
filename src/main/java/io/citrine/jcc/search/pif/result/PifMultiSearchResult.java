@@ -4,6 +4,7 @@ package io.citrine.jcc.search.pif.result;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.search.core.result.BaseAtomicSearchResult;
 import io.citrine.jcc.search.core.result.BaseMultiSearchResult;
 
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PifMultiSearchResult extends BaseMultiSearchResult<PifSearchResult> {
+public class PifMultiSearchResult extends BaseMultiSearchResult<BaseAtomicSearchResult<PifSearchResult>> {
 
     @Override
     @JsonSetter("took")
@@ -35,14 +36,14 @@ public class PifMultiSearchResult extends BaseMultiSearchResult<PifSearchResult>
 
     @Override
     @JsonSetter("results")
-    protected PifMultiSearchResult setResults(final List<PifSearchResult> results) {
+    protected PifMultiSearchResult setResults(final List<BaseAtomicSearchResult<PifSearchResult>> results) {
         super.setResults(results);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PifMultiSearchResult addResult(final PifSearchResult result) {
+    public PifMultiSearchResult addResult(final BaseAtomicSearchResult<PifSearchResult> result) {
         super.addResult(result);
         return this;
     }
