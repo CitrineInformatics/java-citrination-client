@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.citrine.jcc.predict.PredictionRequest;
 import io.citrine.jcc.predict.PredictionResult;
+import io.citrine.jcc.search.core.result.MultiSearchResult;
 import io.citrine.jcc.search.pif.query.PifMultiQuery;
 import io.citrine.jcc.search.pif.query.PifQuery;
-import io.citrine.jcc.search.pif.result.PifMultiSearchResult;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -51,11 +51,11 @@ public class CitrinationClient {
      * Execute a multi-search request.
      *
      * @param pifMultiQuery {@link PifMultiQuery} to run.
-     * @return {@link PifMultiSearchResult} with all of the results.
+     * @return {@link MultiSearchResult} with all of the results.
      * @throws IOException if thrown from within this function.
      * @throws RuntimeException if a non-200 response is received.
      */
-    public PifMultiSearchResult search(final PifMultiQuery pifMultiQuery) throws IOException {
+    public MultiSearchResult<PifSearchResult> search(final PifMultiQuery pifMultiQuery) throws IOException {
         final HttpPost post = buildMultiSearchRequest(pifMultiQuery);
         try (final CloseableHttpClient client = buildHttpClient()) {
             try (final CloseableHttpResponse response = client.execute(post)) {
@@ -181,14 +181,14 @@ public class CitrinationClient {
     }
 
     /**
-     * Convert the response from a search result to a {@link PifMultiSearchResult} object.
+     * Convert the response from a search result to a {@link MultiSearchResult} object.
      *
      * @param response {@link HttpResponse} with the result of the query.
-     * @return {@link PifMultiSearchResult} with the result of the query.
+     * @return {@link MultiSearchResult} with the result of the query.
      * @throws IOException      if thrown from within this function.
      * @throws RuntimeException if a non-200 response is received.
      */
-    private PifMultiSearchResult buildMultiSearchResult(final HttpResponse response) throws IOException {
+    private MultiSearchResult<PifSearchResult> buildMultiSearchResult(final HttpResponse response) throws IOException {
         if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
             throw new RuntimeException("Received " + response.getStatusLine().getStatusCode() + " response: "
                     + response.getStatusLine().getReasonPhrase());
@@ -317,6 +317,6 @@ public class CitrinationClient {
 
         /** Results field. */
         @JsonProperty("results")
-        public PifMultiSearchResult pifMultiSearchResult;
+        public MultiSearchResult<PifSearchResult> pifMultiSearchResult;
     }
 }
