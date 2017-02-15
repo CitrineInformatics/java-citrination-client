@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.result.BaseMultiSearchResult;
+import io.citrine.jcc.search.core.result.MultiSearchResultElement;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * <pre>
  * {@code
  * PifMultiSearchResult searchResult = Query.execute();
- * for (PifMultiSearchResultElement i : searchResult) {
+ * for (MultiSearchResultElement<PifSearchResult> i : searchResult) {
  *     // do work on query result
  * }
  * }
@@ -24,7 +25,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PifMultiSearchResult extends BaseMultiSearchResult<PifMultiSearchResultElement> {
+public class PifMultiSearchResult extends BaseMultiSearchResult<MultiSearchResultElement<PifSearchResult>> {
 
     @Override
     @JsonSetter("took")
@@ -35,14 +36,14 @@ public class PifMultiSearchResult extends BaseMultiSearchResult<PifMultiSearchRe
 
     @Override
     @JsonSetter("results")
-    protected PifMultiSearchResult setResults(final List<PifMultiSearchResultElement> results) {
+    protected PifMultiSearchResult setResults(final List<MultiSearchResultElement<PifSearchResult>> results) {
         super.setResults(results);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PifMultiSearchResult addResult(final PifMultiSearchResultElement result) {
+    public PifMultiSearchResult addResult(final MultiSearchResultElement<PifSearchResult> result) {
         super.addResult(result);
         return this;
     }

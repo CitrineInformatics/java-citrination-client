@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.result.BaseMultiSearchResult;
+import io.citrine.jcc.search.core.result.MultiSearchResultElement;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * <pre>
  * {@code
  * DatasetMultiSearchResult searchResult = Query.execute();
- * for (DatasetMultiSearchResultElement i : searchResult) {
+ * for (MultiSearchResultElement<DatasetSearchResult> i : searchResult) {
  *     // do work on query result
  * }
  * }
@@ -24,7 +25,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DatasetMultiSearchResult extends BaseMultiSearchResult<DatasetMultiSearchResultElement> {
+public class DatasetMultiSearchResult extends BaseMultiSearchResult<MultiSearchResultElement<DatasetSearchResult>> {
 
     @Override
     @JsonSetter("took")
@@ -35,14 +36,14 @@ public class DatasetMultiSearchResult extends BaseMultiSearchResult<DatasetMulti
 
     @Override
     @JsonSetter("results")
-    protected DatasetMultiSearchResult setResults(final List<DatasetMultiSearchResultElement> results) {
+    protected DatasetMultiSearchResult setResults(final List<MultiSearchResultElement<DatasetSearchResult>> results) {
         super.setResults(results);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DatasetMultiSearchResult addResult(final DatasetMultiSearchResultElement result) {
+    public DatasetMultiSearchResult addResult(final MultiSearchResultElement<DatasetSearchResult> result) {
         super.addResult(result);
         return this;
     }

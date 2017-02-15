@@ -17,7 +17,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public abstract class BaseMultiSearchResult<T extends BaseMultiSearchResultElement<? extends BaseSearchResult<?>>>
+public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<? extends BaseSearchResult<?>>>
         implements Iterable<T> {
 
     /**

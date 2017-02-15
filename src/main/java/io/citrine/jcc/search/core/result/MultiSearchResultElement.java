@@ -12,7 +12,7 @@ import java.util.Map;
  * @param <T> Type of the result being returned.
  * @author Max Hutchinson
  */
-public class BaseMultiSearchResultElement<T> {
+public class MultiSearchResultElement<T> {
 
     /**
      * Get the result that was returned.
@@ -29,7 +29,7 @@ public class BaseMultiSearchResultElement<T> {
      * @param result Object with the result of the query.
      * @return This object.
      */
-    public BaseMultiSearchResultElement<T> setResult(final T result) {
+    public MultiSearchResultElement<T> setResult(final T result) {
         this.result = result;
         return this;
     }
@@ -49,7 +49,7 @@ public class BaseMultiSearchResultElement<T> {
      * @param status {@link Status} with for the query execution.
      * @return This object.
      */
-    public BaseMultiSearchResultElement<T> setStatus(final Status status) {
+    public MultiSearchResultElement<T> setStatus(final Status status) {
         this.status = status;
         return this;
     }
