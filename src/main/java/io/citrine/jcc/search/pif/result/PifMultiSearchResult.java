@@ -24,11 +24,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PifMultiSearchResult extends BaseMultiSearchResult<PifSearchResult, PifMultiSearchResultElement> {
-
-    public static void main(String[] args) throws Exception {
-
-    }
+public class PifMultiSearchResult extends BaseMultiSearchResult<PifMultiSearchResultElement> {
 
     @Override
     @JsonSetter("took")

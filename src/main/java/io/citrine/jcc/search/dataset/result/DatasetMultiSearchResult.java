@@ -24,8 +24,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DatasetMultiSearchResult
-        extends BaseMultiSearchResult<DatasetSearchResult, DatasetMultiSearchResultElement> {
+public class DatasetMultiSearchResult extends BaseMultiSearchResult<DatasetMultiSearchResultElement> {
 
     @Override
     @JsonSetter("took")
