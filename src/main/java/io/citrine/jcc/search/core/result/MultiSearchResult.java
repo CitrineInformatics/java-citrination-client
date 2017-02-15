@@ -11,14 +11,14 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Base class for all multi-search results.
+ * Class for all multi-search results.
  *
  * @param <T> Type of the atomic search result.
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<? extends BaseSearchResult<?>>>
-        implements Iterable<T> {
+public abstract class MultiSearchResult<T extends BaseSearchResult<?>>
+        implements Iterable<MultiSearchResultElement<T>> {
 
     /**
      * Set the number of milliseconds that the query took to execute.
@@ -27,7 +27,7 @@ public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<?
      * @return This object.
      */
     @JsonSetter("took")
-    public BaseMultiSearchResult<T> setTook(final Long took) {
+    public MultiSearchResult<T> setTook(final Long took) {
         this.took = took;
         return this;
     }
@@ -50,7 +50,7 @@ public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<?
      * @return This object.
      */
     @JsonSetter("results")
-    protected BaseMultiSearchResult<T> setResults(final List<T> results) {
+    protected MultiSearchResult<T> setResults(final List<MultiSearchResultElement<T>> results) {
         this.results = results;
         return this;
     }
@@ -62,7 +62,7 @@ public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<?
      * @return This object.
      */
     @JsonIgnore
-    public BaseMultiSearchResult<T> addResult(final T result) {
+    public MultiSearchResult<T> addResult(final MultiSearchResultElement<T> result) {
         if (this.results == null) {
             this.results = new ArrayList<>();
         }
@@ -86,7 +86,7 @@ public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<?
      * @return List of result objects.
      */
     @JsonGetter("results")
-    protected List<T> getResults() {
+    protected List<MultiSearchResultElement<T>> getResults() {
         return this.results;
     }
 
@@ -98,7 +98,7 @@ public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<?
      * @throws IllegalArgumentException if the index is out of bounds.
      */
     @JsonIgnore
-    public T getResult(final int index) {
+    public MultiSearchResultElement<T> getResult(final int index) {
         if (this.results == null) {
             throw new IndexOutOfBoundsException("Index out of range: " + index + " of 0");
         }
@@ -107,7 +107,7 @@ public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<?
 
     @Override
     @JsonIgnore
-    public Iterator<T> iterator() {
+    public Iterator<MultiSearchResultElement<T>> iterator() {
         return (this.results == null) ? Collections.emptyIterator() : this.results.iterator();
     }
 
@@ -115,5 +115,5 @@ public abstract class BaseMultiSearchResult<T extends MultiSearchResultElement<?
     private Long took;
 
     /** List of results that were generated. */
-    private List<T> results;
+    private List<MultiSearchResultElement<T>> results;
 }
