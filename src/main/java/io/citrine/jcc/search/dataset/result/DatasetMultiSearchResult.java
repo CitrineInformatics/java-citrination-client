@@ -15,8 +15,8 @@ import java.util.List;
  * <pre>
  * {@code
  * DatasetMultiSearchResult searchResult = Query.execute();
- * for (DatasetSearchResult i : searchResult) {
- *     // do work on hit
+ * for (DatasetMultiSearchResultElement i : searchResult) {
+ *     // do work on query result
  * }
  * }
  * </pre>
@@ -24,7 +24,8 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DatasetMultiSearchResult extends BaseMultiSearchResult<DatasetSearchResult> {
+public class DatasetMultiSearchResult
+        extends BaseMultiSearchResult<DatasetSearchResult, DatasetMultiSearchResultElement> {
 
     @Override
     @JsonSetter("took")
@@ -35,14 +36,14 @@ public class DatasetMultiSearchResult extends BaseMultiSearchResult<DatasetSearc
 
     @Override
     @JsonSetter("results")
-    protected DatasetMultiSearchResult setResults(final List<DatasetSearchResult> results) {
+    protected DatasetMultiSearchResult setResults(final List<DatasetMultiSearchResultElement> results) {
         super.setResults(results);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DatasetMultiSearchResult addResult(final DatasetSearchResult result) {
+    public DatasetMultiSearchResult addResult(final DatasetMultiSearchResultElement result) {
         super.addResult(result);
         return this;
     }

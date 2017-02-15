@@ -14,10 +14,11 @@ import java.util.List;
  * Base class for all multi-search results.
  *
  * @param <T> Type of the results.
+ * @param <U> Type of the atomic search result.
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public abstract class BaseMultiSearchResult<T> implements Iterable<T> {
+public abstract class BaseMultiSearchResult<T, U extends BaseMultiSearchResultElement<T>> implements Iterable<U> {
 
     /**
      * Set the number of milliseconds that the query took to execute.
@@ -49,7 +50,7 @@ public abstract class BaseMultiSearchResult<T> implements Iterable<T> {
      * @return This object.
      */
     @JsonSetter("results")
-    protected BaseMultiSearchResult<T> setResults(final List<T> results) {
+    protected BaseMultiSearchResult<T, U> setResults(final List<U> results) {
         this.results = results;
         return this;
     }
@@ -61,7 +62,7 @@ public abstract class BaseMultiSearchResult<T> implements Iterable<T> {
      * @return This object.
      */
     @JsonIgnore
-    public BaseMultiSearchResult<T> addResult(final T result) {
+    public BaseMultiSearchResult<T, U> addResult(final U result) {
         if (this.results == null) {
             this.results = new ArrayList<>();
         }
@@ -85,7 +86,7 @@ public abstract class BaseMultiSearchResult<T> implements Iterable<T> {
      * @return List of result objects.
      */
     @JsonGetter("results")
-    protected List<T> getResults() {
+    protected List<U> getResults() {
         return this.results;
     }
 
@@ -97,7 +98,7 @@ public abstract class BaseMultiSearchResult<T> implements Iterable<T> {
      * @throws IllegalArgumentException if the index is out of bounds.
      */
     @JsonIgnore
-    public T getResult(final int index) {
+    public U getResult(final int index) {
         if (this.results == null) {
             throw new IndexOutOfBoundsException("Index out of range: " + index + " of 0");
         }
@@ -106,7 +107,7 @@ public abstract class BaseMultiSearchResult<T> implements Iterable<T> {
 
     @Override
     @JsonIgnore
-    public Iterator<T> iterator() {
+    public Iterator<U> iterator() {
         return (this.results == null) ? Collections.emptyIterator() : this.results.iterator();
     }
 
@@ -114,5 +115,5 @@ public abstract class BaseMultiSearchResult<T> implements Iterable<T> {
     private Long took;
 
     /** List of results that were generated. */
-    private List<T> results;
+    private List<U> results;
 }
