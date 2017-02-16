@@ -104,6 +104,28 @@ public abstract class PaginatedQuery {
         return this.randomResults;
     }
 
+    /**
+     * Set the random seed. This is only used if randomResults is set to true.
+     *
+     * @param randomSeed Integer with the random seed.
+     * @return This object.
+     */
+    @JsonSetter("randomSeed")
+    public PaginatedQuery randomSeed(final Integer randomSeed) {
+        this.randomSeed = randomSeed;
+        return this;
+    }
+
+    /**
+     * Get the random seed. This is only used if randomResults is set to true.
+     *
+     * @return Integer with the random seed or a null pointer if it has not been set.
+     */
+    @JsonGetter("randomSeed")
+    public Integer randomSeed() {
+        return this.randomSeed;
+    }
+
     /** Index of the first hit that should be returned. */
     private Integer fromIndex;
 
@@ -112,4 +134,7 @@ public abstract class PaginatedQuery {
 
     /** Whether to return a random set of records. */
     private Boolean randomResults;
+
+    /** Random seed. */
+    private Integer randomSeed;
 }
