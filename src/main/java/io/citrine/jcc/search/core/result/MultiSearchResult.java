@@ -17,8 +17,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public abstract class MultiSearchResult<T extends BaseSearchResult<?>>
-        implements Iterable<MultiSearchResultElement<T>> {
+public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterable<MultiSearchResultElement<T>> {
 
     /**
      * Set the number of milliseconds that the query took to execute.

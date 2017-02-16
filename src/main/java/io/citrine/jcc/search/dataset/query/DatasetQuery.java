@@ -42,6 +42,13 @@ public class DatasetQuery extends HasSystemsPaginatedQuery {
     }
 
     @Override
+    @JsonSetter("randomSeed")
+    public DatasetQuery randomSeed(final Integer randomSeed) {
+        super.randomSeed(randomSeed);
+        return this;
+    }
+
+    @Override
     @JsonIgnore
     public DatasetQuery system(final SystemQuery system) {
         super.system(system);

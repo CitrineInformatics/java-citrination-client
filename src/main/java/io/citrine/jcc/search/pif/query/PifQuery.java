@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.HasSystemsPaginatedQuery;
+import io.citrine.jcc.search.dataset.query.DatasetQuery;
 import io.citrine.jcc.search.pif.query.core.SortExtracted;
 import io.citrine.jcc.search.pif.query.core.SystemQuery;
 import io.citrine.jcc.util.ListUtil;
@@ -42,6 +43,13 @@ public class PifQuery extends HasSystemsPaginatedQuery {
     @JsonSetter("randomResults")
     public PifQuery randomResults(final Boolean randomResults) {
         super.randomResults(randomResults);
+        return this;
+    }
+
+    @Override
+    @JsonSetter("randomSeed")
+    public PifQuery randomSeed(final Integer randomSeed) {
+        super.randomSeed(randomSeed);
         return this;
     }
 
