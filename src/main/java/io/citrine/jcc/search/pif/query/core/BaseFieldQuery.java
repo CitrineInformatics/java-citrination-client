@@ -98,27 +98,6 @@ public abstract class BaseFieldQuery implements HasLogic {
     }
 
     /**
-     * Set whether top level filters should be floated. This is intended to be a private method since it should only
-     * be used by templates.
-     *
-     * @param floatTopFilters True to float top level filters.
-     */
-    @JsonSetter("floatTopFilters")
-    private void floatTopFilters(final Boolean floatTopFilters) {  // Private since only Jackson should use it
-        this.floatTopFilters = floatTopFilters;
-    }
-
-    /**
-     * Get whether top level filters should be floated.
-     *
-     * @return True if top level filters should be floated or a null pointer if it has not been set.
-     */
-    @JsonGetter("floatTopFilters")
-    public Boolean floatTopFilters() {
-        return this.floatTopFilters;
-    }
-
-    /**
      * Set the length operations. This adds to any operations that are already saved.
      *
      * @param length List of {@link FieldQuery} objects.
@@ -261,9 +240,6 @@ public abstract class BaseFieldQuery implements HasLogic {
 
     /** Default value to return if a field is missing and the query part is optional. */
     private Object extractWhenMissing;
-
-    /** Set whether top level filters should be floated out into their own objects. */
-    private Boolean floatTopFilters;
 
     /** Length of that array that this object appears in. */
     private List<FieldQuery> length;
