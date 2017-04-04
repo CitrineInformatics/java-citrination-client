@@ -52,4 +52,27 @@ public class PifSearchResult extends BaseSearchResult<PifSearchHit> {
         super.addHit(hit);
         return this;
     }
+
+    /**
+     * Set the serialization of the CSV with search hits.
+     *
+     * @param csv String with the serialized CSV.
+     * @return This object.
+     */
+    public PifSearchResult setCsv(final String csv) {
+        this.csv = csv;
+        return this;
+    }
+
+    /**
+     * Get the string with the serialized CSV of search hits.
+     *
+     * @return String with the extracted search hits.
+     */
+    public String getCsv() {
+        return this.csv;
+    }
+
+    /** String with the serialized CSV of results. */
+    private String csv;
 }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.HasSystemsPaginatedQuery;
-import io.citrine.jcc.search.dataset.query.DatasetQuery;
 import io.citrine.jcc.search.pif.query.core.SortExtracted;
 import io.citrine.jcc.search.pif.query.core.SystemQuery;
 import io.citrine.jcc.util.ListUtil;
@@ -58,6 +57,72 @@ public class PifQuery extends HasSystemsPaginatedQuery {
     public PifQuery system(final SystemQuery system) {
         super.system(system);
         return this;
+    }
+
+    /**
+     * Set whether to return extracted values as a CSV.
+     *
+     * @param returnCsv True to return a CSV. Defaults to false.
+     * @return This object.
+     */
+    @JsonSetter("returnCsv")
+    public PifQuery setReturnCsv(final Boolean returnCsv) {
+        this.returnCsv = returnCsv;
+        return this;
+    }
+
+    /**
+     * Get whether to return a CSV.
+     *
+     * @return True to return a CSV or a null pointer if not set.
+     */
+    @JsonGetter("returnCsv")
+    public Boolean getReturnCsv() {
+        return this.returnCsv;
+    }
+
+    /**
+     * Set the list of CSV headers. When returnCsv is set to true, then this order will be used in the returned CSV.
+     *
+     * @param csvHeaders List of strings with the CSV headers.
+     * @return This object.
+     */
+    @JsonSetter("csvHeaders")
+    public PifQuery setCsvHeaders(final List<String> csvHeaders) {
+        this.csvHeaders = csvHeaders;
+        return this;
+    }
+
+    /**
+     * Get the list of csv headers.
+     *
+     * @return List of strings with the CSV headers or a null pointer if not set.
+     */
+    @JsonGetter("csvHeaders")
+    public List<String> getCsvHeaders() {
+        return this.csvHeaders;
+    }
+
+    /**
+     * Set whether to return hits.
+     *
+     * @param returnHits True to return hits.
+     * @return This object.
+     */
+    @JsonSetter("returnHits")
+    public PifQuery setReturnHits(final Boolean returnHits) {
+        this.returnHits = returnHits;
+        return this;
+    }
+
+    /**
+     * Get whether to return hits.
+     *
+     * @return True to return hits.
+     */
+    @JsonGetter("returnHits")
+    public Boolean getReturnHits() {
+        return this.returnHits;
     }
 
     /**
@@ -252,6 +317,15 @@ public class PifQuery extends HasSystemsPaginatedQuery {
     public boolean hasExcludeDatasets() {
         return ListUtil.hasContent(this.excludeDatasets);
     }
+
+    /** Whether to return extract values in the form of a CSV. */
+    private Boolean returnCsv;
+
+    /** Order to use in setting CSV headers. */
+    private List<String> csvHeaders;
+
+    /** Whether to return the actual PIF search hits. */
+    private Boolean returnHits;
 
     /** Whether to include the system in the results. */
     private Boolean returnSystem;
