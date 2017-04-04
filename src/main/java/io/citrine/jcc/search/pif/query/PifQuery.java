@@ -66,7 +66,7 @@ public class PifQuery extends HasSystemsPaginatedQuery {
      * @return This object.
      */
     @JsonSetter("returnCsv")
-    public PifQuery setReturnCsv(final Boolean returnCsv) {
+    public PifQuery returnCsv(final Boolean returnCsv) {
         this.returnCsv = returnCsv;
         return this;
     }
@@ -77,7 +77,7 @@ public class PifQuery extends HasSystemsPaginatedQuery {
      * @return True to return a CSV or a null pointer if not set.
      */
     @JsonGetter("returnCsv")
-    public Boolean getReturnCsv() {
+    public Boolean returnCsv() {
         return this.returnCsv;
     }
 
@@ -88,7 +88,7 @@ public class PifQuery extends HasSystemsPaginatedQuery {
      * @return This object.
      */
     @JsonSetter("csvHeaders")
-    public PifQuery setCsvHeaders(final List<String> csvHeaders) {
+    public PifQuery csvHeaders(final List<String> csvHeaders) {
         this.csvHeaders = csvHeaders;
         return this;
     }
@@ -99,7 +99,7 @@ public class PifQuery extends HasSystemsPaginatedQuery {
      * @return List of strings with the CSV headers or a null pointer if not set.
      */
     @JsonGetter("csvHeaders")
-    public List<String> getCsvHeaders() {
+    public List<String> csvHeaders() {
         return this.csvHeaders;
     }
 
@@ -110,7 +110,7 @@ public class PifQuery extends HasSystemsPaginatedQuery {
      * @return This object.
      */
     @JsonSetter("returnHits")
-    public PifQuery setReturnHits(final Boolean returnHits) {
+    public PifQuery returnHits(final Boolean returnHits) {
         this.returnHits = returnHits;
         return this;
     }
@@ -121,7 +121,7 @@ public class PifQuery extends HasSystemsPaginatedQuery {
      * @return True to return hits.
      */
     @JsonGetter("returnHits")
-    public Boolean getReturnHits() {
+    public Boolean returnHits() {
         return this.returnHits;
     }
 
