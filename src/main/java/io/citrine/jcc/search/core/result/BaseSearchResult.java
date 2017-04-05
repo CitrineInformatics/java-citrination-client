@@ -133,6 +133,33 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
         return (this.hits == null) ? Collections.emptyIterator() : this.hits.iterator();
     }
 
+    /**
+     * Combine the results in rhs with the content of this object. This method appends the data in rhs to the data
+     * contained in this object.
+     *
+     * @param rhs Object to add to this object.
+     * @return This object.
+     */
+    public BaseSearchResult<T> add(final BaseSearchResult<T> rhs) {
+
+        // Sum the execution times
+        if (this.took == null) {
+            this.took = rhs.took;
+        }
+        if (rhs.took != null) {
+            this.took += rhs.took;
+        }
+
+        // Assume the new total number of hits
+        if (rhs.totalNumHits != null) {
+            this.totalNumHits = rhs.totalNumHits;
+        }
+
+        // Append the list of hits
+        rhs.getHits().forEach(this::addHit);
+        return this;
+    }
+
     /** Number of milliseconds that the query took to execute. */
     private Long took;
 
