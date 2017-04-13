@@ -218,7 +218,7 @@ public class CitrinationClient {
         } else if (project != null) {
             this.host = "https://" + project + ".citrination.com";
         } else {
-            this.host = "https://www.citrination.com";
+            this.host = "https://citrination.com";
         }
         this.apiKey = apiKey;
     }
