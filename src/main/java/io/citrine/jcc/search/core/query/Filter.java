@@ -1,10 +1,6 @@
-package io.citrine.jcc.search.pif.query.core;
+package io.citrine.jcc.search.core.query;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import io.citrine.jcc.search.core.query.HasLogic;
-import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -17,16 +13,57 @@ import java.util.List;
 public class Filter implements HasLogic, HasFilter {
 
     @Override
-    @JsonSetter("logic")
-    public Filter logic(final Logic logic) {
+    public Filter setLogic(final Logic logic) {
         this.logic = logic;
         return this;
     }
 
     @Override
-    @JsonGetter("logic")
-    public Logic logic() {
+    public Logic getLogic() {
         return this.logic;
+    }
+
+    @Override
+    public Filter setFilter(final List<Filter> filter) {
+        this.filter = filter;
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public Filter addFilter(final List<Filter> filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public Filter addFilter(final Filter filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public int filterLength() {
+        return ListUtil.length(this.filter);
+    }
+
+    @Override
+    @JsonIgnore
+    public Iterable<Filter> filter() {
+        return ListUtil.iterable(this.filter);
+    }
+
+    @Override
+    @JsonIgnore
+    public Filter getFilter(final int index) {
+        return ListUtil.get(this.filter, index);
+    }
+
+    @Override
+    public List<Filter> getFilter() {
+        return this.filter;
     }
 
     /**
@@ -35,8 +72,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param exists True if the field must exist.
      * @return This object.
      */
-    @JsonSetter("exists")
-    public Filter exists(final Boolean exists) {
+    public Filter setExists(final Boolean exists) {
         this.exists = exists;
         return this;
     }
@@ -46,8 +82,7 @@ public class Filter implements HasLogic, HasFilter {
      *
      * @return True if the field must exist or a null pointer if it has not been set.
      */
-    @JsonGetter("exists")
-    public Boolean exists() {
+    public Boolean getExists() {
         return this.exists;
     }
 
@@ -57,8 +92,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param equal String to match against.
      * @return This object.
      */
-    @JsonSetter("equal")
-    public Filter equal(final String equal) {
+    public Filter setEqual(final String equal) {
         this.equal = equal;
         return this;
     }
@@ -68,8 +102,7 @@ public class Filter implements HasLogic, HasFilter {
      *
      * @return Match string or a null pointer if it has not been set.
      */
-    @JsonGetter("equal")
-    public String equal() {
+    public String getEqual() {
         return this.equal;
     }
 
@@ -79,8 +112,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param min Minimum value that should match.
      * @return This object.
      */
-    @JsonSetter("min")
-    public Filter min(final String min) {
+    public Filter setMin(final String min) {
         this.min = min;
         return this;
     }
@@ -91,8 +123,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param min Minimum value that should match.
      * @return This object.
      */
-    @JsonIgnore
-    public Filter min(final Integer min) {
+    public Filter setMin(final Integer min) {
         this.min = Integer.toString(min);
         return this;
     }
@@ -103,8 +134,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param min Minimum value that should match.
      * @return This object.
      */
-    @JsonIgnore
-    public Filter min(final Long min) {
+    public Filter setMin(final Long min) {
         this.min = Long.toString(min);
         return this;
     }
@@ -115,8 +145,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param min Minimum value that should match.
      * @return This object.
      */
-    @JsonIgnore
-    public Filter min(final Float min) {
+    public Filter setMin(final Float min) {
         this.min = Float.toString(min);
         return this;
     }
@@ -128,7 +157,7 @@ public class Filter implements HasLogic, HasFilter {
      * @return This object.
      */
     @JsonIgnore
-    public Filter min(final Double min) {
+    public Filter setMin(final Double min) {
         this.min = Double.toString(min);
         return this;
     }
@@ -138,8 +167,7 @@ public class Filter implements HasLogic, HasFilter {
      *
      * @return String with the minimum value that should match or a null pointer if it has not been set.
      */
-    @JsonGetter("min")
-    public String min() {
+    public String getMin() {
         return this.min;
     }
 
@@ -149,8 +177,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
-    @JsonSetter("max")
-    public Filter max(final String max) {
+    public Filter setMax(final String max) {
         this.max = max;
         return this;
     }
@@ -161,8 +188,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
-    @JsonIgnore
-    public Filter max(final Integer max) {
+    public Filter setMax(final Integer max) {
         this.max = Integer.toString(max);
         return this;
     }
@@ -173,8 +199,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
-    @JsonIgnore
-    public Filter max(final Long max) {
+    public Filter setMax(final Long max) {
         this.max = Long.toString(max);
         return this;
     }
@@ -185,8 +210,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
-    @JsonIgnore
-    public Filter max(final Float max) {
+    public Filter setMax(final Float max) {
         this.max = Float.toString(max);
         return this;
     }
@@ -197,8 +221,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
-    @JsonIgnore
-    public Filter max(final Double max) {
+    public Filter setMax(final Double max) {
         this.max = Double.toString(max);
         return this;
     }
@@ -208,19 +231,18 @@ public class Filter implements HasLogic, HasFilter {
      *
      * @return String with the maximum value that should match or a null pointer if it as not been set.
      */
-    @JsonGetter("max")
-    public String max() {
+    public String getMax() {
         return this.max;
     }
 
     /**
-     * Set whether matches should be exact. This only applies when using the {@link #equal()} field. Defaults to false.
+     * Set whether matches should be exact. This only applies when using the {@link #getEqual()} field.
+     * Defaults to false.
      *
      * @param exact True if matches should be exact.
      * @return This object.
      */
-    @JsonSetter("exact")
-    public Filter exact(final Boolean exact) {
+    public Filter setExact(final Boolean exact) {
         this.exact = exact;
         return this;
     }
@@ -230,41 +252,11 @@ public class Filter implements HasLogic, HasFilter {
      *
      * @return True if matches should be exact or a null pointer if it has not been set.
      */
-    @JsonGetter("exact")
-    public Boolean exact() {
+    public Boolean getExact() {
         return this.exact;
     }
 
-    /**
-     * Set the nested list of filters that apply to the field.
-     *
-     * @param filter List of {@link Filter} objects.
-     */
-    @JsonSetter("filter")
-    private void filter(final List<Filter> filter) {
-        this.filter = ListUtil.add(filter, this.filter);
-    }
-
-    @Override
-    @JsonIgnore
-    public Filter filter(final Filter filter) {
-        this.filter = ListUtil.add(filter, this.filter);
-        return this;
-    }
-
-    @Override
-    @JsonGetter("filter")
-    public Iterable<Filter> filter() {
-        return ListUtil.iterable(this.filter);
-    }
-
-    @Override
-    @JsonIgnore
-    public boolean hasFilter() {
-        return ListUtil.hasContent(this.filter);
-    }
-
-    /** Logic for applying the filters. */
+    /** Logic for applying the filter. */
     private Logic logic;
 
     /** Just check for existence. */

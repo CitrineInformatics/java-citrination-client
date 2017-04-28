@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.citrine.jcc.predict.PredictionRequest;
 import io.citrine.jcc.predict.PredictionResult;
-import io.citrine.jcc.search.core.result.MultiSearchResult;
-import io.citrine.jcc.search.pif.query.PifMultiQuery;
-import io.citrine.jcc.search.pif.query.PifQuery;
+import io.citrine.jcc.search.core.query.MultiQuery;
+import io.citrine.jcc.search.core.query.MultiSearchResult;
+import io.citrine.jcc.search.pif.query.PifReturningQuery;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -33,12 +33,12 @@ public class CitrinationClient {
     /**
      * Run a search using the input query.
      *
-     * @param pifQuery {@link PifQuery} to make against the site.
+     * @param pifQuery {@link PifReturningQuery} to make against the site.
      * @return {@link PifSearchResult} with the result of the query.
      * @throws IOException      if thrown from within this function.
      * @throws RuntimeException if a non-200 response is received.
      */
-    public PifSearchResult search(final PifQuery pifQuery) throws IOException {
+    public PifSearchResult search(final PifReturningQuery pifQuery) throws IOException {
         final HttpPost post = buildSearchRequest(pifQuery);
         try (final CloseableHttpClient client = buildHttpClient()) {
             try (final CloseableHttpResponse response = client.execute(post)) {
@@ -50,13 +50,14 @@ public class CitrinationClient {
     /**
      * Execute a multi-search request.
      *
-     * @param pifMultiQuery {@link PifMultiQuery} to run.
+     * @param multiQuery {@link MultiQuery} to run.
      * @return {@link MultiSearchResult} with all of the results.
      * @throws IOException if thrown from within this function.
      * @throws RuntimeException if a non-200 response is received.
      */
-    public MultiSearchResult<PifSearchResult> search(final PifMultiQuery pifMultiQuery) throws IOException {
-        final HttpPost post = buildMultiSearchRequest(pifMultiQuery);
+    public MultiSearchResult<PifSearchResult> search(
+            final MultiQuery<PifReturningQuery> multiQuery) throws IOException {
+        final HttpPost post = buildMultiSearchRequest(multiQuery);
         try (final CloseableHttpClient client = buildHttpClient()) {
             try (final CloseableHttpResponse response = client.execute(post)) {
                 return buildMultiSearchResult(response);
@@ -114,22 +115,22 @@ public class CitrinationClient {
     /**
      * Build the POST request with the query to execute.
      *
-     * @param pifQuery {@link PifQuery} to run.
+     * @param pifQuery {@link PifReturningQuery} to run.
      * @return {@link HttpPost} object with the POST request to make.
      * @throws IOException if thrown from within this function.
      */
-    HttpPost buildSearchRequest(final PifQuery pifQuery) throws IOException {
+    HttpPost buildSearchRequest(final PifReturningQuery pifQuery) throws IOException {
         return createCommonSearchRequest(pifQuery);
     }
 
     /**
      * Build the POST request with the query to execute.
      *
-     * @param pifQuery {@link PifQuery} to run.
+     * @param pifQuery {@link PifReturningQuery} to run.
      * @return {@link HttpPost} object with the POST request to make.
      * @throws IOException if thrown from within this function.
      */
-    HttpPost createCommonSearchRequest(final PifQuery pifQuery) throws IOException {
+    HttpPost createCommonSearchRequest(final PifReturningQuery pifQuery) throws IOException {
         final HttpPost post = new HttpPost(this.host + "/api/search/pif_search");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
@@ -140,26 +141,26 @@ public class CitrinationClient {
     /**
      * Build the POST request with the multi-query to execute.
      *
-     * @param pifMultiQuery {@link PifMultiQuery} to run.
+     * @param multiQuery {@link MultiQuery} to run.
      * @return {@link HttpPost} object with the POST request to make.
      * @throws IOException if thrown from within this function.
      */
-    HttpPost buildMultiSearchRequest(final PifMultiQuery pifMultiQuery) throws IOException {
-        return createCommonMultiSearchRequest(pifMultiQuery);
+    HttpPost buildMultiSearchRequest(final MultiQuery<PifReturningQuery> multiQuery) throws IOException {
+        return createCommonMultiSearchRequest(multiQuery);
     }
 
     /**
      * Build the POST request with the multi-query to execute.
      *
-     * @param pifMultiQuery {@link PifMultiQuery} to run.
+     * @param multiQuery {@link MultiQuery} to run.
      * @return {@link HttpPost} object with the POST request to make.
      * @throws IOException if thrown from within this function.
      */
-    HttpPost createCommonMultiSearchRequest(final PifMultiQuery pifMultiQuery) throws IOException {
+    HttpPost createCommonMultiSearchRequest(final MultiQuery<PifReturningQuery> multiQuery) throws IOException {
         final HttpPost post = new HttpPost(this.host + "/api/search/pif_multi_search");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
-        post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(pifMultiQuery)));
+        post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(multiQuery)));
         return post;
     }
 

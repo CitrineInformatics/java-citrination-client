@@ -13,12 +13,12 @@ public interface HasLogic {
      * @param logic {@link Logic} to apply.
      * @return This object.
      */
-    HasLogic logic(final Logic logic);
+    HasLogic setLogic(final Logic logic);
 
     /**
      * Get the logic of the operation.
      *
      * @return {@link Logic} object or a null pointer if one has not been set.
      */
-    Logic logic();
+    Logic getLogic();
 }

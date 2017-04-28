@@ -1,7 +1,6 @@
 package io.citrine.jcc.search.dataset.result;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.search.pif.query.SystemQuery;
 
 /**
  * Class to store information about a single search hit with dataset information.
@@ -16,7 +15,6 @@ public class DatasetSearchHit {
      * @param id ID of the dataset
      * @return This object.
      */
-    @JsonSetter("id")
     public DatasetSearchHit setId(final String id) {
         this.id = id;
         return this;
@@ -27,7 +25,6 @@ public class DatasetSearchHit {
      *
      * @return ID of the dataset.
      */
-    @JsonGetter("id")
     public String getId() {
         return this.id;
     }
@@ -38,7 +35,6 @@ public class DatasetSearchHit {
      * @param score Double with the score of the hit.
      * @return This object.
      */
-    @JsonSetter("score")
     public DatasetSearchHit setScore(final Double score) {
         this.score = score;
         return this;
@@ -49,9 +45,108 @@ public class DatasetSearchHit {
      *
      * @return Double with the score of the hit.
      */
-    @JsonGetter("score")
     public Double getScore() {
         return this.score;
+    }
+
+    /**
+     * Set whether the dataset is featured.
+     *
+     * @param isFeatured True if the dataset is featured.
+     * @return This object.
+     */
+    public DatasetSearchHit setIsFeatured(final Boolean isFeatured) {
+        this.isFeatured = isFeatured;
+        return this;
+    }
+
+    /**
+     * Get whether the dataset is featured.
+     *
+     * @return True if the dataset is featured.
+     */
+    public Boolean getIsFeatured() {
+        return this.isFeatured;
+    }
+
+    /**
+     * Set the name of the dataset.
+     *
+     * @param name String with the name of the dataset.
+     * @return This object.
+     */
+    public DatasetSearchHit setName(final String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the name of the dataset.
+     *
+     * @return String with the name of the dataset.
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Set the description of the dataset.
+     *
+     * @param description String with the description of the dataset.
+     * @return This object.
+     */
+    public DatasetSearchHit setDescription(final String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get the description of the dataset.
+     *
+     * @return String with the description of the dataset.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Set the name of the owner of the dataset.
+     *
+     * @param owner String with the name of the owner of the dataset.
+     * @return This object.
+     */
+    public DatasetSearchHit setOwner(final String owner) {
+        this.owner = owner;
+        return this;
+    }
+
+    /**
+     * Get the name of the owner of the dataset.
+     *
+     * @return String with the name of the owner of the dataset.
+     */
+    public String getOwner() {
+        return this.owner;
+    }
+
+    /**
+     * Set the email address of the owner of the dataset.
+     *
+     * @param email String with the email address of the owner of the dataset.
+     * @return This object.
+     */
+    public DatasetSearchHit setEmail(final String email) {
+        this.email = email;
+        return this;
+    }
+
+    /**
+     * Get the email address of the owner of the dataset.
+     *
+     * @return String with the email address of the owner of the dataset.
+     */
+    public String getEmail() {
+        return this.email;
     }
 
     /**
@@ -60,19 +155,17 @@ public class DatasetSearchHit {
      * @param numPifs Number of PIFs in the dataset.
      * @return This object.
      */
-    @JsonSetter("numPifs")
     public DatasetSearchHit setNumPifs(final Long numPifs) {
         this.numPifs = numPifs;
         return this;
     }
 
     /**
-     * Get the number of PIFs in the dataset. If one or more {@link io.citrine.jcc.search.pif.query.core.SystemQuery}
+     * Get the number of PIFs in the dataset. If one or more {@link SystemQuery}
      * queries were passed into the search request, then this value is the number of PIFs that matched those queries.
      *
      * @return Number of PIFs in the dataset.
      */
-    @JsonGetter("numPifs")
     public Long getNumPifs() {
         return this.numPifs;
     }
@@ -82,6 +175,21 @@ public class DatasetSearchHit {
 
     /** Version of the dataset. */
     private Double score;
+
+    /** Whether the dataset is featured. */
+    private Boolean isFeatured;
+
+    /** Name of the dataset. */
+    private String name;
+
+    /** Description of the dataset. */
+    private String description;
+
+    /** Name of the owner of the dataset. */
+    private String owner;
+
+    /** Email address of the owner of the dataset. */
+    private String email;
 
     /** Number of PIFs in the dataset. */
     private Long numPifs;
