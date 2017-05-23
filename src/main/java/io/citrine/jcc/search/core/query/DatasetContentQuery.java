@@ -2,140 +2,27 @@ package io.citrine.jcc.search.core.query;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.dataset.query.DatasetQuery;
-import io.citrine.jcc.search.pif.query.SystemQuery;
+import io.citrine.jcc.search.pif.query.PifSystemQuery;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
 
 /**
- * Base class for all queries against datasets and the items that they contain on Citrination.
+ * Query against dataset metadata, PIF content, file content, or some combination of those types.
  *
  * @author Kyle Michel
  */
-public abstract class BaseDatasetQuery {
+public class DatasetContentQuery implements HasLogic {
 
-    /**
-     * Index of the first hit that should be returned. This method is here just to be compatible with the python
-     * client.
-     *
-     * @param fromIndex Index of the first hit (inclusive of zero) that should be returned.
-     * @return This object.
-     */
-    public BaseDatasetQuery setFromIndex(final Integer fromIndex) {
-        return this.setFrom(fromIndex);
-    }
-
-    /**
-     * Get the index of the first hit that should be returned.
-     *
-     * @return Index of the first hit that should be returned or a null pointer if not set.
-     */
-    public Integer getFromIndex() {
-        return this.getFrom();
-    }
-
-    /**
-     * Index of the first hit that should be returned. This is an alias for {@link #setFromIndex(Integer)}.
-     *
-     * @param from Index of the first hit (inclusive of zero) that should be returned.
-     * @return This object.
-     */
-    public BaseDatasetQuery setFrom(final Integer from) {
-        this.from = from;
+    @Override
+    public DatasetContentQuery setLogic(final Logic logic) {
+        this.logic = logic;
         return this;
     }
 
-    /**
-     * Get the index of the first hit that should be returned. This is an alias for {@link #getFromIndex()}.
-     *
-     * @return Index of the first hit that should be returned or a null pointer if not set.
-     */
-    @JsonIgnore
-    public Integer getFrom() {
-        return this.from;
-    }
-
-    /**
-     * Set the maximum number of records that should be returned. If set to 0, then no results are saved, but the
-     * total number of hits will still be returned from the query. This can be used to count the number of records
-     * that will match a query.
-     *
-     * @param size Maximum number of records to return.
-     * @return This object.
-     */
-    public BaseDatasetQuery setSize(final Integer size) {
-        this.size = size;
-        return this;
-    }
-
-    /**
-     * Get the maximum number of records that should be returned.
-     *
-     * @return Maximum number of records that should be returned or a null pointer if not set.
-     */
-    public Integer getSize() {
-        return this.size;
-    }
-
-    /**
-     * Set whether a random assortment of results should be returned. This produces a different set of hits in a
-     * different order with every query if set to true. There is not any kind of memory between queries.
-     *
-     * @param randomResults True to return random records.
-     * @return This object.
-     */
-    public BaseDatasetQuery setRandomResults(final Boolean randomResults) {
-        this.randomResults = randomResults;
-        return this;
-    }
-
-    /**
-     * Get whether a random assortment of results should be returned.
-     *
-     * @return True to return random records.
-     */
-    public Boolean getRandomResults() {
-        return this.randomResults;
-    }
-
-    /**
-     * Set the random seed. This is only used if randomResults is set to true.
-     *
-     * @param randomSeed Integer with the random seed.
-     * @return This object.
-     */
-    public BaseDatasetQuery setRandomSeed(final Integer randomSeed) {
-        this.randomSeed = randomSeed;
-        return this;
-    }
-
-    /**
-     * Get the random seed. This is only used if randomResults is set to true.
-     *
-     * @return Integer with the random seed or a null pointer if it has not been set.
-     */
-    public Integer getRandomSeed() {
-        return this.randomSeed;
-    }
-
-    /**
-     * Set whether relevancy should be used in results.
-     *
-     * @param scoreRelevance True to score relevance.
-     * @return This object.
-     */
-    public BaseDatasetQuery setScoreRelevance(final Boolean scoreRelevance) {
-        this.scoreRelevance = scoreRelevance;
-        return this;
-    }
-
-    /**
-     * Get relevancy should be used in results.
-     *
-     * @return True if relevancy should be used in results.
-     */
-    public Boolean getScoreRelevance() {
-        return this.scoreRelevance;
+    @Override
+    public Logic getLogic() {
+        return this.logic;
     }
 
     /**
@@ -144,7 +31,7 @@ public abstract class BaseDatasetQuery {
      * @param datasetId List of {@link Filter} objects.
      * @return This object.
      */
-    public BaseDatasetQuery setDatasetId(final List<Filter> datasetId) {
+    public DatasetContentQuery setDatasetId(final List<Filter> datasetId) {
         this.datasetId = datasetId;
         return this;
     }
@@ -156,7 +43,7 @@ public abstract class BaseDatasetQuery {
      * @return This object.
      */
     @JsonIgnore
-    public BaseDatasetQuery addDatasetId(final List<Filter> datasetId) {
+    public DatasetContentQuery addDatasetId(final List<Filter> datasetId) {
         this.datasetId = ListUtil.add(datasetId, this.datasetId);
         return this;
     }
@@ -168,7 +55,7 @@ public abstract class BaseDatasetQuery {
      * @return This object.
      */
     @JsonIgnore
-    public BaseDatasetQuery addDatasetId(final Filter datasetId) {
+    public DatasetContentQuery addDatasetId(final Filter datasetId) {
         this.datasetId = ListUtil.add(datasetId, this.datasetId);
         return this;
     }
@@ -208,7 +95,7 @@ public abstract class BaseDatasetQuery {
      * @param dataset List of {@link DatasetQuery} objects.
      * @return This object.
      */
-    public BaseDatasetQuery setDataset(final List<DatasetQuery> dataset) {
+    public DatasetContentQuery setDataset(final List<DatasetQuery> dataset) {
         this.dataset = dataset;
         return this;
     }
@@ -220,7 +107,7 @@ public abstract class BaseDatasetQuery {
      * @return This object.
      */
     @JsonIgnore
-    public BaseDatasetQuery addDataset(final List<DatasetQuery> dataset) {
+    public DatasetContentQuery addDataset(final List<DatasetQuery> dataset) {
         this.dataset = ListUtil.add(dataset, this.dataset);
         return this;
     }
@@ -232,7 +119,7 @@ public abstract class BaseDatasetQuery {
      * @return This object.
      */
     @JsonIgnore
-    public BaseDatasetQuery addDataset(final DatasetQuery dataset) {
+    public DatasetContentQuery addDataset(final DatasetQuery dataset) {
         this.dataset = ListUtil.add(dataset, this.dataset);
         return this;
     }
@@ -272,7 +159,7 @@ public abstract class BaseDatasetQuery {
      * @param systemId List of {@link Filter} objects.
      * @return This object.
      */
-    public BaseDatasetQuery setSystemId(final List<Filter> systemId) {
+    public DatasetContentQuery setSystemId(final List<Filter> systemId) {
         this.systemId = systemId;
         return this;
     }
@@ -284,7 +171,7 @@ public abstract class BaseDatasetQuery {
      * @return This object.
      */
     @JsonIgnore
-    public BaseDatasetQuery addSystemId(final List<Filter> systemId) {
+    public DatasetContentQuery addSystemId(final List<Filter> systemId) {
         this.systemId = ListUtil.add(systemId, this.systemId);
         return this;
     }
@@ -296,7 +183,7 @@ public abstract class BaseDatasetQuery {
      * @return This object.
      */
     @JsonIgnore
-    public BaseDatasetQuery addSystemId(final Filter systemId) {
+    public DatasetContentQuery addSystemId(final Filter systemId) {
         this.systemId = ListUtil.add(systemId, this.systemId);
         return this;
     }
@@ -333,10 +220,10 @@ public abstract class BaseDatasetQuery {
     /**
      * Set the list of PIF system queries. This replaces any filters that are already present.
      *
-     * @param system List of {@link SystemQuery} objects.
+     * @param system List of {@link PifSystemQuery} objects.
      * @return This object.
      */
-    public BaseDatasetQuery setSystem(final List<SystemQuery> system) {
+    public DatasetContentQuery setSystem(final List<PifSystemQuery> system) {
         this.system = system;
         return this;
     }
@@ -344,11 +231,11 @@ public abstract class BaseDatasetQuery {
     /**
      * Add to the list of PIF system queries.
      *
-     * @param system List of {@link SystemQuery} objects.
+     * @param system List of {@link PifSystemQuery} objects.
      * @return This object.
      */
     @JsonIgnore
-    public BaseDatasetQuery addSystem(final List<SystemQuery> system) {
+    public DatasetContentQuery addSystem(final List<PifSystemQuery> system) {
         this.system = ListUtil.add(system, this.system);
         return this;
     }
@@ -356,11 +243,11 @@ public abstract class BaseDatasetQuery {
     /**
      * Add to the list of PIF system queries.
      *
-     * @param system {@link SystemQuery} object to add.
+     * @param system {@link PifSystemQuery} object to add.
      * @return This object.
      */
     @JsonIgnore
-    public BaseDatasetQuery addSystem(final SystemQuery system) {
+    public DatasetContentQuery addSystem(final PifSystemQuery system) {
         this.system = ListUtil.add(system, this.system);
         return this;
     }
@@ -378,36 +265,24 @@ public abstract class BaseDatasetQuery {
     /**
      * Get an iterable over the PIF system queries.
      *
-     * @return {@link Iterable} of {@link SystemQuery} objects.
+     * @return {@link Iterable} of {@link PifSystemQuery} objects.
      */
     @JsonIgnore
-    public Iterable<SystemQuery> system() {
+    public Iterable<PifSystemQuery> system() {
         return ListUtil.iterable(this.system);
     }
 
     /**
      * Get the list of PIF system queries.
      *
-     * @return List of {@link SystemQuery} objects.
+     * @return List of {@link PifSystemQuery} objects.
      */
-    public List<SystemQuery> getSystem() {
+    public List<PifSystemQuery> getSystem() {
         return this.system;
     }
 
-    /** Index of the first hit that should be returned. */
-    private Integer from;
-
-    /** Total number of hits the should be returned. */
-    private Integer size;
-
-    /** Whether to return a random set of records. */
-    private Boolean randomResults;
-
-    /** Random seed. */
-    private Integer randomSeed;
-
-    /** Whether to use relevance scoring. */
-    private Boolean scoreRelevance;
+    /** Logic for the query. */
+    private Logic logic;
 
     /** List of filters against the dataset ID. */
     private List<Filter> datasetId;
@@ -419,5 +294,5 @@ public abstract class BaseDatasetQuery {
     private List<Filter> systemId;
 
     /** List of queries against PIF systems. */
-    private List<SystemQuery> system;
+    private List<PifSystemQuery> system;
 }

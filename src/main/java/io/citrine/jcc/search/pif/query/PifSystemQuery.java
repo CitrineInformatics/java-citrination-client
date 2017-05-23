@@ -22,88 +22,88 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class SystemQuery extends BaseObjectQuery {
+public class PifSystemQuery extends BaseObjectQuery {
 
     @Override
-    public SystemQuery setLogic(final Logic logic) {
+    public PifSystemQuery setLogic(final Logic logic) {
         super.setLogic(logic);
         return this;
     }
 
     @Override
-    public SystemQuery setExtractAs(final String extractAs) {
+    public PifSystemQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;
     }
 
     @Override
-    public SystemQuery setExtractAll(final Boolean extractAll) {
+    public PifSystemQuery setExtractAll(final Boolean extractAll) {
         super.setExtractAll(extractAll);
         return this;
     }
 
     @Override
-    public SystemQuery setExtractWhenMissing(final Object extractWhenMissing) {
+    public PifSystemQuery setExtractWhenMissing(final Object extractWhenMissing) {
         super.setExtractWhenMissing(extractWhenMissing);
         return this;
     }
 
     @Override
-    public SystemQuery setTags(final List<FieldQuery> tags) {
+    public PifSystemQuery setTags(final List<FieldQuery> tags) {
         super.setTags(tags);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public SystemQuery addTags(final List<FieldQuery> tags) {
+    public PifSystemQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public SystemQuery addTags(final FieldQuery tags) {
+    public PifSystemQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    public SystemQuery setLength(final List<FieldQuery> length) {
+    public PifSystemQuery setLength(final List<FieldQuery> length) {
         super.setLength(length);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public SystemQuery addLength(final List<FieldQuery> length) {
+    public PifSystemQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public SystemQuery addLength(final FieldQuery length) {
+    public PifSystemQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    public SystemQuery setOffset(final List<FieldQuery> offset) {
+    public PifSystemQuery setOffset(final List<FieldQuery> offset) {
         super.setOffset(offset);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public SystemQuery addOffset(final List<FieldQuery> offset) {
+    public PifSystemQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public SystemQuery addOffset(final FieldQuery offset) {
+    public PifSystemQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
     }
@@ -114,7 +114,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param names List of {@link FieldQuery} objects.
      * @return This object.
      */
-    public SystemQuery setNames(final List<FieldQuery> names) {
+    public PifSystemQuery setNames(final List<FieldQuery> names) {
         this.names = names;
         return this;
     }
@@ -126,7 +126,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addNames(final List<FieldQuery> names) {
+    public PifSystemQuery addNames(final List<FieldQuery> names) {
         this.names = ListUtil.add(names, this.names);
         return this;
     }
@@ -138,7 +138,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addNames(final FieldQuery names) {
+    public PifSystemQuery addNames(final FieldQuery names) {
         this.names = ListUtil.add(names, this.names);
         return this;
     }
@@ -189,7 +189,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param ids List of {@link IdQuery} objects.
      * @return This object.
      */
-    public SystemQuery setIds(final List<IdQuery> ids) {
+    public PifSystemQuery setIds(final List<IdQuery> ids) {
         this.ids = ids;
         return this;
     }
@@ -201,7 +201,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addIds(final List<IdQuery> ids) {
+    public PifSystemQuery addIds(final List<IdQuery> ids) {
         this.ids = ListUtil.add(ids, this.ids);
         return this;
     }
@@ -213,7 +213,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addIds(final IdQuery ids) {
+    public PifSystemQuery addIds(final IdQuery ids) {
         this.ids = ListUtil.add(ids, this.ids);
         return this;
     }
@@ -264,7 +264,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param classifications List of {@link ClassificationQuery} objects.
      * @return This object.
      */
-    public SystemQuery setClassifications(final List<ClassificationQuery> classifications) {
+    public PifSystemQuery setClassifications(final List<ClassificationQuery> classifications) {
         this.classifications = classifications;
         return this;
     }
@@ -276,7 +276,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addClassifications(final List<ClassificationQuery> classifications) {
+    public PifSystemQuery addClassifications(final List<ClassificationQuery> classifications) {
         this.classifications = ListUtil.add(classifications, this.classifications);
         return this;
     }
@@ -288,7 +288,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addClassifications(final ClassificationQuery classifications) {
+    public PifSystemQuery addClassifications(final ClassificationQuery classifications) {
         this.classifications = ListUtil.add(classifications, this.classifications);
         return this;
     }
@@ -339,7 +339,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param source List of {@link SourceQuery} objects.
      * @return This object.
      */
-    public SystemQuery setSource(final List<SourceQuery> source) {
+    public PifSystemQuery setSource(final List<SourceQuery> source) {
         this.source = source;
         return this;
     }
@@ -351,7 +351,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addSource(final List<SourceQuery> source) {
+    public PifSystemQuery addSource(final List<SourceQuery> source) {
         this.source = ListUtil.add(source, this.source);
         return this;
     }
@@ -363,7 +363,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addSource(final SourceQuery source) {
+    public PifSystemQuery addSource(final SourceQuery source) {
         this.source = ListUtil.add(source, this.source);
         return this;
     }
@@ -414,7 +414,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param quantity List of {@link QuantityQuery} objects.
      * @return This object.
      */
-    public SystemQuery setQuantity(final List<QuantityQuery> quantity) {
+    public PifSystemQuery setQuantity(final List<QuantityQuery> quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -426,7 +426,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addQuantity(final List<QuantityQuery> quantity) {
+    public PifSystemQuery addQuantity(final List<QuantityQuery> quantity) {
         this.quantity = ListUtil.add(quantity, this.quantity);
         return this;
     }
@@ -438,7 +438,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addQuantity(final QuantityQuery quantity) {
+    public PifSystemQuery addQuantity(final QuantityQuery quantity) {
         this.quantity = ListUtil.add(quantity, this.quantity);
         return this;
     }
@@ -489,7 +489,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param chemicalFormula List of {@link ChemicalFieldQuery} objects.
      * @return This object.
      */
-    public SystemQuery setChemicalFormula(final List<ChemicalFieldQuery> chemicalFormula) {
+    public PifSystemQuery setChemicalFormula(final List<ChemicalFieldQuery> chemicalFormula) {
         this.chemicalFormula = chemicalFormula;
         return this;
     }
@@ -501,7 +501,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addChemicalFormula(final List<ChemicalFieldQuery> chemicalFormula) {
+    public PifSystemQuery addChemicalFormula(final List<ChemicalFieldQuery> chemicalFormula) {
         this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
         return this;
     }
@@ -513,7 +513,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addChemicalFormula(final ChemicalFieldQuery chemicalFormula) {
+    public PifSystemQuery addChemicalFormula(final ChemicalFieldQuery chemicalFormula) {
         this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
         return this;
     }
@@ -564,7 +564,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param composition List of {@link CompositionQuery} objects.
      * @return This object.
      */
-    public SystemQuery setComposition(final List<CompositionQuery> composition) {
+    public PifSystemQuery setComposition(final List<CompositionQuery> composition) {
         this.composition = composition;
         return this;
     }
@@ -576,7 +576,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addComposition(final List<CompositionQuery> composition) {
+    public PifSystemQuery addComposition(final List<CompositionQuery> composition) {
         this.composition = ListUtil.add(composition, this.composition);
         return this;
     }
@@ -588,7 +588,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addComposition(final CompositionQuery composition) {
+    public PifSystemQuery addComposition(final CompositionQuery composition) {
         this.composition = ListUtil.add(composition, this.composition);
         return this;
     }
@@ -639,7 +639,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param properties List of {@link PropertyQuery} objects.
      * @return This object.
      */
-    public SystemQuery setProperties(final List<PropertyQuery> properties) {
+    public PifSystemQuery setProperties(final List<PropertyQuery> properties) {
         this.properties = properties;
         return this;
     }
@@ -651,7 +651,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addProperties(final List<PropertyQuery> properties) {
+    public PifSystemQuery addProperties(final List<PropertyQuery> properties) {
         this.properties = ListUtil.add(properties, this.properties);
         return this;
     }
@@ -663,7 +663,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addProperties(final PropertyQuery properties) {
+    public PifSystemQuery addProperties(final PropertyQuery properties) {
         this.properties = ListUtil.add(properties, this.properties);
         return this;
     }
@@ -714,7 +714,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param preparation List of {@link ProcessStepQuery} objects.
      * @return This object.
      */
-    public SystemQuery setPreparation(final List<ProcessStepQuery> preparation) {
+    public PifSystemQuery setPreparation(final List<ProcessStepQuery> preparation) {
         this.preparation = preparation;
         return this;
     }
@@ -726,7 +726,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addPreparation(final List<ProcessStepQuery> preparation) {
+    public PifSystemQuery addPreparation(final List<ProcessStepQuery> preparation) {
         this.preparation = ListUtil.add(preparation, this.preparation);
         return this;
     }
@@ -738,7 +738,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addPreparation(final ProcessStepQuery preparation) {
+    public PifSystemQuery addPreparation(final ProcessStepQuery preparation) {
         this.preparation = ListUtil.add(preparation, this.preparation);
         return this;
     }
@@ -789,7 +789,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @param references List of {@link ReferenceQuery} objects.
      * @return This object.
      */
-    public SystemQuery setReferences(final List<ReferenceQuery> references) {
+    public PifSystemQuery setReferences(final List<ReferenceQuery> references) {
         this.references = references;
         return this;
     }
@@ -801,7 +801,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addReferences(final List<ReferenceQuery> references) {
+    public PifSystemQuery addReferences(final List<ReferenceQuery> references) {
         this.references = ListUtil.add(references, this.references);
         return this;
     }
@@ -813,7 +813,7 @@ public class SystemQuery extends BaseObjectQuery {
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addReferences(final ReferenceQuery references) {
+    public PifSystemQuery addReferences(final ReferenceQuery references) {
         this.references = ListUtil.add(references, this.references);
         return this;
     }
@@ -861,10 +861,10 @@ public class SystemQuery extends BaseObjectQuery {
     /**
      * Set the subSystems operations. This adds to any operations that are already saved.
      *
-     * @param subSystems List of {@link SystemQuery} objects.
+     * @param subSystems List of {@link PifSystemQuery} objects.
      * @return This object.
      */
-    public SystemQuery setSubSystems(final List<SystemQuery> subSystems) {
+    public PifSystemQuery setSubSystems(final List<PifSystemQuery> subSystems) {
         this.subSystems = subSystems;
         return this;
     }
@@ -872,11 +872,11 @@ public class SystemQuery extends BaseObjectQuery {
     /**
      * Add to the list of subSystems operations.
      *
-     * @param subSystems {@link SystemQuery} to add.
+     * @param subSystems {@link PifSystemQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addSubSystems(final List<SystemQuery> subSystems) {
+    public PifSystemQuery addSubSystems(final List<PifSystemQuery> subSystems) {
         this.subSystems = ListUtil.add(subSystems, this.subSystems);
         return this;
     }
@@ -884,11 +884,11 @@ public class SystemQuery extends BaseObjectQuery {
     /**
      * Add to the list of subSystems operations.
      *
-     * @param subSystems {@link SystemQuery} to add.
+     * @param subSystems {@link PifSystemQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public SystemQuery addSubSystems(final SystemQuery subSystems) {
+    public PifSystemQuery addSubSystems(final PifSystemQuery subSystems) {
         this.subSystems = ListUtil.add(subSystems, this.subSystems);
         return this;
     }
@@ -906,10 +906,10 @@ public class SystemQuery extends BaseObjectQuery {
     /**
      * Get an iterable over subSystems operations.
      *
-     * @return Iterable of {@link SystemQuery} objects.
+     * @return Iterable of {@link PifSystemQuery} objects.
      */
     @JsonIgnore
-    public Iterable<SystemQuery> subSystems() {
+    public Iterable<PifSystemQuery> subSystems() {
         return ListUtil.iterable(this.subSystems);
     }
 
@@ -917,19 +917,19 @@ public class SystemQuery extends BaseObjectQuery {
      * Get the subSystems query at the input index.
      *
      * @param index Index of the subSystems query to get.
-     * @return {@link SystemQuery} at the input index.
+     * @return {@link PifSystemQuery} at the input index.
      */
     @JsonIgnore
-    public SystemQuery getSubSystems(final int index) {
+    public PifSystemQuery getSubSystems(final int index) {
         return ListUtil.get(this.subSystems, index);
     }
 
     /**
      * Get the subSystems field queries.
      *
-     * @return List of {@link SystemQuery} objects.
+     * @return List of {@link PifSystemQuery} objects.
      */
-    public List<SystemQuery> getSubSystems() {
+    public List<PifSystemQuery> getSubSystems() {
         return this.subSystems;
     }
 
@@ -964,5 +964,5 @@ public class SystemQuery extends BaseObjectQuery {
     private List<ReferenceQuery> references;
 
     /** Subsystems. */
-    private List<SystemQuery> subSystems;
+    private List<PifSystemQuery> subSystems;
 }

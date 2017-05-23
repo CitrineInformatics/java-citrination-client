@@ -3,10 +3,10 @@ package io.citrine.jcc.search.pif.query;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.citrine.jcc.search.core.query.BaseDatasetQuery;
+import io.citrine.jcc.search.core.query.BaseReturningQuery;
+import io.citrine.jcc.search.core.query.DatasetContentQuery;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.Logic;
-import io.citrine.jcc.search.dataset.query.DatasetQuery;
 
 import java.util.List;
 
@@ -18,122 +18,62 @@ import java.util.List;
  * @author Kyle Michel
  */
 // The order here is necessary for deserialization. It ensures that values are not overwritten.
-@JsonPropertyOrder({"datasetId", "includeDatasets", "excludeDatasets"})
-public class PifReturningQuery extends BaseDatasetQuery {
+@JsonPropertyOrder({"query", "includeDatasets", "excludeDatasets"})
+public class PifSystemReturningQuery extends BaseReturningQuery {
 
     @Override
-    public PifReturningQuery setFromIndex(final Integer fromIndex) {
+    public PifSystemReturningQuery setFromIndex(final Integer fromIndex) {
         super.setFrom(fromIndex);
         return this;
     }
 
     @Override
-    public PifReturningQuery setFrom(final Integer from) {
+    public PifSystemReturningQuery setFrom(final Integer from) {
         super.setFrom(from);
         return this;
     }
 
     @Override
-    public PifReturningQuery setSize(final Integer size) {
+    public PifSystemReturningQuery setSize(final Integer size) {
         super.setSize(size);
         return this;
     }
 
     @Override
-    public PifReturningQuery setRandomResults(final Boolean randomResults) {
+    public PifSystemReturningQuery setRandomResults(final Boolean randomResults) {
         super.setRandomResults(randomResults);
         return this;
     }
 
     @Override
-    public PifReturningQuery setRandomSeed(final Integer randomSeed) {
+    public PifSystemReturningQuery setRandomSeed(final Integer randomSeed) {
         super.setRandomSeed(randomSeed);
         return this;
     }
 
     @Override
-    public PifReturningQuery setScoreRelevance(final Boolean scoreRelevance) {
+    public PifSystemReturningQuery setScoreRelevance(final Boolean scoreRelevance) {
         super.setScoreRelevance(scoreRelevance);
         return this;
     }
 
     @Override
-    public PifReturningQuery setDatasetId(final List<Filter> datasetId) {
-        super.setDatasetId(datasetId);
+    public PifSystemReturningQuery setQuery(final List<DatasetContentQuery> query) {
+        super.setQuery(query);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PifReturningQuery addDatasetId(final List<Filter> datasetId) {
-        super.addDatasetId(datasetId);
+    public PifSystemReturningQuery addQuery(final List<DatasetContentQuery> query) {
+        super.addQuery(query);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public PifReturningQuery addDatasetId(final Filter datasetId) {
-        super.addDatasetId(datasetId);
-        return this;
-    }
-
-    @Override
-    public PifReturningQuery setDataset(final List<DatasetQuery> dataset) {
-        super.setDataset(dataset);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public PifReturningQuery addDataset(final List<DatasetQuery> dataset) {
-        super.addDataset(dataset);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public PifReturningQuery addDataset(final DatasetQuery dataset) {
-        super.addDataset(dataset);
-        return this;
-    }
-
-    @Override
-    public BaseDatasetQuery setSystemId(final List<Filter> systemId) {
-        super.setSystemId(systemId);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public BaseDatasetQuery addSystemId(final List<Filter> systemId) {
-        super.setSystemId(systemId);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public BaseDatasetQuery addSystemId(final Filter systemId) {
-        super.addSystemId(systemId);
-        return this;
-    }
-
-    @Override
-    public BaseDatasetQuery setSystem(final List<SystemQuery> system) {
-        super.setSystem(system);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public BaseDatasetQuery addSystem(final List<SystemQuery> system) {
-        super.addSystem(system);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public BaseDatasetQuery addSystem(final SystemQuery system) {
-        super.addSystem(system);
+    public PifSystemReturningQuery addQuery(final DatasetContentQuery query) {
+        super.addQuery(query);
         return this;
     }
 
@@ -144,7 +84,7 @@ public class PifReturningQuery extends BaseDatasetQuery {
      * @param returnSystem True to return systems in the results.
      * @return This object.
      */
-    public PifReturningQuery setReturnSystem(final Boolean returnSystem) {
+    public PifSystemReturningQuery setReturnSystem(final Boolean returnSystem) {
         this.returnSystem = returnSystem;
         return this;
     }
@@ -164,7 +104,7 @@ public class PifReturningQuery extends BaseDatasetQuery {
      * @param addLatex True to add latex.
      * @return This object.
      */
-    public PifReturningQuery setAddLatex(final Boolean addLatex) {
+    public PifSystemReturningQuery setAddLatex(final Boolean addLatex) {
         this.addLatex = addLatex;
         return this;
     }
@@ -186,8 +126,10 @@ public class PifReturningQuery extends BaseDatasetQuery {
     @JsonSetter
     private void setIncludeDatasets(final List<Long> includeDatasets) {  // Private since only Jackson should use it
         if (includeDatasets != null) {
-            includeDatasets.forEach(i -> this.addDatasetId(
-                    new Filter().setEqual(Long.toString(i))));
+            final DatasetContentQuery query = new DatasetContentQuery().setLogic(Logic.MUST);
+            includeDatasets.forEach(i -> query.addDatasetId(new Filter()
+                    .setEqual(Long.toString(i))));
+            this.addQuery(query);
         }
     }
 
@@ -199,8 +141,11 @@ public class PifReturningQuery extends BaseDatasetQuery {
     @JsonSetter
     private void setExcludeDatasets(final List<Long> excludeDatasets) {  // Private since only Jackson should use it
         if (excludeDatasets != null) {
-            excludeDatasets.forEach(i -> this.addDatasetId(
-                    new Filter().setLogic(Logic.MUST_NOT).setEqual(Long.toString(i))));
+            final DatasetContentQuery query = new DatasetContentQuery().setLogic(Logic.MUST);
+            excludeDatasets.forEach(i -> query.addDatasetId(new Filter()
+                    .setLogic(Logic.MUST_NOT)
+                    .setEqual(Long.toString(i))));
+            this.addQuery(query);
         }
     }
 

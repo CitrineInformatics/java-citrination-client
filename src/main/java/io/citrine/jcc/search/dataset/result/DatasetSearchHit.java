@@ -1,6 +1,6 @@
 package io.citrine.jcc.search.dataset.result;
 
-import io.citrine.jcc.search.pif.query.SystemQuery;
+import io.citrine.jcc.search.pif.query.PifSystemQuery;
 
 /**
  * Class to store information about a single search hit with dataset information.
@@ -161,7 +161,7 @@ public class DatasetSearchHit {
     }
 
     /**
-     * Get the number of PIFs in the dataset. If one or more {@link SystemQuery}
+     * Get the number of PIFs in the dataset. If one or more {@link PifSystemQuery}
      * queries were passed into the search request, then this value is the number of PIFs that matched those queries.
      *
      * @return Number of PIFs in the dataset.

@@ -1,9 +1,8 @@
 package io.citrine.jcc.search.dataset.query;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.citrine.jcc.search.core.query.BaseDatasetQuery;
-import io.citrine.jcc.search.core.query.Filter;
-import io.citrine.jcc.search.pif.query.SystemQuery;
+import io.citrine.jcc.search.core.query.BaseReturningQuery;
+import io.citrine.jcc.search.core.query.DatasetContentQuery;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class DatasetReturningQuery extends BaseDatasetQuery {
+public class DatasetReturningQuery extends BaseReturningQuery {
 
     @Override
     public DatasetReturningQuery setFromIndex(final Integer fromIndex) {
@@ -52,82 +51,22 @@ public class DatasetReturningQuery extends BaseDatasetQuery {
     }
 
     @Override
-    public DatasetReturningQuery setDatasetId(final List<Filter> datasetId) {
-        super.setDatasetId(datasetId);
+    public DatasetReturningQuery setQuery(final List<DatasetContentQuery> query) {
+        super.setQuery(query);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DatasetReturningQuery addDatasetId(final List<Filter> datasetId) {
-        super.addDatasetId(datasetId);
+    public DatasetReturningQuery addQuery(final List<DatasetContentQuery> query) {
+        super.addQuery(query);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DatasetReturningQuery addDatasetId(final Filter datasetId) {
-        super.addDatasetId(datasetId);
-        return this;
-    }
-
-    @Override
-    public DatasetReturningQuery setDataset(final List<DatasetQuery> dataset) {
-        super.setDataset(dataset);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public DatasetReturningQuery addDataset(final List<DatasetQuery> dataset) {
-        super.addDataset(dataset);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public DatasetReturningQuery addDataset(final DatasetQuery dataset) {
-        super.addDataset(dataset);
-        return this;
-    }
-
-    @Override
-    public BaseDatasetQuery setSystemId(final List<Filter> systemId) {
-        super.setSystemId(systemId);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public BaseDatasetQuery addSystemId(final List<Filter> systemId) {
-        super.setSystemId(systemId);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public BaseDatasetQuery addSystemId(final Filter systemId) {
-        super.addSystemId(systemId);
-        return this;
-    }
-
-    @Override
-    public BaseDatasetQuery setSystem(final List<SystemQuery> system) {
-        super.setSystem(system);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public BaseDatasetQuery addSystem(final List<SystemQuery> system) {
-        super.addSystem(system);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public BaseDatasetQuery addSystem(final SystemQuery system) {
-        super.addSystem(system);
+    public DatasetReturningQuery addQuery(final DatasetContentQuery query) {
+        super.addQuery(query);
         return this;
     }
 
