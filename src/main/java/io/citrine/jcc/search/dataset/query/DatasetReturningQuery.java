@@ -1,8 +1,11 @@
 package io.citrine.jcc.search.dataset.query;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DatasetContentQuery;
+import io.citrine.jcc.search.core.query.Logic;
+import io.citrine.jcc.search.pif.query.PifSystemQuery;
 
 import java.util.List;
 
@@ -88,6 +91,20 @@ public class DatasetReturningQuery extends BaseReturningQuery {
      */
     public Boolean getCountPifs() {
         return this.countPifs;
+    }
+
+    /**
+     * Deserialization of the system field from old PifQuery objects.
+     *
+     * @param system {@link PifSystemQuery} object for the query.
+     */
+    @JsonSetter
+    private void setSystem(final PifSystemQuery system) {  // Private since only Jackson should use it
+        if (system != null) {
+            this.addQuery(new DatasetContentQuery()
+                    .setLogic(Logic.MUST)
+                    .addSystem(system));
+        }
     }
 
     /** Whether to get the count of PIFs in each dataset. */

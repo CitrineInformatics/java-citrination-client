@@ -18,7 +18,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 // The order here is necessary for deserialization. It ensures that values are not overwritten.
-@JsonPropertyOrder({"query", "includeDatasets", "excludeDatasets"})
+@JsonPropertyOrder({"query", "system", "includeDatasets", "excludeDatasets"})
 public class PifSystemReturningQuery extends BaseReturningQuery {
 
     @Override
@@ -119,7 +119,21 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     }
 
     /**
-     * Deserialization the includeDatasets field from old PifQuery objects.
+     * Deserialization of the system field from old PifQuery objects.
+     *
+     * @param system {@link PifSystemQuery} object for the query.
+     */
+    @JsonSetter
+    private void setSystem(final PifSystemQuery system) {  // Private since only Jackson should use it
+        if (system != null) {
+            this.addQuery(new DatasetContentQuery()
+                    .setLogic(Logic.MUST)
+                    .addSystem(system));
+        }
+    }
+
+    /**
+     * Deserialization of the includeDatasets field from old PifQuery objects.
      *
      * @param includeDatasets List of longs of the datasets to include.
      */
@@ -134,7 +148,7 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     }
 
     /**
-     * Deserialization the excludeDatasets field from old PifQuery objects.
+     * Deserialization of the excludeDatasets field from old PifQuery objects.
      *
      * @param excludeDatasets List of longs of the datasets to exclude.
      */
