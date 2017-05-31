@@ -46,11 +46,11 @@ public class PifSearchHit {
     /**
      * Set the dataset of the record that was matched.
      *
-     * @param dataset Long with the dataset of the record.
+     * @param dataset Dataset of the record.
      * @return This object.
      */
     @JsonSetter("dataset")
-    public PifSearchHit setDataset(final Long dataset) {
+    public PifSearchHit setDataset(final String dataset) {
         this.dataset = dataset;
         return this;
     }
@@ -61,7 +61,7 @@ public class PifSearchHit {
      * @return String with the dataset of the matched record or a null pointer if not set.
      */
     @JsonGetter("dataset")
-    public Long getDataset() {
+    public String getDataset() {
         return this.dataset;
     }
 
@@ -280,7 +280,7 @@ public class PifSearchHit {
     private String id;
 
     /** Dataset that the record belongs to. */
-    private Long dataset;
+    private String dataset;
 
     /** Version of the dataset. */
     private Long datasetVersion;

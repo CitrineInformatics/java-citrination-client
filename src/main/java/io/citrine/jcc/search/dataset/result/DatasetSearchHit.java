@@ -13,11 +13,11 @@ public class DatasetSearchHit {
     /**
      * Set the id of the dataset.
      *
-     * @param id Long with the id of the dataset
+     * @param id ID of the dataset
      * @return This object.
      */
     @JsonSetter("id")
-    public DatasetSearchHit setId(final Long id) {
+    public DatasetSearchHit setId(final String id) {
         this.id = id;
         return this;
     }
@@ -25,10 +25,10 @@ public class DatasetSearchHit {
     /**
      * Get the id of the dataset.
      *
-     * @return Long with the id of the dataset.
+     * @return ID of the dataset.
      */
     @JsonGetter("id")
-    public Long getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -78,7 +78,7 @@ public class DatasetSearchHit {
     }
 
     /** ID of the dataset. */
-    private Long id;
+    private String id;
 
     /** Version of the dataset. */
     private Double score;
