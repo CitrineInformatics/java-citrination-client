@@ -19,7 +19,12 @@ public class CitrinationClientTest {
     @Test
     public void testPredict() {
         String API_KEY = System.getenv("CITRINATION_API_KEY");
-        CitrinationClient client = new CitrinationClient(null, "https://citrination.com", API_KEY);
+
+        CitrinationClient client = new CitrinationClient.Builder()
+                .setApiKey(API_KEY)
+                .setProject("stage")
+                .build();
+
         Map<String, Object> input = new HashMap<String, Object>();
         input.put("CHEMICAL_FORMULA", "AlCu");
         List<Map<String, Object>> inputs = new ArrayList();
