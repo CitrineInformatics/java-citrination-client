@@ -1,8 +1,6 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.HasLogic;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
@@ -17,15 +15,13 @@ import java.util.List;
 public abstract class BaseObjectQuery implements HasLogic {
 
     @Override
-    @JsonSetter("logic")
-    public BaseObjectQuery logic(final Logic logic) {
+    public BaseObjectQuery setLogic(final Logic logic) {
         this.logic = logic;
         return this;
     }
 
     @Override
-    @JsonGetter("logic")
-    public Logic logic() {
+    public Logic getLogic() {
         return this.logic;
     }
 
@@ -35,8 +31,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @param extractAs String with the alias to save this field under.
      * @return This object.
      */
-    @JsonSetter("extractAs")
-    public BaseObjectQuery extractAs(final String extractAs) {
+    public BaseObjectQuery setExtractAs(final String extractAs) {
         this.extractAs = extractAs;
         return this;
     }
@@ -46,8 +41,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      *
      * @return String with the alias to save this field under or a null pointer if not set.
      */
-    @JsonGetter("extractAs")
-    public String extractAs() {
+    public String getExtractAs() {
         return this.extractAs;
     }
 
@@ -57,8 +51,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @param extractAll True to extract all values from an array.
      * @return This object.
      */
-    @JsonSetter("extractAll")
-    public BaseObjectQuery extractAll(final Boolean extractAll) {
+    public BaseObjectQuery setExtractAll(final Boolean extractAll) {
         this.extractAll = extractAll;
         return this;
     }
@@ -68,8 +61,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      *
      * @return True if all values should be extracted from an array.
      */
-    @JsonGetter("extractAll")
-    public Boolean extractAll() {
+    public Boolean getExtractAll() {
         return this.extractAll;
     }
 
@@ -80,8 +72,7 @@ public abstract class BaseObjectQuery implements HasLogic {
      * @param extractWhenMissing Object to return when the overall query is satisfied but the extract value is missing.
      * @return This object.
      */
-    @JsonSetter("extractWhenMissing")
-    public BaseObjectQuery extractWhenMissing(final Object extractWhenMissing) {
+    public BaseObjectQuery setExtractWhenMissing(final Object extractWhenMissing) {
         this.extractWhenMissing = extractWhenMissing;
         return this;
     }
@@ -91,55 +82,53 @@ public abstract class BaseObjectQuery implements HasLogic {
      *
      * @return Object with the value to return when an extracted value is missing.
      */
-    @JsonGetter
-    public Object extractWhenMissing() {
+    public Object getExtractWhenMissing() {
         return this.extractWhenMissing;
     }
 
     /**
-     * Set the list of tags operations. This adds to any operations that are already saved.
+     * Set the tags operations. This adds to any operations that are already saved.
      *
      * @param tags List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("tags")
-    private void tags(final List<FieldQuery> tags) {
+    public BaseObjectQuery setTags(final List<FieldQuery> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * Add to the list of tags operations.
+     *
+     * @param tags {@link FieldQuery} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public BaseObjectQuery addTags(final List<FieldQuery> tags) {
         this.tags = ListUtil.add(tags, this.tags);
-    }
-
-    /**
-     * Add to the list of tags operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public BaseObjectQuery tags(final FieldQuery fieldQuery) {
-        this.tags = ListUtil.add(fieldQuery, this.tags);
         return this;
     }
 
     /**
      * Add to the list of tags operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param tags {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery tags(final String extractAs) {
-        this.tags = ListUtil.add(new FieldQuery().extractAs(extractAs), this.tags);
+    public BaseObjectQuery addTags(final FieldQuery tags) {
+        this.tags = ListUtil.add(tags, this.tags);
         return this;
     }
 
     /**
-     * Add to the list of tags operations.
+     * Get the length of the tags queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of tags queries.
      */
     @JsonIgnore
-    public BaseObjectQuery tags(final Filter filter) {
-        this.tags = ListUtil.add(new FieldQuery().filter(filter), this.tags);
-        return this;
+    public int tagsLength() {
+        return ListUtil.length(this.tags);
     }
 
     /**
@@ -147,65 +136,74 @@ public abstract class BaseObjectQuery implements HasLogic {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("tags")
+    @JsonIgnore
     public Iterable<FieldQuery> tags() {
         return ListUtil.iterable(this.tags);
     }
 
     /**
-     * Return whether any tags operations exist.
+     * Get the tags query at the input index.
      *
-     * @return True if any tags operations exist.
+     * @param index Index of the tags query to get.
+     * @return {@link FieldQuery} at the input index.
      */
     @JsonIgnore
-    public boolean hasTags() {
-        return ListUtil.hasContent(this.tags);
+    public FieldQuery getTags(final int index) {
+        return ListUtil.get(this.tags, index);
+    }
+
+    /**
+     * Get the tags field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getTags() {
+        return this.tags;
     }
 
     /**
      * Set the length operations. This adds to any operations that are already saved.
      *
      * @param length List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("length")
-    private void length(final List<FieldQuery> length) {
+    public BaseObjectQuery setLength(final List<FieldQuery> length) {
+        this.length = length;
+        return this;
+    }
+
+    /**
+     * Add to the list of length operations.
+     *
+     * @param length {@link FieldQuery} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public BaseObjectQuery addLength(final List<FieldQuery> length) {
         this.length = ListUtil.add(length, this.length);
-    }
-
-    /**
-     * Add to the list of length operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public BaseObjectQuery length(final FieldQuery fieldQuery) {
-        this.length = ListUtil.add(fieldQuery, this.length);
         return this;
     }
 
     /**
      * Add to the list of length operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param length {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery length(final String extractAs) {
-        this.length = ListUtil.add(new FieldQuery().extractAs(extractAs), this.length);
+    public BaseObjectQuery addLength(final FieldQuery length) {
+        this.length = ListUtil.add(length, this.length);
         return this;
     }
 
     /**
-     * Add to the list of length operations.
+     * Get the length of the length queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of length queries.
      */
     @JsonIgnore
-    public BaseObjectQuery length(final Filter filter) {
-        this.length = ListUtil.add(new FieldQuery().filter(filter), this.length);
-        return this;
+    public int lengthLength() {
+        return ListUtil.length(this.length);
     }
 
     /**
@@ -213,65 +211,74 @@ public abstract class BaseObjectQuery implements HasLogic {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("length")
+    @JsonIgnore
     public Iterable<FieldQuery> length() {
         return ListUtil.iterable(this.length);
     }
 
     /**
-     * Return whether any length operations exist.
+     * Get the length query at the input index.
      *
-     * @return True if any length operations exist.
+     * @param index Index of the length query to get.
+     * @return {@link FieldQuery} at the input index.
      */
     @JsonIgnore
-    public boolean hasLength() {
-        return ListUtil.hasContent(this.length);
+    public FieldQuery getLength(final int index) {
+        return ListUtil.get(this.length, index);
+    }
+
+    /**
+     * Get the length field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getLength() {
+        return this.length;
     }
 
     /**
      * Set the offset operations. This adds to any operations that are already saved.
      *
      * @param offset List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("offset")
-    private void offset(final List<FieldQuery> offset) {
+    public BaseObjectQuery setOffset(final List<FieldQuery> offset) {
+        this.offset = offset;
+        return this;
+    }
+
+    /**
+     * Add to the list of offset operations.
+     *
+     * @param offset {@link FieldQuery} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public BaseObjectQuery addOffset(final List<FieldQuery> offset) {
         this.offset = ListUtil.add(offset, this.offset);
-    }
-
-    /**
-     * Add to the list of offset operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public BaseObjectQuery offset(final FieldQuery fieldQuery) {
-        this.offset = ListUtil.add(fieldQuery, this.offset);
         return this;
     }
 
     /**
      * Add to the list of offset operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param offset {@link FieldQuery} to add.
      * @return This object.
      */
     @JsonIgnore
-    public BaseObjectQuery offset(final String extractAs) {
-        this.offset = ListUtil.add(new FieldQuery().extractAs(extractAs), this.offset);
+    public BaseObjectQuery addOffset(final FieldQuery offset) {
+        this.offset = ListUtil.add(offset, this.offset);
         return this;
     }
 
     /**
-     * Add to the list of offset operations.
+     * Get the length of the offset queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of offset queries.
      */
     @JsonIgnore
-    public BaseObjectQuery offset(final Filter filter) {
-        this.offset = ListUtil.add(new FieldQuery().filter(filter), this.offset);
-        return this;
+    public int offsetLength() {
+        return ListUtil.length(this.offset);
     }
 
     /**
@@ -279,19 +286,29 @@ public abstract class BaseObjectQuery implements HasLogic {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("offset")
+    @JsonIgnore
     public Iterable<FieldQuery> offset() {
         return ListUtil.iterable(this.offset);
     }
 
     /**
-     * Return whether any offset operations exist.
+     * Get the offset query at the input index.
      *
-     * @return True if any offset operations exist.
+     * @param index Index of the offset query to get.
+     * @return {@link FieldQuery} at the input index.
      */
     @JsonIgnore
-    public boolean hasOffset() {
-        return ListUtil.hasContent(this.offset);
+    public FieldQuery getOffset(final int index) {
+        return ListUtil.get(this.offset, index);
+    }
+
+    /**
+     * Get the offset field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getOffset() {
+        return this.offset;
     }
 
     /** Logic that applies to the entire query. */

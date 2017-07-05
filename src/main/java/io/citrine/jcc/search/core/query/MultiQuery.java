@@ -1,11 +1,8 @@
 package io.citrine.jcc.search.core.query;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +11,7 @@ import java.util.List;
  * @param <T> Type of the query.
  * @author Kyle Michel
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public abstract class BaseMultiQuery<T> {
+public class MultiQuery<T> {
 
     /**
      * Set the list of queries. This overwrites any queries that are already saved.
@@ -23,9 +19,20 @@ public abstract class BaseMultiQuery<T> {
      * @param queries List of query objects.
      * @return This object.
      */
-    @JsonSetter("queries")
-    protected BaseMultiQuery<T> setQueries(final List<T> queries) {
+    public MultiQuery<T> setQueries(final List<T> queries) {
         this.queries = queries;
+        return this;
+    }
+
+    /**
+     * Add to the list of queries.
+     *
+     * @param queries List of queries to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public MultiQuery<T> addQueries(final List<T> queries) {
+        this.queries = ListUtil.add(queries, this.queries);
         return this;
     }
 
@@ -36,11 +43,8 @@ public abstract class BaseMultiQuery<T> {
      * @return This object.
      */
     @JsonIgnore
-    public BaseMultiQuery<T> addQuery(final T query) {
-        if (this.queries == null) {
-            this.queries = new ArrayList<>();
-        }
-        this.queries.add(query);
+    public MultiQuery<T> addQueries(final T query) {
+        this.queries = ListUtil.add(query, this.queries);
         return this;
     }
 
@@ -50,18 +54,18 @@ public abstract class BaseMultiQuery<T> {
      * @return Number of queries.
      */
     @JsonIgnore
-    public int getNumQueries() {
-        return (this.queries == null) ? 0 : this.queries.size();
+    public int queriesLength() {
+        return ListUtil.length(this.queries);
     }
 
     /**
-     * Get the list of queries.
+     * Get an {@link Iterable} over the queries in this object.
      *
-     * @return List of query objects.
+     * @return {@link Iterable} over the queries.
      */
-    @JsonGetter("queries")
-    protected List<T> getQueries() {
-        return this.queries;
+    @JsonIgnore
+    public Iterable<T> queries() {
+        return ListUtil.iterable(this.queries);
     }
 
     /**
@@ -72,11 +76,17 @@ public abstract class BaseMultiQuery<T> {
      * @throws IllegalArgumentException if the index is out of bounds.
      */
     @JsonIgnore
-    public T getQuery(final int index) {
-        if (this.queries == null) {
-            throw new IndexOutOfBoundsException("Index out of range: " + index + " of 0");
-        }
-        return this.queries.get(index);
+    public T getQueries(final int index) {
+        return ListUtil.get(this.queries, index);
+    }
+
+    /**
+     * Get the list of queries.
+     *
+     * @return List of query objects.
+     */
+    public List<T> getQueries() {
+        return this.queries;
     }
 
     /** List of queries that were generated. */

@@ -1,7 +1,6 @@
 package io.citrine.jcc.search.dataset.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.result.BaseSearchResult;
 
 import java.util.List;
@@ -24,30 +23,34 @@ import java.util.List;
 public class DatasetSearchResult extends BaseSearchResult<DatasetSearchHit>  {
 
     @Override
-    @JsonSetter("took")
     public DatasetSearchResult setTook(final Long took) {
         super.setTook(took);
         return this;
     }
 
     @Override
-    @JsonSetter("totalNumHits")
     public DatasetSearchResult setTotalNumHits(final Long totalNumHits) {
         super.setTotalNumHits(totalNumHits);
         return this;
     }
 
     @Override
-    @JsonSetter("hits")
-    protected DatasetSearchResult setHits(final List<DatasetSearchHit> hits) {
+    public DatasetSearchResult setHits(final List<DatasetSearchHit> hits) {
         super.setHits(hits);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DatasetSearchResult addHit(final DatasetSearchHit hit) {
-        super.addHit(hit);
+    public DatasetSearchResult addHits(final List<DatasetSearchHit> hits) {
+        super.addHits(hits);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public DatasetSearchResult addHits(final DatasetSearchHit hit) {
+        super.addHits(hit);
         return this;
     }
 }
