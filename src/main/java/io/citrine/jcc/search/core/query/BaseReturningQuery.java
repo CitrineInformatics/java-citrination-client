@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.core.query;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public abstract class BaseReturningQuery {
      * @param from Index of the first hit (inclusive of zero) that should be returned.
      * @return This object.
      */
+    @JsonSetter
     public BaseReturningQuery setFrom(final Integer from) {
         this.from = from;
         return this;
@@ -139,10 +141,10 @@ public abstract class BaseReturningQuery {
     /**
      * Set the list of queries. This replaces any filters that are already present.
      *
-     * @param query List of {@link DatasetContentQuery} objects.
+     * @param query List of {@link DataQuery} objects.
      * @return This object.
      */
-    public BaseReturningQuery setQuery(final List<DatasetContentQuery> query) {
+    public BaseReturningQuery setQuery(final List<DataQuery> query) {
         this.query = query;
         return this;
     }
@@ -150,11 +152,11 @@ public abstract class BaseReturningQuery {
     /**
      * Add to the list of queries.
      *
-     * @param query List of {@link DatasetContentQuery} objects.
+     * @param query List of {@link DataQuery} objects.
      * @return This object.
      */
     @JsonIgnore
-    public BaseReturningQuery addQuery(final List<DatasetContentQuery> query) {
+    public BaseReturningQuery addQuery(final List<DataQuery> query) {
         this.query = ListUtil.add(query, this.query);
         return this;
     }
@@ -162,11 +164,11 @@ public abstract class BaseReturningQuery {
     /**
      * Add to the list of queries.
      *
-     * @param query {@link DatasetContentQuery} object to add.
+     * @param query {@link DataQuery} object to add.
      * @return This object.
      */
     @JsonIgnore
-    public BaseReturningQuery addQuery(final DatasetContentQuery query) {
+    public BaseReturningQuery addQuery(final DataQuery query) {
         this.query = ListUtil.add(query, this.query);
         return this;
     }
@@ -184,19 +186,30 @@ public abstract class BaseReturningQuery {
     /**
      * Get an iterable over the queries.
      *
-     * @return {@link Iterable} of {@link DatasetContentQuery} objects.
+     * @return {@link Iterable} of {@link DataQuery} objects.
      */
     @JsonIgnore
-    public Iterable<DatasetContentQuery> query() {
+    public Iterable<DataQuery> query() {
         return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the query at the input index.
+     *
+     * @param index Index of the query to get.
+     * @return {@link DataQuery} at the input index.
+     */
+    @JsonIgnore
+    public DataQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
     }
 
     /**
      * Get the list of queries.
      *
-     * @return List of {@link DatasetContentQuery} objects.
+     * @return List of {@link DataQuery} objects.
      */
-    public List<DatasetContentQuery> getQuery() {
+    public List<DataQuery> getQuery() {
         return this.query;
     }
 
@@ -216,5 +229,5 @@ public abstract class BaseReturningQuery {
     private Boolean scoreRelevance;
 
     /** List of queries against the content of datasets. */
-    private List<DatasetContentQuery> query;
+    private List<DataQuery> query;
 }

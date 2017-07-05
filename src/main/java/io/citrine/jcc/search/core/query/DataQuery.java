@@ -12,10 +12,10 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class DatasetContentQuery implements HasLogic {
+public class DataQuery implements HasLogic {
 
     @Override
-    public DatasetContentQuery setLogic(final Logic logic) {
+    public DataQuery setLogic(final Logic logic) {
         this.logic = logic;
         return this;
     }
@@ -31,7 +31,7 @@ public class DatasetContentQuery implements HasLogic {
      * @param datasetId List of {@link Filter} objects.
      * @return This object.
      */
-    public DatasetContentQuery setDatasetId(final List<Filter> datasetId) {
+    public DataQuery setDatasetId(final List<Filter> datasetId) {
         this.datasetId = datasetId;
         return this;
     }
@@ -43,7 +43,7 @@ public class DatasetContentQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public DatasetContentQuery addDatasetId(final List<Filter> datasetId) {
+    public DataQuery addDatasetId(final List<Filter> datasetId) {
         this.datasetId = ListUtil.add(datasetId, this.datasetId);
         return this;
     }
@@ -55,7 +55,7 @@ public class DatasetContentQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public DatasetContentQuery addDatasetId(final Filter datasetId) {
+    public DataQuery addDatasetId(final Filter datasetId) {
         this.datasetId = ListUtil.add(datasetId, this.datasetId);
         return this;
     }
@@ -81,6 +81,17 @@ public class DatasetContentQuery implements HasLogic {
     }
 
     /**
+     * Get the dataset ID filter object at the input index.
+     *
+     * @param index Index of the dataset ID filter to get.
+     * @return {@link Filter} at the input index.
+     */
+    @JsonIgnore
+    public Filter getDatasetId(final int index) {
+        return ListUtil.get(this.datasetId, index);
+    }
+
+    /**
      * Get the list of dataset ID queries.
      *
      * @return List of {@link Filter} objects.
@@ -95,7 +106,7 @@ public class DatasetContentQuery implements HasLogic {
      * @param dataset List of {@link DatasetQuery} objects.
      * @return This object.
      */
-    public DatasetContentQuery setDataset(final List<DatasetQuery> dataset) {
+    public DataQuery setDataset(final List<DatasetQuery> dataset) {
         this.dataset = dataset;
         return this;
     }
@@ -107,7 +118,7 @@ public class DatasetContentQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public DatasetContentQuery addDataset(final List<DatasetQuery> dataset) {
+    public DataQuery addDataset(final List<DatasetQuery> dataset) {
         this.dataset = ListUtil.add(dataset, this.dataset);
         return this;
     }
@@ -119,7 +130,7 @@ public class DatasetContentQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public DatasetContentQuery addDataset(final DatasetQuery dataset) {
+    public DataQuery addDataset(final DatasetQuery dataset) {
         this.dataset = ListUtil.add(dataset, this.dataset);
         return this;
     }
@@ -145,6 +156,17 @@ public class DatasetContentQuery implements HasLogic {
     }
 
     /**
+     * Get the {@link DatasetQuery} object at the input index.
+     *
+     * @param index Index of the dataset query to get.
+     * @return {@link DatasetQuery} at the input index.
+     */
+    @JsonIgnore
+    public DatasetQuery getDataset(final int index) {
+        return ListUtil.get(this.dataset, index);
+    }
+
+    /**
      * Get the list of dataset queries.
      *
      * @return List of {@link DatasetQuery} objects.
@@ -154,67 +176,78 @@ public class DatasetContentQuery implements HasLogic {
     }
 
     /**
-     * Set the list of PIF system ID queries. This replaces any filters that are already present.
+     * Set the list of PIF system UID queries. This replaces any filters that are already present.
      *
-     * @param systemId List of {@link Filter} objects.
+     * @param systemUid List of {@link Filter} objects.
      * @return This object.
      */
-    public DatasetContentQuery setSystemId(final List<Filter> systemId) {
-        this.systemId = systemId;
+    public DataQuery setSystemUid(final List<Filter> systemUid) {
+        this.systemUid = systemUid;
         return this;
     }
 
     /**
-     * Add to the list of PIF system ID queries.
+     * Add to the list of PIF system UID queries.
      *
-     * @param systemId List of {@link Filter} objects.
+     * @param systemUid List of {@link Filter} objects.
      * @return This object.
      */
     @JsonIgnore
-    public DatasetContentQuery addSystemId(final List<Filter> systemId) {
-        this.systemId = ListUtil.add(systemId, this.systemId);
+    public DataQuery addSystemUid(final List<Filter> systemUid) {
+        this.systemUid = ListUtil.add(systemUid, this.systemUid);
         return this;
     }
 
     /**
-     * Add to the list of PIF system ID queries.
+     * Add to the list of PIF system UID queries.
      *
-     * @param systemId {@link Filter} object to add.
+     * @param systemUid {@link Filter} object to add.
      * @return This object.
      */
     @JsonIgnore
-    public DatasetContentQuery addSystemId(final Filter systemId) {
-        this.systemId = ListUtil.add(systemId, this.systemId);
+    public DataQuery addSystemUid(final Filter systemUid) {
+        this.systemUid = ListUtil.add(systemUid, this.systemUid);
         return this;
     }
 
     /**
-     * Get the number of PIF system ID queries.
+     * Get the number of PIF system UID queries.
      *
-     * @return Number of queries against the systemId field.
+     * @return Number of queries against the system UID field.
      */
     @JsonIgnore
-    public int systemIdLength() {
-        return ListUtil.length(this.systemId);
+    public int systemUidLength() {
+        return ListUtil.length(this.systemUid);
     }
 
     /**
-     * Get an iterable over the PIF system ID queries.
+     * Get an iterable over the PIF system UID queries.
      *
      * @return {@link Iterable} of {@link Filter} objects.
      */
     @JsonIgnore
-    public Iterable<Filter> systemId() {
-        return ListUtil.iterable(this.systemId);
+    public Iterable<Filter> systemUid() {
+        return ListUtil.iterable(this.systemUid);
     }
 
     /**
-     * Get the list of PIF system ID queries.
+     * Get the system UID filter object at the input index.
+     *
+     * @param index Index of the system UID filter to get.
+     * @return {@link Filter} at the input index.
+     */
+    @JsonIgnore
+    public Filter getSystemUid(final int index) {
+        return ListUtil.get(this.systemUid, index);
+    }
+
+    /**
+     * Get the list of PIF system UID queries.
      *
      * @return List of {@link Filter} objects.
      */
-    public List<Filter> getSystemId() {
-        return this.systemId;
+    public List<Filter> getSystemUid() {
+        return this.systemUid;
     }
 
     /**
@@ -223,7 +256,7 @@ public class DatasetContentQuery implements HasLogic {
      * @param system List of {@link PifSystemQuery} objects.
      * @return This object.
      */
-    public DatasetContentQuery setSystem(final List<PifSystemQuery> system) {
+    public DataQuery setSystem(final List<PifSystemQuery> system) {
         this.system = system;
         return this;
     }
@@ -235,7 +268,7 @@ public class DatasetContentQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public DatasetContentQuery addSystem(final List<PifSystemQuery> system) {
+    public DataQuery addSystem(final List<PifSystemQuery> system) {
         this.system = ListUtil.add(system, this.system);
         return this;
     }
@@ -247,7 +280,7 @@ public class DatasetContentQuery implements HasLogic {
      * @return This object.
      */
     @JsonIgnore
-    public DatasetContentQuery addSystem(final PifSystemQuery system) {
+    public DataQuery addSystem(final PifSystemQuery system) {
         this.system = ListUtil.add(system, this.system);
         return this;
     }
@@ -273,6 +306,17 @@ public class DatasetContentQuery implements HasLogic {
     }
 
     /**
+     * Get the {@link PifSystemQuery} object at the input index.
+     *
+     * @param index Index of the system to get.
+     * @return {@link PifSystemQuery} at the input index.
+     */
+    @JsonIgnore
+    public PifSystemQuery getSystem(final int index) {
+        return ListUtil.get(this.system, index);
+    }
+
+    /**
      * Get the list of PIF system queries.
      *
      * @return List of {@link PifSystemQuery} objects.
@@ -290,8 +334,8 @@ public class DatasetContentQuery implements HasLogic {
     /** List of queries against dataset metadata. */
     private List<DatasetQuery> dataset;
 
-    /** List of filters against the PIF system ID. */
-    private List<Filter> systemId;
+    /** List of filters against the PIF system UID. */
+    private List<Filter> systemUid;
 
     /** List of queries against PIF systems. */
     private List<PifSystemQuery> system;

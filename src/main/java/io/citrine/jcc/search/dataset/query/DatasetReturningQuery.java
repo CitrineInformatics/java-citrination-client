@@ -3,7 +3,7 @@ package io.citrine.jcc.search.dataset.query;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.BaseReturningQuery;
-import io.citrine.jcc.search.core.query.DatasetContentQuery;
+import io.citrine.jcc.search.core.query.DataQuery;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 
@@ -54,21 +54,21 @@ public class DatasetReturningQuery extends BaseReturningQuery {
     }
 
     @Override
-    public DatasetReturningQuery setQuery(final List<DatasetContentQuery> query) {
+    public DatasetReturningQuery setQuery(final List<DataQuery> query) {
         super.setQuery(query);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DatasetReturningQuery addQuery(final List<DatasetContentQuery> query) {
+    public DatasetReturningQuery addQuery(final List<DataQuery> query) {
         super.addQuery(query);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DatasetReturningQuery addQuery(final DatasetContentQuery query) {
+    public DatasetReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
         return this;
     }
@@ -96,14 +96,14 @@ public class DatasetReturningQuery extends BaseReturningQuery {
     /**
      * Deserialization of the system field from old PifQuery objects.
      *
-     * @param system {@link PifSystemQuery} object for the query.
+     * @param system List of {@link PifSystemQuery} objects for the query.
      */
     @JsonSetter
-    private void setSystem(final PifSystemQuery system) {  // Private since only Jackson should use it
+    private void setSystem(final List<PifSystemQuery> system) {  // Private since only Jackson should use it
         if (system != null) {
-            this.addQuery(new DatasetContentQuery()
-                    .setLogic(Logic.MUST)
-                    .addSystem(system));
+            final DataQuery query = new DataQuery().setLogic(Logic.MUST);
+            system.forEach(query::addSystem);
+            this.addQuery(query);
         }
     }
 

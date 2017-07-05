@@ -123,6 +123,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param min Minimum value that should match.
      * @return This object.
      */
+    @JsonIgnore
     public Filter setMin(final Integer min) {
         this.min = Integer.toString(min);
         return this;
@@ -134,6 +135,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param min Minimum value that should match.
      * @return This object.
      */
+    @JsonIgnore
     public Filter setMin(final Long min) {
         this.min = Long.toString(min);
         return this;
@@ -145,6 +147,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param min Minimum value that should match.
      * @return This object.
      */
+    @JsonIgnore
     public Filter setMin(final Float min) {
         this.min = Float.toString(min);
         return this;
@@ -188,6 +191,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
+    @JsonIgnore
     public Filter setMax(final Integer max) {
         this.max = Integer.toString(max);
         return this;
@@ -199,6 +203,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
+    @JsonIgnore
     public Filter setMax(final Long max) {
         this.max = Long.toString(max);
         return this;
@@ -210,6 +215,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
+    @JsonIgnore
     public Filter setMax(final Float max) {
         this.max = Float.toString(max);
         return this;
@@ -221,6 +227,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
+    @JsonIgnore
     public Filter setMax(final Double max) {
         this.max = Double.toString(max);
         return this;
