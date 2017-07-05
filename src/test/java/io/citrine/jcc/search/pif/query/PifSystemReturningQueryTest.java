@@ -37,13 +37,14 @@ public class PifSystemReturningQueryTest {
         Assert.assertFalse(pifSystemReturningQuery.getReturnSystem());
         Assert.assertTrue(pifSystemReturningQuery.getAddLatex());
         Assert.assertEquals(3, pifSystemReturningQuery.queryLength());
-        Assert.assertEquals(1, pifSystemReturningQuery.getQuery(0).systemLength());
-        Assert.assertEquals(1, pifSystemReturningQuery.getQuery(0).getSystem(0).uidLength());
-        Assert.assertEquals("1", pifSystemReturningQuery.getQuery(0).getSystem(0).getUid(0).getEqual());
-        Assert.assertNull(pifSystemReturningQuery.getQuery(0).getSystem(0).getUid(0).getLogic());
-        Assert.assertEquals(1, pifSystemReturningQuery.getQuery(1).getSystem(0).uidLength());
-        Assert.assertEquals("2", pifSystemReturningQuery.getQuery(1).getSystem(0).getUid(0).getEqual());
-        Assert.assertEquals(Logic.MUST_NOT, pifSystemReturningQuery.getQuery(1).getSystem(0).getUid(0).getLogic());
+        Assert.assertEquals(1, pifSystemReturningQuery.getQuery(0).datasetLength());
+        Assert.assertEquals(1, pifSystemReturningQuery.getQuery(0).getDataset(0).idLength());
+        Assert.assertEquals("1", pifSystemReturningQuery.getQuery(0).getDataset(0).getId(0).getEqual());
+        Assert.assertEquals(Logic.MUST, pifSystemReturningQuery.getQuery(0).getLogic());
+        Assert.assertEquals(1, pifSystemReturningQuery.getQuery(1).datasetLength());
+        Assert.assertEquals(1, pifSystemReturningQuery.getQuery(1).getDataset(0).idLength());
+        Assert.assertEquals("2", pifSystemReturningQuery.getQuery(1).getDataset(0).getId(0).getEqual());
+        Assert.assertEquals(Logic.MUST_NOT, pifSystemReturningQuery.getQuery(1).getLogic());
         Assert.assertEquals(2, pifSystemReturningQuery.getQuery(2).systemLength());
         Assert.assertEquals("lithium",
                 pifSystemReturningQuery.getQuery(2).getSystem(0).getNames(0).getFilter(0).getEqual());

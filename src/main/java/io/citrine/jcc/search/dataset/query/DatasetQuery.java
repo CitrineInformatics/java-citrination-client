@@ -3,6 +3,8 @@ package io.citrine.jcc.search.dataset.query;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.BooleanFilter;
 import io.citrine.jcc.search.core.query.Filter;
+import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -12,7 +14,18 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class DatasetQuery {
+public class DatasetQuery implements HasLogic {
+
+    @Override
+    public DatasetQuery setLogic(final Logic logic) {
+        this.logic = logic;
+        return this;
+    }
+
+    @Override
+    public Logic getLogic() {
+        return this.logic;
+    }
 
     /**
      * Set the list of dataset ID queries. This replaces any filters that are already present.
@@ -463,6 +476,9 @@ public class DatasetQuery {
     public List<Filter> getEmail() {
         return this.email;
     }
+
+    /** Logic for the query. */
+    private Logic logic;
 
     /** List of filters against the dataset ID. */
     private List<Filter> id;
