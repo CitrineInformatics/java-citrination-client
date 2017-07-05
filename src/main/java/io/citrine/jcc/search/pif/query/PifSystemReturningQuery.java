@@ -6,6 +6,7 @@ import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.Logic;
+import io.citrine.jcc.search.dataset.query.DatasetQuery;
 
 import java.util.List;
 
@@ -137,10 +138,11 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     @JsonSetter
     private void setIncludeDatasets(final List<Long> includeDatasets) {  // Private since only Jackson should use it
         if (includeDatasets != null) {
-            final DataQuery query = new DataQuery().setLogic(Logic.MUST);
-            includeDatasets.forEach(i -> query.addDatasetId(new Filter()
-                    .setEqual(Long.toString(i))));
-            this.addQuery(query);
+            final DatasetQuery datasetQuery = new DatasetQuery();
+            includeDatasets.forEach(i -> datasetQuery.addId(new Filter().setEqual(Long.toString(i))));
+            this.addQuery(new DataQuery()
+                    .setLogic(Logic.MUST)
+                    .addDataset(datasetQuery));
         }
     }
 
@@ -152,11 +154,11 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     @JsonSetter
     private void setExcludeDatasets(final List<Long> excludeDatasets) {  // Private since only Jackson should use it
         if (excludeDatasets != null) {
-            final DataQuery query = new DataQuery().setLogic(Logic.MUST);
-            excludeDatasets.forEach(i -> query.addDatasetId(new Filter()
+            final DatasetQuery datasetQuery = new DatasetQuery();
+            excludeDatasets.forEach(i -> datasetQuery.addId(new Filter().setEqual(Long.toString(i))));
+            this.addQuery(new DataQuery()
                     .setLogic(Logic.MUST_NOT)
-                    .setEqual(Long.toString(i))));
-            this.addQuery(query);
+                    .addDataset(datasetQuery));
         }
     }
 

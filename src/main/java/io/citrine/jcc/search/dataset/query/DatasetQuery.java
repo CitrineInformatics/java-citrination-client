@@ -15,6 +15,81 @@ import java.util.List;
 public class DatasetQuery {
 
     /**
+     * Set the list of dataset ID queries. This replaces any filters that are already present.
+     *
+     * @param id List of {@link Filter} objects.
+     * @return This object.
+     */
+    public DatasetQuery setId(final List<Filter> id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Add to the list of dataset ID queries.
+     *
+     * @param id List of {@link Filter} objects.
+     * @return This object.
+     */
+    @JsonIgnore
+    public DatasetQuery addId(final List<Filter> id) {
+        this.id = ListUtil.add(id, this.id);
+        return this;
+    }
+
+    /**
+     * Add to the list of dataset ID queries.
+     *
+     * @param id {@link Filter} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public DatasetQuery addId(final Filter id) {
+        this.id = ListUtil.add(id, this.id);
+        return this;
+    }
+
+    /**
+     * Get the number of dataset ID queries.
+     *
+     * @return Number of queries against the datasetId field.
+     */
+    @JsonIgnore
+    public int idLength() {
+        return ListUtil.length(this.id);
+    }
+
+    /**
+     * Get an iterable over the dataset ID queries.
+     *
+     * @return {@link Iterable} of {@link Filter} objects.
+     */
+    @JsonIgnore
+    public Iterable<Filter> id() {
+        return ListUtil.iterable(this.id);
+    }
+
+    /**
+     * Get the dataset ID filter object at the input index.
+     *
+     * @param index Index of the dataset ID filter to get.
+     * @return {@link Filter} at the input index.
+     */
+    @JsonIgnore
+    public Filter getId(final int index) {
+        return ListUtil.get(this.id, index);
+    }
+
+    /**
+     * Get the list of dataset ID queries.
+     *
+     * @return List of {@link Filter} objects.
+     */
+    public List<Filter> getId() {
+        return this.id;
+    }
+
+    /**
      * Set the list of isFeatured queries. This replaces any filters that are already present.
      *
      * @param isFeatured List of {@link BooleanFilter} objects.
@@ -388,6 +463,9 @@ public class DatasetQuery {
     public List<Filter> getEmail() {
         return this.email;
     }
+
+    /** List of filters against the dataset ID. */
+    private List<Filter> id;
 
     /** Whether the dataset is featured. */
     private List<BooleanFilter> isFeatured;

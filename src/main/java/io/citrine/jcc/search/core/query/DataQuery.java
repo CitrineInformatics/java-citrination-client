@@ -26,81 +26,6 @@ public class DataQuery implements HasLogic {
     }
 
     /**
-     * Set the list of dataset ID queries. This replaces any filters that are already present.
-     *
-     * @param datasetId List of {@link Filter} objects.
-     * @return This object.
-     */
-    public DataQuery setDatasetId(final List<Filter> datasetId) {
-        this.datasetId = datasetId;
-        return this;
-    }
-
-    /**
-     * Add to the list of dataset ID queries.
-     *
-     * @param datasetId List of {@link Filter} objects.
-     * @return This object.
-     */
-    @JsonIgnore
-    public DataQuery addDatasetId(final List<Filter> datasetId) {
-        this.datasetId = ListUtil.add(datasetId, this.datasetId);
-        return this;
-    }
-
-    /**
-     * Add to the list of dataset ID queries.
-     *
-     * @param datasetId {@link Filter} object to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public DataQuery addDatasetId(final Filter datasetId) {
-        this.datasetId = ListUtil.add(datasetId, this.datasetId);
-        return this;
-    }
-
-    /**
-     * Get the number of dataset ID queries.
-     *
-     * @return Number of queries against the datasetId field.
-     */
-    @JsonIgnore
-    public int datasetIdLength() {
-        return ListUtil.length(this.datasetId);
-    }
-
-    /**
-     * Get an iterable over the dataset ID queries.
-     *
-     * @return {@link Iterable} of {@link Filter} objects.
-     */
-    @JsonIgnore
-    public Iterable<Filter> datasetId() {
-        return ListUtil.iterable(this.datasetId);
-    }
-
-    /**
-     * Get the dataset ID filter object at the input index.
-     *
-     * @param index Index of the dataset ID filter to get.
-     * @return {@link Filter} at the input index.
-     */
-    @JsonIgnore
-    public Filter getDatasetId(final int index) {
-        return ListUtil.get(this.datasetId, index);
-    }
-
-    /**
-     * Get the list of dataset ID queries.
-     *
-     * @return List of {@link Filter} objects.
-     */
-    public List<Filter> getDatasetId() {
-        return this.datasetId;
-    }
-
-    /**
      * Set the list of dataset queries. This replaces any filters that are already present.
      *
      * @param dataset List of {@link DatasetQuery} objects.
@@ -173,81 +98,6 @@ public class DataQuery implements HasLogic {
      */
     public List<DatasetQuery> getDataset() {
         return this.dataset;
-    }
-
-    /**
-     * Set the list of PIF system UID queries. This replaces any filters that are already present.
-     *
-     * @param systemUid List of {@link Filter} objects.
-     * @return This object.
-     */
-    public DataQuery setSystemUid(final List<Filter> systemUid) {
-        this.systemUid = systemUid;
-        return this;
-    }
-
-    /**
-     * Add to the list of PIF system UID queries.
-     *
-     * @param systemUid List of {@link Filter} objects.
-     * @return This object.
-     */
-    @JsonIgnore
-    public DataQuery addSystemUid(final List<Filter> systemUid) {
-        this.systemUid = ListUtil.add(systemUid, this.systemUid);
-        return this;
-    }
-
-    /**
-     * Add to the list of PIF system UID queries.
-     *
-     * @param systemUid {@link Filter} object to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public DataQuery addSystemUid(final Filter systemUid) {
-        this.systemUid = ListUtil.add(systemUid, this.systemUid);
-        return this;
-    }
-
-    /**
-     * Get the number of PIF system UID queries.
-     *
-     * @return Number of queries against the system UID field.
-     */
-    @JsonIgnore
-    public int systemUidLength() {
-        return ListUtil.length(this.systemUid);
-    }
-
-    /**
-     * Get an iterable over the PIF system UID queries.
-     *
-     * @return {@link Iterable} of {@link Filter} objects.
-     */
-    @JsonIgnore
-    public Iterable<Filter> systemUid() {
-        return ListUtil.iterable(this.systemUid);
-    }
-
-    /**
-     * Get the system UID filter object at the input index.
-     *
-     * @param index Index of the system UID filter to get.
-     * @return {@link Filter} at the input index.
-     */
-    @JsonIgnore
-    public Filter getSystemUid(final int index) {
-        return ListUtil.get(this.systemUid, index);
-    }
-
-    /**
-     * Get the list of PIF system UID queries.
-     *
-     * @return List of {@link Filter} objects.
-     */
-    public List<Filter> getSystemUid() {
-        return this.systemUid;
     }
 
     /**
@@ -328,14 +178,8 @@ public class DataQuery implements HasLogic {
     /** Logic for the query. */
     private Logic logic;
 
-    /** List of filters against the dataset ID. */
-    private List<Filter> datasetId;
-
     /** List of queries against dataset metadata. */
     private List<DatasetQuery> dataset;
-
-    /** List of filters against the PIF system UID. */
-    private List<Filter> systemUid;
 
     /** List of queries against PIF systems. */
     private List<PifSystemQuery> system;

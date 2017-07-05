@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.pif.query;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.pif.query.chemical.ChemicalFieldQuery;
 import io.citrine.jcc.search.pif.query.chemical.CompositionQuery;
@@ -106,6 +107,81 @@ public class PifSystemQuery extends BaseObjectQuery {
     public PifSystemQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
+    }
+
+    /**
+     * Set the list of PIF system UID queries. This replaces any filters that are already present.
+     *
+     * @param uid List of {@link Filter} objects.
+     * @return This object.
+     */
+    public PifSystemQuery setUid(final List<Filter> uid) {
+        this.uid = uid;
+        return this;
+    }
+
+    /**
+     * Add to the list of PIF system UID queries.
+     *
+     * @param uid List of {@link Filter} objects.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PifSystemQuery addUid(final List<Filter> uid) {
+        this.uid = ListUtil.add(uid, this.uid);
+        return this;
+    }
+
+    /**
+     * Add to the list of PIF system UID queries.
+     *
+     * @param uid {@link Filter} object to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public PifSystemQuery addUid(final Filter uid) {
+        this.uid = ListUtil.add(uid, this.uid);
+        return this;
+    }
+
+    /**
+     * Get the number of PIF system UID queries.
+     *
+     * @return Number of queries against the system UID field.
+     */
+    @JsonIgnore
+    public int uidLength() {
+        return ListUtil.length(this.uid);
+    }
+
+    /**
+     * Get an iterable over the PIF system UID queries.
+     *
+     * @return {@link Iterable} of {@link Filter} objects.
+     */
+    @JsonIgnore
+    public Iterable<Filter> uid() {
+        return ListUtil.iterable(this.uid);
+    }
+
+    /**
+     * Get the system UID filter object at the input index.
+     *
+     * @param index Index of the system UID filter to get.
+     * @return {@link Filter} at the input index.
+     */
+    @JsonIgnore
+    public Filter getUid(final int index) {
+        return ListUtil.get(this.uid, index);
+    }
+
+    /**
+     * Get the list of PIF system UID queries.
+     *
+     * @return List of {@link Filter} objects.
+     */
+    public List<Filter> getUid() {
+        return this.uid;
     }
 
     /**
@@ -932,6 +1008,9 @@ public class PifSystemQuery extends BaseObjectQuery {
     public List<PifSystemQuery> getSubSystems() {
         return this.subSystems;
     }
+
+    /** List of filters against the PIF system UID. */
+    private List<Filter> uid;
 
     /** List of names operations. */
     private List<FieldQuery> names;
