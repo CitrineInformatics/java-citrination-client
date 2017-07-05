@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.citrine.jcc.predict.PredictionRequest;
-import io.citrine.jcc.predict.PredictionResult;
 import io.citrine.jcc.search.core.query.MultiQuery;
 import io.citrine.jcc.search.core.query.MultiSearchResult;
 import io.citrine.jcc.search.pif.query.PifSystemReturningQuery;
@@ -20,8 +18,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.LaxRedirectStrategy;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Client for working with a Citrination.com site.
@@ -61,35 +57,6 @@ public class CitrinationClient {
         try (final CloseableHttpClient client = buildHttpClient()) {
             try (final CloseableHttpResponse response = client.execute(post)) {
                 return buildMultiSearchResult(response);
-            }
-        }
-    }
-
-    /**
-     * Request predictions from a model.
-     *
-     * @param modelName to make the prediction against
-     * @param inputs    list of materials, as Maps[String, Object], to make predictions on
-     * @return {@link PredictionResult} containing the results
-     * @throws IOException      when there are serialization issues
-     * @throws RuntimeException if a non-200 response is received.
-     */
-    public PredictionResult predict(String modelName, PredictionRequest inputs) throws IOException {
-        final HttpPost post = new HttpPost(this.host + "/api/csv_to_models/" + modelName + "/predict");
-        post.addHeader("X-API-Key", this.apiKey);
-        post.addHeader("Content-type", "application/json");
-
-        Map<String, Object> wrapper = new HashMap<String, Object>();
-        wrapper.put("predictionRequest", inputs);
-        post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(wrapper)));
-
-        try (final CloseableHttpClient client = buildHttpClient()) {
-            try (final CloseableHttpResponse response = client.execute(post)) {
-                if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-                    throw new RuntimeException("Received " + response.getStatusLine().getStatusCode() + " response: "
-                            + response.getStatusLine().getReasonPhrase());
-                }
-                return OBJECT_MAPPER.readValue(response.getEntity().getContent(), PredictionResult.class);
             }
         }
     }
