@@ -1,41 +1,41 @@
-package io.citrine.jcc.search.pif.query.chemical;
+package io.citrine.jcc.search.core.query;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
 /**
- * Interface for classes that have a list of chemical filters associated with them.
+ * Interface for classes that have a list of filters associated with them.
  *
  * @author Kyle Michel
  */
-public interface HasChemicalFilter {
+public interface HasFilter {
 
     /**
      * Set the list of filters. This overrides any values that are already saved.
      *
-     * @param filter List of {@link ChemicalFilter} objects to save.
+     * @param filter List of {@link Filter} objects to save.
      * @return This object.
      */
-    HasChemicalFilter setFilter(final List<ChemicalFilter> filter);
+    HasFilter setFilter(final List<Filter> filter);
 
     /**
      * Add each in a list of filters.
      *
-     * @param filter List of {@link ChemicalFilter} objects to save.
+     * @param filter List of {@link Filter} objects to save.
      * @return This object.
      */
     @JsonIgnore
-    HasChemicalFilter addFilter(final List<ChemicalFilter> filter);
+    HasFilter addFilter(final List<Filter> filter);
 
     /**
      * Add to the list of nested filter.
      *
-     * @param filter {@link ChemicalFilter} object to add.
+     * @param filter {@link Filter} object to add.
      * @return This object.
      */
     @JsonIgnore
-    HasChemicalFilter addFilter(final ChemicalFilter filter);
+    HasFilter addFilter(final Filter filter);
 
     /**
      * Get the number of nested filters have been applied.
@@ -48,10 +48,10 @@ public interface HasChemicalFilter {
     /**
      * Get an iterable over the list of nested filter.
      *
-     * @return Iterable of {@link ChemicalFilter} objects.
+     * @return Iterable of {@link Filter} objects.
      */
     @JsonIgnore
-    Iterable<ChemicalFilter> filter();
+    Iterable<Filter> filter();
 
     /**
      * Get a single filter.
@@ -60,12 +60,12 @@ public interface HasChemicalFilter {
      * @return Filter at the input index.
      */
     @JsonIgnore
-    ChemicalFilter getFilter(final int index);
+    Filter getFilter(final int index);
 
     /**
      * Get the list of filters.
      *
-     * @return List of {@link ChemicalFilter} objects or a null pointer if not set.
+     * @return List of {@link Filter} objects or a null pointer if not set.
      */
-    List<ChemicalFilter> getFilter();
+    List<Filter> getFilter();
 }

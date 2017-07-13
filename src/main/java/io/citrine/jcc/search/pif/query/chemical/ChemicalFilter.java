@@ -1,8 +1,6 @@
 package io.citrine.jcc.search.pif.query.chemical;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.HasLogic;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
@@ -10,23 +8,64 @@ import io.citrine.jcc.util.ListUtil;
 import java.util.List;
 
 /**
- * Filter that can be applied to any object.
+ * ChemicalFilter that can be applied to any object.
  * 
  * @author Kyle Michel
  */
 public class ChemicalFilter implements HasLogic, HasChemicalFilter {
 
     @Override
-    @JsonSetter("logic")
-    public ChemicalFilter logic(final Logic logic) {
+    public ChemicalFilter setLogic(final Logic logic) {
         this.logic = logic;
         return this;
     }
 
     @Override
-    @JsonGetter("logic")
-    public Logic logic() {
+    public Logic getLogic() {
         return this.logic;
+    }
+
+    @Override
+    public ChemicalFilter setFilter(final List<ChemicalFilter> filter) {
+        this.filter = filter;
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public ChemicalFilter addFilter(final List<ChemicalFilter> filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public ChemicalFilter addFilter(final ChemicalFilter filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public int filterLength() {
+        return ListUtil.length(this.filter);
+    }
+
+    @Override
+    @JsonIgnore
+    public Iterable<ChemicalFilter> filter() {
+        return ListUtil.iterable(this.filter);
+    }
+
+    @Override
+    @JsonIgnore
+    public ChemicalFilter getFilter(final int index) {
+        return ListUtil.get(this.filter, index);
+    }
+
+    @Override
+    public List<ChemicalFilter> getFilter() {
+        return this.filter;
     }
 
     /**
@@ -35,8 +74,7 @@ public class ChemicalFilter implements HasLogic, HasChemicalFilter {
      * @param exists True if the field must exist.
      * @return This object.
      */
-    @JsonSetter("exists")
-    public ChemicalFilter exists(final Boolean exists) {
+    public ChemicalFilter setExists(final Boolean exists) {
         this.exists = exists;
         return this;
     }
@@ -46,19 +84,17 @@ public class ChemicalFilter implements HasLogic, HasChemicalFilter {
      *
      * @return True if the field must exist or a null pointer if it has not been set.
      */
-    @JsonGetter("exists")
-    public Boolean exists() {
+    public Boolean getExists() {
         return this.exists;
     }
 
     /**
      * Set the string to match against.
-     * 
+     *
      * @param equal String to match against.
      * @return This object.
      */
-    @JsonSetter("equal")
-    public ChemicalFilter equal(final String equal) {
+    public ChemicalFilter setEqual(final String equal) {
         this.equal = equal;
         return this;
     }
@@ -68,63 +104,58 @@ public class ChemicalFilter implements HasLogic, HasChemicalFilter {
      *
      * @return Match string or a null pointer if it has not been set.
      */
-    @JsonGetter("equal")
-    public String equal() {
+    public String getEqual() {
         return this.equal;
     }
 
     /**
-     * Set whether to match against the single element field. Defaults to false.
+     * Set whether matches should be an element. Defaults to false.
      *
-     * @param element True to match against the single element field.
+     * @param element True if matches should be elements.
      * @return This object.
      */
-    @JsonSetter("element")
-    public ChemicalFilter element(final Boolean element) {
+    public ChemicalFilter setElement(final Boolean element) {
         this.element = element;
         return this;
     }
 
     /**
-     * Get whether to match against the single element field.
+     * Get whether matches should be elements.
      *
-     * @return True to match against single element field or a null pointer if it has not been set.
+     * @return True if matches should be elements or a null pointer if it has not been set.
      */
-    @JsonGetter("element")
-    public Boolean element() {
+    public Boolean getElement() {
         return this.element;
     }
 
     /**
-     * Set whether to match against the partial formula field. Defaults to false.
+     * Set whether matches should be partial. Defaults to false.
      *
-     * @param partial True to match against the partial formula field.
+     * @param partial True if matches should be exact.
      * @return This object.
      */
-    @JsonSetter("partial")
-    public ChemicalFilter partial(final Boolean partial) {
+    public ChemicalFilter setPartial(final Boolean partial) {
         this.partial = partial;
         return this;
     }
 
     /**
-     * Get whether to match against the partial formula field.
+     * Get whether matches should be partial.
      *
-     * @return True to match against the partial formula field or a null pointer if it has not been set.
+     * @return True if matches should be partial or a null pointer if it has not been set.
      */
-    @JsonGetter("partial")
-    public Boolean partial() {
+    public Boolean getPartial() {
         return this.partial;
     }
 
     /**
-     * Set whether matches should be exact. This only applies when using the {@link #equal()} field. Defaults to false.
+     * Set whether matches should be exact. This only applies when using the {@link #getEqual()} field.
+     * Defaults to false.
      *
      * @param exact True if matches should be exact.
      * @return This object.
      */
-    @JsonSetter("exact")
-    public ChemicalFilter exact(final Boolean exact) {
+    public ChemicalFilter setExact(final Boolean exact) {
         this.exact = exact;
         return this;
     }
@@ -134,38 +165,8 @@ public class ChemicalFilter implements HasLogic, HasChemicalFilter {
      *
      * @return True if matches should be exact or a null pointer if it has not been set.
      */
-    @JsonGetter("exact")
-    public Boolean exact() {
+    public Boolean getExact() {
         return this.exact;
-    }
-
-    /**
-     * Set the nested list of filters that apply to the field.
-     *
-     * @param filter List of {@link ChemicalFilter} objects.
-     */
-    @JsonSetter("filter")
-    private void filter(final List<ChemicalFilter> filter) {
-        this.filter = ListUtil.add(filter, this.filter);
-    }
-
-    @Override
-    @JsonIgnore
-    public ChemicalFilter filter(final ChemicalFilter filter) {
-        this.filter = ListUtil.add(filter, this.filter);
-        return this;
-    }
-
-    @Override
-    @JsonGetter("filter")
-    public Iterable<ChemicalFilter> filter() {
-        return ListUtil.iterable(this.filter);
-    }
-
-    @Override
-    @JsonIgnore
-    public boolean hasFilter() {
-        return ListUtil.hasContent(this.filter);
     }
 
     /** Logic for applying the filters. */

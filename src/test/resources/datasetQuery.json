@@ -1,0 +1,17 @@
+{
+  "from": 10,
+  "size": 100,
+  "randomResults": true,
+  "randomSeed": 0,
+  "scoreRelevance": true,
+  "countPifs": true,
+  "system": [{
+    "names": {
+      "filter": {"equal": "lithium"}
+    }
+  },{
+    "chemicalFormula": {
+      "filter": {"equal": "Li"}
+    }
+  }]
+}
