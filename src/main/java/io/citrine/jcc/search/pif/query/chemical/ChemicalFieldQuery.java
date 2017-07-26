@@ -130,7 +130,7 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
      * @param filter List of {@link ChemicalFilter} objects to add.
      */
     @JsonSetter("filterGroup")
-    private void filterGroup(final List<ChemicalFilter> filter) {
+    protected void filterGroup(final List<ChemicalFilter> filter) {
         this.addFilter(filter);
     }
 

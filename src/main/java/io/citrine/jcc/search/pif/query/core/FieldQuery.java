@@ -130,7 +130,7 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
      * @param filter List of {@link Filter} objects to add.
      */
     @JsonSetter("filterGroup")
-    private void filterGroup(final List<Filter> filter) {
+    protected void filterGroup(final List<Filter> filter) {
         this.addFilter(filter);
     }
 
