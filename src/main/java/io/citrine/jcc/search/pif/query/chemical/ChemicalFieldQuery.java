@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.pif.query.chemical;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.pif.query.core.BaseFieldQuery;
 import io.citrine.jcc.search.pif.query.core.FieldQuery;
@@ -120,6 +121,17 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     @Override
     public List<ChemicalFilter> getFilter() {
         return this.filter;
+    }
+
+    /**
+     * Add to the list of filters using a filterGroup tag. This method exists only to deserialize from deprecated
+     * FilterGroup objects.
+     *
+     * @param filter List of {@link ChemicalFilter} objects to add.
+     */
+    @JsonSetter("filterGroup")
+    private void filterGroup(final List<ChemicalFilter> filter) {
+        this.addFilter(filter);
     }
 
     /** List of filters. */

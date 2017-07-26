@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.pif.query.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasFilter;
 import io.citrine.jcc.search.core.query.Logic;
@@ -120,6 +121,17 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     @Override
     public List<Filter> getFilter() {
         return this.filter;
+    }
+
+    /**
+     * Add to the list of filters using a filterGroup tag. This method exists only to deserialize from deprecated
+     * FilterGroup objects.
+     *
+     * @param filter List of {@link Filter} objects to add.
+     */
+    @JsonSetter("filterGroup")
+    private void filterGroup(final List<Filter> filter) {
+        this.addFilter(filter);
     }
 
     /** List of filters. */
