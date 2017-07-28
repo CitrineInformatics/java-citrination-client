@@ -35,6 +35,12 @@ public class PifSearchResult extends BaseSearchResult<PifSearchHit> {
     }
 
     @Override
+    public PifSearchResult setMaxScore(final Double maxScore) {
+        super.setMaxScore(maxScore);
+        return this;
+    }
+
+    @Override
     public PifSearchResult setHits(final List<PifSearchHit> hits) {
         super.setHits(hits);
         return this;

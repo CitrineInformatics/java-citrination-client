@@ -35,6 +35,12 @@ public class DatasetSearchResult extends BaseSearchResult<DatasetSearchHit>  {
     }
 
     @Override
+    public DatasetSearchResult setMaxScore(final Double maxScore) {
+        super.setMaxScore(maxScore);
+        return this;
+    }
+
+    @Override
     public DatasetSearchResult setHits(final List<DatasetSearchHit> hits) {
         super.setHits(hits);
         return this;

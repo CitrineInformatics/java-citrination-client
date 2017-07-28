@@ -2,6 +2,7 @@ package io.citrine.jcc.search.pif.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jpif.obj.common.Pio;
+import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.util.PifObjectMapper;
 
 import java.util.Collections;
@@ -94,6 +95,26 @@ public class PifSearchHit {
      */
     public Double getScore() {
         return this.score;
+    }
+
+    /**
+     * Set the time that the record was updated.
+     *
+     * @param updatedAt String with the time that the record was updated.
+     * @return This object.
+     */
+    public PifSearchHit setUpdatedAt(final String updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    /**
+     * Get the time that the record was updated.
+     *
+     * @return String with the time that the record was updated.
+     */
+    public String getUpdatedAt() {
+        return this.updatedAt;
     }
 
     /**
@@ -267,6 +288,9 @@ public class PifSearchHit {
 
     /** Score of the record. */
     private Double score;
+
+    /** The time that the record was updated. */
+    private String updatedAt;
 
     /** Pif system that was matched. */
     private System system;

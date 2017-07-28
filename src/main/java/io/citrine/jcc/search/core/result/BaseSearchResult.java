@@ -58,6 +58,26 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
     }
 
     /**
+     * Set the max score.
+     *
+     * @param maxScore Double with the max score.
+     * @return This object.
+     */
+    public BaseSearchResult<T> setMaxScore(final Double maxScore) {
+        this.maxScore = maxScore;
+        return this;
+    }
+
+    /**
+     * Get the max score.
+     *
+     * @return Double with the max score.
+     */
+    public Double getMaxScore() {
+        return this.maxScore;
+    }
+
+    /**
      * Set the list of hits that were matched. This overwrites any hits that are already saved.
      *
      * @param hits List of hit objects.
@@ -161,6 +181,9 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
 
     /** Total number of hits. */
     private Long totalNumHits;
+
+    /** The maximum score. */
+    private Double maxScore;
 
     /** List of hits. */
     private List<T> hits;

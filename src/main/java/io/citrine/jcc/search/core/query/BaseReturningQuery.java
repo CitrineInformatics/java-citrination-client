@@ -157,6 +157,26 @@ public abstract class BaseReturningQuery extends DataScope {
         return this.scoreRelevance;
     }
 
+    /**
+     * Set whether to return the max score.
+     *
+     * @param returnMaxScore True to return the max score.
+     * @return This object.
+     */
+    public BaseReturningQuery setReturnMaxScore(final Boolean returnMaxScore) {
+        this.returnMaxScore = returnMaxScore;
+        return this;
+    }
+
+    /**
+     * Get whether to return the max score.
+     *
+     * @return True to return the max score.
+     */
+    public Boolean getReturnMaxScore() {
+        return this.returnMaxScore;
+    }
+
     /** Index of the first hit that should be returned. */
     private Integer from;
 
@@ -171,4 +191,7 @@ public abstract class BaseReturningQuery extends DataScope {
 
     /** Whether to use relevance scoring. */
     private Boolean scoreRelevance;
+
+    /** Whether to return the maximum score. */
+    private Boolean returnMaxScore;
 }

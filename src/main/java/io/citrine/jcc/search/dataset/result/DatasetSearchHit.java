@@ -170,6 +170,26 @@ public class DatasetSearchHit {
         return this.numPifs;
     }
 
+    /**
+     * Set the time that the record was updated.
+     *
+     * @param updatedAt String with the time that the record was updated.
+     * @return This object.
+     */
+    public DatasetSearchHit setUpdatedAt(final String updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    /**
+     * Get the time that the record was updated.
+     *
+     * @return String with the time that the record was updated.
+     */
+    public String getUpdatedAt() {
+        return this.updatedAt;
+    }
+
     /** ID of the dataset. */
     private String id;
 
@@ -193,4 +213,7 @@ public class DatasetSearchHit {
 
     /** Number of PIFs in the dataset. */
     private Long numPifs;
+
+    /** The time that the record was updated. */
+    private String updatedAt;
 }
