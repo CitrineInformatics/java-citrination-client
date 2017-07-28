@@ -1,6 +1,8 @@
 package io.citrine.jcc.search.pif.result;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.util.PifObjectMapper;
@@ -143,6 +145,7 @@ public class PifSearchHit {
      * @param extracted Map of extracted value names to values.
      * @return This object.
      */
+    @JsonSetter
     public PifSearchHit setExtracted(final Map<String, Object> extracted) {
         this.extracted = extracted;
         return this;
@@ -186,6 +189,7 @@ public class PifSearchHit {
      *
      * @return Map of extracted field keys to values.
      */
+    @JsonGetter
     protected Map<String, Object> getExtracted() {
         return this.extracted;
     }
