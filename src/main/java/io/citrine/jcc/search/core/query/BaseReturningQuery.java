@@ -13,21 +13,21 @@ import java.util.List;
 public abstract class BaseReturningQuery extends DataScope {
 
     @Override
-    public DataScope setQuery(final List<DataQuery> query) {
+    public BaseReturningQuery setQuery(final List<DataQuery> query) {
         super.setQuery(query);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DataScope addQuery(final List<DataQuery> query) {
+    public BaseReturningQuery addQuery(final List<DataQuery> query) {
         super.addQuery(query);
         return this;
     }
 
     @Override
     @JsonIgnore
-    public DataScope addQuery(final DataQuery query) {
+    public BaseReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
         return this;
     }
