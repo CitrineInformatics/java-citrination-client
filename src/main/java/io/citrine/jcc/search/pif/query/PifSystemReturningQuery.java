@@ -56,6 +56,12 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     }
 
     @Override
+    public PifSystemReturningQuery setReturnMaxScore(final Boolean returnMaxScore) {
+        super.setReturnMaxScore(returnMaxScore);
+        return this;
+    }
+
+    @Override
     public PifSystemReturningQuery setQuery(final List<DataQuery> query) {
         super.setQuery(query);
         return this;

@@ -54,6 +54,12 @@ public class DatasetReturningQuery extends BaseReturningQuery {
     }
 
     @Override
+    public DatasetReturningQuery setReturnMaxScore(final Boolean returnMaxScore) {
+        super.setReturnMaxScore(returnMaxScore);
+        return this;
+    }
+
+    @Override
     public DatasetReturningQuery setQuery(final List<DataQuery> query) {
         super.setQuery(query);
         return this;

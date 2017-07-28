@@ -2,7 +2,6 @@ package io.citrine.jcc.search.core.query;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
 
@@ -11,7 +10,27 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public abstract class BaseReturningQuery {
+public abstract class BaseReturningQuery extends DataScope {
+
+    @Override
+    public BaseReturningQuery setQuery(final List<DataQuery> query) {
+        super.setQuery(query);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public BaseReturningQuery addQuery(final List<DataQuery> query) {
+        super.addQuery(query);
+        return this;
+    }
+
+    @Override
+    @JsonIgnore
+    public BaseReturningQuery addQuery(final DataQuery query) {
+        super.addQuery(query);
+        return this;
+    }
 
     /**
      * Index of the first hit that should be returned. This method is here just to be compatible with the python
@@ -139,78 +158,23 @@ public abstract class BaseReturningQuery {
     }
 
     /**
-     * Set the list of queries. This replaces any filters that are already present.
+     * Set whether to return the max score.
      *
-     * @param query List of {@link DataQuery} objects.
+     * @param returnMaxScore True to return the max score.
      * @return This object.
      */
-    public BaseReturningQuery setQuery(final List<DataQuery> query) {
-        this.query = query;
+    public BaseReturningQuery setReturnMaxScore(final Boolean returnMaxScore) {
+        this.returnMaxScore = returnMaxScore;
         return this;
     }
 
     /**
-     * Add to the list of queries.
+     * Get whether to return the max score.
      *
-     * @param query List of {@link DataQuery} objects.
-     * @return This object.
+     * @return True to return the max score.
      */
-    @JsonIgnore
-    public BaseReturningQuery addQuery(final List<DataQuery> query) {
-        this.query = ListUtil.add(query, this.query);
-        return this;
-    }
-
-    /**
-     * Add to the list of queries.
-     *
-     * @param query {@link DataQuery} object to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public BaseReturningQuery addQuery(final DataQuery query) {
-        this.query = ListUtil.add(query, this.query);
-        return this;
-    }
-
-    /**
-     * Get the number of queries.
-     *
-     * @return Number of queries.
-     */
-    @JsonIgnore
-    public int queryLength() {
-        return ListUtil.length(this.query);
-    }
-
-    /**
-     * Get an iterable over the queries.
-     *
-     * @return {@link Iterable} of {@link DataQuery} objects.
-     */
-    @JsonIgnore
-    public Iterable<DataQuery> query() {
-        return ListUtil.iterable(this.query);
-    }
-
-    /**
-     * Get the query at the input index.
-     *
-     * @param index Index of the query to get.
-     * @return {@link DataQuery} at the input index.
-     */
-    @JsonIgnore
-    public DataQuery getQuery(final int index) {
-        return ListUtil.get(this.query, index);
-    }
-
-    /**
-     * Get the list of queries.
-     *
-     * @return List of {@link DataQuery} objects.
-     */
-    public List<DataQuery> getQuery() {
-        return this.query;
+    public Boolean getReturnMaxScore() {
+        return this.returnMaxScore;
     }
 
     /** Index of the first hit that should be returned. */
@@ -228,6 +192,6 @@ public abstract class BaseReturningQuery {
     /** Whether to use relevance scoring. */
     private Boolean scoreRelevance;
 
-    /** List of queries against the content of datasets. */
-    private List<DataQuery> query;
+    /** Whether to return the maximum score. */
+    private Boolean returnMaxScore;
 }
