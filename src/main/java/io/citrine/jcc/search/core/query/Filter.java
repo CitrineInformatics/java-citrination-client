@@ -1,6 +1,8 @@
 package io.citrine.jcc.search.core.query;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -112,6 +114,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param min Minimum value that should match.
      * @return This object.
      */
+    @JsonSetter
     public Filter setMin(final String min) {
         this.min = min;
         return this;
@@ -170,6 +173,7 @@ public class Filter implements HasLogic, HasFilter {
      *
      * @return String with the minimum value that should match or a null pointer if it has not been set.
      */
+    @JsonGetter
     public String getMin() {
         return this.min;
     }
@@ -180,6 +184,7 @@ public class Filter implements HasLogic, HasFilter {
      * @param max Maximum value that should match.
      * @return This object.
      */
+    @JsonSetter
     public Filter setMax(final String max) {
         this.max = max;
         return this;
@@ -238,6 +243,7 @@ public class Filter implements HasLogic, HasFilter {
      *
      * @return String with the maximum value that should match or a null pointer if it as not been set.
      */
+    @JsonGetter
     public String getMax() {
         return this.max;
     }
