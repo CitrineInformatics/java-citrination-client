@@ -143,7 +143,7 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
      */
     @JsonSetter
     private void setIncludeDatasets(final List<Long> includeDatasets) {  // Private since only Jackson should use it
-        if (includeDatasets != null) {
+        if ((includeDatasets != null) && !includeDatasets.isEmpty()) {
             final DatasetQuery datasetQuery = new DatasetQuery();
             includeDatasets.forEach(i -> datasetQuery.addId(new Filter().setEqual(Long.toString(i))));
             this.addQuery(new DataQuery()
@@ -159,7 +159,7 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
      */
     @JsonSetter
     private void setExcludeDatasets(final List<Long> excludeDatasets) {  // Private since only Jackson should use it
-        if (excludeDatasets != null) {
+        if ((excludeDatasets != null)  && !excludeDatasets.isEmpty()) {
             final DatasetQuery datasetQuery = new DatasetQuery();
             excludeDatasets.forEach(i -> datasetQuery.addId(new Filter().setEqual(Long.toString(i))));
             this.addQuery(new DataQuery()
