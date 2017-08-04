@@ -848,6 +848,156 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     /**
+     * Set the figure operations. This adds to any operations that are already saved.
+     *
+     * @param figure List of {@link DisplayItemQuery} objects.
+     * @return This object.
+     */
+    public ReferenceQuery setFigure(final List<DisplayItemQuery> figure) {
+        this.figure = figure;
+        return this;
+    }
+
+    /**
+     * Add to the list of figure operations.
+     *
+     * @param figure {@link DisplayItemQuery} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery addFigure(final List<DisplayItemQuery> figure) {
+        this.figure = ListUtil.add(figure, this.figure);
+        return this;
+    }
+
+    /**
+     * Add to the list of figure operations.
+     *
+     * @param figure {@link DisplayItemQuery} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery addFigure(final DisplayItemQuery figure) {
+        this.figure = ListUtil.add(figure, this.figure);
+        return this;
+    }
+
+    /**
+     * Get the length of the figure queries.
+     *
+     * @return Number of figure queries.
+     */
+    @JsonIgnore
+    public int figureLength() {
+        return ListUtil.length(this.figure);
+    }
+
+    /**
+     * Get an iterable over figure operations.
+     *
+     * @return Iterable of {@link DisplayItemQuery} objects.
+     */
+    @JsonIgnore
+    public Iterable<DisplayItemQuery> figure() {
+        return ListUtil.iterable(this.figure);
+    }
+
+    /**
+     * Get the figure query at the input index.
+     *
+     * @param index Index of the figure query to get.
+     * @return {@link DisplayItemQuery} at the input index.
+     */
+    @JsonIgnore
+    public DisplayItemQuery getFigure(final int index) {
+        return ListUtil.get(this.figure, index);
+    }
+
+    /**
+     * Get the figure field queries.
+     *
+     * @return List of {@link DisplayItemQuery} objects.
+     */
+    public List<DisplayItemQuery> getFigure() {
+        return this.figure;
+    }
+
+    /**
+     * Set the table operations. This adds to any operations that are already saved.
+     *
+     * @param table List of {@link DisplayItemQuery} objects.
+     * @return This object.
+     */
+    public ReferenceQuery setTable(final List<DisplayItemQuery> table) {
+        this.table = table;
+        return this;
+    }
+
+    /**
+     * Add to the list of table operations.
+     *
+     * @param table {@link DisplayItemQuery} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery addTable(final List<DisplayItemQuery> table) {
+        this.table = ListUtil.add(table, this.table);
+        return this;
+    }
+
+    /**
+     * Add to the list of table operations.
+     *
+     * @param table {@link DisplayItemQuery} to add.
+     * @return This object.
+     */
+    @JsonIgnore
+    public ReferenceQuery addTable(final DisplayItemQuery table) {
+        this.table = ListUtil.add(table, this.table);
+        return this;
+    }
+
+    /**
+     * Get the length of the table queries.
+     *
+     * @return Number of table queries.
+     */
+    @JsonIgnore
+    public int tableLength() {
+        return ListUtil.length(this.table);
+    }
+
+    /**
+     * Get an iterable over table operations.
+     *
+     * @return Iterable of {@link DisplayItemQuery} objects.
+     */
+    @JsonIgnore
+    public Iterable<DisplayItemQuery> table() {
+        return ListUtil.iterable(this.table);
+    }
+
+    /**
+     * Get the table query at the input index.
+     *
+     * @param index Index of the table query to get.
+     * @return {@link DisplayItemQuery} at the input index.
+     */
+    @JsonIgnore
+    public DisplayItemQuery getTable(final int index) {
+        return ListUtil.get(this.table, index);
+    }
+
+    /**
+     * Get the table field queries.
+     *
+     * @return List of {@link DisplayItemQuery} objects.
+     */
+    public List<DisplayItemQuery> getTable() {
+        return this.table;
+    }
+
+    /**
      * Set the pages operations. This adds to any operations that are already saved.
      *
      * @param pages List of {@link PagesQuery} objects.
@@ -1326,6 +1476,12 @@ public class ReferenceQuery extends BaseObjectQuery {
 
     /** Year of the reference. */
     private List<FieldQuery> year;
+    
+    /** Figure for the reference. */
+    private List<DisplayItemQuery> figure;
+
+    /** Table for the reference. */
+    private List<DisplayItemQuery> table;
 
     /** Pages of the reference. */
     private List<PagesQuery> pages;
