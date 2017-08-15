@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class DisplayItemQuery extends BaseObjectQuery {
 
-
     @Override
     public DisplayItemQuery setLogic(final Logic logic) {
         super.setLogic(logic);
