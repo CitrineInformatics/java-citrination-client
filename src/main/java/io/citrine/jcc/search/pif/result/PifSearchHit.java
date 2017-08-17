@@ -157,7 +157,7 @@ public class PifSearchHit {
      * @param extracted Map of extracted value names to values.
      * @return This object.
      */
-    @JsonIgnore
+
     public PifSearchHit addExtracted(final Map<String, Object> extracted) {
         if (extracted != null) {
             if (this.extracted == null) {
@@ -175,7 +175,7 @@ public class PifSearchHit {
      * @param value Value that was extracted.
      * @return This object.
      */
-    @JsonIgnore
+
     public PifSearchHit addExtracted(final String key, final Object value) {
         if (this.extracted == null) {
             this.extracted = new HashMap<>();
@@ -199,7 +199,7 @@ public class PifSearchHit {
      *
      * @return Set with the extracted keys.
      */
-    @JsonIgnore
+
     public Set<String> getExtractedKeys() {
         return (this.extracted == null) ? Collections.emptySet() : this.extracted.keySet();
     }
@@ -210,7 +210,7 @@ public class PifSearchHit {
      * @param key String with the key of the extracted value.
      * @return String with the value of the input key or a null pointer if that key is not available.
      */
-    @JsonIgnore
+
     public Object getExtractedValue(final String key) {
         return (this.extracted == null) ? null : this.extracted.get(key);
     }
@@ -225,7 +225,7 @@ public class PifSearchHit {
      * @return Instance of the input class type generated from the value at the input key or a null pointer if the
      * key is not available.
      */
-    @JsonIgnore
+
     public <T extends Pio> T getExtractValue(final String key, final Class<T> valueClass) {
         return (this.extracted == null) ? null : convert(this.extracted.get(key), valueClass);
     }
@@ -237,7 +237,7 @@ public class PifSearchHit {
      * @param defaultValue String with the default value to return if the key does not exist.
      * @return Value with the input key or the input default.
      */
-    @JsonIgnore
+
     public Object getExtractedValueOrDefault(final String key, final Object defaultValue) {
         return (this.extracted == null) ? defaultValue : this.extracted.getOrDefault(key, defaultValue);
     }
@@ -251,7 +251,7 @@ public class PifSearchHit {
      * @param <T> Type of the value to extract.
      * @return Value with the input key or the input default.
      */
-    @JsonIgnore
+
     public <T extends Pio> T getExtractedValueOrDefault(
             final String key, final T defaultValue, final Class<T> valueClass) {
         final T converted = (this.extracted == null) ? defaultValue : convert(this.extracted.get(key), valueClass);
@@ -268,7 +268,7 @@ public class PifSearchHit {
      * @return Converted value.
      * @throws RuntimeException if the value cannot be converted.
      */
-    @JsonIgnore
+
     private <T extends Pio> T convert(final Object object, final Class<T> objectClass) {
         if (object == null) {
             return null;

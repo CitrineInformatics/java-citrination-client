@@ -29,7 +29,7 @@ public class DataScope {
      * @param query List of {@link DataQuery} objects.
      * @return This object.
      */
-    @JsonIgnore
+
     public DataScope addQuery(final List<DataQuery> query) {
         this.query = ListUtil.add(query, this.query);
         return this;
@@ -41,7 +41,7 @@ public class DataScope {
      * @param query {@link DataQuery} object to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public DataScope addQuery(final DataQuery query) {
         this.query = ListUtil.add(query, this.query);
         return this;
@@ -52,7 +52,7 @@ public class DataScope {
      *
      * @return Number of queries.
      */
-    @JsonIgnore
+
     public int queryLength() {
         return ListUtil.length(this.query);
     }
@@ -62,7 +62,6 @@ public class DataScope {
      *
      * @return {@link Iterable} of {@link DataQuery} objects.
      */
-    @JsonIgnore
     public Iterable<DataQuery> query() {
         return ListUtil.iterable(this.query);
     }
@@ -73,7 +72,6 @@ public class DataScope {
      * @param index Index of the query to get.
      * @return {@link DataQuery} at the input index.
      */
-    @JsonIgnore
     public DataQuery getQuery(final int index) {
         return ListUtil.get(this.query, index);
     }

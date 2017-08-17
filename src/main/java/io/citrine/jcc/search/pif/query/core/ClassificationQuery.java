@@ -44,14 +44,14 @@ public class ClassificationQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ClassificationQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ClassificationQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -64,14 +64,14 @@ public class ClassificationQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ClassificationQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ClassificationQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -84,14 +84,14 @@ public class ClassificationQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ClassificationQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ClassificationQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -114,7 +114,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ClassificationQuery addName(final List<FieldQuery> name) {
         this.name = ListUtil.add(name, this.name);
         return this;
@@ -126,7 +126,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ClassificationQuery addName(final FieldQuery name) {
         this.name = ListUtil.add(name, this.name);
         return this;
@@ -137,7 +137,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      *
      * @return Number of name queries.
      */
-    @JsonIgnore
+
     public int nameLength() {
         return ListUtil.length(this.name);
     }
@@ -147,7 +147,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
@@ -158,7 +158,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      * @param index Index of the name query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getName(final int index) {
         return ListUtil.get(this.name, index);
     }
@@ -189,7 +189,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      * @param value {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ClassificationQuery addValue(final List<FieldQuery> value) {
         this.value = ListUtil.add(value, this.value);
         return this;
@@ -201,7 +201,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      * @param value {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ClassificationQuery addValue(final FieldQuery value) {
         this.value = ListUtil.add(value, this.value);
         return this;
@@ -212,7 +212,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      *
      * @return Number of value queries.
      */
-    @JsonIgnore
+
     public int valueLength() {
         return ListUtil.length(this.value);
     }
@@ -222,7 +222,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> value() {
         return ListUtil.iterable(this.value);
     }
@@ -233,7 +233,7 @@ public class ClassificationQuery extends BaseObjectQuery {
      * @param index Index of the value query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getValue(final int index) {
         return ListUtil.get(this.value, index);
     }

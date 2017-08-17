@@ -30,7 +30,7 @@ public class MultiQuery<T> {
      * @param queries List of queries to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public MultiQuery<T> addQueries(final List<T> queries) {
         this.queries = ListUtil.add(queries, this.queries);
         return this;
@@ -42,7 +42,7 @@ public class MultiQuery<T> {
      * @param query Query to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public MultiQuery<T> addQueries(final T query) {
         this.queries = ListUtil.add(query, this.queries);
         return this;
@@ -53,7 +53,7 @@ public class MultiQuery<T> {
      *
      * @return Number of queries.
      */
-    @JsonIgnore
+
     public int queriesLength() {
         return ListUtil.length(this.queries);
     }
@@ -63,7 +63,7 @@ public class MultiQuery<T> {
      *
      * @return {@link Iterable} over the queries.
      */
-    @JsonIgnore
+
     public Iterable<T> queries() {
         return ListUtil.iterable(this.queries);
     }
@@ -75,7 +75,7 @@ public class MultiQuery<T> {
      * @return Query at the input index.
      * @throws IllegalArgumentException if the index is out of bounds.
      */
-    @JsonIgnore
+
     public T getQueries(final int index) {
         return ListUtil.get(this.queries, index);
     }

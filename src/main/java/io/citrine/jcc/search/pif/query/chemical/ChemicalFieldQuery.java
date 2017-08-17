@@ -47,14 +47,14 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFieldQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFieldQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -67,14 +67,14 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFieldQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFieldQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -87,33 +87,33 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFieldQuery addFilter(final List<ChemicalFilter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFieldQuery addFilter(final ChemicalFilter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public int filterLength() {
         return ListUtil.length(this.filter);
     }
 
     @Override
-    @JsonIgnore
+
     public Iterable<ChemicalFilter> filter() {
         return ListUtil.iterable(this.filter);
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFilter getFilter(final int index) {
         return ListUtil.get(this.filter, index);
     }

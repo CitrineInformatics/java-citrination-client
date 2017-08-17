@@ -91,7 +91,7 @@ public class BooleanFilter implements HasLogic {
      * @param filter List of {@link BooleanFilter} objects to save.
      * @return This object.
      */
-    @JsonIgnore
+
     public BooleanFilter addFilter(final List<BooleanFilter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
@@ -103,7 +103,7 @@ public class BooleanFilter implements HasLogic {
      * @param filter {@link Filter} object to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public BooleanFilter addFilter(final BooleanFilter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
@@ -114,7 +114,7 @@ public class BooleanFilter implements HasLogic {
      *
      * @return Number of filters.
      */
-    @JsonIgnore
+
     public int filterLength() {
         return ListUtil.length(this.filter);
     }
@@ -124,7 +124,7 @@ public class BooleanFilter implements HasLogic {
      *
      * @return Iterable of {@link Filter} objects.
      */
-    @JsonIgnore
+
     public Iterable<BooleanFilter> filter() {
         return ListUtil.iterable(this.filter);
     }
@@ -135,7 +135,7 @@ public class BooleanFilter implements HasLogic {
      * @param index Index of the filter to get.
      * @return Filter at the input index.
      */
-    @JsonIgnore
+
     public BooleanFilter getFilter(final int index) {
         return ListUtil.get(this.filter, index);
     }

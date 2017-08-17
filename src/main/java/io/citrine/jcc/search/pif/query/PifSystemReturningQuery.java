@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
@@ -68,14 +67,14 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public PifSystemReturningQuery addQuery(final List<DataQuery> query) {
         super.addQuery(query);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public PifSystemReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
         return this;
@@ -159,7 +158,7 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
      */
     @JsonSetter
     private void setExcludeDatasets(final List<Long> excludeDatasets) {  // Private since only Jackson should use it
-        if ((excludeDatasets != null)  && !excludeDatasets.isEmpty()) {
+        if ((excludeDatasets != null) && !excludeDatasets.isEmpty()) {
             final DatasetQuery datasetQuery = new DatasetQuery();
             excludeDatasets.forEach(i -> datasetQuery.addId(new Filter().setEqual(Long.toString(i))));
             this.addQuery(new DataQuery()

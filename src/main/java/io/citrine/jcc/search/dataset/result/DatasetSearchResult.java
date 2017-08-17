@@ -47,14 +47,14 @@ public class DatasetSearchResult extends BaseSearchResult<DatasetSearchHit>  {
     }
 
     @Override
-    @JsonIgnore
+
     public DatasetSearchResult addHits(final List<DatasetSearchHit> hits) {
         super.addHits(hits);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public DatasetSearchResult addHits(final DatasetSearchHit hit) {
         super.addHits(hit);
         return this;

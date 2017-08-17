@@ -54,7 +54,7 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      * @param results List of {@link MultiSearchResultElement} objects to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public MultiSearchResult<T> addResults(final List<MultiSearchResultElement<T>> results) {
         this.results = ListUtil.add(results, this.results);
         return this;
@@ -66,7 +66,7 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      * @param result Result to add to the results set.
      * @return This object.
      */
-    @JsonIgnore
+
     public MultiSearchResult<T> addResults(final MultiSearchResultElement<T> result) {
         this.results = ListUtil.add(result, this.results);
         return this;
@@ -77,7 +77,7 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      *
      * @return Number of results in the returned set.
      */
-    @JsonIgnore
+
     public int resultsLength() {
         return ListUtil.length(this.results);
     }
@@ -89,7 +89,7 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      * @return Result at the input index.
      * @throws IllegalArgumentException if the index is out of bounds.
      */
-    @JsonIgnore
+
     public MultiSearchResultElement<T> getResults(final int index) {
         return ListUtil.get(this.results, index);
     }
@@ -104,7 +104,7 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
     }
 
     @Override
-    @JsonIgnore
+
     public Iterator<MultiSearchResultElement<T>> iterator() {
         return (this.results == null) ? Collections.emptyIterator() : this.results.iterator();
     }

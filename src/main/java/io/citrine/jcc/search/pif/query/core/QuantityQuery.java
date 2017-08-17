@@ -44,14 +44,14 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public QuantityQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public QuantityQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -64,14 +64,14 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public QuantityQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public QuantityQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -84,14 +84,14 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public QuantityQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public QuantityQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -114,7 +114,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param actualMassPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addActualMassPercent(final List<FieldQuery> actualMassPercent) {
         this.actualMassPercent = ListUtil.add(actualMassPercent, this.actualMassPercent);
         return this;
@@ -126,7 +126,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param actualMassPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addActualMassPercent(final FieldQuery actualMassPercent) {
         this.actualMassPercent = ListUtil.add(actualMassPercent, this.actualMassPercent);
         return this;
@@ -137,7 +137,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Number of actualMassPercent queries.
      */
-    @JsonIgnore
+
     public int actualMassPercentLength() {
         return ListUtil.length(this.actualMassPercent);
     }
@@ -147,7 +147,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> actualMassPercent() {
         return ListUtil.iterable(this.actualMassPercent);
     }
@@ -158,7 +158,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param index Index of the actualMassPercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getActualMassPercent(final int index) {
         return ListUtil.get(this.actualMassPercent, index);
     }
@@ -189,7 +189,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param actualVolumePercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addActualVolumePercent(final List<FieldQuery> actualVolumePercent) {
         this.actualVolumePercent = ListUtil.add(actualVolumePercent, this.actualVolumePercent);
         return this;
@@ -201,7 +201,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param actualVolumePercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addActualVolumePercent(final FieldQuery actualVolumePercent) {
         this.actualVolumePercent = ListUtil.add(actualVolumePercent, this.actualVolumePercent);
         return this;
@@ -212,7 +212,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Number of actualVolumePercent queries.
      */
-    @JsonIgnore
+
     public int actualVolumePercentLength() {
         return ListUtil.length(this.actualVolumePercent);
     }
@@ -222,7 +222,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> actualVolumePercent() {
         return ListUtil.iterable(this.actualVolumePercent);
     }
@@ -233,7 +233,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param index Index of the actualVolumePercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getActualVolumePercent(final int index) {
         return ListUtil.get(this.actualVolumePercent, index);
     }
@@ -264,7 +264,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param actualNumberPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addActualNumberPercent(final List<FieldQuery> actualNumberPercent) {
         this.actualNumberPercent = ListUtil.add(actualNumberPercent, this.actualNumberPercent);
         return this;
@@ -276,7 +276,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param actualNumberPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addActualNumberPercent(final FieldQuery actualNumberPercent) {
         this.actualNumberPercent = ListUtil.add(actualNumberPercent, this.actualNumberPercent);
         return this;
@@ -287,7 +287,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Number of actualNumberPercent queries.
      */
-    @JsonIgnore
+
     public int actualNumberPercentLength() {
         return ListUtil.length(this.actualNumberPercent);
     }
@@ -297,7 +297,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> actualNumberPercent() {
         return ListUtil.iterable(this.actualNumberPercent);
     }
@@ -308,7 +308,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param index Index of the actualNumberPercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getActualNumberPercent(final int index) {
         return ListUtil.get(this.actualNumberPercent, index);
     }
@@ -339,7 +339,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param idealMassPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addIdealMassPercent(final List<FieldQuery> idealMassPercent) {
         this.idealMassPercent = ListUtil.add(idealMassPercent, this.idealMassPercent);
         return this;
@@ -351,7 +351,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param idealMassPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addIdealMassPercent(final FieldQuery idealMassPercent) {
         this.idealMassPercent = ListUtil.add(idealMassPercent, this.idealMassPercent);
         return this;
@@ -362,7 +362,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Number of idealMassPercent queries.
      */
-    @JsonIgnore
+
     public int idealMassPercentLength() {
         return ListUtil.length(this.idealMassPercent);
     }
@@ -372,7 +372,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> idealMassPercent() {
         return ListUtil.iterable(this.idealMassPercent);
     }
@@ -383,7 +383,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param index Index of the idealMassPercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getIdealMassPercent(final int index) {
         return ListUtil.get(this.idealMassPercent, index);
     }
@@ -414,7 +414,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param idealVolumePercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addIdealVolumePercent(final List<FieldQuery> idealVolumePercent) {
         this.idealVolumePercent = ListUtil.add(idealVolumePercent, this.idealVolumePercent);
         return this;
@@ -426,7 +426,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param idealVolumePercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addIdealVolumePercent(final FieldQuery idealVolumePercent) {
         this.idealVolumePercent = ListUtil.add(idealVolumePercent, this.idealVolumePercent);
         return this;
@@ -437,7 +437,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Number of idealVolumePercent queries.
      */
-    @JsonIgnore
+
     public int idealVolumePercentLength() {
         return ListUtil.length(this.idealVolumePercent);
     }
@@ -447,7 +447,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> idealVolumePercent() {
         return ListUtil.iterable(this.idealVolumePercent);
     }
@@ -458,7 +458,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param index Index of the idealVolumePercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getIdealVolumePercent(final int index) {
         return ListUtil.get(this.idealVolumePercent, index);
     }
@@ -489,7 +489,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param idealNumberPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addIdealNumberPercent(final List<FieldQuery> idealNumberPercent) {
         this.idealNumberPercent = ListUtil.add(idealNumberPercent, this.idealNumberPercent);
         return this;
@@ -501,7 +501,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param idealNumberPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public QuantityQuery addIdealNumberPercent(final FieldQuery idealNumberPercent) {
         this.idealNumberPercent = ListUtil.add(idealNumberPercent, this.idealNumberPercent);
         return this;
@@ -512,7 +512,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Number of idealNumberPercent queries.
      */
-    @JsonIgnore
+
     public int idealNumberPercentLength() {
         return ListUtil.length(this.idealNumberPercent);
     }
@@ -522,7 +522,7 @@ public class QuantityQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> idealNumberPercent() {
         return ListUtil.iterable(this.idealNumberPercent);
     }
@@ -533,7 +533,7 @@ public class QuantityQuery extends BaseObjectQuery {
      * @param index Index of the idealNumberPercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getIdealNumberPercent(final int index) {
         return ListUtil.get(this.idealNumberPercent, index);
     }

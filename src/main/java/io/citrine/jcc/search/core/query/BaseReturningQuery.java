@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.core.query;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.List;
@@ -19,14 +18,14 @@ public abstract class BaseReturningQuery extends DataScope {
     }
 
     @Override
-    @JsonIgnore
+
     public BaseReturningQuery addQuery(final List<DataQuery> query) {
         super.addQuery(query);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public BaseReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
         return this;
@@ -69,7 +68,7 @@ public abstract class BaseReturningQuery extends DataScope {
      *
      * @return Index of the first hit that should be returned or a null pointer if not set.
      */
-    @JsonIgnore
+
     public Integer getFrom() {
         return this.from;
     }

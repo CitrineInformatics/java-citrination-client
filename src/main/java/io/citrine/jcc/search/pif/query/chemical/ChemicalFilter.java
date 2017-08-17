@@ -32,33 +32,33 @@ public class ChemicalFilter implements HasLogic, HasChemicalFilter {
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFilter addFilter(final List<ChemicalFilter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFilter addFilter(final ChemicalFilter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public int filterLength() {
         return ListUtil.length(this.filter);
     }
 
     @Override
-    @JsonIgnore
+
     public Iterable<ChemicalFilter> filter() {
         return ListUtil.iterable(this.filter);
     }
 
     @Override
-    @JsonIgnore
+
     public ChemicalFilter getFilter(final int index) {
         return ListUtil.get(this.filter, index);
     }
