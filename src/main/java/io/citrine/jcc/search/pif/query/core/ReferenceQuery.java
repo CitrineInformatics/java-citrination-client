@@ -44,14 +44,14 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ReferenceQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ReferenceQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -64,14 +64,14 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ReferenceQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ReferenceQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -84,14 +84,14 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ReferenceQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ReferenceQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -114,7 +114,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param doi {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addDoi(final List<FieldQuery> doi) {
         this.doi = ListUtil.add(doi, this.doi);
         return this;
@@ -126,7 +126,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param doi {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addDoi(final FieldQuery doi) {
         this.doi = ListUtil.add(doi, this.doi);
         return this;
@@ -137,7 +137,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of doi queries.
      */
-    @JsonIgnore
+
     public int doiLength() {
         return ListUtil.length(this.doi);
     }
@@ -147,7 +147,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> doi() {
         return ListUtil.iterable(this.doi);
     }
@@ -158,7 +158,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the doi query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getDoi(final int index) {
         return ListUtil.get(this.doi, index);
     }
@@ -189,7 +189,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param isbn {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addIsbn(final List<FieldQuery> isbn) {
         this.isbn = ListUtil.add(isbn, this.isbn);
         return this;
@@ -201,7 +201,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param isbn {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addIsbn(final FieldQuery isbn) {
         this.isbn = ListUtil.add(isbn, this.isbn);
         return this;
@@ -212,7 +212,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of isbn queries.
      */
-    @JsonIgnore
+
     public int isbnLength() {
         return ListUtil.length(this.isbn);
     }
@@ -222,7 +222,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> isbn() {
         return ListUtil.iterable(this.isbn);
     }
@@ -233,7 +233,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the isbn query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getIsbn(final int index) {
         return ListUtil.get(this.isbn, index);
     }
@@ -264,7 +264,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param issn {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addIssn(final List<FieldQuery> issn) {
         this.issn = ListUtil.add(issn, this.issn);
         return this;
@@ -276,7 +276,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param issn {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addIssn(final FieldQuery issn) {
         this.issn = ListUtil.add(issn, this.issn);
         return this;
@@ -287,7 +287,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of issn queries.
      */
-    @JsonIgnore
+
     public int issnLength() {
         return ListUtil.length(this.issn);
     }
@@ -297,7 +297,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> issn() {
         return ListUtil.iterable(this.issn);
     }
@@ -308,7 +308,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the issn query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getIssn(final int index) {
         return ListUtil.get(this.issn, index);
     }
@@ -339,7 +339,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param url {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addUrl(final List<FieldQuery> url) {
         this.url = ListUtil.add(url, this.url);
         return this;
@@ -351,7 +351,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param url {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addUrl(final FieldQuery url) {
         this.url = ListUtil.add(url, this.url);
         return this;
@@ -362,7 +362,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of url queries.
      */
-    @JsonIgnore
+
     public int urlLength() {
         return ListUtil.length(this.url);
     }
@@ -372,7 +372,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> url() {
         return ListUtil.iterable(this.url);
     }
@@ -383,7 +383,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the url query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getUrl(final int index) {
         return ListUtil.get(this.url, index);
     }
@@ -414,7 +414,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param title {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addTitle(final List<FieldQuery> title) {
         this.title = ListUtil.add(title, this.title);
         return this;
@@ -426,7 +426,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param title {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addTitle(final FieldQuery title) {
         this.title = ListUtil.add(title, this.title);
         return this;
@@ -437,7 +437,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of title queries.
      */
-    @JsonIgnore
+
     public int titleLength() {
         return ListUtil.length(this.title);
     }
@@ -447,7 +447,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> title() {
         return ListUtil.iterable(this.title);
     }
@@ -458,7 +458,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the title query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getTitle(final int index) {
         return ListUtil.get(this.title, index);
     }
@@ -489,7 +489,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param publisher {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addPublisher(final List<FieldQuery> publisher) {
         this.publisher = ListUtil.add(publisher, this.publisher);
         return this;
@@ -501,7 +501,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param publisher {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addPublisher(final FieldQuery publisher) {
         this.publisher = ListUtil.add(publisher, this.publisher);
         return this;
@@ -512,7 +512,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of publisher queries.
      */
-    @JsonIgnore
+
     public int publisherLength() {
         return ListUtil.length(this.publisher);
     }
@@ -522,7 +522,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> publisher() {
         return ListUtil.iterable(this.publisher);
     }
@@ -533,7 +533,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the publisher query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getPublisher(final int index) {
         return ListUtil.get(this.publisher, index);
     }
@@ -564,7 +564,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param journal {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addJournal(final List<FieldQuery> journal) {
         this.journal = ListUtil.add(journal, this.journal);
         return this;
@@ -576,7 +576,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param journal {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addJournal(final FieldQuery journal) {
         this.journal = ListUtil.add(journal, this.journal);
         return this;
@@ -587,7 +587,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of journal queries.
      */
-    @JsonIgnore
+
     public int journalLength() {
         return ListUtil.length(this.journal);
     }
@@ -597,7 +597,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> journal() {
         return ListUtil.iterable(this.journal);
     }
@@ -608,7 +608,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the journal query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getJournal(final int index) {
         return ListUtil.get(this.journal, index);
     }
@@ -639,7 +639,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param volume {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addVolume(final List<FieldQuery> volume) {
         this.volume = ListUtil.add(volume, this.volume);
         return this;
@@ -651,7 +651,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param volume {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addVolume(final FieldQuery volume) {
         this.volume = ListUtil.add(volume, this.volume);
         return this;
@@ -662,7 +662,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of volume queries.
      */
-    @JsonIgnore
+
     public int volumeLength() {
         return ListUtil.length(this.volume);
     }
@@ -672,7 +672,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> volume() {
         return ListUtil.iterable(this.volume);
     }
@@ -683,7 +683,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the volume query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getVolume(final int index) {
         return ListUtil.get(this.volume, index);
     }
@@ -714,7 +714,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param issue {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addIssue(final List<FieldQuery> issue) {
         this.issue = ListUtil.add(issue, this.issue);
         return this;
@@ -726,7 +726,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param issue {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addIssue(final FieldQuery issue) {
         this.issue = ListUtil.add(issue, this.issue);
         return this;
@@ -737,7 +737,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of issue queries.
      */
-    @JsonIgnore
+
     public int issueLength() {
         return ListUtil.length(this.issue);
     }
@@ -747,7 +747,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> issue() {
         return ListUtil.iterable(this.issue);
     }
@@ -758,7 +758,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the issue query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getIssue(final int index) {
         return ListUtil.get(this.issue, index);
     }
@@ -789,7 +789,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param year {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addYear(final List<FieldQuery> year) {
         this.year = ListUtil.add(year, this.year);
         return this;
@@ -801,7 +801,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param year {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addYear(final FieldQuery year) {
         this.year = ListUtil.add(year, this.year);
         return this;
@@ -812,7 +812,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of year queries.
      */
-    @JsonIgnore
+
     public int yearLength() {
         return ListUtil.length(this.year);
     }
@@ -822,7 +822,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> year() {
         return ListUtil.iterable(this.year);
     }
@@ -833,7 +833,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the year query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getYear(final int index) {
         return ListUtil.get(this.year, index);
     }
@@ -864,7 +864,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param figure {@link DisplayItemQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addFigure(final List<DisplayItemQuery> figure) {
         this.figure = ListUtil.add(figure, this.figure);
         return this;
@@ -876,7 +876,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param figure {@link DisplayItemQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addFigure(final DisplayItemQuery figure) {
         this.figure = ListUtil.add(figure, this.figure);
         return this;
@@ -887,7 +887,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of figure queries.
      */
-    @JsonIgnore
+
     public int figureLength() {
         return ListUtil.length(this.figure);
     }
@@ -897,7 +897,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link DisplayItemQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<DisplayItemQuery> figure() {
         return ListUtil.iterable(this.figure);
     }
@@ -908,7 +908,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the figure query to get.
      * @return {@link DisplayItemQuery} at the input index.
      */
-    @JsonIgnore
+
     public DisplayItemQuery getFigure(final int index) {
         return ListUtil.get(this.figure, index);
     }
@@ -939,7 +939,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param table {@link DisplayItemQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addTable(final List<DisplayItemQuery> table) {
         this.table = ListUtil.add(table, this.table);
         return this;
@@ -951,7 +951,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param table {@link DisplayItemQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addTable(final DisplayItemQuery table) {
         this.table = ListUtil.add(table, this.table);
         return this;
@@ -962,7 +962,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of table queries.
      */
-    @JsonIgnore
+
     public int tableLength() {
         return ListUtil.length(this.table);
     }
@@ -972,7 +972,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link DisplayItemQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<DisplayItemQuery> table() {
         return ListUtil.iterable(this.table);
     }
@@ -983,7 +983,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the table query to get.
      * @return {@link DisplayItemQuery} at the input index.
      */
-    @JsonIgnore
+
     public DisplayItemQuery getTable(final int index) {
         return ListUtil.get(this.table, index);
     }
@@ -1014,7 +1014,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param pages {@link PagesQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addPages(final List<PagesQuery> pages) {
         this.pages = ListUtil.add(pages, this.pages);
         return this;
@@ -1026,7 +1026,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param pages {@link PagesQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addPages(final PagesQuery pages) {
         this.pages = ListUtil.add(pages, this.pages);
         return this;
@@ -1037,7 +1037,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of pages queries.
      */
-    @JsonIgnore
+
     public int pagesLength() {
         return ListUtil.length(this.pages);
     }
@@ -1047,7 +1047,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link PagesQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<PagesQuery> pages() {
         return ListUtil.iterable(this.pages);
     }
@@ -1058,7 +1058,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the pages query to get.
      * @return {@link PagesQuery} at the input index.
      */
-    @JsonIgnore
+
     public PagesQuery getPages(final int index) {
         return ListUtil.get(this.pages, index);
     }
@@ -1089,7 +1089,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param authors {@link NameQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addAuthors(final List<NameQuery> authors) {
         this.authors = ListUtil.add(authors, this.authors);
         return this;
@@ -1101,7 +1101,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param authors {@link NameQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addAuthors(final NameQuery authors) {
         this.authors = ListUtil.add(authors, this.authors);
         return this;
@@ -1112,7 +1112,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of authors queries.
      */
-    @JsonIgnore
+
     public int authorsLength() {
         return ListUtil.length(this.authors);
     }
@@ -1122,7 +1122,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link NameQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<NameQuery> authors() {
         return ListUtil.iterable(this.authors);
     }
@@ -1133,7 +1133,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the authors query to get.
      * @return {@link NameQuery} at the input index.
      */
-    @JsonIgnore
+
     public NameQuery getAuthors(final int index) {
         return ListUtil.get(this.authors, index);
     }
@@ -1164,7 +1164,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param editors {@link NameQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addEditors(final List<NameQuery> editors) {
         this.editors = ListUtil.add(editors, this.editors);
         return this;
@@ -1176,7 +1176,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param editors {@link NameQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addEditors(final NameQuery editors) {
         this.editors = ListUtil.add(editors, this.editors);
         return this;
@@ -1187,7 +1187,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of editors queries.
      */
-    @JsonIgnore
+
     public int editorsLength() {
         return ListUtil.length(this.editors);
     }
@@ -1197,7 +1197,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link NameQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<NameQuery> editors() {
         return ListUtil.iterable(this.editors);
     }
@@ -1208,7 +1208,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the editors query to get.
      * @return {@link NameQuery} at the input index.
      */
-    @JsonIgnore
+
     public NameQuery getEditors(final int index) {
         return ListUtil.get(this.editors, index);
     }
@@ -1239,7 +1239,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param affiliations {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addAffiliations(final List<FieldQuery> affiliations) {
         this.affiliations = ListUtil.add(affiliations, this.affiliations);
         return this;
@@ -1251,7 +1251,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param affiliations {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addAffiliations(final FieldQuery affiliations) {
         this.affiliations = ListUtil.add(affiliations, this.affiliations);
         return this;
@@ -1262,7 +1262,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of affiliations queries.
      */
-    @JsonIgnore
+
     public int affiliationsLength() {
         return ListUtil.length(this.affiliations);
     }
@@ -1272,7 +1272,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> affiliations() {
         return ListUtil.iterable(this.affiliations);
     }
@@ -1283,7 +1283,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the affiliations query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getAffiliations(final int index) {
         return ListUtil.get(this.affiliations, index);
     }
@@ -1314,7 +1314,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param acknowledgements {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addAcknowledgements(final List<FieldQuery> acknowledgements) {
         this.acknowledgements = ListUtil.add(acknowledgements, this.acknowledgements);
         return this;
@@ -1326,7 +1326,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param acknowledgements {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addAcknowledgements(final FieldQuery acknowledgements) {
         this.acknowledgements = ListUtil.add(acknowledgements, this.acknowledgements);
         return this;
@@ -1337,7 +1337,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of acknowledgements queries.
      */
-    @JsonIgnore
+
     public int acknowledgementsLength() {
         return ListUtil.length(this.acknowledgements);
     }
@@ -1347,7 +1347,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> acknowledgements() {
         return ListUtil.iterable(this.acknowledgements);
     }
@@ -1358,7 +1358,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the acknowledgements query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getAcknowledgements(final int index) {
         return ListUtil.get(this.acknowledgements, index);
     }
@@ -1389,7 +1389,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param references {@link ReferenceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addReferences(final List<ReferenceQuery> references) {
         this.references = ListUtil.add(references, this.references);
         return this;
@@ -1401,7 +1401,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param references {@link ReferenceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ReferenceQuery addReferences(final ReferenceQuery references) {
         this.references = ListUtil.add(references, this.references);
         return this;
@@ -1412,7 +1412,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of references queries.
      */
-    @JsonIgnore
+
     public int referencesLength() {
         return ListUtil.length(this.references);
     }
@@ -1422,7 +1422,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link ReferenceQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<ReferenceQuery> references() {
         return ListUtil.iterable(this.references);
     }
@@ -1433,7 +1433,7 @@ public class ReferenceQuery extends BaseObjectQuery {
      * @param index Index of the references query to get.
      * @return {@link ReferenceQuery} at the input index.
      */
-    @JsonIgnore
+
     public ReferenceQuery getReferences(final int index) {
         return ListUtil.get(this.references, index);
     }

@@ -46,14 +46,14 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public CompositionQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public CompositionQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -66,14 +66,14 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public CompositionQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public CompositionQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -86,14 +86,14 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public CompositionQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public CompositionQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -116,7 +116,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param element {@link ChemicalFieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addElement(final List<ChemicalFieldQuery> element) {
         this.element = ListUtil.add(element, this.element);
         return this;
@@ -128,7 +128,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param element {@link ChemicalFieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addElement(final ChemicalFieldQuery element) {
         this.element = ListUtil.add(element, this.element);
         return this;
@@ -139,7 +139,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Number of element queries.
      */
-    @JsonIgnore
+
     public int elementLength() {
         return ListUtil.length(this.element);
     }
@@ -149,7 +149,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link ChemicalFieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<ChemicalFieldQuery> element() {
         return ListUtil.iterable(this.element);
     }
@@ -160,7 +160,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param index Index of the element query to get.
      * @return {@link ChemicalFieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public ChemicalFieldQuery getElement(final int index) {
         return ListUtil.get(this.element, index);
     }
@@ -191,7 +191,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param actualWeightPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addActualWeightPercent(final List<FieldQuery> actualWeightPercent) {
         this.actualWeightPercent = ListUtil.add(actualWeightPercent, this.actualWeightPercent);
         return this;
@@ -203,7 +203,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param actualWeightPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addActualWeightPercent(final FieldQuery actualWeightPercent) {
         this.actualWeightPercent = ListUtil.add(actualWeightPercent, this.actualWeightPercent);
         return this;
@@ -214,7 +214,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Number of actualWeightPercent queries.
      */
-    @JsonIgnore
+
     public int actualWeightPercentLength() {
         return ListUtil.length(this.actualWeightPercent);
     }
@@ -224,7 +224,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> actualWeightPercent() {
         return ListUtil.iterable(this.actualWeightPercent);
     }
@@ -235,7 +235,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param index Index of the actualWeightPercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getActualWeightPercent(final int index) {
         return ListUtil.get(this.actualWeightPercent, index);
     }
@@ -266,7 +266,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param actualAtomicPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addActualAtomicPercent(final List<FieldQuery> actualAtomicPercent) {
         this.actualAtomicPercent = ListUtil.add(actualAtomicPercent, this.actualAtomicPercent);
         return this;
@@ -278,7 +278,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param actualAtomicPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addActualAtomicPercent(final FieldQuery actualAtomicPercent) {
         this.actualAtomicPercent = ListUtil.add(actualAtomicPercent, this.actualAtomicPercent);
         return this;
@@ -289,7 +289,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Number of actualAtomicPercent queries.
      */
-    @JsonIgnore
+
     public int actualAtomicPercentLength() {
         return ListUtil.length(this.actualAtomicPercent);
     }
@@ -299,7 +299,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> actualAtomicPercent() {
         return ListUtil.iterable(this.actualAtomicPercent);
     }
@@ -310,7 +310,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param index Index of the actualAtomicPercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getActualAtomicPercent(final int index) {
         return ListUtil.get(this.actualAtomicPercent, index);
     }
@@ -341,7 +341,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param idealWeightPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addIdealWeightPercent(final List<FieldQuery> idealWeightPercent) {
         this.idealWeightPercent = ListUtil.add(idealWeightPercent, this.idealWeightPercent);
         return this;
@@ -353,7 +353,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param idealWeightPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addIdealWeightPercent(final FieldQuery idealWeightPercent) {
         this.idealWeightPercent = ListUtil.add(idealWeightPercent, this.idealWeightPercent);
         return this;
@@ -364,7 +364,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Number of idealWeightPercent queries.
      */
-    @JsonIgnore
+
     public int idealWeightPercentLength() {
         return ListUtil.length(this.idealWeightPercent);
     }
@@ -374,7 +374,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> idealWeightPercent() {
         return ListUtil.iterable(this.idealWeightPercent);
     }
@@ -385,7 +385,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param index Index of the idealWeightPercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getIdealWeightPercent(final int index) {
         return ListUtil.get(this.idealWeightPercent, index);
     }
@@ -416,7 +416,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param idealAtomicPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addIdealAtomicPercent(final List<FieldQuery> idealAtomicPercent) {
         this.idealAtomicPercent = ListUtil.add(idealAtomicPercent, this.idealAtomicPercent);
         return this;
@@ -428,7 +428,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param idealAtomicPercent {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public CompositionQuery addIdealAtomicPercent(final FieldQuery idealAtomicPercent) {
         this.idealAtomicPercent = ListUtil.add(idealAtomicPercent, this.idealAtomicPercent);
         return this;
@@ -439,7 +439,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Number of idealAtomicPercent queries.
      */
-    @JsonIgnore
+
     public int idealAtomicPercentLength() {
         return ListUtil.length(this.idealAtomicPercent);
     }
@@ -449,7 +449,7 @@ public class CompositionQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> idealAtomicPercent() {
         return ListUtil.iterable(this.idealAtomicPercent);
     }
@@ -460,7 +460,7 @@ public class CompositionQuery extends BaseObjectQuery {
      * @param index Index of the idealAtomicPercent query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getIdealAtomicPercent(final int index) {
         return ListUtil.get(this.idealAtomicPercent, index);
     }

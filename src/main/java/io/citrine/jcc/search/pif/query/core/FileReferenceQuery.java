@@ -44,14 +44,14 @@ public class FileReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public FileReferenceQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public FileReferenceQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -64,14 +64,14 @@ public class FileReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public FileReferenceQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public FileReferenceQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -84,14 +84,14 @@ public class FileReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public FileReferenceQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public FileReferenceQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -114,7 +114,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param relativePath {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public FileReferenceQuery addRelativePath(final List<FieldQuery> relativePath) {
         this.relativePath = ListUtil.add(relativePath, this.relativePath);
         return this;
@@ -126,7 +126,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param relativePath {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public FileReferenceQuery addRelativePath(final FieldQuery relativePath) {
         this.relativePath = ListUtil.add(relativePath, this.relativePath);
         return this;
@@ -137,7 +137,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of relativePath queries.
      */
-    @JsonIgnore
+
     public int relativePathLength() {
         return ListUtil.length(this.relativePath);
     }
@@ -147,7 +147,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> relativePath() {
         return ListUtil.iterable(this.relativePath);
     }
@@ -158,7 +158,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param index Index of the relativePath query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getRelativePath(final int index) {
         return ListUtil.get(this.relativePath, index);
     }
@@ -189,7 +189,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param mimeType {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public FileReferenceQuery addMimeType(final List<FieldQuery> mimeType) {
         this.mimeType = ListUtil.add(mimeType, this.mimeType);
         return this;
@@ -201,7 +201,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param mimeType {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public FileReferenceQuery addMimeType(final FieldQuery mimeType) {
         this.mimeType = ListUtil.add(mimeType, this.mimeType);
         return this;
@@ -212,7 +212,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of mimeType queries.
      */
-    @JsonIgnore
+
     public int mimeTypeLength() {
         return ListUtil.length(this.mimeType);
     }
@@ -222,7 +222,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> mimeType() {
         return ListUtil.iterable(this.mimeType);
     }
@@ -233,7 +233,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param index Index of the mimeType query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getMimeType(final int index) {
         return ListUtil.get(this.mimeType, index);
     }
@@ -264,7 +264,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param sha256 {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public FileReferenceQuery addSha256(final List<FieldQuery> sha256) {
         this.sha256 = ListUtil.add(sha256, this.sha256);
         return this;
@@ -276,7 +276,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param sha256 {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public FileReferenceQuery addSha256(final FieldQuery sha256) {
         this.sha256 = ListUtil.add(sha256, this.sha256);
         return this;
@@ -287,7 +287,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of sha256 queries.
      */
-    @JsonIgnore
+
     public int sha256Length() {
         return ListUtil.length(this.sha256);
     }
@@ -297,7 +297,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> sha256() {
         return ListUtil.iterable(this.sha256);
     }
@@ -308,7 +308,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param index Index of the sha256 query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getSha256(final int index) {
         return ListUtil.get(this.sha256, index);
     }
@@ -339,7 +339,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param md5 {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public FileReferenceQuery addMd5(final List<FieldQuery> md5) {
         this.md5 = ListUtil.add(md5, this.md5);
         return this;
@@ -351,7 +351,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param md5 {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public FileReferenceQuery addMd5(final FieldQuery md5) {
         this.md5 = ListUtil.add(md5, this.md5);
         return this;
@@ -362,7 +362,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      *
      * @return Number of md5 queries.
      */
-    @JsonIgnore
+
     public int md5Length() {
         return ListUtil.length(this.md5);
     }
@@ -372,7 +372,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> md5() {
         return ListUtil.iterable(this.md5);
     }
@@ -383,7 +383,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
      * @param index Index of the md5 query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getMd5(final int index) {
         return ListUtil.get(this.md5, index);
     }

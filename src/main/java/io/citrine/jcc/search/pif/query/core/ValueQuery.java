@@ -44,14 +44,14 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ValueQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ValueQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -64,14 +64,14 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ValueQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ValueQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -84,14 +84,14 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public ValueQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public ValueQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -114,7 +114,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ValueQuery addName(final List<FieldQuery> name) {
         this.name = ListUtil.add(name, this.name);
         return this;
@@ -126,7 +126,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ValueQuery addName(final FieldQuery name) {
         this.name = ListUtil.add(name, this.name);
         return this;
@@ -137,7 +137,7 @@ public class ValueQuery extends BaseObjectQuery {
      *
      * @return Number of name queries.
      */
-    @JsonIgnore
+
     public int nameLength() {
         return ListUtil.length(this.name);
     }
@@ -147,7 +147,7 @@ public class ValueQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
@@ -158,7 +158,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param index Index of the name query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getName(final int index) {
         return ListUtil.get(this.name, index);
     }
@@ -189,7 +189,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param value {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ValueQuery addValue(final List<FieldQuery> value) {
         this.value = ListUtil.add(value, this.value);
         return this;
@@ -201,7 +201,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param value {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ValueQuery addValue(final FieldQuery value) {
         this.value = ListUtil.add(value, this.value);
         return this;
@@ -212,7 +212,7 @@ public class ValueQuery extends BaseObjectQuery {
      *
      * @return Number of value queries.
      */
-    @JsonIgnore
+
     public int valueLength() {
         return ListUtil.length(this.value);
     }
@@ -222,7 +222,7 @@ public class ValueQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> value() {
         return ListUtil.iterable(this.value);
     }
@@ -233,7 +233,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param index Index of the value query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getValue(final int index) {
         return ListUtil.get(this.value, index);
     }
@@ -264,7 +264,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param file {@link FileReferenceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ValueQuery addFile(final List<FileReferenceQuery> file) {
         this.file = ListUtil.add(file, this.file);
         return this;
@@ -276,7 +276,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param file {@link FileReferenceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ValueQuery addFile(final FileReferenceQuery file) {
         this.file = ListUtil.add(file, this.file);
         return this;
@@ -287,7 +287,7 @@ public class ValueQuery extends BaseObjectQuery {
      *
      * @return Number of file queries.
      */
-    @JsonIgnore
+
     public int fileLength() {
         return ListUtil.length(this.file);
     }
@@ -297,7 +297,7 @@ public class ValueQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FileReferenceQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FileReferenceQuery> file() {
         return ListUtil.iterable(this.file);
     }
@@ -308,7 +308,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param index Index of the file query to get.
      * @return {@link FileReferenceQuery} at the input index.
      */
-    @JsonIgnore
+
     public FileReferenceQuery getFile(final int index) {
         return ListUtil.get(this.file, index);
     }
@@ -339,7 +339,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param units {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ValueQuery addUnits(final List<FieldQuery> units) {
         this.units = ListUtil.add(units, this.units);
         return this;
@@ -351,7 +351,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param units {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
+
     public ValueQuery addUnits(final FieldQuery units) {
         this.units = ListUtil.add(units, this.units);
         return this;
@@ -362,7 +362,7 @@ public class ValueQuery extends BaseObjectQuery {
      *
      * @return Number of units queries.
      */
-    @JsonIgnore
+
     public int unitsLength() {
         return ListUtil.length(this.units);
     }
@@ -372,7 +372,7 @@ public class ValueQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
+
     public Iterable<FieldQuery> units() {
         return ListUtil.iterable(this.units);
     }
@@ -383,7 +383,7 @@ public class ValueQuery extends BaseObjectQuery {
      * @param index Index of the units query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
+
     public FieldQuery getUnits(final int index) {
         return ListUtil.get(this.units, index);
     }

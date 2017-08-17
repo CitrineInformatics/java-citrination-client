@@ -47,14 +47,14 @@ public class PifSearchResult extends BaseSearchResult<PifSearchHit> {
     }
 
     @Override
-    @JsonIgnore
+
     public PifSearchResult addHits(final List<PifSearchHit> hits) {
         super.addHits(hits);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public PifSearchResult addHits(final PifSearchHit hits) {
         super.addHits(hits);
         return this;

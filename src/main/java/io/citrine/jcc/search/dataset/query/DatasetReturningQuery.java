@@ -66,14 +66,14 @@ public class DatasetReturningQuery extends BaseReturningQuery {
     }
 
     @Override
-    @JsonIgnore
+
     public DatasetReturningQuery addQuery(final List<DataQuery> query) {
         super.addQuery(query);
         return this;
     }
 
     @Override
-    @JsonIgnore
+
     public DatasetReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
         return this;
