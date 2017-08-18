@@ -1,7 +1,5 @@
 package io.citrine.jcc.search.core.query;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 /**
@@ -25,7 +23,6 @@ public interface HasFilter {
      * @param filter List of {@link Filter} objects to save.
      * @return This object.
      */
-    @JsonIgnore
     HasFilter addFilter(final List<Filter> filter);
 
     /**
@@ -34,7 +31,6 @@ public interface HasFilter {
      * @param filter {@link Filter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     HasFilter addFilter(final Filter filter);
 
     /**
@@ -42,7 +38,6 @@ public interface HasFilter {
      *
      * @return Number of filters.
      */
-    @JsonIgnore
     int filterLength();
 
     /**
@@ -50,7 +45,6 @@ public interface HasFilter {
      *
      * @return Iterable of {@link Filter} objects.
      */
-    @JsonIgnore
     Iterable<Filter> filter();
 
     /**
@@ -59,7 +53,6 @@ public interface HasFilter {
      * @param index Index of the filter to get.
      * @return Filter at the input index.
      */
-    @JsonIgnore
     Filter getFilter(final int index);
 
     /**

@@ -19,14 +19,12 @@ public abstract class BaseReturningQuery extends DataScope {
     }
 
     @Override
-    @JsonIgnore
     public BaseReturningQuery addQuery(final List<DataQuery> query) {
         super.addQuery(query);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public BaseReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
         return this;

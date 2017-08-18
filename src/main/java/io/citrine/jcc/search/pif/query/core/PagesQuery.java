@@ -45,14 +45,12 @@ public class PagesQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public PagesQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public PagesQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -65,14 +63,12 @@ public class PagesQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public PagesQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public PagesQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -85,14 +81,12 @@ public class PagesQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public PagesQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public PagesQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -115,7 +109,6 @@ public class PagesQuery extends BaseObjectQuery {
      * @param start {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PagesQuery addStart(final List<FieldQuery> start) {
         this.start = ListUtil.add(start, this.start);
         return this;
@@ -127,7 +120,6 @@ public class PagesQuery extends BaseObjectQuery {
      * @param start {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PagesQuery addStart(final FieldQuery start) {
         this.start = ListUtil.add(start, this.start);
         return this;
@@ -138,7 +130,6 @@ public class PagesQuery extends BaseObjectQuery {
      *
      * @return Number of start queries.
      */
-    @JsonIgnore
     public int startLength() {
         return ListUtil.length(this.start);
     }
@@ -148,7 +139,6 @@ public class PagesQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> start() {
         return ListUtil.iterable(this.start);
     }
@@ -159,7 +149,6 @@ public class PagesQuery extends BaseObjectQuery {
      * @param index Index of the start query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getStart(final int index) {
         return ListUtil.get(this.start, index);
     }
@@ -190,7 +179,6 @@ public class PagesQuery extends BaseObjectQuery {
      * @param end {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PagesQuery addEnd(final List<FieldQuery> end) {
         this.end = ListUtil.add(end, this.end);
         return this;
@@ -202,7 +190,6 @@ public class PagesQuery extends BaseObjectQuery {
      * @param end {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PagesQuery addEnd(final FieldQuery end) {
         this.end = ListUtil.add(end, this.end);
         return this;
@@ -213,7 +200,6 @@ public class PagesQuery extends BaseObjectQuery {
      *
      * @return Number of end queries.
      */
-    @JsonIgnore
     public int endLength() {
         return ListUtil.length(this.end);
     }
@@ -223,7 +209,6 @@ public class PagesQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> end() {
         return ListUtil.iterable(this.end);
     }
@@ -234,7 +219,6 @@ public class PagesQuery extends BaseObjectQuery {
      * @param index Index of the end query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getEnd(final int index) {
         return ListUtil.get(this.end, index);
     }

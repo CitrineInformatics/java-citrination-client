@@ -32,33 +32,28 @@ public class Filter implements HasLogic, HasFilter {
     }
 
     @Override
-    @JsonIgnore
     public Filter addFilter(final List<Filter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public Filter addFilter(final Filter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public int filterLength() {
         return ListUtil.length(this.filter);
     }
 
     @Override
-    @JsonIgnore
     public Iterable<Filter> filter() {
         return ListUtil.iterable(this.filter);
     }
 
     @Override
-    @JsonIgnore
     public Filter getFilter(final int index) {
         return ListUtil.get(this.filter, index);
     }

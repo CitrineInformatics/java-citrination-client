@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 import io.citrine.jpif.obj.common.DisplayItem;
@@ -43,14 +42,12 @@ public class DisplayItemQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public DisplayItemQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public DisplayItemQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -63,14 +60,12 @@ public class DisplayItemQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public DisplayItemQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public DisplayItemQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -83,14 +78,12 @@ public class DisplayItemQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public DisplayItemQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public DisplayItemQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -113,7 +106,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param number {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public DisplayItemQuery addNumber(final List<FieldQuery> number) {
         this.number = ListUtil.add(number, this.number);
         return this;
@@ -125,7 +117,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param number {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public DisplayItemQuery addNumber(final FieldQuery number) {
         this.number = ListUtil.add(number, this.number);
         return this;
@@ -136,7 +127,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      *
      * @return Number of number queries.
      */
-    @JsonIgnore
     public int numberLength() {
         return ListUtil.length(this.number);
     }
@@ -146,7 +136,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> number() {
         return ListUtil.iterable(this.number);
     }
@@ -157,7 +146,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param index Index of the number query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getNumber(final int index) {
         return ListUtil.get(this.number, index);
     }
@@ -188,7 +176,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param title {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public DisplayItemQuery addTitle(final List<FieldQuery> title) {
         this.title = ListUtil.add(title, this.title);
         return this;
@@ -200,7 +187,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param title {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public DisplayItemQuery addTitle(final FieldQuery title) {
         this.title = ListUtil.add(title, this.title);
         return this;
@@ -211,7 +197,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      *
      * @return Title of title queries.
      */
-    @JsonIgnore
     public int titleLength() {
         return ListUtil.length(this.title);
     }
@@ -221,7 +206,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> title() {
         return ListUtil.iterable(this.title);
     }
@@ -232,7 +216,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param index Index of the title query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getTitle(final int index) {
         return ListUtil.get(this.title, index);
     }
@@ -263,7 +246,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param caption {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public DisplayItemQuery addCaption(final List<FieldQuery> caption) {
         this.caption = ListUtil.add(caption, this.caption);
         return this;
@@ -275,7 +257,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param caption {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public DisplayItemQuery addCaption(final FieldQuery caption) {
         this.caption = ListUtil.add(caption, this.caption);
         return this;
@@ -286,7 +267,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      *
      * @return Caption of caption queries.
      */
-    @JsonIgnore
     public int captionLength() {
         return ListUtil.length(this.caption);
     }
@@ -296,7 +276,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> caption() {
         return ListUtil.iterable(this.caption);
     }
@@ -307,7 +286,6 @@ public class DisplayItemQuery extends BaseObjectQuery {
      * @param index Index of the caption query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getCaption(final int index) {
         return ListUtil.get(this.caption, index);
     }

@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
@@ -44,14 +43,12 @@ public class SourceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public SourceQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public SourceQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -64,14 +61,12 @@ public class SourceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public SourceQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public SourceQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -84,14 +79,12 @@ public class SourceQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public SourceQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public SourceQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -114,7 +107,6 @@ public class SourceQuery extends BaseObjectQuery {
      * @param producer {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public SourceQuery addProducer(final List<FieldQuery> producer) {
         this.producer = ListUtil.add(producer, this.producer);
         return this;
@@ -126,7 +118,6 @@ public class SourceQuery extends BaseObjectQuery {
      * @param producer {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public SourceQuery addProducer(final FieldQuery producer) {
         this.producer = ListUtil.add(producer, this.producer);
         return this;
@@ -137,7 +128,6 @@ public class SourceQuery extends BaseObjectQuery {
      *
      * @return Number of producer queries.
      */
-    @JsonIgnore
     public int producerLength() {
         return ListUtil.length(this.producer);
     }
@@ -147,7 +137,6 @@ public class SourceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> producer() {
         return ListUtil.iterable(this.producer);
     }
@@ -158,7 +147,6 @@ public class SourceQuery extends BaseObjectQuery {
      * @param index Index of the producer query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getProducer(final int index) {
         return ListUtil.get(this.producer, index);
     }
@@ -189,7 +177,6 @@ public class SourceQuery extends BaseObjectQuery {
      * @param url {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public SourceQuery addUrl(final List<FieldQuery> url) {
         this.url = ListUtil.add(url, this.url);
         return this;
@@ -201,7 +188,6 @@ public class SourceQuery extends BaseObjectQuery {
      * @param url {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public SourceQuery addUrl(final FieldQuery url) {
         this.url = ListUtil.add(url, this.url);
         return this;
@@ -212,7 +198,6 @@ public class SourceQuery extends BaseObjectQuery {
      *
      * @return Number of url queries.
      */
-    @JsonIgnore
     public int urlLength() {
         return ListUtil.length(this.url);
     }
@@ -222,7 +207,6 @@ public class SourceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> url() {
         return ListUtil.iterable(this.url);
     }
@@ -233,7 +217,6 @@ public class SourceQuery extends BaseObjectQuery {
      * @param index Index of the url query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getUrl(final int index) {
         return ListUtil.get(this.url, index);
     }

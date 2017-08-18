@@ -157,7 +157,6 @@ public class PifSearchHit {
      * @param extracted Map of extracted value names to values.
      * @return This object.
      */
-    @JsonIgnore
     public PifSearchHit addExtracted(final Map<String, Object> extracted) {
         if (extracted != null) {
             if (this.extracted == null) {
@@ -175,7 +174,6 @@ public class PifSearchHit {
      * @param value Value that was extracted.
      * @return This object.
      */
-    @JsonIgnore
     public PifSearchHit addExtracted(final String key, final Object value) {
         if (this.extracted == null) {
             this.extracted = new HashMap<>();
@@ -268,7 +266,6 @@ public class PifSearchHit {
      * @return Converted value.
      * @throws RuntimeException if the value cannot be converted.
      */
-    @JsonIgnore
     private <T extends Pio> T convert(final Object object, final Class<T> objectClass) {
         if (object == null) {
             return null;
