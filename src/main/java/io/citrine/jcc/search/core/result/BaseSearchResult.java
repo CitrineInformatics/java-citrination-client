@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.core.result;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.Collections;
@@ -94,7 +93,6 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * @param hits List of hits to add.
      * @return This object.
      */
-    @JsonIgnore
     public BaseSearchResult<T> addHits(final List<T> hits) {
         this.hits = ListUtil.add(hits, this.hits);
         return this;
@@ -106,7 +104,6 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * @param hit Hit to add to the results set.
      * @return This object.
      */
-    @JsonIgnore
     public BaseSearchResult<T> addHits(final T hit) {
         this.hits = ListUtil.add(hit, this.hits);
         return this;
@@ -117,7 +114,6 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      *
      * @return Number of hits in the result set.
      */
-    @JsonIgnore
     public int getNumHits() {
         return ListUtil.length(this.hits);
     }
@@ -129,7 +125,6 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * @return Hit at the input index.
      * @throws IllegalArgumentException if the index is out of bounds.
      */
-    @JsonIgnore
     public T getHits(final int index) {
         return ListUtil.get(this.hits, index);
     }
@@ -144,7 +139,6 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
     }
 
     @Override
-    @JsonIgnore
     public Iterator<T> iterator() {
         return (this.hits == null) ? Collections.emptyIterator() : this.hits.iterator();
     }

@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.pif.query.chemical.ChemicalFieldQuery;
@@ -56,14 +55,12 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public PifSystemQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public PifSystemQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -76,14 +73,12 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public PifSystemQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public PifSystemQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -96,14 +91,12 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public PifSystemQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public PifSystemQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -126,7 +119,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param uid List of {@link Filter} objects.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addUid(final List<Filter> uid) {
         this.uid = ListUtil.add(uid, this.uid);
         return this;
@@ -138,7 +130,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param uid {@link Filter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addUid(final Filter uid) {
         this.uid = ListUtil.add(uid, this.uid);
         return this;
@@ -149,7 +140,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of queries against the system UID field.
      */
-    @JsonIgnore
     public int uidLength() {
         return ListUtil.length(this.uid);
     }
@@ -159,7 +149,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return {@link Iterable} of {@link Filter} objects.
      */
-    @JsonIgnore
     public Iterable<Filter> uid() {
         return ListUtil.iterable(this.uid);
     }
@@ -170,7 +159,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the system UID filter to get.
      * @return {@link Filter} at the input index.
      */
-    @JsonIgnore
     public Filter getUid(final int index) {
         return ListUtil.get(this.uid, index);
     }
@@ -201,7 +189,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param names {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addNames(final List<FieldQuery> names) {
         this.names = ListUtil.add(names, this.names);
         return this;
@@ -213,7 +200,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param names {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addNames(final FieldQuery names) {
         this.names = ListUtil.add(names, this.names);
         return this;
@@ -224,7 +210,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of names queries.
      */
-    @JsonIgnore
     public int namesLength() {
         return ListUtil.length(this.names);
     }
@@ -234,7 +219,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> names() {
         return ListUtil.iterable(this.names);
     }
@@ -245,7 +229,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the names query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getNames(final int index) {
         return ListUtil.get(this.names, index);
     }
@@ -276,7 +259,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param ids {@link IdQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addIds(final List<IdQuery> ids) {
         this.ids = ListUtil.add(ids, this.ids);
         return this;
@@ -288,7 +270,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param ids {@link IdQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addIds(final IdQuery ids) {
         this.ids = ListUtil.add(ids, this.ids);
         return this;
@@ -299,7 +280,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of ids queries.
      */
-    @JsonIgnore
     public int idsLength() {
         return ListUtil.length(this.ids);
     }
@@ -309,7 +289,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link IdQuery} objects.
      */
-    @JsonIgnore
     public Iterable<IdQuery> ids() {
         return ListUtil.iterable(this.ids);
     }
@@ -320,7 +299,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the ids query to get.
      * @return {@link IdQuery} at the input index.
      */
-    @JsonIgnore
     public IdQuery getIds(final int index) {
         return ListUtil.get(this.ids, index);
     }
@@ -351,7 +329,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param classifications {@link ClassificationQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addClassifications(final List<ClassificationQuery> classifications) {
         this.classifications = ListUtil.add(classifications, this.classifications);
         return this;
@@ -363,7 +340,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param classifications {@link ClassificationQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addClassifications(final ClassificationQuery classifications) {
         this.classifications = ListUtil.add(classifications, this.classifications);
         return this;
@@ -374,7 +350,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of classifications queries.
      */
-    @JsonIgnore
     public int classificationsLength() {
         return ListUtil.length(this.classifications);
     }
@@ -384,7 +359,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link ClassificationQuery} objects.
      */
-    @JsonIgnore
     public Iterable<ClassificationQuery> classifications() {
         return ListUtil.iterable(this.classifications);
     }
@@ -395,7 +369,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the classifications query to get.
      * @return {@link ClassificationQuery} at the input index.
      */
-    @JsonIgnore
     public ClassificationQuery getClassifications(final int index) {
         return ListUtil.get(this.classifications, index);
     }
@@ -426,7 +399,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param source {@link SourceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addSource(final List<SourceQuery> source) {
         this.source = ListUtil.add(source, this.source);
         return this;
@@ -438,7 +410,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param source {@link SourceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addSource(final SourceQuery source) {
         this.source = ListUtil.add(source, this.source);
         return this;
@@ -449,7 +420,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of source queries.
      */
-    @JsonIgnore
     public int sourceLength() {
         return ListUtil.length(this.source);
     }
@@ -459,7 +429,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link SourceQuery} objects.
      */
-    @JsonIgnore
     public Iterable<SourceQuery> source() {
         return ListUtil.iterable(this.source);
     }
@@ -470,7 +439,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the source query to get.
      * @return {@link SourceQuery} at the input index.
      */
-    @JsonIgnore
     public SourceQuery getSource(final int index) {
         return ListUtil.get(this.source, index);
     }
@@ -501,7 +469,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param quantity {@link QuantityQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addQuantity(final List<QuantityQuery> quantity) {
         this.quantity = ListUtil.add(quantity, this.quantity);
         return this;
@@ -513,7 +480,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param quantity {@link QuantityQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addQuantity(final QuantityQuery quantity) {
         this.quantity = ListUtil.add(quantity, this.quantity);
         return this;
@@ -524,7 +490,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of quantity queries.
      */
-    @JsonIgnore
     public int quantityLength() {
         return ListUtil.length(this.quantity);
     }
@@ -534,7 +499,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link QuantityQuery} objects.
      */
-    @JsonIgnore
     public Iterable<QuantityQuery> quantity() {
         return ListUtil.iterable(this.quantity);
     }
@@ -545,7 +509,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the quantity query to get.
      * @return {@link QuantityQuery} at the input index.
      */
-    @JsonIgnore
     public QuantityQuery getQuantity(final int index) {
         return ListUtil.get(this.quantity, index);
     }
@@ -576,7 +539,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param chemicalFormula {@link ChemicalFieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addChemicalFormula(final List<ChemicalFieldQuery> chemicalFormula) {
         this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
         return this;
@@ -588,7 +550,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param chemicalFormula {@link ChemicalFieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addChemicalFormula(final ChemicalFieldQuery chemicalFormula) {
         this.chemicalFormula = ListUtil.add(chemicalFormula, this.chemicalFormula);
         return this;
@@ -599,7 +560,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of chemicalFormula queries.
      */
-    @JsonIgnore
     public int chemicalFormulaLength() {
         return ListUtil.length(this.chemicalFormula);
     }
@@ -609,7 +569,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link ChemicalFieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<ChemicalFieldQuery> chemicalFormula() {
         return ListUtil.iterable(this.chemicalFormula);
     }
@@ -620,7 +579,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the chemicalFormula query to get.
      * @return {@link ChemicalFieldQuery} at the input index.
      */
-    @JsonIgnore
     public ChemicalFieldQuery getChemicalFormula(final int index) {
         return ListUtil.get(this.chemicalFormula, index);
     }
@@ -651,7 +609,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param composition {@link CompositionQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addComposition(final List<CompositionQuery> composition) {
         this.composition = ListUtil.add(composition, this.composition);
         return this;
@@ -663,7 +620,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param composition {@link CompositionQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addComposition(final CompositionQuery composition) {
         this.composition = ListUtil.add(composition, this.composition);
         return this;
@@ -674,7 +630,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of composition queries.
      */
-    @JsonIgnore
     public int compositionLength() {
         return ListUtil.length(this.composition);
     }
@@ -684,7 +639,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link CompositionQuery} objects.
      */
-    @JsonIgnore
     public Iterable<CompositionQuery> composition() {
         return ListUtil.iterable(this.composition);
     }
@@ -695,7 +649,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the composition query to get.
      * @return {@link CompositionQuery} at the input index.
      */
-    @JsonIgnore
     public CompositionQuery getComposition(final int index) {
         return ListUtil.get(this.composition, index);
     }
@@ -726,7 +679,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param properties {@link PropertyQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addProperties(final List<PropertyQuery> properties) {
         this.properties = ListUtil.add(properties, this.properties);
         return this;
@@ -738,7 +690,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param properties {@link PropertyQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addProperties(final PropertyQuery properties) {
         this.properties = ListUtil.add(properties, this.properties);
         return this;
@@ -749,7 +700,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of properties queries.
      */
-    @JsonIgnore
     public int propertiesLength() {
         return ListUtil.length(this.properties);
     }
@@ -759,7 +709,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link PropertyQuery} objects.
      */
-    @JsonIgnore
     public Iterable<PropertyQuery> properties() {
         return ListUtil.iterable(this.properties);
     }
@@ -770,7 +719,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the properties query to get.
      * @return {@link PropertyQuery} at the input index.
      */
-    @JsonIgnore
     public PropertyQuery getProperties(final int index) {
         return ListUtil.get(this.properties, index);
     }
@@ -801,7 +749,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param preparation {@link ProcessStepQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addPreparation(final List<ProcessStepQuery> preparation) {
         this.preparation = ListUtil.add(preparation, this.preparation);
         return this;
@@ -813,7 +760,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param preparation {@link ProcessStepQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addPreparation(final ProcessStepQuery preparation) {
         this.preparation = ListUtil.add(preparation, this.preparation);
         return this;
@@ -824,7 +770,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of preparation queries.
      */
-    @JsonIgnore
     public int preparationLength() {
         return ListUtil.length(this.preparation);
     }
@@ -834,7 +779,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link ProcessStepQuery} objects.
      */
-    @JsonIgnore
     public Iterable<ProcessStepQuery> preparation() {
         return ListUtil.iterable(this.preparation);
     }
@@ -845,7 +789,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the preparation query to get.
      * @return {@link ProcessStepQuery} at the input index.
      */
-    @JsonIgnore
     public ProcessStepQuery getPreparation(final int index) {
         return ListUtil.get(this.preparation, index);
     }
@@ -876,7 +819,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param references {@link ReferenceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addReferences(final List<ReferenceQuery> references) {
         this.references = ListUtil.add(references, this.references);
         return this;
@@ -888,7 +830,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param references {@link ReferenceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addReferences(final ReferenceQuery references) {
         this.references = ListUtil.add(references, this.references);
         return this;
@@ -899,7 +840,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of references queries.
      */
-    @JsonIgnore
     public int referencesLength() {
         return ListUtil.length(this.references);
     }
@@ -909,7 +849,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link ReferenceQuery} objects.
      */
-    @JsonIgnore
     public Iterable<ReferenceQuery> references() {
         return ListUtil.iterable(this.references);
     }
@@ -920,7 +859,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the references query to get.
      * @return {@link ReferenceQuery} at the input index.
      */
-    @JsonIgnore
     public ReferenceQuery getReferences(final int index) {
         return ListUtil.get(this.references, index);
     }
@@ -951,7 +889,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param subSystems {@link PifSystemQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addSubSystems(final List<PifSystemQuery> subSystems) {
         this.subSystems = ListUtil.add(subSystems, this.subSystems);
         return this;
@@ -963,7 +900,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param subSystems {@link PifSystemQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public PifSystemQuery addSubSystems(final PifSystemQuery subSystems) {
         this.subSystems = ListUtil.add(subSystems, this.subSystems);
         return this;
@@ -974,7 +910,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Number of subSystems queries.
      */
-    @JsonIgnore
     public int subSystemsLength() {
         return ListUtil.length(this.subSystems);
     }
@@ -984,7 +919,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link PifSystemQuery} objects.
      */
-    @JsonIgnore
     public Iterable<PifSystemQuery> subSystems() {
         return ListUtil.iterable(this.subSystems);
     }
@@ -995,7 +929,6 @@ public class PifSystemQuery extends BaseObjectQuery {
      * @param index Index of the subSystems query to get.
      * @return {@link PifSystemQuery} at the input index.
      */
-    @JsonIgnore
     public PifSystemQuery getSubSystems(final int index) {
         return ListUtil.get(this.subSystems, index);
     }

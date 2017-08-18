@@ -1,7 +1,5 @@
 package io.citrine.jcc.search.pif.query.chemical;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 /**
@@ -25,7 +23,6 @@ public interface HasChemicalFilter {
      * @param filter List of {@link ChemicalFilter} objects to save.
      * @return This object.
      */
-    @JsonIgnore
     HasChemicalFilter addFilter(final List<ChemicalFilter> filter);
 
     /**
@@ -34,7 +31,6 @@ public interface HasChemicalFilter {
      * @param filter {@link ChemicalFilter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     HasChemicalFilter addFilter(final ChemicalFilter filter);
 
     /**
@@ -42,7 +38,6 @@ public interface HasChemicalFilter {
      *
      * @return Number of filters.
      */
-    @JsonIgnore
     int filterLength();
 
     /**
@@ -50,7 +45,6 @@ public interface HasChemicalFilter {
      *
      * @return Iterable of {@link ChemicalFilter} objects.
      */
-    @JsonIgnore
     Iterable<ChemicalFilter> filter();
 
     /**
@@ -59,7 +53,6 @@ public interface HasChemicalFilter {
      * @param index Index of the filter to get.
      * @return Filter at the input index.
      */
-    @JsonIgnore
     ChemicalFilter getFilter(final int index);
 
     /**

@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.dataset.query;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.BooleanFilter;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasLogic;
@@ -44,7 +43,6 @@ public class DatasetQuery implements HasLogic {
      * @param id List of {@link Filter} objects.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addId(final List<Filter> id) {
         this.id = ListUtil.add(id, this.id);
         return this;
@@ -56,7 +54,6 @@ public class DatasetQuery implements HasLogic {
      * @param id {@link Filter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addId(final Filter id) {
         this.id = ListUtil.add(id, this.id);
         return this;
@@ -67,7 +64,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return Number of queries against the datasetId field.
      */
-    @JsonIgnore
     public int idLength() {
         return ListUtil.length(this.id);
     }
@@ -77,7 +73,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return {@link Iterable} of {@link Filter} objects.
      */
-    @JsonIgnore
     public Iterable<Filter> id() {
         return ListUtil.iterable(this.id);
     }
@@ -88,7 +83,6 @@ public class DatasetQuery implements HasLogic {
      * @param index Index of the dataset ID filter to get.
      * @return {@link Filter} at the input index.
      */
-    @JsonIgnore
     public Filter getId(final int index) {
         return ListUtil.get(this.id, index);
     }
@@ -119,7 +113,6 @@ public class DatasetQuery implements HasLogic {
      * @param isFeatured List of {@link BooleanFilter} objects.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addIsFeatured(final List<BooleanFilter> isFeatured) {
         this.isFeatured = ListUtil.add(isFeatured, this.isFeatured);
         return this;
@@ -131,7 +124,6 @@ public class DatasetQuery implements HasLogic {
      * @param isFeatured {@link BooleanFilter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addIsFeatured(final BooleanFilter isFeatured) {
         this.isFeatured = ListUtil.add(isFeatured, this.isFeatured);
         return this;
@@ -142,7 +134,6 @@ public class DatasetQuery implements HasLogic {
      * 
      * @return Number of isFeatured queries.
      */
-    @JsonIgnore
     public int isFeaturedLength() {
         return ListUtil.length(this.isFeatured);
     }
@@ -152,7 +143,6 @@ public class DatasetQuery implements HasLogic {
      * 
      * @return {@link Iterable} of {@link BooleanFilter} objects.
      */
-    @JsonIgnore
     public Iterable<BooleanFilter> isFeatured() {
         return ListUtil.iterable(this.isFeatured);
     }
@@ -163,7 +153,6 @@ public class DatasetQuery implements HasLogic {
      * @param index Index of the filter to get.
      * @return {@link BooleanFilter} object.
      */
-    @JsonIgnore
     public BooleanFilter getIsFeatured(final int index) {
         return ListUtil.get(this.isFeatured, index);
     }
@@ -194,7 +183,6 @@ public class DatasetQuery implements HasLogic {
      * @param name List of {@link Filter} objects.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addName(final List<Filter> name) {
         this.name = ListUtil.add(name, this.name);
         return this;
@@ -206,7 +194,6 @@ public class DatasetQuery implements HasLogic {
      * @param name {@link Filter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addName(final Filter name) {
         this.name = ListUtil.add(name, this.name);
         return this;
@@ -217,7 +204,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return Number of queries against the name field.
      */
-    @JsonIgnore
     public int nameLength() {
         return ListUtil.length(this.name);
     }
@@ -227,7 +213,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return {@link Iterable} of {@link Filter} objects.
      */
-    @JsonIgnore
     public Iterable<Filter> name() {
         return ListUtil.iterable(this.name);
     }
@@ -238,7 +223,6 @@ public class DatasetQuery implements HasLogic {
      * @param index Index of the filter to get.
      * @return {@link Filter} object.
      */
-    @JsonIgnore
     public Filter getName(final int index) {
         return ListUtil.get(this.name, index);
     }
@@ -269,7 +253,6 @@ public class DatasetQuery implements HasLogic {
      * @param description List of {@link Filter} objects.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addDescription(final List<Filter> description) {
         this.description = ListUtil.add(description, this.description);
         return this;
@@ -281,7 +264,6 @@ public class DatasetQuery implements HasLogic {
      * @param description {@link Filter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addDescription(final Filter description) {
         this.description = ListUtil.add(description, this.description);
         return this;
@@ -292,7 +274,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return Number of queries against the description field.
      */
-    @JsonIgnore
     public int descriptionLength() {
         return ListUtil.length(this.description);
     }
@@ -302,7 +283,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return {@link Iterable} of {@link Filter} objects.
      */
-    @JsonIgnore
     public Iterable<Filter> description() {
         return ListUtil.iterable(this.description);
     }
@@ -313,7 +293,6 @@ public class DatasetQuery implements HasLogic {
      * @param index Index of the filter to get.
      * @return {@link Filter} object.
      */
-    @JsonIgnore
     public Filter getDescription(final int index) {
         return ListUtil.get(this.description, index);
     }
@@ -344,7 +323,6 @@ public class DatasetQuery implements HasLogic {
      * @param owner List of {@link Filter} objects.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addOwner(final List<Filter> owner) {
         this.owner = ListUtil.add(owner, this.owner);
         return this;
@@ -356,7 +334,6 @@ public class DatasetQuery implements HasLogic {
      * @param owner {@link Filter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addOwner(final Filter owner) {
         this.owner = ListUtil.add(owner, this.owner);
         return this;
@@ -367,7 +344,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return Number of queries against the owner field.
      */
-    @JsonIgnore
     public int ownerLength() {
         return ListUtil.length(this.owner);
     }
@@ -377,7 +353,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return {@link Iterable} of {@link Filter} objects.
      */
-    @JsonIgnore
     public Iterable<Filter> owner() {
         return ListUtil.iterable(this.owner);
     }
@@ -388,7 +363,6 @@ public class DatasetQuery implements HasLogic {
      * @param index Index of the owner query to get.
      * @return {@link Filter} object.
      */
-    @JsonIgnore
     public Filter getOwner(final int index) {
         return ListUtil.get(this.owner, index);
     }
@@ -419,7 +393,6 @@ public class DatasetQuery implements HasLogic {
      * @param email List of {@link Filter} objects.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addEmail(final List<Filter> email) {
         this.email = ListUtil.add(email, this.email);
         return this;
@@ -431,7 +404,6 @@ public class DatasetQuery implements HasLogic {
      * @param email {@link Filter} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public DatasetQuery addEmail(final Filter email) {
         this.email = ListUtil.add(email, this.email);
         return this;
@@ -442,7 +414,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return Number of queries against the email field.
      */
-    @JsonIgnore
     public int emailLength() {
         return ListUtil.length(this.email);
     }
@@ -452,7 +423,6 @@ public class DatasetQuery implements HasLogic {
      *
      * @return {@link Iterable} of {@link Filter} objects.
      */
-    @JsonIgnore
     public Iterable<Filter> email() {
         return ListUtil.iterable(this.email);
     }
@@ -463,7 +433,6 @@ public class DatasetQuery implements HasLogic {
      * @param index Index of the email query to get.
      * @return {@link Filter} object.
      */
-    @JsonIgnore
     public Filter getEmail(final int index) {
         return ListUtil.get(this.email, index);
     }

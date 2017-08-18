@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasFilter;
@@ -47,14 +46,12 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     }
 
     @Override
-    @JsonIgnore
     public FieldQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public FieldQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -67,14 +64,12 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     }
 
     @Override
-    @JsonIgnore
     public FieldQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public FieldQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -87,33 +82,28 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     }
 
     @Override
-    @JsonIgnore
     public FieldQuery addFilter(final List<Filter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public FieldQuery addFilter(final Filter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public int filterLength() {
         return ListUtil.length(this.filter);
     }
 
     @Override
-    @JsonIgnore
     public Iterable<Filter> filter() {
         return ListUtil.iterable(this.filter);
     }
 
     @Override
-    @JsonIgnore
     public Filter getFilter(final int index) {
         return ListUtil.get(this.filter, index);
     }

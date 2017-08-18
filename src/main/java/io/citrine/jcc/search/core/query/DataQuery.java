@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.core.query;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.dataset.query.DatasetQuery;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 import io.citrine.jcc.util.ListUtil;
@@ -42,7 +41,6 @@ public class DataQuery implements HasLogic {
      * @param dataset List of {@link DatasetQuery} objects.
      * @return This object.
      */
-    @JsonIgnore
     public DataQuery addDataset(final List<DatasetQuery> dataset) {
         this.dataset = ListUtil.add(dataset, this.dataset);
         return this;
@@ -54,7 +52,6 @@ public class DataQuery implements HasLogic {
      * @param dataset {@link DatasetQuery} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public DataQuery addDataset(final DatasetQuery dataset) {
         this.dataset = ListUtil.add(dataset, this.dataset);
         return this;
@@ -65,7 +62,6 @@ public class DataQuery implements HasLogic {
      *
      * @return Number of queries against the dataset field.
      */
-    @JsonIgnore
     public int datasetLength() {
         return ListUtil.length(this.dataset);
     }
@@ -75,7 +71,6 @@ public class DataQuery implements HasLogic {
      *
      * @return {@link Iterable} of {@link DatasetQuery} objects.
      */
-    @JsonIgnore
     public Iterable<DatasetQuery> dataset() {
         return ListUtil.iterable(this.dataset);
     }
@@ -86,7 +81,6 @@ public class DataQuery implements HasLogic {
      * @param index Index of the dataset query to get.
      * @return {@link DatasetQuery} at the input index.
      */
-    @JsonIgnore
     public DatasetQuery getDataset(final int index) {
         return ListUtil.get(this.dataset, index);
     }
@@ -117,7 +111,6 @@ public class DataQuery implements HasLogic {
      * @param system List of {@link PifSystemQuery} objects.
      * @return This object.
      */
-    @JsonIgnore
     public DataQuery addSystem(final List<PifSystemQuery> system) {
         this.system = ListUtil.add(system, this.system);
         return this;
@@ -129,7 +122,6 @@ public class DataQuery implements HasLogic {
      * @param system {@link PifSystemQuery} object to add.
      * @return This object.
      */
-    @JsonIgnore
     public DataQuery addSystem(final PifSystemQuery system) {
         this.system = ListUtil.add(system, this.system);
         return this;
@@ -140,7 +132,6 @@ public class DataQuery implements HasLogic {
      *
      * @return Number of queries against the system field.
      */
-    @JsonIgnore
     public int systemLength() {
         return ListUtil.length(this.system);
     }
@@ -150,7 +141,6 @@ public class DataQuery implements HasLogic {
      *
      * @return {@link Iterable} of {@link PifSystemQuery} objects.
      */
-    @JsonIgnore
     public Iterable<PifSystemQuery> system() {
         return ListUtil.iterable(this.system);
     }
@@ -161,7 +151,6 @@ public class DataQuery implements HasLogic {
      * @param index Index of the system to get.
      * @return {@link PifSystemQuery} at the input index.
      */
-    @JsonIgnore
     public PifSystemQuery getSystem(final int index) {
         return ListUtil.get(this.system, index);
     }

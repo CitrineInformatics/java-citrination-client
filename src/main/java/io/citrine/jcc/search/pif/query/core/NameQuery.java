@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
@@ -44,14 +43,12 @@ public class NameQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public NameQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public NameQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -64,14 +61,12 @@ public class NameQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public NameQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public NameQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -84,14 +79,12 @@ public class NameQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public NameQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public NameQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -114,7 +107,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param given {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public NameQuery addGiven(final List<FieldQuery> given) {
         this.given = ListUtil.add(given, this.given);
         return this;
@@ -126,7 +118,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param given {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public NameQuery addGiven(final FieldQuery given) {
         this.given = ListUtil.add(given, this.given);
         return this;
@@ -137,7 +128,6 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Number of given queries.
      */
-    @JsonIgnore
     public int givenLength() {
         return ListUtil.length(this.given);
     }
@@ -147,7 +137,6 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> given() {
         return ListUtil.iterable(this.given);
     }
@@ -158,7 +147,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param index Index of the given query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getGiven(final int index) {
         return ListUtil.get(this.given, index);
     }
@@ -189,7 +177,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param family {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public NameQuery addFamily(final List<FieldQuery> family) {
         this.family = ListUtil.add(family, this.family);
         return this;
@@ -201,7 +188,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param family {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public NameQuery addFamily(final FieldQuery family) {
         this.family = ListUtil.add(family, this.family);
         return this;
@@ -212,7 +198,6 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Number of family queries.
      */
-    @JsonIgnore
     public int familyLength() {
         return ListUtil.length(this.family);
     }
@@ -222,7 +207,6 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> family() {
         return ListUtil.iterable(this.family);
     }
@@ -233,7 +217,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param index Index of the family query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getFamily(final int index) {
         return ListUtil.get(this.family, index);
     }
@@ -264,7 +247,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param title {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public NameQuery addTitle(final List<FieldQuery> title) {
         this.title = ListUtil.add(title, this.title);
         return this;
@@ -276,7 +258,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param title {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public NameQuery addTitle(final FieldQuery title) {
         this.title = ListUtil.add(title, this.title);
         return this;
@@ -287,7 +268,6 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Number of title queries.
      */
-    @JsonIgnore
     public int titleLength() {
         return ListUtil.length(this.title);
     }
@@ -297,7 +277,6 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> title() {
         return ListUtil.iterable(this.title);
     }
@@ -308,7 +287,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param index Index of the title query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getTitle(final int index) {
         return ListUtil.get(this.title, index);
     }
@@ -339,7 +317,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param suffix {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public NameQuery addSuffix(final List<FieldQuery> suffix) {
         this.suffix = ListUtil.add(suffix, this.suffix);
         return this;
@@ -351,7 +328,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param suffix {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public NameQuery addSuffix(final FieldQuery suffix) {
         this.suffix = ListUtil.add(suffix, this.suffix);
         return this;
@@ -362,7 +338,6 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Number of suffix queries.
      */
-    @JsonIgnore
     public int suffixLength() {
         return ListUtil.length(this.suffix);
     }
@@ -372,7 +347,6 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> suffix() {
         return ListUtil.iterable(this.suffix);
     }
@@ -383,7 +357,6 @@ public class NameQuery extends BaseObjectQuery {
      * @param index Index of the suffix query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getSuffix(final int index) {
         return ListUtil.get(this.suffix, index);
     }

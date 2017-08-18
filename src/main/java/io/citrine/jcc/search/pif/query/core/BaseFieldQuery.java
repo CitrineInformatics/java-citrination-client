@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.HasLogic;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
@@ -104,7 +103,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      * @param length {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public BaseFieldQuery addLength(final List<FieldQuery> length) {
         this.length = ListUtil.add(length, this.length);
         return this;
@@ -116,7 +114,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      * @param length {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public BaseFieldQuery addLength(final FieldQuery length) {
         this.length = ListUtil.add(length, this.length);
         return this;
@@ -127,7 +124,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      * 
      * @return Number of length queries.
      */
-    @JsonIgnore
     public int lengthLength() {
         return ListUtil.length(this.length);
     }
@@ -137,7 +133,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> length() {
         return ListUtil.iterable(this.length);
     }
@@ -148,7 +143,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      * @param index Index of the length query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getLength(final int index) {
         return ListUtil.get(this.length, index);
     }
@@ -179,7 +173,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      * @param offset {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public BaseFieldQuery addOffset(final List<FieldQuery> offset) {
         this.offset = ListUtil.add(offset, this.offset);
         return this;
@@ -191,7 +184,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      * @param offset {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public BaseFieldQuery addOffset(final FieldQuery offset) {
         this.offset = ListUtil.add(offset, this.offset);
         return this;
@@ -202,7 +194,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      *
      * @return Number of offset queries.
      */
-    @JsonIgnore
     public int offsetLength() {
         return ListUtil.length(this.offset);
     }
@@ -212,7 +203,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> offset() {
         return ListUtil.iterable(this.offset);
     }
@@ -223,7 +213,6 @@ public abstract class BaseFieldQuery implements HasLogic {
      * @param index Index of the offset query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getOffset(final int index) {
         return ListUtil.get(this.offset, index);
     }

@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
@@ -68,14 +67,12 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     }
 
     @Override
-    @JsonIgnore
     public PifSystemReturningQuery addQuery(final List<DataQuery> query) {
         super.addQuery(query);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public PifSystemReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
         return this;

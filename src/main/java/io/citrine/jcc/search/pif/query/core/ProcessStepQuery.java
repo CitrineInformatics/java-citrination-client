@@ -1,6 +1,5 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
@@ -44,14 +43,12 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public ProcessStepQuery addTags(final List<FieldQuery> tags) {
         super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public ProcessStepQuery addTags(final FieldQuery tags) {
         super.addTags(tags);
         return this;
@@ -64,14 +61,12 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public ProcessStepQuery addLength(final List<FieldQuery> length) {
         super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public ProcessStepQuery addLength(final FieldQuery length) {
         super.addLength(length);
         return this;
@@ -84,14 +79,12 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     @Override
-    @JsonIgnore
     public ProcessStepQuery addOffset(final List<FieldQuery> offset) {
         super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
     public ProcessStepQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
@@ -114,7 +107,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public ProcessStepQuery addName(final List<FieldQuery> name) {
         this.name = ListUtil.add(name, this.name);
         return this;
@@ -126,7 +118,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public ProcessStepQuery addName(final FieldQuery name) {
         this.name = ListUtil.add(name, this.name);
         return this;
@@ -137,7 +128,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      *
      * @return Number of name queries.
      */
-    @JsonIgnore
     public int nameLength() {
         return ListUtil.length(this.name);
     }
@@ -147,7 +137,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonIgnore
     public Iterable<FieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
@@ -158,7 +147,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      * @param index Index of the name query to get.
      * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
     public FieldQuery getName(final int index) {
         return ListUtil.get(this.name, index);
     }
@@ -189,7 +177,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      * @param details {@link ValueQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public ProcessStepQuery addDetails(final List<ValueQuery> details) {
         this.details = ListUtil.add(details, this.details);
         return this;
@@ -201,7 +188,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      * @param details {@link ValueQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
     public ProcessStepQuery addDetails(final ValueQuery details) {
         this.details = ListUtil.add(details, this.details);
         return this;
@@ -212,7 +198,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      *
      * @return Number of details queries.
      */
-    @JsonIgnore
     public int detailsLength() {
         return ListUtil.length(this.details);
     }
@@ -222,7 +207,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link ValueQuery} objects.
      */
-    @JsonIgnore
     public Iterable<ValueQuery> details() {
         return ListUtil.iterable(this.details);
     }
@@ -233,7 +217,6 @@ public class ProcessStepQuery extends BaseObjectQuery {
      * @param index Index of the details query to get.
      * @return {@link ValueQuery} at the input index.
      */
-    @JsonIgnore
     public ValueQuery getDetails(final int index) {
         return ListUtil.get(this.details, index);
     }
