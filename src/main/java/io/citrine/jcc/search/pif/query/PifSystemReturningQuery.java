@@ -120,6 +120,28 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     }
 
     /**
+     * Set whether to unwrap single element extractions. This only applies when extractAll is true for an extraction
+     * and the outermost array only contains a single element.
+     *
+     * @param unwrapSingleValueExtractions True to unwrap single element extractions.
+     * @return This object.
+     */
+    public PifSystemReturningQuery setUnwrapSingleValueExtractions(final Boolean unwrapSingleValueExtractions) {
+        this.unwrapSingleValueExtractions = unwrapSingleValueExtractions;
+        return this;
+    }
+
+    /**
+     * Get whether to unwrap single element extractions. This only applies when extractAll is true for an extraction
+     * and the outermost array only contains a single element.
+     *
+     * @return True to unwrap single element extractions.
+     */
+    public Boolean getUnwrapSingleValueExtractions() {
+        return this.unwrapSingleValueExtractions;
+    }
+
+    /**
      * Deserialization of the system field from old PifQuery objects.
      *
      * @param system List of {@link PifSystemQuery} objects for the query.
@@ -170,4 +192,7 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
 
     /** Whether to add latex formatting to results. */
     private Boolean addLatex;
+
+    /** Whether to unwrap single element arrays that are extracted. */
+    private Boolean unwrapSingleValueExtractions;
 }
