@@ -291,7 +291,7 @@ public class PifSearchHit {
      * @param path Path to the value that was extracted.
      * @return This object.
      */
-    public PifSearchHit addExtracted(final String key, final String path) {
+    public PifSearchHit addExtractedPath(final String key, final String path) {
         if (this.extractedPath == null) {
             this.extractedPath = new HashMap<>();
         }
@@ -326,7 +326,7 @@ public class PifSearchHit {
      * @return String with the value of the input key or a null pointer if that key is not available.
      */
     @JsonIgnore
-    public String getExtractedValuePath(final String key) {
+    public String getExtractedPath(final String key) {
         return (this.extractedPath == null) ? null : this.extractedPath.get(key);
     }
 
