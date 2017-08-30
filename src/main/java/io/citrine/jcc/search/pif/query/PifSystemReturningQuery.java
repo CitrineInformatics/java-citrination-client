@@ -120,6 +120,26 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     }
 
     /**
+     * Set whether to return the paths to extracted values.
+     *
+     * @param returnExtractedPath True to return extracted value paths.
+     * @return This object.
+     */
+    public PifSystemReturningQuery setReturnExtractedPath(final Boolean returnExtractedPath) {
+        this.returnExtractedPath = returnExtractedPath;
+        return this;
+    }
+
+    /**
+     * Get whether to return the paths to extracted values.
+     *
+     * @return True to return extracted value paths.
+     */
+    public Boolean getReturnExtractedPath() {
+        return this.returnExtractedPath;
+    }
+
+    /**
      * Set whether to unwrap single element extractions. This only applies when extractAll is true for an extraction
      * and the outermost array only contains a single element.
      *
@@ -192,6 +212,9 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
 
     /** Whether to add latex formatting to results. */
     private Boolean addLatex;
+
+    /** Whether to return the paths to extracted values. */
+    private Boolean returnExtractedPath;
 
     /** Whether to unwrap single element arrays that are extracted. */
     private Boolean unwrapSingleValueExtractions;
