@@ -206,7 +206,7 @@ public class PifSearchHit {
      * Get an extracted value by its key.
      *
      * @param key String with the key of the extracted value.
-     * @return String with the value of the input key or a null pointer if that key is not available.
+     * @return Object with the value of the input key or a null pointer if that key is not available.
      */
     @JsonIgnore
     public Object getExtractedValue(final String key) {
@@ -214,7 +214,7 @@ public class PifSearchHit {
     }
 
     /**
-     * Get an extracted value an convert it to the type of valueClass. This method assumes that the value can be
+     * Get an extracted value and convert it to the type of valueClass. This method assumes that the value can be
      * converted to the specified class by serialized the value to JSON then deserializing to the class type.
      *
      * @param key String with the key of the extracted value.
@@ -224,7 +224,7 @@ public class PifSearchHit {
      * key is not available.
      */
     @JsonIgnore
-    public <T extends Pio> T getExtractValue(final String key, final Class<T> valueClass) {
+    public <T extends Pio> T getExtractedValue(final String key, final Class<T> valueClass) {
         return (this.extracted == null) ? null : convert(this.extracted.get(key), valueClass);
     }
 
@@ -254,6 +254,80 @@ public class PifSearchHit {
             final String key, final T defaultValue, final Class<T> valueClass) {
         final T converted = (this.extracted == null) ? defaultValue : convert(this.extracted.get(key), valueClass);
         return (converted == null) ? defaultValue : converted;
+    }
+
+    /**
+     * Set the map of extracted value paths.
+     *
+     * @param extractedPath Map of extracted value names to paths.
+     * @return This object.
+     */
+    @JsonSetter
+    public PifSearchHit setExtractedPath(final Map<String, String> extractedPath) {
+        this.extractedPath = extractedPath;
+        return this;
+    }
+
+    /**
+     * Add to the map of extracted value paths.
+     *
+     * @param extractedPath Map of extracted value names to paths.
+     * @return This object.
+     */
+    public PifSearchHit addExtractedPath(final Map<String, String> extractedPath) {
+        if (extractedPath != null) {
+            if (this.extractedPath == null) {
+                this.extractedPath = new HashMap<>();
+            }
+            this.extractedPath.putAll(extractedPath);
+        }
+        return this;
+    }
+
+    /**
+     * Add to the map of extracted value paths.
+     *
+     * @param key Name of the extracted value.
+     * @param path Path to the value that was extracted.
+     * @return This object.
+     */
+    public PifSearchHit addExtracted(final String key, final String path) {
+        if (this.extractedPath == null) {
+            this.extractedPath = new HashMap<>();
+        }
+        this.extractedPath.put(key, path);
+        return this;
+    }
+
+    /**
+     * Get the map of extracted value paths.
+     *
+     * @return Map of extracted field keys to paths.
+     */
+    @JsonGetter
+    protected Map<String, String> getExtractedPath() {
+        return this.extractedPath;
+    }
+
+    /**
+     * Get the list of extracted value path keys.
+     *
+     * @return Set with the extracted path keys.
+     */
+    @JsonIgnore
+    public Set<String> getExtractedPathKeys() {
+        return (this.extractedPath == null) ? Collections.emptySet() : this.extractedPath.keySet();
+    }
+
+    /**
+     * Get an extracted value path by its key.
+     *
+     * @param key String with the key of the extracted value.
+     * @return String with the value of the input key or a null pointer if that key is not available.
+     */
+    @JsonIgnore
+    public String getExtractedValuePath(final String key) {
+        return (this.extractedPath == null) ? null : this.extractedPath.get(key);
     }
 
     /**
@@ -298,4 +372,7 @@ public class PifSearchHit {
 
     /** Map of extracted fields. */
     private Map<String, Object> extracted = new HashMap<>();
+
+    /** Map of paths to extracted fields. */
+    private Map<String, String> extractedPath = new HashMap<>();
 }
