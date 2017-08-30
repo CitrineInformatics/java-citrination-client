@@ -310,16 +310,6 @@ public class PifSearchHit {
     }
 
     /**
-     * Get the list of extracted value path keys.
-     *
-     * @return Set with the extracted path keys.
-     */
-    @JsonIgnore
-    public Set<String> getExtractedPathKeys() {
-        return (this.extractedPath == null) ? Collections.emptySet() : this.extractedPath.keySet();
-    }
-
-    /**
      * Get an extracted value path by its key.
      *
      * @param key String with the key of the extracted value.
@@ -328,6 +318,16 @@ public class PifSearchHit {
     @JsonIgnore
     public String getExtractedPath(final String key) {
         return (this.extractedPath == null) ? null : this.extractedPath.get(key);
+    }
+
+    /**
+     * Get the list of extracted value path keys.
+     *
+     * @return Set with the extracted path keys.
+     */
+    @JsonIgnore
+    public Set<String> getExtractedPathKeys() {
+        return (this.extractedPath == null) ? Collections.emptySet() : this.extractedPath.keySet();
     }
 
     /**
