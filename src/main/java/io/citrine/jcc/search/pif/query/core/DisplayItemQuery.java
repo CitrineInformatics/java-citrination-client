@@ -18,6 +18,12 @@ public class DisplayItemQuery extends BaseObjectQuery {
     }
 
     @Override
+    public DisplayItemQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public DisplayItemQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

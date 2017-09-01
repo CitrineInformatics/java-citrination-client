@@ -19,6 +19,12 @@ public class SourceQuery extends BaseObjectQuery {
     }
 
     @Override
+    public SourceQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public SourceQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

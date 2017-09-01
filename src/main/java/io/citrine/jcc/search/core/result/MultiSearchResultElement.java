@@ -1,4 +1,4 @@
-package io.citrine.jcc.search.core.query;
+package io.citrine.jcc.search.core.result;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

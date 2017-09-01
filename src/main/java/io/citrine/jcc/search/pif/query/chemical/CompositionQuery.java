@@ -93,6 +93,26 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     /**
+     * Set the query to run against all fields.
+     *
+     * @param simple String with the query to run against all fields.
+     * @return This object.
+     */
+    public CompositionQuery setSimple(final String simple) {
+        this.simple = simple;
+        return this;
+    }
+
+    /**
+     * Get the query to run against all fields.
+     *
+     * @return String with the query to run against all fields.
+     */
+    public String getSimple() {
+        return this.simple;
+    }
+
+    /**
      * Set the element operations. This adds to any operations that are already saved.
      *
      * @param element List of {@link ChemicalFieldQuery} objects.
@@ -441,6 +461,9 @@ public class CompositionQuery extends BaseObjectQuery {
     public List<FieldQuery> getIdealAtomicPercent() {
         return this.idealAtomicPercent;
     }
+
+    /** String with the simple search to run against all fields. */
+    private String simple;
 
     /** Element for the composition. */
     private List<ChemicalFieldQuery> element;

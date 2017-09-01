@@ -19,6 +19,12 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     @Override
+    public QuantityQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public QuantityQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

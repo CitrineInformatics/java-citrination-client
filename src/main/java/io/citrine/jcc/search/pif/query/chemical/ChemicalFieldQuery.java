@@ -22,6 +22,12 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     }
 
     @Override
+    public ChemicalFieldQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public ChemicalFieldQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

@@ -22,6 +22,12 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     }
 
     @Override
+    public FieldQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public FieldQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

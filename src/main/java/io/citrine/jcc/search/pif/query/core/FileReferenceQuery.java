@@ -19,6 +19,12 @@ public class FileReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
+    public FileReferenceQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public FileReferenceQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

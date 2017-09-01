@@ -1,7 +1,5 @@
 package io.citrine.jcc.search.pif.query.core;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
@@ -17,6 +15,12 @@ public class PagesQuery extends BaseObjectQuery {
     @Override
     public PagesQuery setLogic(final Logic logic) {
         super.setLogic(logic);
+        return this;
+    }
+
+    @Override
+    public PagesQuery setSimple(final String simple) {
+        super.setSimple(simple);
         return this;
     }
 
