@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.citrine.jcc.search.core.query.MultiQuery;
-import io.citrine.jcc.search.core.query.MultiSearchResult;
+import io.citrine.jcc.search.core.result.MultiSearchResult;
 import io.citrine.jcc.search.pif.query.PifSystemReturningQuery;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
 import org.apache.http.HttpResponse;

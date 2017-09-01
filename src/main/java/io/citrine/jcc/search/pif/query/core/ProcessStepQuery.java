@@ -19,6 +19,12 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ProcessStepQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public ProcessStepQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

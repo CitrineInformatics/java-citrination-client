@@ -19,6 +19,12 @@ public class IdQuery extends BaseObjectQuery {
     }
 
     @Override
+    public IdQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public IdQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

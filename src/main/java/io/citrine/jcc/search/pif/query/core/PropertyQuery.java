@@ -19,6 +19,12 @@ public class PropertyQuery extends ValueQuery {
     }
 
     @Override
+    public PropertyQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public PropertyQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

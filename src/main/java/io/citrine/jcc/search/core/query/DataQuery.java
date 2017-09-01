@@ -25,6 +25,26 @@ public class DataQuery implements HasLogic {
     }
 
     /**
+     * Set the query to run against all fields.
+     *
+     * @param simple String with the query to run against all fields.
+     * @return This object.
+     */
+    public DataQuery setSimple(final String simple) {
+        this.simple = simple;
+        return this;
+    }
+
+    /**
+     * Get the query to run against all fields.
+     *
+     * @return String with the query to run against all fields.
+     */
+    public String getSimple() {
+        return this.simple;
+    }
+
+    /**
      * Set the list of dataset queries. This replaces any filters that are already present.
      *
      * @param dataset List of {@link DatasetQuery} objects.
@@ -166,6 +186,9 @@ public class DataQuery implements HasLogic {
 
     /** Logic for the query. */
     private Logic logic;
+
+    /** String with the simple search to run against all fields. */
+    private String simple;
 
     /** List of queries against dataset metadata. */
     private List<DatasetQuery> dataset;

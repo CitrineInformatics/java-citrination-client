@@ -19,6 +19,12 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ReferenceQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public ReferenceQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

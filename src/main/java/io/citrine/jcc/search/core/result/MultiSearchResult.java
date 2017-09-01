@@ -1,6 +1,5 @@
-package io.citrine.jcc.search.core.query;
+package io.citrine.jcc.search.core.result;
 
-import io.citrine.jcc.search.core.result.BaseSearchResult;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.Collections;

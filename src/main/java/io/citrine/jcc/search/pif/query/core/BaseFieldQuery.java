@@ -26,6 +26,26 @@ public abstract class BaseFieldQuery implements HasLogic {
     }
 
     /**
+     * Set the query to run against all fields.
+     *
+     * @param simple String with the query to run against all fields.
+     * @return This object.
+     */
+    public BaseFieldQuery setSimple(final String simple) {
+        this.simple = simple;
+        return this;
+    }
+
+    /**
+     * Get the query to run against all fields.
+     *
+     * @return String with the query to run against all fields.
+     */
+    public String getSimple() {
+        return this.simple;
+    }
+
+    /**
      * Set the alias to save this field under.
      *
      * @param extractAs String with the alias to save this field under.
@@ -228,6 +248,9 @@ public abstract class BaseFieldQuery implements HasLogic {
 
     /** Logic that applies to the entire query. */
     private Logic logic;
+
+    /** String with the simple search to run against all fields. */
+    private String simple;
 
     /** Alias to save this field under. */
     private String extractAs;

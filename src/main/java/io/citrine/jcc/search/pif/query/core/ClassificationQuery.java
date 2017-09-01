@@ -19,6 +19,12 @@ public class ClassificationQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ClassificationQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public ClassificationQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

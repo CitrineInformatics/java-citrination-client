@@ -103,6 +103,26 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     /**
+     * Set the query to run against all fields.
+     *
+     * @param simple String with the query to run against all fields.
+     * @return This object.
+     */
+    public PifSystemQuery setSimple(final String simple) {
+        this.simple = simple;
+        return this;
+    }
+
+    /**
+     * Get the query to run against all fields.
+     *
+     * @return String with the query to run against all fields.
+     */
+    public String getSimple() {
+        return this.simple;
+    }
+
+    /**
      * Set the list of PIF system UID queries. This replaces any filters that are already present.
      *
      * @param uid List of {@link Filter} objects.
@@ -941,6 +961,9 @@ public class PifSystemQuery extends BaseObjectQuery {
     public List<PifSystemQuery> getSubSystems() {
         return this.subSystems;
     }
+
+    /** String with the simple search to run against all fields. */
+    private String simple;
 
     /** List of filters against the PIF system UID. */
     private List<Filter> uid;

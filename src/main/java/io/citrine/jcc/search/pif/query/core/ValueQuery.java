@@ -19,6 +19,12 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ValueQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public ValueQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;
