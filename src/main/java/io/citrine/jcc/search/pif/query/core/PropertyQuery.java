@@ -308,9 +308,82 @@ public class PropertyQuery extends ValueQuery {
         return this.dataType;
     }
 
+    /**
+     * Set the references operations. This adds to any operations that are already saved.
+     *
+     * @param references List of {@link ReferenceQuery} objects.
+     * @return This object.
+     */
+    public PropertyQuery setReferences(final List<ReferenceQuery> references) {
+        this.references = references;
+        return this;
+    }
+
+    /**
+     * Add to the list of references operations.
+     *
+     * @param references {@link ReferenceQuery} to add.
+     * @return This object.
+     */
+    public PropertyQuery addReferences(final List<ReferenceQuery> references) {
+        this.references = ListUtil.add(references, this.references);
+        return this;
+    }
+
+    /**
+     * Add to the list of references operations.
+     *
+     * @param references {@link ReferenceQuery} to add.
+     * @return This object.
+     */
+    public PropertyQuery addReferences(final ReferenceQuery references) {
+        this.references = ListUtil.add(references, this.references);
+        return this;
+    }
+
+    /**
+     * Get the length of the references queries.
+     *
+     * @return Number of references queries.
+     */
+    public int referencesLength() {
+        return ListUtil.length(this.references);
+    }
+
+    /**
+     * Get an iterable over references operations.
+     *
+     * @return Iterable of {@link ReferenceQuery} objects.
+     */
+    public Iterable<ReferenceQuery> references() {
+        return ListUtil.iterable(this.references);
+    }
+
+    /**
+     * Get the references query at the input index.
+     *
+     * @param index Index of the references query to get.
+     * @return {@link ReferenceQuery} at the input index.
+     */
+    public ReferenceQuery getReferences(final int index) {
+        return ListUtil.get(this.references, index);
+    }
+
+    /**
+     * Get the references field queries.
+     *
+     * @return List of {@link ReferenceQuery} objects.
+     */
+    public List<ReferenceQuery> getReferences() {
+        return this.references;
+    }
+
     /** List of conditions queries. */
     private List<ValueQuery> conditions;
 
     /** List of data type queries. */
     private List<FieldQuery> dataType;
+
+    /** List of reference queries. */
+    private List<ReferenceQuery> references;
 }
