@@ -376,6 +376,76 @@ public class NameQuery extends BaseObjectQuery {
         return this.suffix;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link NameQuery} objects.
+     * @return This object.
+     */
+    public NameQuery setQuery(final List<NameQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link NameQuery} objects.
+     * @return This object.
+     */
+    public NameQuery addQuery(final List<NameQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link NameQuery} object to add.
+     * @return This object.
+     */
+    public NameQuery addQuery(final NameQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link NameQuery} objects.
+     */
+    public Iterable<NameQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link NameQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link NameQuery} at the input index.
+     */
+    public NameQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link NameQuery} objects.
+     */
+    public List<NameQuery> getQuery() {
+        return this.query;
+    }
+
     /** Given name for the query. */
     private List<FieldQuery> given;
 
@@ -387,4 +457,7 @@ public class NameQuery extends BaseObjectQuery {
 
     /** Suffix of the person. */
     private List<FieldQuery> suffix;
+    
+    /** Nested list of queries. */
+    private List<NameQuery> query;
 }

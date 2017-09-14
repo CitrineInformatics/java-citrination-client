@@ -305,6 +305,76 @@ public class DisplayItemQuery extends BaseObjectQuery {
         return this.caption;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link DisplayItemQuery} objects.
+     * @return This object.
+     */
+    public DisplayItemQuery setQuery(final List<DisplayItemQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link DisplayItemQuery} objects.
+     * @return This object.
+     */
+    public DisplayItemQuery addQuery(final List<DisplayItemQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link DisplayItemQuery} object to add.
+     * @return This object.
+     */
+    public DisplayItemQuery addQuery(final DisplayItemQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link DisplayItemQuery} objects.
+     */
+    public Iterable<DisplayItemQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link DisplayItemQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link DisplayItemQuery} at the input index.
+     */
+    public DisplayItemQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link DisplayItemQuery} objects.
+     */
+    public List<DisplayItemQuery> getQuery() {
+        return this.query;
+    }
+
     /** Number of the display item. */
     private List<FieldQuery> number;
 
@@ -313,4 +383,7 @@ public class DisplayItemQuery extends BaseObjectQuery {
 
     /** Caption of the display item. */
     private List<FieldQuery> caption;
+    
+    /** Nested list of queries. */
+    private List<DisplayItemQuery> query;
 }

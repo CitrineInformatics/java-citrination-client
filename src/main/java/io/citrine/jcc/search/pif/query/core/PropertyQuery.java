@@ -1,9 +1,11 @@
 package io.citrine.jcc.search.pif.query.core;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class used to match against a property.
@@ -378,6 +380,95 @@ public class PropertyQuery extends ValueQuery {
         return this.references;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link PropertyQuery} objects.
+     * @return This object.
+     */
+    @Override
+    @JsonDeserialize(contentAs = PropertyQuery.class)
+    public PropertyQuery setQuery(final List<ValueQuery> query) {
+        this.query = (query == null)
+                ? null
+                : query.stream()
+                        .map(i -> (PropertyQuery) i)
+                        .collect(Collectors.toList());
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link PropertyQuery} objects.
+     * @return This object.
+     */
+    @Override
+    public PropertyQuery addQuery(final List<ValueQuery> query) {
+        final List<PropertyQuery> propertyQuery = (query == null)
+                ? null
+                : query.stream()
+                        .map(i -> (PropertyQuery) i)
+                        .collect(Collectors.toList());
+        this.query = ListUtil.add(propertyQuery, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link PropertyQuery} object to add.
+     * @return This object.
+     */
+    @Override
+    public PropertyQuery addQuery(final ValueQuery query) {
+        this.query = ListUtil.add((PropertyQuery) query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    @Override
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link PropertyQuery} objects.
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Iterable<PropertyQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link PropertyQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link PropertyQuery} at the input index.
+     */
+    @Override
+    public PropertyQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link PropertyQuery} objects.
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<PropertyQuery> getQuery() {
+        return this.query;
+    }
+
     /** List of conditions queries. */
     private List<ValueQuery> conditions;
 
@@ -386,4 +477,7 @@ public class PropertyQuery extends ValueQuery {
 
     /** List of reference queries. */
     private List<ReferenceQuery> references;
+    
+    /** Nested list of queries. */
+    private List<PropertyQuery> query;
 }

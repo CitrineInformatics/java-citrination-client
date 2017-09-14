@@ -236,9 +236,82 @@ public class PagesQuery extends BaseObjectQuery {
         return this.end;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link PagesQuery} objects.
+     * @return This object.
+     */
+    public PagesQuery setQuery(final List<PagesQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link PagesQuery} objects.
+     * @return This object.
+     */
+    public PagesQuery addQuery(final List<PagesQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link PagesQuery} object to add.
+     * @return This object.
+     */
+    public PagesQuery addQuery(final PagesQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link PagesQuery} objects.
+     */
+    public Iterable<PagesQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link PagesQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link PagesQuery} at the input index.
+     */
+    public PagesQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link PagesQuery} objects.
+     */
+    public List<PagesQuery> getQuery() {
+        return this.query;
+    }
+
     /** Operations against the starting page. */
     private List<FieldQuery> start;
 
     /** Operation against the ending page. */
     private List<FieldQuery> end;
+    
+    /** Nested list of queries. */
+    private List<PagesQuery> query;
 }

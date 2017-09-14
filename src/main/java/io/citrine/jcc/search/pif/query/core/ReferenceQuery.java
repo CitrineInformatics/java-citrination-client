@@ -1356,6 +1356,76 @@ public class ReferenceQuery extends BaseObjectQuery {
         return this.references;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link ReferenceQuery} objects.
+     * @return This object.
+     */
+    public ReferenceQuery setQuery(final List<ReferenceQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link ReferenceQuery} objects.
+     * @return This object.
+     */
+    public ReferenceQuery addQuery(final List<ReferenceQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link ReferenceQuery} object to add.
+     * @return This object.
+     */
+    public ReferenceQuery addQuery(final ReferenceQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link ReferenceQuery} objects.
+     */
+    public Iterable<ReferenceQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link ReferenceQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link ReferenceQuery} at the input index.
+     */
+    public ReferenceQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link ReferenceQuery} objects.
+     */
+    public List<ReferenceQuery> getQuery() {
+        return this.query;
+    }
+
     /** DOI of the reference. */
     private List<FieldQuery> doi;
 
@@ -1409,4 +1479,7 @@ public class ReferenceQuery extends BaseObjectQuery {
 
     /** Nested reference queries. */
     private List<ReferenceQuery> references;
+    
+    /** Nested list of queries. */
+    private List<ReferenceQuery> query;
 }

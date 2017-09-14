@@ -236,11 +236,82 @@ public class ClassificationQuery extends BaseObjectQuery {
         return this.value;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link ClassificationQuery} objects.
+     * @return This object.
+     */
+    public ClassificationQuery setQuery(final List<ClassificationQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link ClassificationQuery} objects.
+     * @return This object.
+     */
+    public ClassificationQuery addQuery(final List<ClassificationQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link ClassificationQuery} object to add.
+     * @return This object.
+     */
+    public ClassificationQuery addQuery(final ClassificationQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link ClassificationQuery} objects.
+     */
+    public Iterable<ClassificationQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link ClassificationQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link ClassificationQuery} at the input index.
+     */
+    public ClassificationQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link ClassificationQuery} objects.
+     */
+    public List<ClassificationQuery> getQuery() {
+        return this.query;
+    }
+
     /** Name of the classification. */
     private List<FieldQuery> name;
 
     /** Value of the classification. */
     private List<FieldQuery> value;
     
-    
+    /** Nested list of queries. */
+    private List<ClassificationQuery> query;
 }

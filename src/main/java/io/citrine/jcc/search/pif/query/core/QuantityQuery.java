@@ -516,6 +516,76 @@ public class QuantityQuery extends BaseObjectQuery {
         return this.idealNumberPercent;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link QuantityQuery} objects.
+     * @return This object.
+     */
+    public QuantityQuery setQuery(final List<QuantityQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link QuantityQuery} objects.
+     * @return This object.
+     */
+    public QuantityQuery addQuery(final List<QuantityQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link QuantityQuery} object to add.
+     * @return This object.
+     */
+    public QuantityQuery addQuery(final QuantityQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link QuantityQuery} objects.
+     */
+    public Iterable<QuantityQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link QuantityQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link QuantityQuery} at the input index.
+     */
+    public QuantityQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link QuantityQuery} objects.
+     */
+    public List<QuantityQuery> getQuery() {
+        return this.query;
+    }
+
     /** Actual percent of the total mass. */
     private List<FieldQuery> actualMassPercent;
 
@@ -533,4 +603,7 @@ public class QuantityQuery extends BaseObjectQuery {
 
     /** Ideal percent of the total number. */
     private List<FieldQuery> idealNumberPercent;
+
+    /** Nested list of queries. */
+    private List<QuantityQuery> query;
 }
