@@ -466,6 +466,76 @@ public class DatasetQuery implements HasLogic {
         return this.email;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link DatasetQuery} objects.
+     * @return This object.
+     */
+    public DatasetQuery setQuery(final List<DatasetQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link DatasetQuery} objects.
+     * @return This object.
+     */
+    public DatasetQuery addQuery(final List<DatasetQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link DatasetQuery} object to add.
+     * @return This object.
+     */
+    public DatasetQuery addQuery(final DatasetQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link DatasetQuery} objects.
+     */
+    public Iterable<DatasetQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link DatasetQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link DatasetQuery} at the input index.
+     */
+    public DatasetQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link DatasetQuery} objects.
+     */
+    public List<DatasetQuery> getQuery() {
+        return this.query;
+    }
+
     /** Logic for the query. */
     private Logic logic;
 
@@ -489,4 +559,7 @@ public class DatasetQuery implements HasLogic {
 
     /** Email address of the owner of the dataset. */
     private List<Filter> email;
+    
+    /** Nested list of queries. */
+    private List<DatasetQuery> query;
 }

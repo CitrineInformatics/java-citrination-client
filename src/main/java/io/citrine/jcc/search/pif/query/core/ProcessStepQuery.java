@@ -236,9 +236,82 @@ public class ProcessStepQuery extends BaseObjectQuery {
         return this.details;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link ProcessStepQuery} objects.
+     * @return This object.
+     */
+    public ProcessStepQuery setQuery(final List<ProcessStepQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link ProcessStepQuery} objects.
+     * @return This object.
+     */
+    public ProcessStepQuery addQuery(final List<ProcessStepQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link ProcessStepQuery} object to add.
+     * @return This object.
+     */
+    public ProcessStepQuery addQuery(final ProcessStepQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link ProcessStepQuery} objects.
+     */
+    public Iterable<ProcessStepQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link ProcessStepQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link ProcessStepQuery} at the input index.
+     */
+    public ProcessStepQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link ProcessStepQuery} objects.
+     */
+    public List<ProcessStepQuery> getQuery() {
+        return this.query;
+    }
+
     /** Name of the step. */
     private List<FieldQuery> name;
 
     /** Details of the step. */
     private List<ValueQuery> details;
+    
+    /** Nested list of queries. */
+    private List<ProcessStepQuery> query;
 }

@@ -962,6 +962,76 @@ public class PifSystemQuery extends BaseObjectQuery {
         return this.subSystems;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link PifSystemQuery} objects.
+     * @return This object.
+     */
+    public PifSystemQuery setQuery(final List<PifSystemQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link PifSystemQuery} objects.
+     * @return This object.
+     */
+    public PifSystemQuery addQuery(final List<PifSystemQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link PifSystemQuery} object to add.
+     * @return This object.
+     */
+    public PifSystemQuery addQuery(final PifSystemQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link PifSystemQuery} objects.
+     */
+    public Iterable<PifSystemQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link PifSystemQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link PifSystemQuery} at the input index.
+     */
+    public PifSystemQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link PifSystemQuery} objects.
+     */
+    public List<PifSystemQuery> getQuery() {
+        return this.query;
+    }
+
     /** String with the simple search to run against all fields. */
     private String simple;
 
@@ -1000,4 +1070,7 @@ public class PifSystemQuery extends BaseObjectQuery {
 
     /** Subsystems. */
     private List<PifSystemQuery> subSystems;
+    
+    /** Nested list of queries. */
+    private List<PifSystemQuery> query;
 }

@@ -236,9 +236,82 @@ public class SourceQuery extends BaseObjectQuery {
         return this.url;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link SourceQuery} objects.
+     * @return This object.
+     */
+    public SourceQuery setQuery(final List<SourceQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link SourceQuery} objects.
+     * @return This object.
+     */
+    public SourceQuery addQuery(final List<SourceQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link SourceQuery} object to add.
+     * @return This object.
+     */
+    public SourceQuery addQuery(final SourceQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link SourceQuery} objects.
+     */
+    public Iterable<SourceQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link SourceQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link SourceQuery} at the input index.
+     */
+    public SourceQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link SourceQuery} objects.
+     */
+    public List<SourceQuery> getQuery() {
+        return this.query;
+    }
+
     /** Producer of the system. */
     private List<FieldQuery> producer;
 
     /** URL to the source. */
     private List<FieldQuery> url;
+    
+    /** Nested list of queries. */
+    private List<SourceQuery> query;
 }

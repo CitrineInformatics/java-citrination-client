@@ -376,6 +376,80 @@ public class ValueQuery extends BaseObjectQuery {
         return this.units;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link ValueQuery} objects.
+     * @return This object.
+     */
+    public ValueQuery setQuery(final List<ValueQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link ValueQuery} objects.
+     * @return This object.
+     */
+    public ValueQuery addQuery(final List<ValueQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link ValueQuery} object to add.
+     * @return This object.
+     */
+    public ValueQuery addQuery(final ValueQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @param <T> Type of the query.
+     * @return {@link Iterable} of {@link ValueQuery} objects.
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends ValueQuery> Iterable<T> query() {
+        return (Iterable<T>) ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link ValueQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link ValueQuery} at the input index.
+     */
+    public ValueQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @param <T> Type of the query.
+     * @return List of {@link ValueQuery} objects.
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends ValueQuery> List<T> getQuery() {
+        return (List<T>) this.query;
+    }
+
     /** List of name operations. */
     private List<FieldQuery> name;
 
@@ -387,4 +461,7 @@ public class ValueQuery extends BaseObjectQuery {
 
     /** List of units operations. */
     private List<FieldQuery> units;
+    
+    /** Nested list of queries. */
+    private List<ValueQuery> query;
 }

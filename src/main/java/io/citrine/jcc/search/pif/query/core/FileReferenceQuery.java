@@ -376,6 +376,76 @@ public class FileReferenceQuery extends BaseObjectQuery {
         return this.md5;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link FileReferenceQuery} objects.
+     * @return This object.
+     */
+    public FileReferenceQuery setQuery(final List<FileReferenceQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link FileReferenceQuery} objects.
+     * @return This object.
+     */
+    public FileReferenceQuery addQuery(final List<FileReferenceQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link FileReferenceQuery} object to add.
+     * @return This object.
+     */
+    public FileReferenceQuery addQuery(final FileReferenceQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link FileReferenceQuery} objects.
+     */
+    public Iterable<FileReferenceQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link FileReferenceQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link FileReferenceQuery} at the input index.
+     */
+    public FileReferenceQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link FileReferenceQuery} objects.
+     */
+    public List<FileReferenceQuery> getQuery() {
+        return this.query;
+    }
+
     /** Operations against the relative path. */
     private List<FieldQuery> relativePath;
 
@@ -387,4 +457,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
     
     /** Operations against the md5 sum. */
     private List<FieldQuery> md5;
+    
+    /** Nested list of queries. */
+    private List<FileReferenceQuery> query;
 }

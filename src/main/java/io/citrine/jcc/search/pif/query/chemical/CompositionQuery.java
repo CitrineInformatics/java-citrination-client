@@ -462,6 +462,76 @@ public class CompositionQuery extends BaseObjectQuery {
         return this.idealAtomicPercent;
     }
 
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link CompositionQuery} objects.
+     * @return This object.
+     */
+    public CompositionQuery setQuery(final List<CompositionQuery> query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link CompositionQuery} objects.
+     * @return This object.
+     */
+    public CompositionQuery addQuery(final List<CompositionQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link CompositionQuery} object to add.
+     * @return This object.
+     */
+    public CompositionQuery addQuery(final CompositionQuery query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link CompositionQuery} objects.
+     */
+    public Iterable<CompositionQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link CompositionQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link CompositionQuery} at the input index.
+     */
+    public CompositionQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link CompositionQuery} objects.
+     */
+    public List<CompositionQuery> getQuery() {
+        return this.query;
+    }
+
     /** String with the simple search to run against all fields. */
     private String simple;
 
@@ -479,4 +549,7 @@ public class CompositionQuery extends BaseObjectQuery {
 
     /** Ideal atomic percent of the element. */
     private List<FieldQuery> idealAtomicPercent;
+    
+    /** Nested list of queries. */
+    private List<CompositionQuery> query;
 }
