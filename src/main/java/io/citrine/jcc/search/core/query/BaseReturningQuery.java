@@ -30,6 +30,12 @@ public abstract class BaseReturningQuery extends DataScope {
         return this;
     }
 
+    @Override
+    public BaseReturningQuery setExtractionSort(final ExtractionSort extractionSort) {
+        super.setExtractionSort(extractionSort);
+        return this;
+    }
+
     /**
      * Index of the first hit that should be returned. This method is here just to be compatible with the python
      * client.

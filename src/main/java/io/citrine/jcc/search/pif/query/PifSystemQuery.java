@@ -31,6 +31,12 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     @Override
+    public PifSystemQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public PifSystemQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;
@@ -100,26 +106,6 @@ public class PifSystemQuery extends BaseObjectQuery {
     public PifSystemQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
-    }
-
-    /**
-     * Set the query to run against all fields.
-     *
-     * @param simple String with the query to run against all fields.
-     * @return This object.
-     */
-    public PifSystemQuery setSimple(final String simple) {
-        this.simple = simple;
-        return this;
-    }
-
-    /**
-     * Get the query to run against all fields.
-     *
-     * @return String with the query to run against all fields.
-     */
-    public String getSimple() {
-        return this.simple;
     }
 
     /**
@@ -1031,9 +1017,6 @@ public class PifSystemQuery extends BaseObjectQuery {
     public List<PifSystemQuery> getQuery() {
         return this.query;
     }
-
-    /** String with the simple search to run against all fields. */
-    private String simple;
 
     /** List of filters against the PIF system UID. */
     private List<Filter> uid;

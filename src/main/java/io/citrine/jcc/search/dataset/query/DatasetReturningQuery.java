@@ -3,6 +3,7 @@ package io.citrine.jcc.search.dataset.query;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
+import io.citrine.jcc.search.core.query.ExtractionSort;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 
@@ -73,6 +74,12 @@ public class DatasetReturningQuery extends BaseReturningQuery {
     @Override
     public DatasetReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
+        return this;
+    }
+
+    @Override
+    public DatasetReturningQuery setExtractionSort(final ExtractionSort extractionSort) {
+        super.setExtractionSort(extractionSort);
         return this;
     }
 

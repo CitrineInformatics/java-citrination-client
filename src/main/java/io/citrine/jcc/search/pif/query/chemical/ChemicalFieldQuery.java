@@ -2,6 +2,7 @@ package io.citrine.jcc.search.pif.query.chemical;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
+import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.search.pif.query.core.BaseFieldQuery;
 import io.citrine.jcc.search.pif.query.core.FieldQuery;
 import io.citrine.jcc.util.ListUtil;
@@ -18,6 +19,12 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     @Override
     public ChemicalFieldQuery setLogic(final Logic logic) {
         super.setLogic(logic);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setSort(final SortOrder sort) {
+        super.setSort(sort);
         return this;
     }
 

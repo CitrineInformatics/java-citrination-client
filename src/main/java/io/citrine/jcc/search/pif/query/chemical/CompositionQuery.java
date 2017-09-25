@@ -21,6 +21,12 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     @Override
+    public CompositionQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
     public CompositionQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;
@@ -90,26 +96,6 @@ public class CompositionQuery extends BaseObjectQuery {
     public CompositionQuery addOffset(final FieldQuery offset) {
         super.addOffset(offset);
         return this;
-    }
-
-    /**
-     * Set the query to run against all fields.
-     *
-     * @param simple String with the query to run against all fields.
-     * @return This object.
-     */
-    public CompositionQuery setSimple(final String simple) {
-        this.simple = simple;
-        return this;
-    }
-
-    /**
-     * Get the query to run against all fields.
-     *
-     * @return String with the query to run against all fields.
-     */
-    public String getSimple() {
-        return this.simple;
     }
 
     /**
@@ -531,9 +517,6 @@ public class CompositionQuery extends BaseObjectQuery {
     public List<CompositionQuery> getQuery() {
         return this.query;
     }
-
-    /** String with the simple search to run against all fields. */
-    private String simple;
 
     /** Element for the composition. */
     private List<ChemicalFieldQuery> element;
