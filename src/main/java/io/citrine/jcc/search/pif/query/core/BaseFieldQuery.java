@@ -2,6 +2,7 @@ package io.citrine.jcc.search.pif.query.core;
 
 import io.citrine.jcc.search.core.query.HasLogic;
 import io.citrine.jcc.search.core.query.Logic;
+import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -23,6 +24,26 @@ public abstract class BaseFieldQuery implements HasLogic {
     @Override
     public Logic getLogic() {
         return this.logic;
+    }
+
+    /**
+     * Set the sort order to use.
+     *
+     * @param sort {@link SortOrder} to apply to the field.
+     * @return This object.
+     */
+    public BaseFieldQuery setSort(final SortOrder sort) {
+        this.sort = sort;
+        return this;
+    }
+
+    /**
+     * Get the sort order to use.
+     *
+     * @return {@link SortOrder} to use.
+     */
+    public SortOrder getSort() {
+        return this.sort;
     }
 
     /**
@@ -245,6 +266,9 @@ public abstract class BaseFieldQuery implements HasLogic {
     public List<FieldQuery> getOffset() {
         return this.offset;
     }
+
+    /** The sort order to apply to the field. */
+    private SortOrder sort;
 
     /** Logic that applies to the entire query. */
     private Logic logic;

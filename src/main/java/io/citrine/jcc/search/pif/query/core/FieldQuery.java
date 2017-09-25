@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasFilter;
 import io.citrine.jcc.search.core.query.Logic;
+import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
@@ -18,6 +19,12 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     @Override
     public FieldQuery setLogic(final Logic logic) {
         super.setLogic(logic);
+        return this;
+    }
+
+    @Override
+    public FieldQuery setSort(final SortOrder sort) {
+        super.setSort(sort);
         return this;
     }
 
