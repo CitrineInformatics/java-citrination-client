@@ -175,26 +175,6 @@ public abstract class BaseReturningQuery extends DataScope {
         return this.returnMaxScore;
     }
 
-    /**
-     * Sort to apply on an extracted field.
-     *
-     * @param extractionSort {@link ExtractionSort} to apply.
-     * @return This object.
-     */
-    public DataScope setExtractionSort(final ExtractionSort extractionSort) {
-        this.extractionSort = extractionSort;
-        return this;
-    }
-
-    /**
-     * Get the sort order on an extracted field.
-     *
-     * @return {@link ExtractionSort} to use.
-     */
-    public ExtractionSort getExtractionSort() {
-        return this.extractionSort;
-    }
-
     /** Index of the first hit that should be returned. */
     private Integer from;
 
@@ -212,7 +192,4 @@ public abstract class BaseReturningQuery extends DataScope {
 
     /** Whether to return the maximum score. */
     private Boolean returnMaxScore;
-
-    /** Sort to apply on an extracted field. */
-    private ExtractionSort extractionSort;
 }

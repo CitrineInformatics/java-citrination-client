@@ -1,4 +1,6 @@
-package io.citrine.jcc.search.core.query;
+package io.citrine.jcc.search.pif.query;
+
+import io.citrine.jcc.search.core.query.SortOrder;
 
 /**
  * Definition of a sort operation on an extraction within a query.

@@ -3,7 +3,6 @@ package io.citrine.jcc.search.pif.query;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
-import io.citrine.jcc.search.core.query.ExtractionSort;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.dataset.query.DatasetQuery;
@@ -76,12 +75,6 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     @Override
     public PifSystemReturningQuery addQuery(final DataQuery query) {
         super.addQuery(query);
-        return this;
-    }
-
-    @Override
-    public PifSystemReturningQuery setExtractionSort(final ExtractionSort extractionSort) {
-        super.setExtractionSort(extractionSort);
         return this;
     }
 
@@ -169,6 +162,26 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
     }
 
     /**
+     * Sort to apply on an extracted field.
+     *
+     * @param extractionSort {@link ExtractionSort} to apply.
+     * @return This object.
+     */
+    public PifSystemReturningQuery setExtractionSort(final ExtractionSort extractionSort) {
+        this.extractionSort = extractionSort;
+        return this;
+    }
+
+    /**
+     * Get the sort order on an extracted field.
+     *
+     * @return {@link ExtractionSort} to use.
+     */
+    public ExtractionSort getExtractionSort() {
+        return this.extractionSort;
+    }
+
+    /**
      * Deserialization of the system field from old PifQuery objects.
      *
      * @param system List of {@link PifSystemQuery} objects for the query.
@@ -225,4 +238,7 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
 
     /** Whether to unwrap single element arrays that are extracted. */
     private Boolean unwrapSingleValueExtractions;
+
+    /** Sort to apply on an extracted field. */
+    private ExtractionSort extractionSort;
 }
