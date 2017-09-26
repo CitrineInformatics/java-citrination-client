@@ -81,30 +81,7 @@ public class DataScope {
         return this.query;
     }
 
-    /**
-     * Sort to apply on an extracted field.
-     *
-     * @param extractionSort {@link ExtractionSort} to apply.
-     * @return This object.
-     */
-    public DataScope setExtractionSort(final ExtractionSort extractionSort) {
-        this.extractionSort = extractionSort;
-        return this;
-    }
-
-    /**
-     * Get the sort order on an extracted field.
-     *
-     * @return {@link ExtractionSort} to use.
-     */
-    public ExtractionSort getExtractionSort() {
-        return this.extractionSort;
-    }
-
     /** List of queries against the content of datasets. */
     private List<DataQuery> query;
-
-    /** Sort to apply on an extracted field. */
-    private ExtractionSort extractionSort;
 }
 
