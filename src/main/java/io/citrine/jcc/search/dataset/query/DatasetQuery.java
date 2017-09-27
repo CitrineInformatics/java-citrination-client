@@ -467,6 +467,76 @@ public class DatasetQuery implements HasLogic {
     }
 
     /**
+     * Set the list of updatedAt queries. This replaces any filters that are already present.
+     *
+     * @param updatedAt List of {@link Filter} objects.
+     * @return This object.
+     */
+    public DatasetQuery setUpdatedAt(final List<Filter> updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    /**
+     * Add to the list of updatedAt queries.
+     *
+     * @param updatedAt List of {@link Filter} objects.
+     * @return This object.
+     */
+    public DatasetQuery addUpdatedAt(final List<Filter> updatedAt) {
+        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+        return this;
+    }
+
+    /**
+     * Add to the list of updatedAt queries.
+     *
+     * @param updatedAt {@link Filter} object to add.
+     * @return This object.
+     */
+    public DatasetQuery addUpdatedAt(final Filter updatedAt) {
+        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+        return this;
+    }
+
+    /**
+     * Get the number of updatedAt queries.
+     *
+     * @return Number of queries against the updatedAt field.
+     */
+    public int updatedAtLength() {
+        return ListUtil.length(this.updatedAt);
+    }
+
+    /**
+     * Get an iterable over the updatedAt queries.
+     *
+     * @return {@link Iterable} of {@link Filter} objects.
+     */
+    public Iterable<Filter> updatedAt() {
+        return ListUtil.iterable(this.updatedAt);
+    }
+
+    /**
+     * Get one in the list of updatedAt queries.
+     *
+     * @param index Index of the updatedAt query to get.
+     * @return {@link Filter} object.
+     */
+    public Filter getUpdatedAt(final int index) {
+        return ListUtil.get(this.updatedAt, index);
+    }
+
+    /**
+     * Get the list of updatedAt queries.
+     *
+     * @return List of {@link Filter} objects.
+     */
+    public List<Filter> getUpdatedAt() {
+        return this.updatedAt;
+    }
+
+    /**
      * Set the list of nested queries. This replaces any filters that are already present.
      *
      * @param query List of {@link DatasetQuery} objects.
@@ -559,6 +629,9 @@ public class DatasetQuery implements HasLogic {
 
     /** Email address of the owner of the dataset. */
     private List<Filter> email;
+    
+    /** The time that the dataset was last updated. */
+    private List<Filter> updatedAt;
     
     /** Nested list of queries. */
     private List<DatasetQuery> query;
