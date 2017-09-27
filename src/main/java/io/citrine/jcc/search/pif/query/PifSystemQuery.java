@@ -179,6 +179,76 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     /**
+     * Set the list of updatedAt queries. This replaces any filters that are already present.
+     *
+     * @param updatedAt List of {@link Filter} objects.
+     * @return This object.
+     */
+    public PifSystemQuery setUpdatedAt(final List<Filter> updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    /**
+     * Add to the list of updatedAt queries.
+     *
+     * @param updatedAt List of {@link Filter} objects.
+     * @return This object.
+     */
+    public PifSystemQuery addUpdatedAt(final List<Filter> updatedAt) {
+        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+        return this;
+    }
+
+    /**
+     * Add to the list of updatedAt queries.
+     *
+     * @param updatedAt {@link Filter} object to add.
+     * @return This object.
+     */
+    public PifSystemQuery addUpdatedAt(final Filter updatedAt) {
+        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+        return this;
+    }
+
+    /**
+     * Get the number of updatedAt queries.
+     *
+     * @return Number of queries against the updatedAt field.
+     */
+    public int updatedAtLength() {
+        return ListUtil.length(this.updatedAt);
+    }
+
+    /**
+     * Get an iterable over the updatedAt queries.
+     *
+     * @return {@link Iterable} of {@link Filter} objects.
+     */
+    public Iterable<Filter> updatedAt() {
+        return ListUtil.iterable(this.updatedAt);
+    }
+
+    /**
+     * Get one in the list of updatedAt queries.
+     *
+     * @param index Index of the updatedAt query to get.
+     * @return {@link Filter} object.
+     */
+    public Filter getUpdatedAt(final int index) {
+        return ListUtil.get(this.updatedAt, index);
+    }
+
+    /**
+     * Get the list of updatedAt queries.
+     *
+     * @return List of {@link Filter} objects.
+     */
+    public List<Filter> getUpdatedAt() {
+        return this.updatedAt;
+    }
+
+    /**
      * Set the names operations. This adds to any operations that are already saved.
      *
      * @param names List of {@link FieldQuery} objects.
@@ -1020,6 +1090,9 @@ public class PifSystemQuery extends BaseObjectQuery {
 
     /** List of filters against the PIF system UID. */
     private List<Filter> uid;
+    
+    /** List of filters against the last update time. */
+    private List<Filter> updatedAt;
 
     /** List of names operations. */
     private List<FieldQuery> names;
