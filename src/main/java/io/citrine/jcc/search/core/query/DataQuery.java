@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.core.query;
 
 import io.citrine.jcc.search.dataset.query.DatasetQuery;
+import io.citrine.jcc.search.file.query.FileQuery;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 import io.citrine.jcc.util.ListUtil;
 
@@ -185,6 +186,76 @@ public class DataQuery implements HasLogic {
     }
 
     /**
+     * Set the list of file queries. This replaces any filters that are already present.
+     *
+     * @param file List of {@link FileQuery} objects.
+     * @return This object.
+     */
+    public DataQuery setFile(final List<FileQuery> file) {
+        this.file = file;
+        return this;
+    }
+
+    /**
+     * Add to the list of file queries.
+     *
+     * @param file List of {@link FileQuery} objects.
+     * @return This object.
+     */
+    public DataQuery addFile(final List<FileQuery> file) {
+        this.file = ListUtil.add(file, this.file);
+        return this;
+    }
+
+    /**
+     * Add to the list of file queries.
+     *
+     * @param file {@link FileQuery} object to add.
+     * @return This object.
+     */
+    public DataQuery addFile(final FileQuery file) {
+        this.file = ListUtil.add(file, this.file);
+        return this;
+    }
+
+    /**
+     * Get the number of file queries.
+     *
+     * @return Number of queries against the file field.
+     */
+    public int fileLength() {
+        return ListUtil.length(this.file);
+    }
+
+    /**
+     * Get an iterable over the file queries.
+     *
+     * @return {@link Iterable} of {@link FileQuery} objects.
+     */
+    public Iterable<FileQuery> file() {
+        return ListUtil.iterable(this.file);
+    }
+
+    /**
+     * Get the {@link FileQuery} object at the input index.
+     *
+     * @param index Index of the file query to get.
+     * @return {@link FileQuery} at the input index.
+     */
+    public FileQuery getFile(final int index) {
+        return ListUtil.get(this.file, index);
+    }
+
+    /**
+     * Get the list of file queries.
+     *
+     * @return List of {@link FileQuery} objects.
+     */
+    public List<FileQuery> getFile() {
+        return this.file;
+    }
+
+    /**
      * Set the list of nested queries. This replaces any filters that are already present.
      *
      * @param query List of {@link DataQuery} objects.
@@ -265,6 +336,9 @@ public class DataQuery implements HasLogic {
 
     /** List of queries against PIF systems. */
     private List<PifSystemQuery> system;
+    
+    /** List of queries against files. */
+    private List<FileQuery> file;
     
     /** Nested list of queries. */
     private List<DataQuery> query;

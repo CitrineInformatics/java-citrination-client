@@ -1,4 +1,4 @@
-package io.citrine.jcc.search.dataset.result;
+package io.citrine.jcc.search.file.result;
 
 import io.citrine.jcc.search.core.result.BaseSearchResult;
 
@@ -10,8 +10,8 @@ import java.util.List;
  *
  * <pre>
  * {@code
- * DatasetSearchResult searchResult = Query.execute();
- * for (DatasetSearchHit i : searchResult) {
+ * FileSearchResult searchResult = Query.execute();
+ * for (FileSearchHit i : searchResult) {
  *     // do work on hit
  * }
  * }
@@ -19,41 +19,41 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class DatasetSearchResult extends BaseSearchResult<DatasetSearchHit>  {
+public class FileSearchResult extends BaseSearchResult<FileSearchHit> {
 
     @Override
-    public DatasetSearchResult setTook(final Long took) {
+    public FileSearchResult setTook(final Long took) {
         super.setTook(took);
         return this;
     }
 
     @Override
-    public DatasetSearchResult setTotalNumHits(final Long totalNumHits) {
+    public FileSearchResult setTotalNumHits(final Long totalNumHits) {
         super.setTotalNumHits(totalNumHits);
         return this;
     }
 
     @Override
-    public DatasetSearchResult setMaxScore(final Double maxScore) {
+    public FileSearchResult setMaxScore(final Double maxScore) {
         super.setMaxScore(maxScore);
         return this;
     }
 
     @Override
-    public DatasetSearchResult setHits(final List<DatasetSearchHit> hits) {
+    public FileSearchResult setHits(final List<FileSearchHit> hits) {
         super.setHits(hits);
         return this;
     }
 
     @Override
-    public DatasetSearchResult addHits(final List<DatasetSearchHit> hits) {
+    public FileSearchResult addHits(final List<FileSearchHit> hits) {
         super.addHits(hits);
         return this;
     }
 
     @Override
-    public DatasetSearchResult addHits(final DatasetSearchHit hit) {
-        super.addHits(hit);
+    public FileSearchResult addHits(final FileSearchHit hits) {
+        super.addHits(hits);
         return this;
     }
 }

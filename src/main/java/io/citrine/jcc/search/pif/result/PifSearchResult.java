@@ -11,7 +11,7 @@ import java.util.List;
  * <pre>
  * {@code
  * PifSearchResult searchResult = Query.execute();
- * for (SearchHit i : searchResult) {
+ * for (PifSearchHit i : searchResult) {
  *     // do work on hit
  * }
  * }
