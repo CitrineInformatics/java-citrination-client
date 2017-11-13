@@ -143,7 +143,8 @@ public class FileReturningQuery extends BaseReturningQuery {
         }
         final FileReturningQuery rhsQuery = (FileReturningQuery) rhs;
         return super.equals(rhs)
-                && Optional.ofNullable(this.maxContentHighlights).equals(Optional.ofNullable(rhsQuery.maxContentHighlights))
+                && Optional.ofNullable(this.maxContentHighlights)
+                        .equals(Optional.ofNullable(rhsQuery.maxContentHighlights))
                 && Optional.ofNullable(this.highlightPreTag).equals(Optional.ofNullable(rhsQuery.highlightPreTag))
                 && Optional.ofNullable(this.highlightPostTag).equals(Optional.ofNullable(rhsQuery.highlightPostTag));
     }
