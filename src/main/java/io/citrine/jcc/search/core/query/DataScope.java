@@ -3,6 +3,7 @@ package io.citrine.jcc.search.core.query;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Definition of a data scope.
@@ -79,6 +80,18 @@ public class DataScope {
      */
     public List<DataQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof DataScope)) {
+            return false;
+        }
+        final DataScope rhsScope = (DataScope) rhs;
+        return Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsScope.query));
     }
 
     /** List of queries against the content of datasets. */

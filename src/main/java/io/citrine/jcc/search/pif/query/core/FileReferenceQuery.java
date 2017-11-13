@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to execute against a file reference field.
@@ -444,6 +445,23 @@ public class FileReferenceQuery extends BaseObjectQuery {
      */
     public List<FileReferenceQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof FileReferenceQuery)) {
+            return false;
+        }
+        final FileReferenceQuery rhsQuery = (FileReferenceQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.relativePath).equals(Optional.ofNullable(rhsQuery.relativePath))
+                && Optional.ofNullable(this.mimeType).equals(Optional.ofNullable(rhsQuery.mimeType))
+                && Optional.ofNullable(this.sha256).equals(Optional.ofNullable(rhsQuery.sha256))
+                && Optional.ofNullable(this.md5).equals(Optional.ofNullable(rhsQuery.md5))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Operations against the relative path. */

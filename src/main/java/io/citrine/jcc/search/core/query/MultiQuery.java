@@ -3,6 +3,7 @@ package io.citrine.jcc.search.core.query;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Base class for all multi-search requests.
@@ -81,6 +82,18 @@ public class MultiQuery<T> {
      */
     public List<T> getQueries() {
         return this.queries;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof MultiQuery)) {
+            return false;
+        }
+        final MultiQuery rhsQuery = (MultiQuery) rhs;
+        return Optional.ofNullable(this.queries).equals(Optional.ofNullable(rhsQuery.queries));
     }
 
     /** List of queries that were generated. */

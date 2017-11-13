@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Class to store the information in a single search result as a part of a multi-query.
@@ -52,6 +53,19 @@ public class MultiSearchResultElement<T> {
     public MultiSearchResultElement<T> setStatus(final Status status) {
         this.status = status;
         return this;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof MultiSearchResultElement)) {
+            return false;
+        }
+        final MultiSearchResultElement rhsResult = (MultiSearchResultElement) rhs;
+        return Optional.ofNullable(this.result).equals(Optional.ofNullable(rhsResult.result))
+                && Optional.ofNullable(this.status).equals(Optional.ofNullable(rhsResult.status));
     }
 
     /** Query result that was generated. */

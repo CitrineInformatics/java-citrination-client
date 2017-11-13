@@ -16,6 +16,7 @@ import io.citrine.jcc.search.pif.query.core.SourceQuery;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class used to match against a system.
@@ -1086,6 +1087,32 @@ public class PifSystemQuery extends BaseObjectQuery {
      */
     public List<PifSystemQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof PifSystemQuery)) {
+            return false;
+        }
+        final PifSystemQuery rhsQuery = (PifSystemQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.uid).equals(Optional.ofNullable(rhsQuery.uid))
+                && Optional.ofNullable(this.updatedAt).equals(Optional.ofNullable(rhsQuery.updatedAt))
+                && Optional.ofNullable(this.names).equals(Optional.ofNullable(rhsQuery.names))
+                && Optional.ofNullable(this.ids).equals(Optional.ofNullable(rhsQuery.ids))
+                && Optional.ofNullable(this.classifications).equals(Optional.ofNullable(rhsQuery.classifications))
+                && Optional.ofNullable(this.source).equals(Optional.ofNullable(rhsQuery.source))
+                && Optional.ofNullable(this.quantity).equals(Optional.ofNullable(rhsQuery.quantity))
+                && Optional.ofNullable(this.chemicalFormula).equals(Optional.ofNullable(rhsQuery.chemicalFormula))
+                && Optional.ofNullable(this.composition).equals(Optional.ofNullable(rhsQuery.composition))
+                && Optional.ofNullable(this.properties).equals(Optional.ofNullable(rhsQuery.properties))
+                && Optional.ofNullable(this.preparation).equals(Optional.ofNullable(rhsQuery.preparation))
+                && Optional.ofNullable(this.references).equals(Optional.ofNullable(rhsQuery.references))
+                && Optional.ofNullable(this.subSystems).equals(Optional.ofNullable(rhsQuery.subSystems))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** List of filters against the PIF system UID. */

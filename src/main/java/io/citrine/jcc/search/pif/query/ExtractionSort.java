@@ -2,6 +2,8 @@ package io.citrine.jcc.search.pif.query;
 
 import io.citrine.jcc.search.core.query.SortOrder;
 
+import java.util.Optional;
+
 /**
  * Definition of a sort operation on an extraction within a query.
  *
@@ -47,6 +49,19 @@ public class ExtractionSort {
      */
     public SortOrder getOrder() {
         return this.order;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ExtractionSort)) {
+            return false;
+        }
+        final ExtractionSort rhsSort = (ExtractionSort) rhs;
+        return Optional.ofNullable(this.key).equals(Optional.ofNullable(rhsSort.key))
+                && Optional.ofNullable(this.order).equals(Optional.ofNullable(rhsSort.order));
     }
 
     /** The extractAs key to sort on. */

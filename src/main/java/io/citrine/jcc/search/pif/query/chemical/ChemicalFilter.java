@@ -5,6 +5,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * ChemicalFilter that can be applied to any object.
@@ -161,6 +162,24 @@ public class ChemicalFilter implements HasLogic, HasChemicalFilter {
      */
     public Boolean getExact() {
         return this.exact;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ChemicalFilter)) {
+            return false;
+        }
+        final ChemicalFilter rhsFilter = (ChemicalFilter) rhs;
+        return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsFilter.logic))
+                && Optional.ofNullable(this.exists).equals(Optional.ofNullable(rhsFilter.exists))
+                && Optional.ofNullable(this.equal).equals(Optional.ofNullable(rhsFilter.equal))
+                && Optional.ofNullable(this.element).equals(Optional.ofNullable(rhsFilter.element))
+                && Optional.ofNullable(this.partial).equals(Optional.ofNullable(rhsFilter.partial))
+                && Optional.ofNullable(this.exact).equals(Optional.ofNullable(rhsFilter.exact))
+                && Optional.ofNullable(this.filter).equals(Optional.ofNullable(rhsFilter.filter));
     }
 
     /** Logic for applying the filters. */

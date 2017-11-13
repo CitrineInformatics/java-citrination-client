@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to return files on Citrination.
@@ -130,6 +131,21 @@ public class FileReturningQuery extends BaseReturningQuery {
      */
     public String getHighlightPostTag() {
         return this.highlightPostTag;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof FileReturningQuery)) {
+            return false;
+        }
+        final FileReturningQuery rhsQuery = (FileReturningQuery) rhs;
+        return super.equals(rhs)
+                && Optional.ofNullable(this.maxContentHighlights).equals(Optional.ofNullable(rhsQuery.maxContentHighlights))
+                && Optional.ofNullable(this.highlightPreTag).equals(Optional.ofNullable(rhsQuery.highlightPreTag))
+                && Optional.ofNullable(this.highlightPostTag).equals(Optional.ofNullable(rhsQuery.highlightPostTag));
     }
 
     /** Maximum number of highlighted results to return. */

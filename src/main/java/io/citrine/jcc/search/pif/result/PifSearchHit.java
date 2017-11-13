@@ -10,6 +10,7 @@ import io.citrine.jpif.util.PifObjectMapper;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -350,6 +351,25 @@ public class PifSearchHit {
         catch (Exception e) {
             throw new RuntimeException("Failed to convert value", e);
         }
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof PifSearchHit)) {
+            return false;
+        }
+        final PifSearchHit rhsHit = (PifSearchHit) rhs;
+        return Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsHit.id))
+                && Optional.ofNullable(this.dataset).equals(Optional.ofNullable(rhsHit.dataset))
+                && Optional.ofNullable(this.datasetVersion).equals(Optional.ofNullable(rhsHit.datasetVersion))
+                && Optional.ofNullable(this.score).equals(Optional.ofNullable(rhsHit.score))
+                && Optional.ofNullable(this.updatedAt).equals(Optional.ofNullable(rhsHit.updatedAt))
+                && Optional.ofNullable(this.system).equals(Optional.ofNullable(rhsHit.system))
+                && Optional.ofNullable(this.extracted).equals(Optional.ofNullable(rhsHit.extracted))
+                && Optional.ofNullable(this.extractedPath).equals(Optional.ofNullable(rhsHit.extractedPath));
     }
 
     /** Id of the record. */

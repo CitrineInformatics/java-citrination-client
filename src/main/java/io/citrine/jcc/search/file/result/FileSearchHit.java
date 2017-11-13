@@ -3,6 +3,7 @@ package io.citrine.jcc.search.file.result;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A single search hit for a file.
@@ -191,6 +192,24 @@ public class FileSearchHit {
      */
     public List<String> getHighlights() {
         return this.highlights;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof FileSearchHit)) {
+            return false;
+        }
+        final FileSearchHit rhsHit = (FileSearchHit) rhs;
+        return Optional.ofNullable(this.datasetId).equals(Optional.ofNullable(rhsHit.datasetId))
+                && Optional.ofNullable(this.datasetVersion).equals(Optional.ofNullable(rhsHit.datasetVersion))
+                && Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsHit.id))
+                && Optional.ofNullable(this.score).equals(Optional.ofNullable(rhsHit.score))
+                && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsHit.name))
+                && Optional.ofNullable(this.updatedAt).equals(Optional.ofNullable(rhsHit.updatedAt))
+                && Optional.ofNullable(this.highlights).equals(Optional.ofNullable(rhsHit.highlights));
     }
 
     /** Id of the dataset. */

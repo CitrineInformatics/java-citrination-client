@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query against a reference.
@@ -1424,6 +1425,37 @@ public class ReferenceQuery extends BaseObjectQuery {
      */
     public List<ReferenceQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ReferenceQuery)) {
+            return false;
+        }
+        final ReferenceQuery rhsQuery = (ReferenceQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.doi).equals(Optional.ofNullable(rhsQuery.doi))
+                && Optional.ofNullable(this.isbn).equals(Optional.ofNullable(rhsQuery.isbn))
+                && Optional.ofNullable(this.issn).equals(Optional.ofNullable(rhsQuery.issn))
+                && Optional.ofNullable(this.url).equals(Optional.ofNullable(rhsQuery.url))
+                && Optional.ofNullable(this.title).equals(Optional.ofNullable(rhsQuery.title))
+                && Optional.ofNullable(this.publisher).equals(Optional.ofNullable(rhsQuery.publisher))
+                && Optional.ofNullable(this.journal).equals(Optional.ofNullable(rhsQuery.journal))
+                && Optional.ofNullable(this.volume).equals(Optional.ofNullable(rhsQuery.volume))
+                && Optional.ofNullable(this.issue).equals(Optional.ofNullable(rhsQuery.issue))
+                && Optional.ofNullable(this.year).equals(Optional.ofNullable(rhsQuery.year))
+                && Optional.ofNullable(this.figure).equals(Optional.ofNullable(rhsQuery.figure))
+                && Optional.ofNullable(this.table).equals(Optional.ofNullable(rhsQuery.table))
+                && Optional.ofNullable(this.pages).equals(Optional.ofNullable(rhsQuery.pages))
+                && Optional.ofNullable(this.authors).equals(Optional.ofNullable(rhsQuery.authors))
+                && Optional.ofNullable(this.editors).equals(Optional.ofNullable(rhsQuery.editors))
+                && Optional.ofNullable(this.affiliations).equals(Optional.ofNullable(rhsQuery.affiliations))
+                && Optional.ofNullable(this.acknowledgements).equals(Optional.ofNullable(rhsQuery.acknowledgements))
+                && Optional.ofNullable(this.references).equals(Optional.ofNullable(rhsQuery.references))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** DOI of the reference. */

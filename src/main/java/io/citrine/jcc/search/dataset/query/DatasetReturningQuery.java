@@ -7,6 +7,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query used to return information about datasets. This class is meant to be backwards compatible for
@@ -108,6 +109,19 @@ public class DatasetReturningQuery extends BaseReturningQuery {
             system.forEach(query::addSystem);
             this.addQuery(query);
         }
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof DatasetReturningQuery)) {
+            return false;
+        }
+        final DatasetReturningQuery rhsQuery = (DatasetReturningQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.countPifs).equals(Optional.ofNullable(rhsQuery.countPifs));
     }
 
     /** Whether to get the count of PIFs in each dataset. */

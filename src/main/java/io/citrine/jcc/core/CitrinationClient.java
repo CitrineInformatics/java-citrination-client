@@ -18,6 +18,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.LaxRedirectStrategy;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Client for working with a Citrination.com site.
@@ -189,6 +190,19 @@ public class CitrinationClient {
             this.host = "https://citrination.com";
         }
         this.apiKey = apiKey;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof CitrinationClient)) {
+            return false;
+        }
+        final CitrinationClient rhsClient = (CitrinationClient) rhs;
+        return Optional.ofNullable(this.host).equals(Optional.ofNullable(rhsClient.host))
+                && Optional.ofNullable(this.apiKey).equals(Optional.ofNullable(rhsClient.apiKey));
     }
 
     /** Host to connect to. */

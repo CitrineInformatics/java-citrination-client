@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query against the quantity of a system.
@@ -584,6 +585,31 @@ public class QuantityQuery extends BaseObjectQuery {
      */
     public List<QuantityQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof QuantityQuery)) {
+            return false;
+        }
+        final QuantityQuery rhsQuery = (QuantityQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.actualMassPercent)
+                        .equals(Optional.ofNullable(rhsQuery.actualMassPercent))
+                && Optional.ofNullable(this.actualVolumePercent)
+                        .equals(Optional.ofNullable(rhsQuery.actualVolumePercent))
+                && Optional.ofNullable(this.actualNumberPercent)
+                        .equals(Optional.ofNullable(rhsQuery.actualNumberPercent))
+                && Optional.ofNullable(this.idealMassPercent)
+                        .equals(Optional.ofNullable(rhsQuery.idealMassPercent))
+                && Optional.ofNullable(this.idealVolumePercent)
+                        .equals(Optional.ofNullable(rhsQuery.idealVolumePercent))
+                && Optional.ofNullable(this.idealNumberPercent)
+                        .equals(Optional.ofNullable(rhsQuery.idealNumberPercent))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Actual percent of the total mass. */

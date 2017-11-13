@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to execute against a pages field.
@@ -304,6 +305,21 @@ public class PagesQuery extends BaseObjectQuery {
      */
     public List<PagesQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof PagesQuery)) {
+            return false;
+        }
+        final PagesQuery rhsQuery = (PagesQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.start).equals(Optional.ofNullable(rhsQuery.start))
+                && Optional.ofNullable(this.end).equals(Optional.ofNullable(rhsQuery.end))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Operations against the starting page. */

@@ -5,6 +5,7 @@ import io.citrine.jcc.util.ListUtil;
 import io.citrine.jpif.obj.common.DisplayItem;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query against a {@link DisplayItem} object.
@@ -373,6 +374,22 @@ public class DisplayItemQuery extends BaseObjectQuery {
      */
     public List<DisplayItemQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof DisplayItemQuery)) {
+            return false;
+        }
+        final DisplayItemQuery rhsQuery = (DisplayItemQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.number).equals(Optional.ofNullable(rhsQuery.number))
+                && Optional.ofNullable(this.title).equals(Optional.ofNullable(rhsQuery.title))
+                && Optional.ofNullable(this.caption).equals(Optional.ofNullable(rhsQuery.caption))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Number of the display item. */
