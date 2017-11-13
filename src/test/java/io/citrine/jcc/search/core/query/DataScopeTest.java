@@ -1,8 +1,5 @@
-package io.citrine.jcc.search.core;
+package io.citrine.jcc.search.core.query;
 
-import io.citrine.jcc.search.core.query.DataQuery;
-import io.citrine.jcc.search.core.query.DataScope;
-import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.dataset.query.DatasetQuery;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 import io.citrine.jcc.search.pif.query.chemical.ChemicalFieldQuery;
