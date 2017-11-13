@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Filter that can be applied to any object.
@@ -262,6 +263,24 @@ public class Filter implements HasLogic, HasFilter {
      */
     public Boolean getExact() {
         return this.exact;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof Filter)) {
+            return false;
+        }
+        final Filter rhsFilter = (Filter) rhs;
+        return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsFilter.logic))
+                && Optional.ofNullable(this.exists).equals(Optional.ofNullable(rhsFilter.exists))
+                && Optional.ofNullable(this.equal).equals(Optional.ofNullable(rhsFilter.equal))
+                && Optional.ofNullable(this.min).equals(Optional.ofNullable(rhsFilter.min))
+                && Optional.ofNullable(this.max).equals(Optional.ofNullable(rhsFilter.max))
+                && Optional.ofNullable(this.exact).equals(Optional.ofNullable(rhsFilter.exact))
+                && Optional.ofNullable(this.filter).equals(Optional.ofNullable(rhsFilter.filter));
     }
 
     /** Logic for applying the filter. */

@@ -8,6 +8,7 @@ import io.citrine.jcc.search.pif.query.core.FieldQuery;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for field operations against a chemical formula field.
@@ -135,6 +136,19 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     @JsonSetter("filterGroup")
     protected void filterGroup(final List<ChemicalFilter> filter) {
         this.addFilter(filter);
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ChemicalFieldQuery)) {
+            return false;
+        }
+        final ChemicalFieldQuery rhsQuery = (ChemicalFieldQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.filter).equals(Optional.ofNullable(rhsQuery.filter));
     }
 
     /** List of filters. */

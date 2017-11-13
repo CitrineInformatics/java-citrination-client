@@ -5,6 +5,7 @@ import io.citrine.jcc.util.ListUtil;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for all multi-search results.
@@ -100,6 +101,19 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
     @Override
     public Iterator<MultiSearchResultElement<T>> iterator() {
         return (this.results == null) ? Collections.emptyIterator() : this.results.iterator();
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof MultiSearchResult)) {
+            return false;
+        }
+        final MultiSearchResult rhsResult = (MultiSearchResult) rhs;
+        return Optional.ofNullable(this.took).equals(Optional.ofNullable(rhsResult.took))
+                && Optional.ofNullable(this.results).equals(Optional.ofNullable(rhsResult.results));
     }
 
     /** Number of milliseconds that the query took to execute. */

@@ -6,6 +6,7 @@ import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -265,6 +266,25 @@ public abstract class BaseFieldQuery implements HasLogic {
      */
     public List<FieldQuery> getOffset() {
         return this.offset;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof BaseFieldQuery)) {
+            return false;
+        }
+        final BaseFieldQuery rhsQuery = (BaseFieldQuery) rhs;
+        return Optional.ofNullable(this.sort).equals(Optional.ofNullable(rhsQuery.sort))
+                && Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.extractAs).equals(Optional.ofNullable(rhsQuery.extractAs))
+                && Optional.ofNullable(this.extractAll).equals(Optional.ofNullable(rhsQuery.extractAll))
+                && Optional.ofNullable(this.extractWhenMissing).equals(Optional.ofNullable(rhsQuery.extractWhenMissing))
+                && Optional.ofNullable(this.length).equals(Optional.ofNullable(rhsQuery.length))
+                && Optional.ofNullable(this.offset).equals(Optional.ofNullable(rhsQuery.offset));
     }
 
     /** The sort order to apply to the field. */

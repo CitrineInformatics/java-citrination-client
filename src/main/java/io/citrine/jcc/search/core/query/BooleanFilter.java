@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Filter that can be applied to boolean-valued fields.
@@ -141,6 +142,21 @@ public class BooleanFilter implements HasLogic {
      */
     public List<BooleanFilter> getFilter() {
         return this.filter;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof BooleanFilter)) {
+            return false;
+        }
+        final BooleanFilter rhsFilter = (BooleanFilter) rhs;
+        return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsFilter.logic))
+                && Optional.ofNullable(this.exists).equals(Optional.ofNullable(rhsFilter.exists))
+                && Optional.ofNullable(this.equal).equals(Optional.ofNullable(rhsFilter.equal))
+                && Optional.ofNullable(this.filter).equals(Optional.ofNullable(rhsFilter.filter));
     }
 
     /** Logic for applying the filters. */

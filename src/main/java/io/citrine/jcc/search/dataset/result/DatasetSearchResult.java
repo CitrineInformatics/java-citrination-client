@@ -56,4 +56,9 @@ public class DatasetSearchResult extends BaseSearchResult<DatasetSearchHit>  {
         super.addHits(hit);
         return this;
     }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        return super.equals(rhs);
+    }
 }

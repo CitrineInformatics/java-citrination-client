@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query against the source of a system.
@@ -304,6 +305,21 @@ public class SourceQuery extends BaseObjectQuery {
      */
     public List<SourceQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof SourceQuery)) {
+            return false;
+        }
+        final SourceQuery rhsQuery = (SourceQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.producer).equals(Optional.ofNullable(rhsQuery.producer))
+                && Optional.ofNullable(this.url).equals(Optional.ofNullable(rhsQuery.url))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Producer of the system. */

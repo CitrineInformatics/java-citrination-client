@@ -7,6 +7,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for defining a query against dataset metadata on Citrination.
@@ -604,6 +605,27 @@ public class DatasetQuery implements HasLogic {
      */
     public List<DatasetQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof DatasetQuery)) {
+            return false;
+        }
+        final DatasetQuery rhsQuery = (DatasetQuery) rhs;
+        return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsQuery.id))
+                && Optional.ofNullable(this.isFeatured).equals(Optional.ofNullable(rhsQuery.isFeatured))
+                && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
+                && Optional.ofNullable(this.description).equals(Optional.ofNullable(rhsQuery.description))
+                && Optional.ofNullable(this.owner).equals(Optional.ofNullable(rhsQuery.owner))
+                && Optional.ofNullable(this.email).equals(Optional.ofNullable(rhsQuery.email))
+                && Optional.ofNullable(this.updatedAt).equals(Optional.ofNullable(rhsQuery.updatedAt))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Logic for the query. */

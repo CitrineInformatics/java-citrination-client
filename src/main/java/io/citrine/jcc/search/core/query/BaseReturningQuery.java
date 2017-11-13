@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Base class for all queries against datasets and the items that they contain on Citrination.
@@ -173,6 +174,24 @@ public abstract class BaseReturningQuery extends DataScope {
      */
     public Boolean getReturnMaxScore() {
         return this.returnMaxScore;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof BaseReturningQuery)) {
+            return false;
+        }
+        final BaseReturningQuery rhsQuery = (BaseReturningQuery) rhs;
+        return super.equals(rhs)
+                && Optional.ofNullable(this.from).equals(Optional.ofNullable(rhsQuery.from))
+                && Optional.ofNullable(this.size).equals(Optional.ofNullable(rhsQuery.size))
+                && Optional.ofNullable(this.randomResults).equals(Optional.ofNullable(rhsQuery.randomResults))
+                && Optional.ofNullable(this.randomSeed).equals(Optional.ofNullable(rhsQuery.randomSeed))
+                && Optional.ofNullable(this.scoreRelevance).equals(Optional.ofNullable(rhsQuery.scoreRelevance))
+                && Optional.ofNullable(this.returnMaxScore).equals(Optional.ofNullable(rhsQuery.returnMaxScore));
     }
 
     /** Index of the first hit that should be returned. */

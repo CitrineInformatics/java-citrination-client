@@ -8,6 +8,7 @@ import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for all field queries.
@@ -135,6 +136,19 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     @JsonSetter("filterGroup")
     protected void filterGroup(final List<Filter> filter) {
         this.addFilter(filter);
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof FieldQuery)) {
+            return false;
+        }
+        final FieldQuery rhsQuery = (FieldQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.filter).equals(Optional.ofNullable(rhsQuery.filter));
     }
 
     /** List of filters. */

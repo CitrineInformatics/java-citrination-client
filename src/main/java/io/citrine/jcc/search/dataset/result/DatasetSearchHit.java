@@ -2,6 +2,8 @@ package io.citrine.jcc.search.dataset.result;
 
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 
+import java.util.Optional;
+
 /**
  * Class to store information about a single search hit with dataset information.
  *
@@ -188,6 +190,26 @@ public class DatasetSearchHit {
      */
     public String getUpdatedAt() {
         return this.updatedAt;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof DatasetSearchHit)) {
+            return false;
+        }
+        final DatasetSearchHit rhsHit = (DatasetSearchHit) rhs;
+        return Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsHit.id))
+                && Optional.ofNullable(this.score).equals(Optional.ofNullable(rhsHit.score))
+                && Optional.ofNullable(this.isFeatured).equals(Optional.ofNullable(rhsHit.isFeatured))
+                && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsHit.name))
+                && Optional.ofNullable(this.description).equals(Optional.ofNullable(rhsHit.description))
+                && Optional.ofNullable(this.owner).equals(Optional.ofNullable(rhsHit.owner))
+                && Optional.ofNullable(this.email).equals(Optional.ofNullable(rhsHit.email))
+                && Optional.ofNullable(this.numPifs).equals(Optional.ofNullable(rhsHit.numPifs))
+                && Optional.ofNullable(this.updatedAt).equals(Optional.ofNullable(rhsHit.updatedAt));
     }
 
     /** ID of the dataset. */

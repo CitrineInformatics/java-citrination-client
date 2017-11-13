@@ -56,4 +56,9 @@ public class FileSearchResult extends BaseSearchResult<FileSearchHit> {
         super.addHits(hits);
         return this;
     }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        return super.equals(rhs);
+    }
 }

@@ -8,6 +8,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.dataset.query.DatasetQuery;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for defining queries against PIF records on Citrination. This class is meant to be backwards compatible for
@@ -225,6 +226,25 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
                     .setLogic(Logic.MUST_NOT)
                     .addDataset(datasetQuery));
         }
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof PifSystemReturningQuery)) {
+            return false;
+        }
+        final PifSystemReturningQuery rhsQuery = (PifSystemReturningQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.returnSystem).equals(Optional.ofNullable(rhsQuery.returnSystem))
+                && Optional.ofNullable(this.addLatex).equals(Optional.ofNullable(rhsQuery.addLatex))
+                && Optional.ofNullable(this.returnExtractedPath)
+                        .equals(Optional.ofNullable(rhsQuery.returnExtractedPath))
+                && Optional.ofNullable(this.unwrapSingleValueExtractions)
+                        .equals(Optional.ofNullable(rhsQuery.unwrapSingleValueExtractions))
+                && Optional.ofNullable(this.extractionSort).equals(Optional.ofNullable(rhsQuery.extractionSort));
     }
 
     /** Whether to include the system in the results. */

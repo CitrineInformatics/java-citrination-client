@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for querying against a single value.
@@ -448,6 +449,23 @@ public class ValueQuery extends BaseObjectQuery {
     @SuppressWarnings("unchecked")
     public <T extends ValueQuery> List<T> getQuery() {
         return (List<T>) this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ValueQuery)) {
+            return false;
+        }
+        final ValueQuery rhsQuery = (ValueQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
+                && Optional.ofNullable(this.value).equals(Optional.ofNullable(rhsQuery.value))
+                && Optional.ofNullable(this.file).equals(Optional.ofNullable(rhsQuery.file))
+                && Optional.ofNullable(this.units).equals(Optional.ofNullable(rhsQuery.units))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** List of name operations. */

@@ -5,6 +5,7 @@ import io.citrine.jcc.util.ListUtil;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Base class for all search results.
@@ -168,6 +169,21 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
         // Append the list of hits
         this.addHits(rhs.getHits());
         return this;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof BaseSearchResult)) {
+            return false;
+        }
+        final BaseSearchResult rhsResult = (BaseSearchResult) rhs;
+        return Optional.ofNullable(this.took).equals(Optional.ofNullable(rhsResult.took))
+                && Optional.ofNullable(this.totalNumHits).equals(Optional.ofNullable(rhsResult.totalNumHits))
+                && Optional.ofNullable(this.maxScore).equals(Optional.ofNullable(rhsResult.maxScore))
+                && Optional.ofNullable(this.hits).equals(Optional.ofNullable(rhsResult.hits));
     }
 
     /** Number of milliseconds that the query took to execute. */

@@ -6,6 +6,7 @@ import io.citrine.jcc.search.pif.query.PifSystemQuery;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query against dataset metadata, PIF content, file content, or some combination of those types.
@@ -323,6 +324,23 @@ public class DataQuery implements HasLogic {
      */
     public List<DataQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof DataQuery)) {
+            return false;
+        }
+        final DataQuery rhsQuery = (DataQuery) rhs;
+        return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.dataset).equals(Optional.ofNullable(rhsQuery.dataset))
+                && Optional.ofNullable(this.system).equals(Optional.ofNullable(rhsQuery.system))
+                && Optional.ofNullable(this.file).equals(Optional.ofNullable(rhsQuery.file))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Logic for the query. */

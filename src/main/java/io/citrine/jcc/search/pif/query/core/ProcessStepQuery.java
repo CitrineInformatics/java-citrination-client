@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to match against process steps.
@@ -304,6 +305,21 @@ public class ProcessStepQuery extends BaseObjectQuery {
      */
     public List<ProcessStepQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ProcessStepQuery)) {
+            return false;
+        }
+        final ProcessStepQuery rhsQuery = (ProcessStepQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
+                && Optional.ofNullable(this.details).equals(Optional.ofNullable(rhsQuery.details))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Name of the step. */

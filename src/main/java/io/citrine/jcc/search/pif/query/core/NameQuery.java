@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to execute against a name field.
@@ -444,6 +445,23 @@ public class NameQuery extends BaseObjectQuery {
      */
     public List<NameQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof NameQuery)) {
+            return false;
+        }
+        final NameQuery rhsQuery = (NameQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.given).equals(Optional.ofNullable(rhsQuery.given))
+                && Optional.ofNullable(this.family).equals(Optional.ofNullable(rhsQuery.family))
+                && Optional.ofNullable(this.title).equals(Optional.ofNullable(rhsQuery.title))
+                && Optional.ofNullable(this.suffix).equals(Optional.ofNullable(rhsQuery.suffix))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Given name for the query. */

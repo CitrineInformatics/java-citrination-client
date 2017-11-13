@@ -6,6 +6,7 @@ import io.citrine.jcc.search.pif.query.core.FieldQuery;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query against a composition object.
@@ -516,6 +517,28 @@ public class CompositionQuery extends BaseObjectQuery {
      */
     public List<CompositionQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof CompositionQuery)) {
+            return false;
+        }
+        final CompositionQuery rhsQuery = (CompositionQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.element).equals(Optional.ofNullable(rhsQuery.element))
+                && Optional.ofNullable(this.actualWeightPercent)
+                        .equals(Optional.ofNullable(rhsQuery.actualWeightPercent))
+                && Optional.ofNullable(this.actualAtomicPercent)
+                        .equals(Optional.ofNullable(rhsQuery.actualAtomicPercent))
+                && Optional.ofNullable(this.idealWeightPercent)
+                        .equals(Optional.ofNullable(rhsQuery.idealWeightPercent))
+                && Optional.ofNullable(this.idealAtomicPercent)
+                        .equals(Optional.ofNullable(rhsQuery.idealAtomicPercent))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Element for the composition. */

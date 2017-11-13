@@ -5,6 +5,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -467,6 +468,22 @@ public class PropertyQuery extends ValueQuery {
     @SuppressWarnings("unchecked")
     public List<PropertyQuery> getQuery() {
         return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof PropertyQuery)) {
+            return false;
+        }
+        final PropertyQuery rhsQuery = (PropertyQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.conditions).equals(Optional.ofNullable(rhsQuery.conditions))
+                && Optional.ofNullable(this.dataType).equals(Optional.ofNullable(rhsQuery.dataType))
+                && Optional.ofNullable(this.references).equals(Optional.ofNullable(rhsQuery.references))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** List of conditions queries. */

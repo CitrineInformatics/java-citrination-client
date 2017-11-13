@@ -5,6 +5,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Base class for all PIF object queries.
@@ -313,6 +314,25 @@ public abstract class BaseObjectQuery implements HasLogic {
      */
     public List<FieldQuery> getOffset() {
         return this.offset;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof BaseObjectQuery)) {
+            return false;
+        }
+        final BaseObjectQuery rhsQuery = (BaseObjectQuery) rhs;
+        return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.extractAs).equals(Optional.ofNullable(rhsQuery.extractAs))
+                && Optional.ofNullable(this.extractAll).equals(Optional.ofNullable(rhsQuery.extractAll))
+                && Optional.ofNullable(this.extractWhenMissing).equals(Optional.ofNullable(rhsQuery.extractWhenMissing))
+                && Optional.ofNullable(this.tags).equals(Optional.ofNullable(rhsQuery.tags))
+                && Optional.ofNullable(this.length).equals(Optional.ofNullable(rhsQuery.length))
+                && Optional.ofNullable(this.offset).equals(Optional.ofNullable(rhsQuery.offset));
     }
 
     /** Logic that applies to the entire query. */
