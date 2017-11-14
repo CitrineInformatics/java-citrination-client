@@ -1,14 +1,11 @@
 package io.citrine.jcc.search.core.result;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Base class for all search results.
@@ -16,7 +13,6 @@ import java.util.List;
  * @param <T> Type of the hits.
  * @author Kyle Michel
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class BaseSearchResult<T> implements Iterable<T>  {
 
     /**
@@ -25,7 +21,6 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * @param took Number of milliseconds for the query to finish.
      * @return This object.
      */
-    @JsonSetter("took")
     public BaseSearchResult<T> setTook(final Long took) {
         this.took = took;
         return this;
@@ -35,9 +30,8 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * Get the number of milliseconds that a query took to execute.
      *
      * @return Long with the number of milliseconds that the query took to finish or a null pointer if that has not
-     *      been set.
+     * been set.
      */
-    @JsonGetter("took")
     public Long getTook() {
         return this.took;
     }
@@ -48,7 +42,6 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * @param totalNumHits Total number of hits that were matched.
      * @return This object.
      */
-    @JsonSetter("totalNumHits")
     public BaseSearchResult<T> setTotalNumHits(final Long totalNumHits) {
         this.totalNumHits = totalNumHits;
         return this;
@@ -60,9 +53,28 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      *
      * @return Total number of records that were matched.
      */
-    @JsonGetter("totalNumHits")
     public Long getTotalNumHits() {
         return this.totalNumHits;
+    }
+
+    /**
+     * Set the max score.
+     *
+     * @param maxScore Double with the max score.
+     * @return This object.
+     */
+    public BaseSearchResult<T> setMaxScore(final Double maxScore) {
+        this.maxScore = maxScore;
+        return this;
+    }
+
+    /**
+     * Get the max score.
+     *
+     * @return Double with the max score.
+     */
+    public Double getMaxScore() {
+        return this.maxScore;
     }
 
     /**
@@ -71,9 +83,19 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * @param hits List of hit objects.
      * @return This object.
      */
-    @JsonSetter("hits")
-    protected BaseSearchResult<T> setHits(final List<T> hits) {
+    public BaseSearchResult<T> setHits(final List<T> hits) {
         this.hits = hits;
+        return this;
+    }
+
+    /**
+     * Add all hits in a list.
+     *
+     * @param hits List of hits to add.
+     * @return This object.
+     */
+    public BaseSearchResult<T> addHits(final List<T> hits) {
+        this.hits = ListUtil.add(hits, this.hits);
         return this;
     }
 
@@ -83,12 +105,8 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * @param hit Hit to add to the results set.
      * @return This object.
      */
-    @JsonIgnore
-    public BaseSearchResult<T> addHit(final T hit) {
-        if (this.hits == null) {
-            this.hits = new ArrayList<>();
-        }
-        this.hits.add(hit);
+    public BaseSearchResult<T> addHits(final T hit) {
+        this.hits = ListUtil.add(hit, this.hits);
         return this;
     }
 
@@ -97,19 +115,8 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      *
      * @return Number of hits in the result set.
      */
-    @JsonIgnore
     public int getNumHits() {
-        return (this.hits == null) ? 0 : this.hits.size();
-    }
-
-    /**
-     * Get the list of hits that were matched.
-     *
-     * @return List of hit objects.
-     */
-    @JsonGetter("hits")
-    protected List<T> getHits() {
-        return this.hits;
+        return ListUtil.length(this.hits);
     }
 
     /**
@@ -119,16 +126,20 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
      * @return Hit at the input index.
      * @throws IllegalArgumentException if the index is out of bounds.
      */
-    @JsonIgnore
-    public T getHit(final int index) {
-        if (this.hits == null) {
-            throw new IndexOutOfBoundsException("Index out of range: " + index + " of 0");
-        }
-        return this.hits.get(index);
+    public T getHits(final int index) {
+        return ListUtil.get(this.hits, index);
+    }
+
+    /**
+     * Get the list of hits that were matched.
+     *
+     * @return List of hit objects.
+     */
+    public List<T> getHits() {
+        return this.hits;
     }
 
     @Override
-    @JsonIgnore
     public Iterator<T> iterator() {
         return (this.hits == null) ? Collections.emptyIterator() : this.hits.iterator();
     }
@@ -156,8 +167,23 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
         }
 
         // Append the list of hits
-        rhs.getHits().forEach(this::addHit);
+        this.addHits(rhs.getHits());
         return this;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof BaseSearchResult)) {
+            return false;
+        }
+        final BaseSearchResult rhsResult = (BaseSearchResult) rhs;
+        return Optional.ofNullable(this.took).equals(Optional.ofNullable(rhsResult.took))
+                && Optional.ofNullable(this.totalNumHits).equals(Optional.ofNullable(rhsResult.totalNumHits))
+                && Optional.ofNullable(this.maxScore).equals(Optional.ofNullable(rhsResult.maxScore))
+                && Optional.ofNullable(this.hits).equals(Optional.ofNullable(rhsResult.hits));
     }
 
     /** Number of milliseconds that the query took to execute. */
@@ -165,6 +191,9 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
 
     /** Total number of hits. */
     private Long totalNumHits;
+
+    /** The maximum score. */
+    private Double maxScore;
 
     /** List of hits. */
     private List<T> hits;

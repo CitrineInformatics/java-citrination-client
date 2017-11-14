@@ -1,12 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to match against process steps.
@@ -15,50 +13,130 @@ import java.util.List;
  */
 public class ProcessStepQuery extends BaseObjectQuery {
 
+    @Override
+    public ProcessStepQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
     /**
-     * Set the list of name number operations. This adds to any operations that are already saved.
+     * Set the name operations. This adds to any operations that are already saved.
      *
      * @param name List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("name")
-    private void name(final List<FieldQuery> name) {
+    public ProcessStepQuery setName(final List<FieldQuery> name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Add to the list of name operations.
+     *
+     * @param name {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ProcessStepQuery addName(final List<FieldQuery> name) {
         this.name = ListUtil.add(name, this.name);
-    }
-
-    /**
-     * Add to the list of name operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ProcessStepQuery name(final FieldQuery fieldQuery) {
-        this.name = ListUtil.add(fieldQuery, this.name);
         return this;
     }
 
     /**
      * Add to the list of name operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ProcessStepQuery name(final String extractAs) {
-        this.name = ListUtil.add(new FieldQuery().extractAs(extractAs), this.name);
+    public ProcessStepQuery addName(final FieldQuery name) {
+        this.name = ListUtil.add(name, this.name);
         return this;
     }
 
     /**
-     * Add to the list of name operations.
+     * Get the length of the name queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of name queries.
      */
-    @JsonIgnore
-    public ProcessStepQuery name(final Filter filter) {
-        this.name = ListUtil.add(new FieldQuery().filter(filter), this.name);
-        return this;
+    public int nameLength() {
+        return ListUtil.length(this.name);
     }
 
     /**
@@ -66,152 +144,182 @@ public class ProcessStepQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("name")
     public Iterable<FieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
 
     /**
-     * Return whether any name operations exist.
+     * Get the name query at the input index.
      *
-     * @return True if any name operations exist.
+     * @param index Index of the name query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasName() {
-        return ListUtil.hasContent(this.name);
+    public FieldQuery getName(final int index) {
+        return ListUtil.get(this.name, index);
     }
 
     /**
-     * Set the list of details operations. This adds to any operations that are already saved.
+     * Get the name field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getName() {
+        return this.name;
+    }
+
+    /**
+     * Set the details operations. This adds to any operations that are already saved.
      *
      * @param details List of {@link ValueQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("details")
-    private void details(final List<ValueQuery> details) {
-        this.details = ListUtil.add(details, this.details);
+    public ProcessStepQuery setDetails(final List<ValueQuery> details) {
+        this.details = details;
+        return this;
     }
 
     /**
      * Add to the list of details operations.
      *
-     * @param details {@link ValueQuery} object to add.
+     * @param details {@link ValueQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ProcessStepQuery details(final ValueQuery details) {
+    public ProcessStepQuery addDetails(final List<ValueQuery> details) {
         this.details = ListUtil.add(details, this.details);
         return this;
     }
 
     /**
-     * Get an iterable of details operations.
+     * Add to the list of details operations.
+     *
+     * @param details {@link ValueQuery} to add.
+     * @return This object.
+     */
+    public ProcessStepQuery addDetails(final ValueQuery details) {
+        this.details = ListUtil.add(details, this.details);
+        return this;
+    }
+
+    /**
+     * Get the length of the details queries.
+     *
+     * @return Number of details queries.
+     */
+    public int detailsLength() {
+        return ListUtil.length(this.details);
+    }
+
+    /**
+     * Get an iterable over details operations.
      *
      * @return Iterable of {@link ValueQuery} objects.
      */
-    @JsonGetter("details")
     public Iterable<ValueQuery> details() {
         return ListUtil.iterable(this.details);
     }
 
     /**
-     * Get whether an details queries exist.
+     * Get the details query at the input index.
      *
-     * @return True if any details queries exist.
+     * @param index Index of the details query to get.
+     * @return {@link ValueQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasDetails() {
-        return ListUtil.hasContent(this.details);
+    public ValueQuery getDetails(final int index) {
+        return ListUtil.get(this.details, index);
     }
 
-    @Override
-    @JsonSetter("logic")
-    public ProcessStepQuery logic(final Logic logic) {
-        super.logic(logic);
+    /**
+     * Get the details field queries.
+     *
+     * @return List of {@link ValueQuery} objects.
+     */
+    public List<ValueQuery> getDetails() {
+        return this.details;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link ProcessStepQuery} objects.
+     * @return This object.
+     */
+    public ProcessStepQuery setQuery(final List<ProcessStepQuery> query) {
+        this.query = query;
         return this;
     }
 
-    @Override
-    @JsonSetter("extractAs")
-    public ProcessStepQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link ProcessStepQuery} objects.
+     * @return This object.
+     */
+    public ProcessStepQuery addQuery(final List<ProcessStepQuery> query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonSetter("extractAll")
-    public ProcessStepQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link ProcessStepQuery} object to add.
+     * @return This object.
+     */
+    public ProcessStepQuery addQuery(final ProcessStepQuery query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonSetter("extractWhenMissing")
-    public ProcessStepQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
-        return this;
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link ProcessStepQuery} objects.
+     */
+    public Iterable<ProcessStepQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link ProcessStepQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link ProcessStepQuery} at the input index.
+     */
+    public ProcessStepQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link ProcessStepQuery} objects.
+     */
+    public List<ProcessStepQuery> getQuery() {
+        return this.query;
     }
 
     @Override
-    @JsonIgnore
-    public ProcessStepQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ProcessStepQuery tags(final String extractAs) {
-        super.tags(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ProcessStepQuery tags(final Filter filter) {
-        super.tags(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ProcessStepQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ProcessStepQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ProcessStepQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ProcessStepQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ProcessStepQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ProcessStepQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ProcessStepQuery)) {
+            return false;
+        }
+        final ProcessStepQuery rhsQuery = (ProcessStepQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
+                && Optional.ofNullable(this.details).equals(Optional.ofNullable(rhsQuery.details))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Name of the step. */
@@ -219,4 +327,7 @@ public class ProcessStepQuery extends BaseObjectQuery {
 
     /** Details of the step. */
     private List<ValueQuery> details;
+    
+    /** Nested list of queries. */
+    private List<ProcessStepQuery> query;
 }

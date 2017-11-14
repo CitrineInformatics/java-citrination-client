@@ -1,12 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to execute against a classification field.
@@ -16,226 +14,312 @@ import java.util.List;
 public class ClassificationQuery extends BaseObjectQuery {
 
     @Override
-    @JsonSetter("logic")
-    public ClassificationQuery logic(final Logic logic) {
-        super.logic(logic);
+    public ClassificationQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAs")
-    public ClassificationQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
+    public ClassificationQuery setSimple(final String simple) {
+        super.setSimple(simple);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAll")
-    public ClassificationQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
+    public ClassificationQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
         return this;
     }
 
     @Override
-    @JsonSetter("extractWhenMissing")
-    public ClassificationQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
+    public ClassificationQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
         return this;
     }
 
     /**
-     * Set the list of classification name operations. This adds to any operations that are already saved.
+     * Set the name operations. This adds to any operations that are already saved.
      *
      * @param name List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("name")
-    private void name(final List<FieldQuery> name) {
+    public ClassificationQuery setName(final List<FieldQuery> name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Add to the list of name operations.
+     *
+     * @param name {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ClassificationQuery addName(final List<FieldQuery> name) {
         this.name = ListUtil.add(name, this.name);
-    }
-
-    /**
-     * Add to the list of classification name operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ClassificationQuery name(final FieldQuery fieldQuery) {
-        this.name = ListUtil.add(fieldQuery, this.name);
         return this;
     }
 
     /**
-     * Add to the list of classification name operations.
+     * Add to the list of name operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ClassificationQuery name(final String extractAs) {
-        this.name = ListUtil.add(new FieldQuery().extractAs(extractAs), this.name);
+    public ClassificationQuery addName(final FieldQuery name) {
+        this.name = ListUtil.add(name, this.name);
         return this;
     }
 
     /**
-     * Add to the list of classification name operations.
+     * Get the length of the name queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of name queries.
      */
-    @JsonIgnore
-    public ClassificationQuery name(final Filter filter) {
-        this.name = ListUtil.add(new FieldQuery().filter(filter), this.name);
-        return this;
+    public int nameLength() {
+        return ListUtil.length(this.name);
     }
 
     /**
-     * Get an iterable over classification name operations.
+     * Get an iterable over name operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("name")
     public Iterable<FieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
 
     /**
-     * Return whether any name operations exist.
+     * Get the name query at the input index.
      *
-     * @return True if any name operations exist.
+     * @param index Index of the name query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasName() {
-        return ListUtil.hasContent(this.name);
+    public FieldQuery getName(final int index) {
+        return ListUtil.get(this.name, index);
     }
 
     /**
-     * Set the list of classification value operations. This adds to any operations that are already saved.
+     * Get the name field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getName() {
+        return this.name;
+    }
+
+    /**
+     * Set the value operations. This adds to any operations that are already saved.
      *
      * @param value List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("value")
-    private void value(final List<FieldQuery> value) {
+    public ClassificationQuery setValue(final List<FieldQuery> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Add to the list of value operations.
+     *
+     * @param value {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ClassificationQuery addValue(final List<FieldQuery> value) {
         this.value = ListUtil.add(value, this.value);
-    }
-
-    /**
-     * Add to the list of classification value operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ClassificationQuery value(final FieldQuery fieldQuery) {
-        this.value = ListUtil.add(fieldQuery, this.value);
         return this;
     }
 
     /**
-     * Add to the list of classification value operations.
+     * Add to the list of value operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param value {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ClassificationQuery value(final String extractAs) {
-        this.value = ListUtil.add(new FieldQuery().extractAs(extractAs), this.value);
+    public ClassificationQuery addValue(final FieldQuery value) {
+        this.value = ListUtil.add(value, this.value);
         return this;
     }
 
     /**
-     * Add to the list of classification value operations.
+     * Get the length of the value queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of value queries.
      */
-    @JsonIgnore
-    public ClassificationQuery value(final Filter filter) {
-        this.value = ListUtil.add(new FieldQuery().filter(filter), this.value);
-        return this;
+    public int valueLength() {
+        return ListUtil.length(this.value);
     }
 
     /**
-     * Get an iterable over classification value operations.
+     * Get an iterable over value operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("value")
     public Iterable<FieldQuery> value() {
         return ListUtil.iterable(this.value);
     }
 
     /**
-     * Return whether any value operations exist.
+     * Get the value query at the input index.
      *
-     * @return True if any value operations exist.
+     * @param index Index of the value query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasValue() {
-        return ListUtil.hasContent(this.value);
+    public FieldQuery getValue(final int index) {
+        return ListUtil.get(this.value, index);
     }
-    
-    @Override
-    @JsonIgnore
-    public ClassificationQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
+
+    /**
+     * Get the value field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getValue() {
+        return this.value;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link ClassificationQuery} objects.
+     * @return This object.
+     */
+    public ClassificationQuery setQuery(final List<ClassificationQuery> query) {
+        this.query = query;
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public ClassificationQuery tags(final String extractAs) {
-        super.tags(extractAs);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link ClassificationQuery} objects.
+     * @return This object.
+     */
+    public ClassificationQuery addQuery(final List<ClassificationQuery> query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public ClassificationQuery tags(final Filter filter) {
-        super.tags(filter);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link ClassificationQuery} object to add.
+     * @return This object.
+     */
+    public ClassificationQuery addQuery(final ClassificationQuery query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public ClassificationQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link ClassificationQuery} objects.
+     */
+    public Iterable<ClassificationQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link ClassificationQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link ClassificationQuery} at the input index.
+     */
+    public ClassificationQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link ClassificationQuery} objects.
+     */
+    public List<ClassificationQuery> getQuery() {
+        return this.query;
     }
 
     @Override
-    @JsonIgnore
-    public ClassificationQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ClassificationQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ClassificationQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ClassificationQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ClassificationQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ClassificationQuery)) {
+            return false;
+        }
+        final ClassificationQuery rhsQuery = (ClassificationQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
+                && Optional.ofNullable(this.value).equals(Optional.ofNullable(rhsQuery.value))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Name of the classification. */
@@ -244,5 +328,6 @@ public class ClassificationQuery extends BaseObjectQuery {
     /** Value of the classification. */
     private List<FieldQuery> value;
     
-    
+    /** Nested list of queries. */
+    private List<ClassificationQuery> query;
 }

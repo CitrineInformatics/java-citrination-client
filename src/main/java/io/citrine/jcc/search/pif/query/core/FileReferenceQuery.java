@@ -1,12 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to execute against a file reference field.
@@ -16,358 +14,454 @@ import java.util.List;
 public class FileReferenceQuery extends BaseObjectQuery {
 
     @Override
-    @JsonSetter("logic")
-    public FileReferenceQuery logic(final Logic logic) {
-        super.logic(logic);
+    public FileReferenceQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAs")
-    public FileReferenceQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
+    public FileReferenceQuery setSimple(final String simple) {
+        super.setSimple(simple);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAll")
-    public FileReferenceQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
+    public FileReferenceQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
         return this;
     }
 
     @Override
-    @JsonSetter("extractWhenMissing")
-    public FileReferenceQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
+    public FileReferenceQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public FileReferenceQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
         return this;
     }
 
     /**
-     * Set the list of relative path operations. This adds to any operations that are already saved.
+     * Set the relativePath operations. This adds to any operations that are already saved.
      *
      * @param relativePath List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("relativePath")
-    private void relativePath(final List<FieldQuery> relativePath) {
+    public FileReferenceQuery setRelativePath(final List<FieldQuery> relativePath) {
+        this.relativePath = relativePath;
+        return this;
+    }
+
+    /**
+     * Add to the list of relativePath operations.
+     *
+     * @param relativePath {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public FileReferenceQuery addRelativePath(final List<FieldQuery> relativePath) {
         this.relativePath = ListUtil.add(relativePath, this.relativePath);
-    }
-
-    /**
-     * Add to the list of relative path operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public FileReferenceQuery relativePath(final FieldQuery fieldQuery) {
-        this.relativePath = ListUtil.add(fieldQuery, this.relativePath);
         return this;
     }
 
     /**
-     * Add to the list of relative path operations.
+     * Add to the list of relativePath operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param relativePath {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public FileReferenceQuery relativePath(final String extractAs) {
-        this.relativePath = ListUtil.add(new FieldQuery().extractAs(extractAs), this.relativePath);
+    public FileReferenceQuery addRelativePath(final FieldQuery relativePath) {
+        this.relativePath = ListUtil.add(relativePath, this.relativePath);
         return this;
     }
 
     /**
-     * Add to the list of relative path operations.
+     * Get the length of the relativePath queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of relativePath queries.
      */
-    @JsonIgnore
-    public FileReferenceQuery relativePath(final Filter filter) {
-        this.relativePath = ListUtil.add(new FieldQuery().filter(filter), this.relativePath);
-        return this;
+    public int relativePathLength() {
+        return ListUtil.length(this.relativePath);
     }
 
     /**
-     * Get an iterable over relative path operations.
+     * Get an iterable over relativePath operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("relativePath")
     public Iterable<FieldQuery> relativePath() {
         return ListUtil.iterable(this.relativePath);
     }
 
     /**
-     * Return whether any relative path operations exist.
+     * Get the relativePath query at the input index.
      *
-     * @return True if any relativePath operations exist.
+     * @param index Index of the relativePath query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasRelativePath() {
-        return ListUtil.hasContent(this.relativePath);
+    public FieldQuery getRelativePath(final int index) {
+        return ListUtil.get(this.relativePath, index);
     }
 
     /**
-     * Set the list of mime type operations. This adds to any operations that are already saved.
+     * Get the relativePath field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getRelativePath() {
+        return this.relativePath;
+    }
+
+    /**
+     * Set the mimeType operations. This adds to any operations that are already saved.
      *
      * @param mimeType List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("mimeType")
-    private void mimeType(final List<FieldQuery> mimeType) {
+    public FileReferenceQuery setMimeType(final List<FieldQuery> mimeType) {
+        this.mimeType = mimeType;
+        return this;
+    }
+
+    /**
+     * Add to the list of mimeType operations.
+     *
+     * @param mimeType {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public FileReferenceQuery addMimeType(final List<FieldQuery> mimeType) {
         this.mimeType = ListUtil.add(mimeType, this.mimeType);
-    }
-
-    /**
-     * Add to the list of mime type operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public FileReferenceQuery mimeType(final FieldQuery fieldQuery) {
-        this.mimeType = ListUtil.add(fieldQuery, this.mimeType);
         return this;
     }
 
     /**
-     * Add to the list of mime type operations.
+     * Add to the list of mimeType operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param mimeType {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public FileReferenceQuery mimeType(final String extractAs) {
-        this.mimeType = ListUtil.add(new FieldQuery().extractAs(extractAs), this.mimeType);
+    public FileReferenceQuery addMimeType(final FieldQuery mimeType) {
+        this.mimeType = ListUtil.add(mimeType, this.mimeType);
         return this;
     }
 
     /**
-     * Add to the list of mime type operations.
+     * Get the length of the mimeType queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of mimeType queries.
      */
-    @JsonIgnore
-    public FileReferenceQuery mimeType(final Filter filter) {
-        this.mimeType = ListUtil.add(new FieldQuery().filter(filter), this.mimeType);
-        return this;
+    public int mimeTypeLength() {
+        return ListUtil.length(this.mimeType);
     }
 
     /**
-     * Get an iterable over mime type operations.
+     * Get an iterable over mimeType operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("mimeType")
     public Iterable<FieldQuery> mimeType() {
         return ListUtil.iterable(this.mimeType);
     }
 
     /**
-     * Return whether any mime type operations exist.
+     * Get the mimeType query at the input index.
      *
-     * @return True if any mimeType operations exist.
+     * @param index Index of the mimeType query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasMimeType() {
-        return ListUtil.hasContent(this.mimeType);
+    public FieldQuery getMimeType(final int index) {
+        return ListUtil.get(this.mimeType, index);
     }
 
     /**
-     * Set the list of sha256 hash operations. This adds to any operations that are already saved.
+     * Get the mimeType field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getMimeType() {
+        return this.mimeType;
+    }
+
+    /**
+     * Set the sha256 operations. This adds to any operations that are already saved.
      *
      * @param sha256 List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("sha256")
-    private void sha256(final List<FieldQuery> sha256) {
+    public FileReferenceQuery setSha256(final List<FieldQuery> sha256) {
+        this.sha256 = sha256;
+        return this;
+    }
+
+    /**
+     * Add to the list of sha256 operations.
+     *
+     * @param sha256 {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public FileReferenceQuery addSha256(final List<FieldQuery> sha256) {
         this.sha256 = ListUtil.add(sha256, this.sha256);
-    }
-
-    /**
-     * Add to the list of sha256 hash operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public FileReferenceQuery sha256(final FieldQuery fieldQuery) {
-        this.sha256 = ListUtil.add(fieldQuery, this.sha256);
         return this;
     }
 
     /**
-     * Add to the list of sha256 hash operations.
+     * Add to the list of sha256 operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param sha256 {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public FileReferenceQuery sha256(final String extractAs) {
-        this.sha256 = ListUtil.add(new FieldQuery().extractAs(extractAs), this.sha256);
+    public FileReferenceQuery addSha256(final FieldQuery sha256) {
+        this.sha256 = ListUtil.add(sha256, this.sha256);
         return this;
     }
 
     /**
-     * Add to the list of sha256 hash operations.
+     * Get the length of the sha256 queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of sha256 queries.
      */
-    @JsonIgnore
-    public FileReferenceQuery sha256(final Filter filter) {
-        this.sha256 = ListUtil.add(new FieldQuery().filter(filter), this.sha256);
-        return this;
+    public int sha256Length() {
+        return ListUtil.length(this.sha256);
     }
 
     /**
-     * Get an iterable over sha256 hash operations.
+     * Get an iterable over sha256 operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("sha256")
     public Iterable<FieldQuery> sha256() {
         return ListUtil.iterable(this.sha256);
     }
 
     /**
-     * Return whether any sha256 hash operations exist.
+     * Get the sha256 query at the input index.
      *
-     * @return True if any sha256 operations exist.
+     * @param index Index of the sha256 query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasSha256() {
-        return ListUtil.hasContent(this.sha256);
+    public FieldQuery getSha256(final int index) {
+        return ListUtil.get(this.sha256, index);
     }
 
     /**
-     * Set the list of md5 sum operations. This adds to any operations that are already saved.
+     * Get the sha256 field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getSha256() {
+        return this.sha256;
+    }
+
+    /**
+     * Set the md5 operations. This adds to any operations that are already saved.
      *
      * @param md5 List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("md5")
-    private void md5(final List<FieldQuery> md5) {
+    public FileReferenceQuery setMd5(final List<FieldQuery> md5) {
+        this.md5 = md5;
+        return this;
+    }
+
+    /**
+     * Add to the list of md5 operations.
+     *
+     * @param md5 {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public FileReferenceQuery addMd5(final List<FieldQuery> md5) {
         this.md5 = ListUtil.add(md5, this.md5);
-    }
-
-    /**
-     * Add to the list of md5 sum operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public FileReferenceQuery md5(final FieldQuery fieldQuery) {
-        this.md5 = ListUtil.add(fieldQuery, this.md5);
         return this;
     }
 
     /**
-     * Add to the list of md5 sum operations.
+     * Add to the list of md5 operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param md5 {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public FileReferenceQuery md5(final String extractAs) {
-        this.md5 = ListUtil.add(new FieldQuery().extractAs(extractAs), this.md5);
+    public FileReferenceQuery addMd5(final FieldQuery md5) {
+        this.md5 = ListUtil.add(md5, this.md5);
         return this;
     }
 
     /**
-     * Add to the list of md5 sum operations.
+     * Get the length of the md5 queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of md5 queries.
      */
-    @JsonIgnore
-    public FileReferenceQuery md5(final Filter filter) {
-        this.md5 = ListUtil.add(new FieldQuery().filter(filter), this.md5);
-        return this;
+    public int md5Length() {
+        return ListUtil.length(this.md5);
     }
 
     /**
-     * Get an iterable over md5 sum operations.
+     * Get an iterable over md5 operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("md5")
     public Iterable<FieldQuery> md5() {
         return ListUtil.iterable(this.md5);
     }
 
     /**
-     * Return whether any md5 sum operations exist.
+     * Get the md5 query at the input index.
      *
-     * @return True if any md5 operations exist.
+     * @param index Index of the md5 query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasMd5() {
-        return ListUtil.hasContent(this.md5);
+    public FieldQuery getMd5(final int index) {
+        return ListUtil.get(this.md5, index);
     }
 
-    @Override
-    @JsonIgnore
-    public FileReferenceQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
+    /**
+     * Get the md5 field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getMd5() {
+        return this.md5;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link FileReferenceQuery} objects.
+     * @return This object.
+     */
+    public FileReferenceQuery setQuery(final List<FileReferenceQuery> query) {
+        this.query = query;
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public FileReferenceQuery tags(final String extractAs) {
-        super.tags(extractAs);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link FileReferenceQuery} objects.
+     * @return This object.
+     */
+    public FileReferenceQuery addQuery(final List<FileReferenceQuery> query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public FileReferenceQuery tags(final Filter filter) {
-        super.tags(filter);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link FileReferenceQuery} object to add.
+     * @return This object.
+     */
+    public FileReferenceQuery addQuery(final FileReferenceQuery query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public FileReferenceQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link FileReferenceQuery} objects.
+     */
+    public Iterable<FileReferenceQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link FileReferenceQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link FileReferenceQuery} at the input index.
+     */
+    public FileReferenceQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link FileReferenceQuery} objects.
+     */
+    public List<FileReferenceQuery> getQuery() {
+        return this.query;
     }
 
     @Override
-    @JsonIgnore
-    public FileReferenceQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public FileReferenceQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public FileReferenceQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public FileReferenceQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public FileReferenceQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof FileReferenceQuery)) {
+            return false;
+        }
+        final FileReferenceQuery rhsQuery = (FileReferenceQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.relativePath).equals(Optional.ofNullable(rhsQuery.relativePath))
+                && Optional.ofNullable(this.mimeType).equals(Optional.ofNullable(rhsQuery.mimeType))
+                && Optional.ofNullable(this.sha256).equals(Optional.ofNullable(rhsQuery.sha256))
+                && Optional.ofNullable(this.md5).equals(Optional.ofNullable(rhsQuery.md5))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Operations against the relative path. */
@@ -381,4 +475,7 @@ public class FileReferenceQuery extends BaseObjectQuery {
     
     /** Operations against the md5 sum. */
     private List<FieldQuery> md5;
+    
+    /** Nested list of queries. */
+    private List<FileReferenceQuery> query;
 }

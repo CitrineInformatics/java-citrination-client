@@ -1,16 +1,14 @@
 package io.citrine.jcc.search.pif.query.chemical;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
+import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.search.pif.query.core.BaseFieldQuery;
-
 import io.citrine.jcc.search.pif.query.core.FieldQuery;
-import io.citrine.jcc.search.pif.query.core.Filter;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for field operations against a chemical formula field.
@@ -20,112 +18,137 @@ import java.util.List;
 public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFilter {
 
     @Override
-    @JsonSetter("logic")
-    public ChemicalFieldQuery logic(final Logic logic) {
-        super.logic(logic);
-        return this;
-    }
-
-    /**
-     * Set the chemical filter that applies to the field.
-     *
-     * @param chemicalFilter List of {@link ChemicalFilter} objects to apply.
-     */
-    @JsonSetter("filterGroup")
-    private void filterGroup(final List<ChemicalFilter> chemicalFilter) {  // Private since only Jackson should use it
-        this.filter(chemicalFilter);
-    }
-
-    /**
-     * Set the list of chemical filters that apply to the field.
-     *
-     * @param filter List of {@link ChemicalFilter} objects.
-     */
-    @JsonSetter("filter")
-    private void filter(final List<ChemicalFilter> filter) {  // Private since only Jackson should use it
-        this.filter = ListUtil.add(filter, this.filter);
-    }
-
-    @Override
-    @JsonIgnore
-    public ChemicalFieldQuery filter(final ChemicalFilter filter) {
-        this.filter = ListUtil.add(filter, this.filter);
+    public ChemicalFieldQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
         return this;
     }
 
     @Override
-    @JsonGetter("filter")
+    public ChemicalFieldQuery setSort(final SortOrder sort) {
+        super.setSort(sort);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setFilter(final List<ChemicalFilter> filter) {
+        this.filter = filter;
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addFilter(final List<ChemicalFilter> filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addFilter(final ChemicalFilter filter) {
+        this.filter = ListUtil.add(filter, this.filter);
+        return this;
+    }
+
+    @Override
+    public int filterLength() {
+        return ListUtil.length(this.filter);
+    }
+
+    @Override
     public Iterable<ChemicalFilter> filter() {
         return ListUtil.iterable(this.filter);
     }
 
     @Override
-    @JsonIgnore
-    public boolean hasFilter() {
-        return ListUtil.hasContent(this.filter);
+    public ChemicalFilter getFilter(final int index) {
+        return ListUtil.get(this.filter, index);
     }
 
     @Override
-    @JsonSetter("extractAs")
-    public ChemicalFieldQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
-        return this;
+    public List<ChemicalFilter> getFilter() {
+        return this.filter;
+    }
+
+    /**
+     * Add to the list of filters using a filterGroup tag. This method exists only to deserialize from deprecated
+     * FilterGroup objects.
+     *
+     * @param filter List of {@link ChemicalFilter} objects to add.
+     */
+    @JsonSetter("filterGroup")
+    protected void filterGroup(final List<ChemicalFilter> filter) {
+        this.addFilter(filter);
     }
 
     @Override
-    @JsonSetter("extractAll")
-    public ChemicalFieldQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
-        return this;
-    }
-
-    @Override
-    @JsonSetter("extractWhenMissing")
-    public ChemicalFieldQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ChemicalFieldQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ChemicalFieldQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ChemicalFieldQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ChemicalFieldQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ChemicalFieldQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ChemicalFieldQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ChemicalFieldQuery)) {
+            return false;
+        }
+        final ChemicalFieldQuery rhsQuery = (ChemicalFieldQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.filter).equals(Optional.ofNullable(rhsQuery.filter));
     }
 
     /** List of filters. */

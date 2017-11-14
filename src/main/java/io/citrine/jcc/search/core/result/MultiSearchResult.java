@@ -1,14 +1,11 @@
 package io.citrine.jcc.search.core.result;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for all multi-search results.
@@ -16,7 +13,6 @@ import java.util.List;
  * @param <T> Type of the atomic search result.
  * @author Kyle Michel
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterable<MultiSearchResultElement<T>> {
 
     /**
@@ -25,7 +21,6 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      * @param took Number of milliseconds for the query to finish.
      * @return This object.
      */
-    @JsonSetter("took")
     public MultiSearchResult<T> setTook(final Long took) {
         this.took = took;
         return this;
@@ -35,22 +30,31 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      * Get the number of milliseconds that a query took to execute.
      *
      * @return Long with the number of milliseconds that the query took to finish or a null pointer if that has not
-     *      been set.
+     * been set.
      */
-    @JsonGetter("took")
     public Long getTook() {
         return this.took;
     }
 
     /**
-     * Set the list of results that were retuned. This overwrites any results that are already saved.
+     * Set the list of results that were returned. This overwrites any results that are already saved.
      *
      * @param results List of results objects.
      * @return This object.
      */
-    @JsonSetter("results")
-    protected MultiSearchResult<T> setResults(final List<MultiSearchResultElement<T>> results) {
+    public MultiSearchResult<T> setResults(final List<MultiSearchResultElement<T>> results) {
         this.results = results;
+        return this;
+    }
+
+    /**
+     * Add to the list of results.
+     *
+     * @param results List of {@link MultiSearchResultElement} objects to add.
+     * @return This object.
+     */
+    public MultiSearchResult<T> addResults(final List<MultiSearchResultElement<T>> results) {
+        this.results = ListUtil.add(results, this.results);
         return this;
     }
 
@@ -60,12 +64,8 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      * @param result Result to add to the results set.
      * @return This object.
      */
-    @JsonIgnore
-    public MultiSearchResult<T> addResult(final MultiSearchResultElement<T> result) {
-        if (this.results == null) {
-            this.results = new ArrayList<>();
-        }
-        this.results.add(result);
+    public MultiSearchResult<T> addResults(final MultiSearchResultElement<T> result) {
+        this.results = ListUtil.add(result, this.results);
         return this;
     }
 
@@ -74,19 +74,8 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      *
      * @return Number of results in the returned set.
      */
-    @JsonIgnore
-    public int getNumResults() {
-        return (this.results == null) ? 0 : this.results.size();
-    }
-
-    /**
-     * Get the list of results that were returned.
-     *
-     * @return List of result objects.
-     */
-    @JsonGetter("results")
-    protected List<MultiSearchResultElement<T>> getResults() {
-        return this.results;
+    public int resultsLength() {
+        return ListUtil.length(this.results);
     }
 
     /**
@@ -96,18 +85,35 @@ public class MultiSearchResult<T extends BaseSearchResult<?>> implements Iterabl
      * @return Result at the input index.
      * @throws IllegalArgumentException if the index is out of bounds.
      */
-    @JsonIgnore
-    public MultiSearchResultElement<T> getResult(final int index) {
-        if (this.results == null) {
-            throw new IndexOutOfBoundsException("Index out of range: " + index + " of 0");
-        }
-        return this.results.get(index);
+    public MultiSearchResultElement<T> getResults(final int index) {
+        return ListUtil.get(this.results, index);
+    }
+
+    /**
+     * Get the list of results that were returned.
+     *
+     * @return List of result objects.
+     */
+    public List<MultiSearchResultElement<T>> getResults() {
+        return this.results;
     }
 
     @Override
-    @JsonIgnore
     public Iterator<MultiSearchResultElement<T>> iterator() {
         return (this.results == null) ? Collections.emptyIterator() : this.results.iterator();
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof MultiSearchResult)) {
+            return false;
+        }
+        final MultiSearchResult rhsResult = (MultiSearchResult) rhs;
+        return Optional.ofNullable(this.took).equals(Optional.ofNullable(rhsResult.took))
+                && Optional.ofNullable(this.results).equals(Optional.ofNullable(rhsResult.results));
     }
 
     /** Number of milliseconds that the query took to execute. */
