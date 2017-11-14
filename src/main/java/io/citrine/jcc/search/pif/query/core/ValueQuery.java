@@ -1,12 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class for querying against a single value.
@@ -15,367 +13,459 @@ import java.util.List;
  */
 public class ValueQuery extends BaseObjectQuery {
 
+    @Override
+    public ValueQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
+        return this;
+    }
+
+    @Override
+    public ValueQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public ValueQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    public ValueQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public ValueQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public ValueQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public ValueQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public ValueQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public ValueQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public ValueQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ValueQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ValueQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ValueQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ValueQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
     /**
-     * Set the list of name operations. This adds to any operations that already exist.
+     * Set the name operations. This adds to any operations that are already saved.
      *
      * @param name List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("name")
-    private void name(final List<FieldQuery> name) {
+    public ValueQuery setName(final List<FieldQuery> name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Add to the list of name operations.
+     *
+     * @param name {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ValueQuery addName(final List<FieldQuery> name) {
         this.name = ListUtil.add(name, this.name);
-    }
-
-    /**
-     * Add a single name operation.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ValueQuery name(final FieldQuery fieldQuery) {
-        this.name = ListUtil.add(fieldQuery, this.name);
         return this;
     }
 
     /**
-     * Add a single name operation.
+     * Add to the list of name operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param name {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ValueQuery name(final String extractAs) {
-        this.name = ListUtil.add(new FieldQuery().extractAs(extractAs), this.name);
+    public ValueQuery addName(final FieldQuery name) {
+        this.name = ListUtil.add(name, this.name);
         return this;
     }
 
     /**
-     * Add a single name operation.
+     * Get the length of the name queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of name queries.
      */
-    @JsonIgnore
-    public ValueQuery name(final Filter filter) {
-        this.name = ListUtil.add(new FieldQuery().filter(filter), this.name);
-        return this;
+    public int nameLength() {
+        return ListUtil.length(this.name);
     }
 
     /**
-     * Get an iterable object over the names fields.
+     * Get an iterable over name operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("name")
     public Iterable<FieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
 
     /**
-     * Return whether any name operations exist.
+     * Get the name query at the input index.
      *
-     * @return True if any name operations exist.
+     * @param index Index of the name query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasName() {
-        return ListUtil.hasContent(this.name);
+    public FieldQuery getName(final int index) {
+        return ListUtil.get(this.name, index);
     }
 
     /**
-     * Set the list of value operations. This adds to any operations that already exist.
+     * Get the name field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getName() {
+        return this.name;
+    }
+
+    /**
+     * Set the value operations. This adds to any operations that are already saved.
      *
      * @param value List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("value")
-    private void value(final List<FieldQuery> value) {
+    public ValueQuery setValue(final List<FieldQuery> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Add to the list of value operations.
+     *
+     * @param value {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ValueQuery addValue(final List<FieldQuery> value) {
         this.value = ListUtil.add(value, this.value);
-    }
-
-    /**
-     * Add a single value operation.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ValueQuery value(final FieldQuery fieldQuery) {
-        this.value = ListUtil.add(fieldQuery, this.value);
         return this;
     }
 
     /**
-     * Add a single value operation.
+     * Add to the list of value operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param value {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ValueQuery value(final String extractAs) {
-        this.value = ListUtil.add(new FieldQuery().extractAs(extractAs), this.value);
+    public ValueQuery addValue(final FieldQuery value) {
+        this.value = ListUtil.add(value, this.value);
         return this;
     }
 
     /**
-     * Add a single value operation.
+     * Get the length of the value queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of value queries.
      */
-    @JsonIgnore
-    public ValueQuery value(final Filter filter) {
-        this.value = ListUtil.add(new FieldQuery().filter(filter), this.value);
-        return this;
+    public int valueLength() {
+        return ListUtil.length(this.value);
     }
 
     /**
-     * Get an iterable over the list of name operations.
+     * Get an iterable over value operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("value")
     public Iterable<FieldQuery> value() {
         return ListUtil.iterable(this.value);
     }
 
     /**
-     * Return whether any value operations exist.
+     * Get the value query at the input index.
      *
-     * @return True if any value operations exist.
+     * @param index Index of the value query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasValue() {
-        return ListUtil.hasContent(this.value);
+    public FieldQuery getValue(final int index) {
+        return ListUtil.get(this.value, index);
     }
 
     /**
-     * Set the list of file reference operations. This adds to any operations that are already saved.
+     * Get the value field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getValue() {
+        return this.value;
+    }
+
+    /**
+     * Set the file operations. This adds to any operations that are already saved.
      *
      * @param file List of {@link FileReferenceQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("file")
-    private void file(final List<FileReferenceQuery> file) {
-        this.file = ListUtil.add(file, this.file);
+    public ValueQuery setFile(final List<FileReferenceQuery> file) {
+        this.file = file;
+        return this;
     }
 
     /**
-     * Add to the list of file reference operations.
+     * Add to the list of file operations.
      *
-     * @param file {@link FileReferenceQuery} object to add.
+     * @param file {@link FileReferenceQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ValueQuery file(final FileReferenceQuery file) {
+    public ValueQuery addFile(final List<FileReferenceQuery> file) {
         this.file = ListUtil.add(file, this.file);
         return this;
     }
 
     /**
-     * Get an iterable of file reference operations.
+     * Add to the list of file operations.
+     *
+     * @param file {@link FileReferenceQuery} to add.
+     * @return This object.
+     */
+    public ValueQuery addFile(final FileReferenceQuery file) {
+        this.file = ListUtil.add(file, this.file);
+        return this;
+    }
+
+    /**
+     * Get the length of the file queries.
+     *
+     * @return Number of file queries.
+     */
+    public int fileLength() {
+        return ListUtil.length(this.file);
+    }
+
+    /**
+     * Get an iterable over file operations.
      *
      * @return Iterable of {@link FileReferenceQuery} objects.
      */
-    @JsonGetter("file")
     public Iterable<FileReferenceQuery> file() {
         return ListUtil.iterable(this.file);
     }
 
     /**
-     * Get whether an file reference queries exist.
+     * Get the file query at the input index.
      *
-     * @return True if any file reference queries exist.
+     * @param index Index of the file query to get.
+     * @return {@link FileReferenceQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasFile() {
-        return ListUtil.hasContent(this.file);
+    public FileReferenceQuery getFile(final int index) {
+        return ListUtil.get(this.file, index);
     }
 
     /**
-     * Set the list of units operations. This adds to any operations that already exist.
+     * Get the file field queries.
+     *
+     * @return List of {@link FileReferenceQuery} objects.
+     */
+    public List<FileReferenceQuery> getFile() {
+        return this.file;
+    }
+
+    /**
+     * Set the units operations. This adds to any operations that are already saved.
      *
      * @param units List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("units")
-    private void units(final List<FieldQuery> units) {
+    public ValueQuery setUnits(final List<FieldQuery> units) {
+        this.units = units;
+        return this;
+    }
+
+    /**
+     * Add to the list of units operations.
+     *
+     * @param units {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ValueQuery addUnits(final List<FieldQuery> units) {
         this.units = ListUtil.add(units, this.units);
-    }
-
-    /**
-     * Add a single units operation.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ValueQuery units(final FieldQuery fieldQuery) {
-        this.units = ListUtil.add(fieldQuery, this.units);
         return this;
     }
 
     /**
-     * Add a single units operation.
+     * Add to the list of units operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param units {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ValueQuery units(final String extractAs) {
-        this.units = ListUtil.add(new FieldQuery().extractAs(extractAs), this.units);
+    public ValueQuery addUnits(final FieldQuery units) {
+        this.units = ListUtil.add(units, this.units);
         return this;
     }
 
     /**
-     * Add a single units operation.
+     * Get the length of the units queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of units queries.
      */
-    @JsonIgnore
-    public ValueQuery units(final Filter filter) {
-        this.units = ListUtil.add(new FieldQuery().filter(filter), this.units);
-        return this;
+    public int unitsLength() {
+        return ListUtil.length(this.units);
     }
 
     /**
-     * Get the list of units operations.
+     * Get an iterable over units operations.
      *
-     * @return Iterator over {@link FieldQuery} objects.
+     * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("units")
     public Iterable<FieldQuery> units() {
         return ListUtil.iterable(this.units);
     }
 
     /**
-     * Return whether any units operations exists.
+     * Get the units query at the input index.
      *
-     * @return True if any units operations exist.
+     * @param index Index of the units query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasUnits() {
-        return ListUtil.hasContent(this.units);
+    public FieldQuery getUnits(final int index) {
+        return ListUtil.get(this.units, index);
     }
 
     /**
-     * Set the normalization for units.
+     * Get the units field queries.
      *
-     * @param unitsNormalization {@link UnitsNormalization} to use.
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getUnits() {
+        return this.units;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link ValueQuery} objects.
      * @return This object.
      */
-    @JsonSetter("unitsNormalization")
-    public ValueQuery unitsNormalization(final UnitsNormalization unitsNormalization) {
-        this.unitsNormalization = unitsNormalization;
+    public ValueQuery setQuery(final List<ValueQuery> query) {
+        this.query = query;
         return this;
     }
 
     /**
-     * Get the units normalizations.
+     * Add to the list of nested queries.
      *
-     * @return {@link UnitsNormalization} object or a null pointer if it has not been set.
+     * @param query List of {@link ValueQuery} objects.
+     * @return This object.
      */
-    @JsonGetter("unitsNormalization")
-    public UnitsNormalization unitsNormalization() {
-        return this.unitsNormalization;
+    public ValueQuery addQuery(final List<ValueQuery> query) {
+        this.query = ListUtil.add(query, this.query);
+        return this;
     }
 
     /**
-     * Whether unit normalizations are set.
+     * Add to the list of nested queries.
      *
-     * @return True if unit normalization has been set.
+     * @param query {@link ValueQuery} object to add.
+     * @return This object.
      */
-    @JsonIgnore
-    public boolean hasUnitsNormalization() {
-        return this.unitsNormalization != null;
-    }
-
-    @Override
-    @JsonSetter("logic")
-    public ValueQuery logic(final Logic logic) {
-        super.logic(logic);
+    public ValueQuery addQuery(final ValueQuery query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonSetter("extractAs")
-    public ValueQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
-        return this;
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @param <T> Type of the query.
+     * @return {@link Iterable} of {@link ValueQuery} objects.
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends ValueQuery> Iterable<T> query() {
+        return (Iterable<T>) ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link ValueQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link ValueQuery} at the input index.
+     */
+    public ValueQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @param <T> Type of the query.
+     * @return List of {@link ValueQuery} objects.
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends ValueQuery> List<T> getQuery() {
+        return (List<T>) this.query;
     }
 
     @Override
-    @JsonSetter("extractAll")
-    public ValueQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
-        return this;
-    }
-
-    @Override
-    @JsonSetter("extractWhenMissing")
-    public ValueQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery tags(final String extractAs) {
-        super.tags(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery tags(final Filter filter) {
-        super.tags(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ValueQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ValueQuery)) {
+            return false;
+        }
+        final ValueQuery rhsQuery = (ValueQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
+                && Optional.ofNullable(this.value).equals(Optional.ofNullable(rhsQuery.value))
+                && Optional.ofNullable(this.file).equals(Optional.ofNullable(rhsQuery.file))
+                && Optional.ofNullable(this.units).equals(Optional.ofNullable(rhsQuery.units))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** List of name operations. */
@@ -389,7 +479,7 @@ public class ValueQuery extends BaseObjectQuery {
 
     /** List of units operations. */
     private List<FieldQuery> units;
-
-    /** Unit normalization. */
-    private UnitsNormalization unitsNormalization;
+    
+    /** Nested list of queries. */
+    private List<ValueQuery> query;
 }

@@ -1,12 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query against the source of a system.
@@ -15,227 +13,313 @@ import java.util.List;
  */
 public class SourceQuery extends BaseObjectQuery {
 
+    @Override
+    public SourceQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
+        return this;
+    }
+
+    @Override
+    public SourceQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public SourceQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    public SourceQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public SourceQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public SourceQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public SourceQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public SourceQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public SourceQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public SourceQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public SourceQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public SourceQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public SourceQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public SourceQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
     /**
-     * Set the list of producer operations. This adds to any operations that already exist.
+     * Set the producer operations. This adds to any operations that are already saved.
      *
      * @param producer List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("producer")
-    private void producer(final List<FieldQuery> producer) {
+    public SourceQuery setProducer(final List<FieldQuery> producer) {
+        this.producer = producer;
+        return this;
+    }
+
+    /**
+     * Add to the list of producer operations.
+     *
+     * @param producer {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public SourceQuery addProducer(final List<FieldQuery> producer) {
         this.producer = ListUtil.add(producer, this.producer);
-    }
-
-    /**
-     * Add a single producer operation.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public SourceQuery producer(final FieldQuery fieldQuery) {
-        this.producer = ListUtil.add(fieldQuery, this.producer);
         return this;
     }
 
     /**
-     * Add a single producer operation.
+     * Add to the list of producer operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param producer {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public SourceQuery producer(final String extractAs) {
-        this.producer = ListUtil.add(new FieldQuery().extractAs(extractAs), this.producer);
+    public SourceQuery addProducer(final FieldQuery producer) {
+        this.producer = ListUtil.add(producer, this.producer);
         return this;
     }
 
     /**
-     * Add a single producer operation.
+     * Get the length of the producer queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of producer queries.
      */
-    @JsonIgnore
-    public SourceQuery producer(final Filter filter) {
-        this.producer = ListUtil.add(new FieldQuery().filter(filter), this.producer);
-        return this;
+    public int producerLength() {
+        return ListUtil.length(this.producer);
     }
 
     /**
-     * Get an iterable object over the producers fields.
+     * Get an iterable over producer operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("producer")
     public Iterable<FieldQuery> producer() {
         return ListUtil.iterable(this.producer);
     }
 
     /**
-     * Return whether any producer operations exist.
+     * Get the producer query at the input index.
      *
-     * @return True if any producer operations exist.
+     * @param index Index of the producer query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasProducer() {
-        return ListUtil.hasContent(this.producer);
+    public FieldQuery getProducer(final int index) {
+        return ListUtil.get(this.producer, index);
     }
 
     /**
-     * Set the list of url operations. This adds to any operations that already exist.
+     * Get the producer field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getProducer() {
+        return this.producer;
+    }
+
+    /**
+     * Set the url operations. This adds to any operations that are already saved.
      *
      * @param url List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("url")
-    private void url(final List<FieldQuery> url) {
+    public SourceQuery setUrl(final List<FieldQuery> url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * Add to the list of url operations.
+     *
+     * @param url {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public SourceQuery addUrl(final List<FieldQuery> url) {
         this.url = ListUtil.add(url, this.url);
-    }
-
-    /**
-     * Add a single url operation.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public SourceQuery url(final FieldQuery fieldQuery) {
-        this.url = ListUtil.add(fieldQuery, this.url);
         return this;
     }
 
     /**
-     * Add a single url operation.
+     * Add to the list of url operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param url {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public SourceQuery url(final String extractAs) {
-        this.url = ListUtil.add(new FieldQuery().extractAs(extractAs), this.url);
+    public SourceQuery addUrl(final FieldQuery url) {
+        this.url = ListUtil.add(url, this.url);
         return this;
     }
 
     /**
-     * Add a single url operation.
+     * Get the length of the url queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of url queries.
      */
-    @JsonIgnore
-    public SourceQuery url(final Filter filter) {
-        this.url = ListUtil.add(new FieldQuery().filter(filter), this.url);
-        return this;
+    public int urlLength() {
+        return ListUtil.length(this.url);
     }
 
     /**
-     * Get an iterable object over the urls fields.
+     * Get an iterable over url operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("url")
     public Iterable<FieldQuery> url() {
         return ListUtil.iterable(this.url);
     }
 
     /**
-     * Return whether any url operations exist.
+     * Get the url query at the input index.
      *
-     * @return True if any url operations exist.
+     * @param index Index of the url query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasUrl() {
-        return ListUtil.hasContent(this.url);
+    public FieldQuery getUrl(final int index) {
+        return ListUtil.get(this.url, index);
     }
 
-    @Override
-    @JsonSetter("logic")
-    public SourceQuery logic(final Logic logic) {
-        super.logic(logic);
+    /**
+     * Get the url field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getUrl() {
+        return this.url;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link SourceQuery} objects.
+     * @return This object.
+     */
+    public SourceQuery setQuery(final List<SourceQuery> query) {
+        this.query = query;
         return this;
     }
 
-    @Override
-    @JsonSetter("extractAs")
-    public SourceQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link SourceQuery} objects.
+     * @return This object.
+     */
+    public SourceQuery addQuery(final List<SourceQuery> query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonSetter("extractAll")
-    public SourceQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link SourceQuery} object to add.
+     * @return This object.
+     */
+    public SourceQuery addQuery(final SourceQuery query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonSetter("extractWhenMissing")
-    public SourceQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
-        return this;
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link SourceQuery} objects.
+     */
+    public Iterable<SourceQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link SourceQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link SourceQuery} at the input index.
+     */
+    public SourceQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link SourceQuery} objects.
+     */
+    public List<SourceQuery> getQuery() {
+        return this.query;
     }
 
     @Override
-    @JsonIgnore
-    public SourceQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public SourceQuery tags(final String extractAs) {
-        super.tags(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public SourceQuery tags(final Filter filter) {
-        super.tags(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public SourceQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public SourceQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public SourceQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public SourceQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public SourceQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public SourceQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof SourceQuery)) {
+            return false;
+        }
+        final SourceQuery rhsQuery = (SourceQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.producer).equals(Optional.ofNullable(rhsQuery.producer))
+                && Optional.ofNullable(this.url).equals(Optional.ofNullable(rhsQuery.url))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Producer of the system. */
@@ -243,4 +327,7 @@ public class SourceQuery extends BaseObjectQuery {
 
     /** URL to the source. */
     private List<FieldQuery> url;
+    
+    /** Nested list of queries. */
+    private List<SourceQuery> query;
 }

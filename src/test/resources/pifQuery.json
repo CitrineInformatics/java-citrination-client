@@ -1,0 +1,20 @@
+{
+  "from": 10,
+  "size": 100,
+  "randomResults": true,
+  "randomSeed": 0,
+  "returnSystem": false,
+  "addLatex": true,
+  "scoreRelevance": true,
+  "includeDatasets": [1],
+  "excludeDatasets": [2],
+  "system": [{
+    "names": {
+      "filter": {"equal": "lithium"}
+    }
+  },{
+    "chemicalFormula": {
+      "filter": {"equal": "Li"}
+    }
+  }]
+}

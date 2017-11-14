@@ -1,13 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to execute against a pages field.
@@ -17,226 +14,312 @@ import java.util.List;
 public class PagesQuery extends BaseObjectQuery {
 
     @Override
-    @JsonSetter("logic")
-    public PagesQuery logic(final Logic logic) {
-        super.logic(logic);
+    public PagesQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAs")
-    public PagesQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
+    public PagesQuery setSimple(final String simple) {
+        super.setSimple(simple);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAll")
-    public PagesQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
+    public PagesQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
         return this;
     }
 
     @Override
-    @JsonSetter("extractWhenMissing")
-    public PagesQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
+    public PagesQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public PagesQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public PagesQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public PagesQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public PagesQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public PagesQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public PagesQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public PagesQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public PagesQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public PagesQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public PagesQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
         return this;
     }
 
     /**
-     * Set the list of starting page operations. This adds to any operations that are already saved.
+     * Set the start operations. This adds to any operations that are already saved.
      *
      * @param start List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("start")
-    private void start(final List<FieldQuery> start) {
+    public PagesQuery setStart(final List<FieldQuery> start) {
+        this.start = start;
+        return this;
+    }
+
+    /**
+     * Add to the list of start operations.
+     *
+     * @param start {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public PagesQuery addStart(final List<FieldQuery> start) {
         this.start = ListUtil.add(start, this.start);
-    }
-
-    /**
-     * Add to the list of starting page operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public PagesQuery start(final FieldQuery fieldQuery) {
-        this.start = ListUtil.add(fieldQuery, this.start);
         return this;
     }
 
     /**
-     * Add to the list of starting page operations.
+     * Add to the list of start operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param start {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public PagesQuery start(final String extractAs) {
-        this.start = ListUtil.add(new FieldQuery().extractAs(extractAs), this.start);
+    public PagesQuery addStart(final FieldQuery start) {
+        this.start = ListUtil.add(start, this.start);
         return this;
     }
 
     /**
-     * Add to the list of starting page operations.
+     * Get the length of the start queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of start queries.
      */
-    @JsonIgnore
-    public PagesQuery start(final Filter filter) {
-        this.start = ListUtil.add(new FieldQuery().filter(filter), this.start);
-        return this;
+    public int startLength() {
+        return ListUtil.length(this.start);
     }
 
     /**
-     * Get an iterable over starting page operations.
+     * Get an iterable over start operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("start")
     public Iterable<FieldQuery> start() {
         return ListUtil.iterable(this.start);
     }
 
     /**
-     * Return whether any start operations exist.
+     * Get the start query at the input index.
      *
-     * @return True if any start operations exist.
+     * @param index Index of the start query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasStart() {
-        return ListUtil.hasContent(this.start);
+    public FieldQuery getStart(final int index) {
+        return ListUtil.get(this.start, index);
     }
 
     /**
-     * Set the list of ending page operations. This adds to any operations that are already saved.
+     * Get the start field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getStart() {
+        return this.start;
+    }
+
+    /**
+     * Set the end operations. This adds to any operations that are already saved.
      *
      * @param end List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("end")
-    private void end(final List<FieldQuery> end) {
+    public PagesQuery setEnd(final List<FieldQuery> end) {
+        this.end = end;
+        return this;
+    }
+
+    /**
+     * Add to the list of end operations.
+     *
+     * @param end {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public PagesQuery addEnd(final List<FieldQuery> end) {
         this.end = ListUtil.add(end, this.end);
-    }
-
-    /**
-     * Add to the list of ending page operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public PagesQuery end(final FieldQuery fieldQuery) {
-        this.end = ListUtil.add(fieldQuery, this.end);
         return this;
     }
 
     /**
-     * Add to the list of ending page operations.
+     * Add to the list of end operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param end {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public PagesQuery end(final String extractAs) {
-        this.end = ListUtil.add(new FieldQuery().extractAs(extractAs), this.end);
+    public PagesQuery addEnd(final FieldQuery end) {
+        this.end = ListUtil.add(end, this.end);
         return this;
     }
 
     /**
-     * Add to the list of ending page operations.
+     * Get the length of the end queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of end queries.
      */
-    @JsonIgnore
-    public PagesQuery end(final Filter filter) {
-        this.end = ListUtil.add(new FieldQuery().filter(filter), this.end);
-        return this;
+    public int endLength() {
+        return ListUtil.length(this.end);
     }
 
     /**
-     * Get an iterable over ending page operations.
+     * Get an iterable over end operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("end")
     public Iterable<FieldQuery> end() {
         return ListUtil.iterable(this.end);
     }
 
     /**
-     * Return whether any end operations exist.
+     * Get the end query at the input index.
      *
-     * @return True if any end operations exist.
+     * @param index Index of the end query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasEnd() {
-        return ListUtil.hasContent(this.end);
+    public FieldQuery getEnd(final int index) {
+        return ListUtil.get(this.end, index);
     }
 
-    @Override
-    @JsonIgnore
-    public PagesQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
+    /**
+     * Get the end field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getEnd() {
+        return this.end;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link PagesQuery} objects.
+     * @return This object.
+     */
+    public PagesQuery setQuery(final List<PagesQuery> query) {
+        this.query = query;
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public PagesQuery tags(final String extractAs) {
-        super.tags(extractAs);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link PagesQuery} objects.
+     * @return This object.
+     */
+    public PagesQuery addQuery(final List<PagesQuery> query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public PagesQuery tags(final Filter filter) {
-        super.tags(filter);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link PagesQuery} object to add.
+     * @return This object.
+     */
+    public PagesQuery addQuery(final PagesQuery query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public PagesQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link PagesQuery} objects.
+     */
+    public Iterable<PagesQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link PagesQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link PagesQuery} at the input index.
+     */
+    public PagesQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link PagesQuery} objects.
+     */
+    public List<PagesQuery> getQuery() {
+        return this.query;
     }
 
     @Override
-    @JsonIgnore
-    public PagesQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public PagesQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public PagesQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public PagesQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public PagesQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof PagesQuery)) {
+            return false;
+        }
+        final PagesQuery rhsQuery = (PagesQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.start).equals(Optional.ofNullable(rhsQuery.start))
+                && Optional.ofNullable(this.end).equals(Optional.ofNullable(rhsQuery.end))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Operations against the starting page. */
@@ -244,4 +327,7 @@ public class PagesQuery extends BaseObjectQuery {
 
     /** Operation against the ending page. */
     private List<FieldQuery> end;
+    
+    /** Nested list of queries. */
+    private List<PagesQuery> query;
 }

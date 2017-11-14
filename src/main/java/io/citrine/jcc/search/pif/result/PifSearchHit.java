@@ -2,15 +2,15 @@ package io.citrine.jcc.search.pif.result;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.util.PifObjectMapper;
 
-import javax.validation.constraints.Null;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -18,7 +18,6 @@ import java.util.Set;
  *
  * @author Kyle Michel
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PifSearchHit {
 
     /**
@@ -27,7 +26,6 @@ public class PifSearchHit {
      * @param id String with the id of the record.
      * @return This object.
      */
-    @JsonSetter("id")
     public PifSearchHit setId(final String id) {
         this.id = id;
         return this;
@@ -38,7 +36,6 @@ public class PifSearchHit {
      *
      * @return String with the id of the matched record or a null pointer if not set.
      */
-    @JsonGetter("id")
     public String getId() {
         return this.id;
     }
@@ -49,7 +46,6 @@ public class PifSearchHit {
      * @param dataset Dataset of the record.
      * @return This object.
      */
-    @JsonSetter("dataset")
     public PifSearchHit setDataset(final String dataset) {
         this.dataset = dataset;
         return this;
@@ -60,7 +56,6 @@ public class PifSearchHit {
      *
      * @return String with the dataset of the matched record or a null pointer if not set.
      */
-    @JsonGetter("dataset")
     public String getDataset() {
         return this.dataset;
     }
@@ -71,7 +66,6 @@ public class PifSearchHit {
      * @param datasetVersion Long with the dataset version of the record.
      * @return This object.
      */
-    @JsonSetter("datasetVersion")
     public PifSearchHit setDatasetVersion(final Long datasetVersion) {
         this.datasetVersion = datasetVersion;
         return this;
@@ -80,9 +74,8 @@ public class PifSearchHit {
     /**
      * Get the dataset version of the record that was matched.
      *
-     * @return String with the dataset version of the matched record or a null pointer if not set.
+     * @return Long with the dataset version of the matched record or a null pointer if not set.
      */
-    @JsonGetter("datasetVersion")
     public Long getDatasetVersion() {
         return this.datasetVersion;
     }
@@ -93,7 +86,6 @@ public class PifSearchHit {
      * @param score Double with the score for the hit.
      * @return This object.
      */
-    @JsonSetter("score")
     public PifSearchHit setScore(final Double score) {
         this.score = score;
         return this;
@@ -104,9 +96,28 @@ public class PifSearchHit {
      *
      * @return Double with the score for the hit or a null pointer if not set.
      */
-    @JsonGetter("score")
     public Double getScore() {
         return this.score;
+    }
+
+    /**
+     * Set the time that the record was updated.
+     *
+     * @param updatedAt String with the time that the record was updated.
+     * @return This object.
+     */
+    public PifSearchHit setUpdatedAt(final String updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    /**
+     * Get the time that the record was updated.
+     *
+     * @return String with the time that the record was updated.
+     */
+    public String getUpdatedAt() {
+        return this.updatedAt;
     }
 
     /**
@@ -115,7 +126,6 @@ public class PifSearchHit {
      * @param system {@link System} to save in the result
      * @return This object.
      */
-    @JsonSetter("system")
     public PifSearchHit setSystem(final System system) {
         this.system = system;
         return this;
@@ -126,7 +136,6 @@ public class PifSearchHit {
      *
      * @return {@link System} with the record that was matched or a null pointer if it has not been set.
      */
-    @JsonGetter("system")
     public System getSystem() {
         return this.system;
     }
@@ -137,8 +146,8 @@ public class PifSearchHit {
      * @param extracted Map of extracted value names to values.
      * @return This object.
      */
-    @JsonSetter("extracted")
-    protected PifSearchHit setExtracted(final Map<String, Object> extracted) {
+    @JsonSetter
+    public PifSearchHit setExtracted(final Map<String, Object> extracted) {
         this.extracted = extracted;
         return this;
     }
@@ -149,7 +158,6 @@ public class PifSearchHit {
      * @param extracted Map of extracted value names to values.
      * @return This object.
      */
-    @JsonIgnore
     public PifSearchHit addExtracted(final Map<String, Object> extracted) {
         if (extracted != null) {
             if (this.extracted == null) {
@@ -167,7 +175,6 @@ public class PifSearchHit {
      * @param value Value that was extracted.
      * @return This object.
      */
-    @JsonIgnore
     public PifSearchHit addExtracted(final String key, final Object value) {
         if (this.extracted == null) {
             this.extracted = new HashMap<>();
@@ -181,7 +188,7 @@ public class PifSearchHit {
      *
      * @return Map of extracted field keys to values.
      */
-    @JsonGetter("extracted")
+    @JsonGetter
     protected Map<String, Object> getExtracted() {
         return this.extracted;
     }
@@ -193,14 +200,14 @@ public class PifSearchHit {
      */
     @JsonIgnore
     public Set<String> getExtractedKeys() {
-        return (this.extracted == null) ? null : this.extracted.keySet();
+        return (this.extracted == null) ? Collections.emptySet() : this.extracted.keySet();
     }
 
     /**
      * Get an extracted value by its key.
      *
      * @param key String with the key of the extracted value.
-     * @return String with the value of the input key or a null pointer if that key is not available.
+     * @return Object with the value of the input key or a null pointer if that key is not available.
      */
     @JsonIgnore
     public Object getExtractedValue(final String key) {
@@ -208,7 +215,7 @@ public class PifSearchHit {
     }
 
     /**
-     * Get an extracted value an convert it to the type of valueClass. This method assumes that the value can be
+     * Get an extracted value and convert it to the type of valueClass. This method assumes that the value can be
      * converted to the specified class by serialized the value to JSON then deserializing to the class type.
      *
      * @param key String with the key of the extracted value.
@@ -218,7 +225,7 @@ public class PifSearchHit {
      * key is not available.
      */
     @JsonIgnore
-    public <T extends Pio> T getExtractValue(final String key, final Class<T> valueClass) {
+    public <T extends Pio> T getExtractedValue(final String key, final Class<T> valueClass) {
         return (this.extracted == null) ? null : convert(this.extracted.get(key), valueClass);
     }
 
@@ -251,6 +258,80 @@ public class PifSearchHit {
     }
 
     /**
+     * Set the map of extracted value paths.
+     *
+     * @param extractedPath Map of extracted value names to paths.
+     * @return This object.
+     */
+    @JsonSetter
+    public PifSearchHit setExtractedPath(final Map<String, String> extractedPath) {
+        this.extractedPath = extractedPath;
+        return this;
+    }
+
+    /**
+     * Add to the map of extracted value paths.
+     *
+     * @param extractedPath Map of extracted value names to paths.
+     * @return This object.
+     */
+    public PifSearchHit addExtractedPath(final Map<String, String> extractedPath) {
+        if (extractedPath != null) {
+            if (this.extractedPath == null) {
+                this.extractedPath = new HashMap<>();
+            }
+            this.extractedPath.putAll(extractedPath);
+        }
+        return this;
+    }
+
+    /**
+     * Add to the map of extracted value paths.
+     *
+     * @param key Name of the extracted value.
+     * @param path Path to the value that was extracted.
+     * @return This object.
+     */
+    public PifSearchHit addExtractedPath(final String key, final String path) {
+        if (this.extractedPath == null) {
+            this.extractedPath = new HashMap<>();
+        }
+        this.extractedPath.put(key, path);
+        return this;
+    }
+
+    /**
+     * Get the map of extracted value paths.
+     *
+     * @return Map of extracted field keys to paths.
+     */
+    @JsonGetter
+    protected Map<String, String> getExtractedPath() {
+        return this.extractedPath;
+    }
+
+    /**
+     * Get an extracted value path by its key.
+     *
+     * @param key String with the key of the extracted value.
+     * @return String with the value of the input key or a null pointer if that key is not available.
+     */
+    @JsonIgnore
+    public String getExtractedPath(final String key) {
+        return (this.extractedPath == null) ? null : this.extractedPath.get(key);
+    }
+
+    /**
+     * Get the list of extracted value path keys.
+     *
+     * @return Set with the extracted path keys.
+     */
+    @JsonIgnore
+    public Set<String> getExtractedPathKeys() {
+        return (this.extractedPath == null) ? Collections.emptySet() : this.extractedPath.keySet();
+    }
+
+    /**
      * Convert the input object to an instance of the specified class by serializing it to JSON then deserializing to
      * the requested class.
      *
@@ -260,20 +341,35 @@ public class PifSearchHit {
      * @return Converted value.
      * @throws RuntimeException if the value cannot be converted.
      */
-    @JsonIgnore
     private <T extends Pio> T convert(final Object object, final Class<T> objectClass) {
         if (object == null) {
             return null;
         }
-        else {
-            try {
-                final byte[] serialized = PifObjectMapper.getInstance().writeValueAsBytes(object);
-                return PifObjectMapper.getInstance().readValue(serialized, objectClass);
-            }
-            catch (Exception e) {
-                throw new RuntimeException("Failed to convert value", e);
-            }
+        try {
+            return PifObjectMapper.deepCopy(object, objectClass);
         }
+        catch (Exception e) {
+            throw new RuntimeException("Failed to convert value", e);
+        }
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof PifSearchHit)) {
+            return false;
+        }
+        final PifSearchHit rhsHit = (PifSearchHit) rhs;
+        return Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsHit.id))
+                && Optional.ofNullable(this.dataset).equals(Optional.ofNullable(rhsHit.dataset))
+                && Optional.ofNullable(this.datasetVersion).equals(Optional.ofNullable(rhsHit.datasetVersion))
+                && Optional.ofNullable(this.score).equals(Optional.ofNullable(rhsHit.score))
+                && Optional.ofNullable(this.updatedAt).equals(Optional.ofNullable(rhsHit.updatedAt))
+                && Optional.ofNullable(this.system).equals(Optional.ofNullable(rhsHit.system))
+                && Optional.ofNullable(this.extracted).equals(Optional.ofNullable(rhsHit.extracted))
+                && Optional.ofNullable(this.extractedPath).equals(Optional.ofNullable(rhsHit.extractedPath));
     }
 
     /** Id of the record. */
@@ -288,9 +384,15 @@ public class PifSearchHit {
     /** Score of the record. */
     private Double score;
 
+    /** The time that the record was updated. */
+    private String updatedAt;
+
     /** Pif system that was matched. */
     private System system;
 
     /** Map of extracted fields. */
     private Map<String, Object> extracted = new HashMap<>();
+
+    /** Map of paths to extracted fields. */
+    private Map<String, String> extractedPath = new HashMap<>();
 }

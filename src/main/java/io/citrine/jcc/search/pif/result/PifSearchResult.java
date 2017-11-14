@@ -1,8 +1,5 @@
 package io.citrine.jcc.search.pif.result;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.result.BaseSearchResult;
 
 import java.util.List;
@@ -14,7 +11,7 @@ import java.util.List;
  * <pre>
  * {@code
  * PifSearchResult searchResult = Query.execute();
- * for (SearchHit i : searchResult) {
+ * for (PifSearchHit i : searchResult) {
  *     // do work on hit
  * }
  * }
@@ -22,34 +19,46 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PifSearchResult extends BaseSearchResult<PifSearchHit> {
 
     @Override
-    @JsonSetter("took")
     public PifSearchResult setTook(final Long took) {
         super.setTook(took);
         return this;
     }
 
     @Override
-    @JsonSetter("totalNumHits")
     public PifSearchResult setTotalNumHits(final Long totalNumHits) {
         super.setTotalNumHits(totalNumHits);
         return this;
     }
 
     @Override
-    @JsonSetter("hits")
-    protected PifSearchResult setHits(final List<PifSearchHit> hits) {
+    public PifSearchResult setMaxScore(final Double maxScore) {
+        super.setMaxScore(maxScore);
+        return this;
+    }
+
+    @Override
+    public PifSearchResult setHits(final List<PifSearchHit> hits) {
         super.setHits(hits);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PifSearchResult addHit(final PifSearchHit hit) {
-        super.addHit(hit);
+    public PifSearchResult addHits(final List<PifSearchHit> hits) {
+        super.addHits(hits);
         return this;
+    }
+
+    @Override
+    public PifSearchResult addHits(final PifSearchHit hits) {
+        super.addHits(hits);
+        return this;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        return super.equals(rhs);
     }
 }

@@ -1,12 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query to execute against a name field.
@@ -16,209 +14,269 @@ import java.util.List;
 public class NameQuery extends BaseObjectQuery {
 
     @Override
-    @JsonSetter("logic")
-    public NameQuery logic(final Logic logic) {
-        super.logic(logic);
+    public NameQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAs")
-    public NameQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
+    public NameQuery setSimple(final String simple) {
+        super.setSimple(simple);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAll")
-    public NameQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
+    public NameQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
         return this;
     }
 
     @Override
-    @JsonSetter("extractWhenMissing")
-    public NameQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
+    public NameQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public NameQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public NameQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public NameQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public NameQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public NameQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public NameQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public NameQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public NameQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public NameQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public NameQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
         return this;
     }
 
     /**
-     * Set the list of given name operations. This adds to any operations that are already saved.
+     * Set the given operations. This adds to any operations that are already saved.
      *
      * @param given List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("given")
-    private void given(final List<FieldQuery> given) {
+    public NameQuery setGiven(final List<FieldQuery> given) {
+        this.given = given;
+        return this;
+    }
+
+    /**
+     * Add to the list of given operations.
+     *
+     * @param given {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public NameQuery addGiven(final List<FieldQuery> given) {
         this.given = ListUtil.add(given, this.given);
-    }
-
-    /**
-     * Add to the list of given name operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public NameQuery given(final FieldQuery fieldQuery) {
-        this.given = ListUtil.add(fieldQuery, this.given);
         return this;
     }
 
     /**
-     * Add to the list of given name operations.
+     * Add to the list of given operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param given {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public NameQuery given(final String extractAs) {
-        this.given = ListUtil.add(new FieldQuery().extractAs(extractAs), this.given);
+    public NameQuery addGiven(final FieldQuery given) {
+        this.given = ListUtil.add(given, this.given);
         return this;
     }
 
     /**
-     * Add to the list of given name operations.
+     * Get the length of the given queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of given queries.
      */
-    @JsonIgnore
-    public NameQuery given(final Filter filter) {
-        this.given = ListUtil.add(new FieldQuery().filter(filter), this.given);
-        return this;
+    public int givenLength() {
+        return ListUtil.length(this.given);
     }
 
     /**
-     * Get an iterable over given name operations.
+     * Get an iterable over given operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("given")
     public Iterable<FieldQuery> given() {
         return ListUtil.iterable(this.given);
     }
 
     /**
-     * Return whether any given operations exist.
+     * Get the given query at the input index.
      *
-     * @return True if any given operations exist.
+     * @param index Index of the given query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasGiven() {
-        return ListUtil.hasContent(this.given);
+    public FieldQuery getGiven(final int index) {
+        return ListUtil.get(this.given, index);
     }
 
     /**
-     * Set the list of family name operations. This adds to any operations that are already saved.
+     * Get the given field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getGiven() {
+        return this.given;
+    }
+
+    /**
+     * Set the family operations. This adds to any operations that are already saved.
      *
      * @param family List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("family")
-    private void family(final List<FieldQuery> family) {
+    public NameQuery setFamily(final List<FieldQuery> family) {
+        this.family = family;
+        return this;
+    }
+
+    /**
+     * Add to the list of family operations.
+     *
+     * @param family {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public NameQuery addFamily(final List<FieldQuery> family) {
         this.family = ListUtil.add(family, this.family);
-    }
-
-    /**
-     * Add to the list of family name operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public NameQuery family(final FieldQuery fieldQuery) {
-        this.family = ListUtil.add(fieldQuery, this.family);
         return this;
     }
 
     /**
-     * Add to the list of family name operations.
+     * Add to the list of family operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param family {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public NameQuery family(final String extractAs) {
-        this.family = ListUtil.add(new FieldQuery().extractAs(extractAs), this.family);
+    public NameQuery addFamily(final FieldQuery family) {
+        this.family = ListUtil.add(family, this.family);
         return this;
     }
 
     /**
-     * Add to the list of family name operations.
+     * Get the length of the family queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of family queries.
      */
-    @JsonIgnore
-    public NameQuery family(final Filter filter) {
-        this.family = ListUtil.add(new FieldQuery().filter(filter), this.family);
-        return this;
+    public int familyLength() {
+        return ListUtil.length(this.family);
     }
 
     /**
-     * Get an iterable over family name operations.
+     * Get an iterable over family operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("family")
     public Iterable<FieldQuery> family() {
         return ListUtil.iterable(this.family);
     }
 
     /**
-     * Return whether any family operations exist.
+     * Get the family query at the input index.
      *
-     * @return True if any family operations exist.
+     * @param index Index of the family query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasFamily() {
-        return ListUtil.hasContent(this.family);
+    public FieldQuery getFamily(final int index) {
+        return ListUtil.get(this.family, index);
     }
 
     /**
-     * Set the list of title operations. This adds to any operations that are already saved.
+     * Get the family field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getFamily() {
+        return this.family;
+    }
+
+    /**
+     * Set the title operations. This adds to any operations that are already saved.
      *
      * @param title List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("title")
-    private void title(final List<FieldQuery> title) {
+    public NameQuery setTitle(final List<FieldQuery> title) {
+        this.title = title;
+        return this;
+    }
+
+    /**
+     * Add to the list of title operations.
+     *
+     * @param title {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public NameQuery addTitle(final List<FieldQuery> title) {
         this.title = ListUtil.add(title, this.title);
-    }
-
-    /**
-     * Add to the list of title operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public NameQuery title(final FieldQuery fieldQuery) {
-        this.title = ListUtil.add(fieldQuery, this.title);
-        return this;
-    }
-
-    /**
-     * Add to the list of title name operations.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
-    @JsonIgnore
-    public NameQuery title(final String extractAs) {
-        this.title = ListUtil.add(new FieldQuery().extractAs(extractAs), this.title);
         return this;
     }
 
     /**
      * Add to the list of title operations.
      *
-     * @param filter {@link Filter} to apply.
+     * @param title {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public NameQuery title(final Filter filter) {
-        this.title = ListUtil.add(new FieldQuery().filter(filter), this.title);
+    public NameQuery addTitle(final FieldQuery title) {
+        this.title = ListUtil.add(title, this.title);
         return this;
+    }
+
+    /**
+     * Get the length of the title queries.
+     *
+     * @return Number of title queries.
+     */
+    public int titleLength() {
+        return ListUtil.length(this.title);
     }
 
     /**
@@ -226,65 +284,69 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("title")
     public Iterable<FieldQuery> title() {
         return ListUtil.iterable(this.title);
     }
 
     /**
-     * Return whether any title operations exist.
+     * Get the title query at the input index.
      *
-     * @return True if any title operations exist.
+     * @param index Index of the title query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasTitle() {
-        return ListUtil.hasContent(this.title);
+    public FieldQuery getTitle(final int index) {
+        return ListUtil.get(this.title, index);
     }
 
     /**
-     * Set the list of suffix operations. This adds to any operations that are already saved.
+     * Get the title field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getTitle() {
+        return this.title;
+    }
+
+    /**
+     * Set the suffix operations. This adds to any operations that are already saved.
      *
      * @param suffix List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("suffix")
-    private void suffix(final List<FieldQuery> suffix) {
+    public NameQuery setSuffix(final List<FieldQuery> suffix) {
+        this.suffix = suffix;
+        return this;
+    }
+
+    /**
+     * Add to the list of suffix operations.
+     *
+     * @param suffix {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public NameQuery addSuffix(final List<FieldQuery> suffix) {
         this.suffix = ListUtil.add(suffix, this.suffix);
-    }
-
-    /**
-     * Add to the list of suffix operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public NameQuery suffix(final FieldQuery fieldQuery) {
-        this.suffix = ListUtil.add(fieldQuery, this.suffix);
-        return this;
-    }
-
-    /**
-     * Add to the list of suffix name operations.
-     *
-     * @param extractAs Alias to extract as.
-     * @return This object.
-     */
-    @JsonIgnore
-    public NameQuery suffix(final String extractAs) {
-        this.suffix = ListUtil.add(new FieldQuery().extractAs(extractAs), this.suffix);
         return this;
     }
 
     /**
      * Add to the list of suffix operations.
      *
-     * @param filter {@link Filter} to apply.
+     * @param suffix {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public NameQuery suffix(final Filter filter) {
-        this.suffix = ListUtil.add(new FieldQuery().filter(filter), this.suffix);
+    public NameQuery addSuffix(final FieldQuery suffix) {
+        this.suffix = ListUtil.add(suffix, this.suffix);
         return this;
+    }
+
+    /**
+     * Get the length of the suffix queries.
+     *
+     * @return Number of suffix queries.
+     */
+    public int suffixLength() {
+        return ListUtil.length(this.suffix);
     }
 
     /**
@@ -292,82 +354,114 @@ public class NameQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("suffix")
     public Iterable<FieldQuery> suffix() {
         return ListUtil.iterable(this.suffix);
     }
 
     /**
-     * Return whether any suffix operations exist.
+     * Get the suffix query at the input index.
      *
-     * @return True if any suffix operations exist.
+     * @param index Index of the suffix query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasSuffix() {
-        return ListUtil.hasContent(this.suffix);
+    public FieldQuery getSuffix(final int index) {
+        return ListUtil.get(this.suffix, index);
     }
 
-    @Override
-    @JsonIgnore
-    public NameQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
+    /**
+     * Get the suffix field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getSuffix() {
+        return this.suffix;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link NameQuery} objects.
+     * @return This object.
+     */
+    public NameQuery setQuery(final List<NameQuery> query) {
+        this.query = query;
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public NameQuery tags(final String extractAs) {
-        super.tags(extractAs);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link NameQuery} objects.
+     * @return This object.
+     */
+    public NameQuery addQuery(final List<NameQuery> query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public NameQuery tags(final Filter filter) {
-        super.tags(filter);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link NameQuery} object to add.
+     * @return This object.
+     */
+    public NameQuery addQuery(final NameQuery query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonIgnore
-    public NameQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link NameQuery} objects.
+     */
+    public Iterable<NameQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link NameQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link NameQuery} at the input index.
+     */
+    public NameQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link NameQuery} objects.
+     */
+    public List<NameQuery> getQuery() {
+        return this.query;
     }
 
     @Override
-    @JsonIgnore
-    public NameQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public NameQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public NameQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public NameQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public NameQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof NameQuery)) {
+            return false;
+        }
+        final NameQuery rhsQuery = (NameQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.given).equals(Optional.ofNullable(rhsQuery.given))
+                && Optional.ofNullable(this.family).equals(Optional.ofNullable(rhsQuery.family))
+                && Optional.ofNullable(this.title).equals(Optional.ofNullable(rhsQuery.title))
+                && Optional.ofNullable(this.suffix).equals(Optional.ofNullable(rhsQuery.suffix))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** Given name for the query. */
@@ -381,4 +475,7 @@ public class NameQuery extends BaseObjectQuery {
 
     /** Suffix of the person. */
     private List<FieldQuery> suffix;
+    
+    /** Nested list of queries. */
+    private List<NameQuery> query;
 }

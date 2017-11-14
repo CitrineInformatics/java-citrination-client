@@ -1,12 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Query against a reference.
@@ -15,50 +13,130 @@ import java.util.List;
  */
 public class ReferenceQuery extends BaseObjectQuery {
 
+    @Override
+    public ReferenceQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery setSimple(final String simple) {
+        super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery addLength(final FieldQuery length) {
+        super.addLength(length);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
+        return this;
+    }
+
     /**
-     * Set the list of doi operations. This adds to any operations that are already saved.
+     * Set the doi operations. This adds to any operations that are already saved.
      *
      * @param doi List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("doi")
-    private void doi(final List<FieldQuery> doi) {
+    public ReferenceQuery setDoi(final List<FieldQuery> doi) {
+        this.doi = doi;
+        return this;
+    }
+
+    /**
+     * Add to the list of doi operations.
+     *
+     * @param doi {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addDoi(final List<FieldQuery> doi) {
         this.doi = ListUtil.add(doi, this.doi);
-    }
-
-    /**
-     * Add to the list of doi operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery doi(final FieldQuery fieldQuery) {
-        this.doi = ListUtil.add(fieldQuery, this.doi);
         return this;
     }
 
     /**
      * Add to the list of doi operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param doi {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery doi(final String extractAs) {
-        this.doi = ListUtil.add(new FieldQuery().extractAs(extractAs), this.doi);
+    public ReferenceQuery addDoi(final FieldQuery doi) {
+        this.doi = ListUtil.add(doi, this.doi);
         return this;
     }
 
     /**
-     * Add to the list of doi operations.
+     * Get the length of the doi queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of doi queries.
      */
-    @JsonIgnore
-    public ReferenceQuery doi(final Filter filter) {
-        this.doi = ListUtil.add(new FieldQuery().filter(filter), this.doi);
-        return this;
+    public int doiLength() {
+        return ListUtil.length(this.doi);
     }
 
     /**
@@ -66,65 +144,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("doi")
     public Iterable<FieldQuery> doi() {
         return ListUtil.iterable(this.doi);
     }
 
     /**
-     * Return whether any doi operations exist.
+     * Get the doi query at the input index.
      *
-     * @return True if any doi operations exist.
+     * @param index Index of the doi query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasDoi() {
-        return ListUtil.hasContent(this.doi);
+    public FieldQuery getDoi(final int index) {
+        return ListUtil.get(this.doi, index);
     }
 
     /**
-     * Set the list of isbn operations. This adds to any operations that are already saved.
+     * Get the doi field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getDoi() {
+        return this.doi;
+    }
+
+    /**
+     * Set the isbn operations. This adds to any operations that are already saved.
      *
      * @param isbn List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("isbn")
-    private void isbn(final List<FieldQuery> isbn) {
+    public ReferenceQuery setIsbn(final List<FieldQuery> isbn) {
+        this.isbn = isbn;
+        return this;
+    }
+
+    /**
+     * Add to the list of isbn operations.
+     *
+     * @param isbn {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addIsbn(final List<FieldQuery> isbn) {
         this.isbn = ListUtil.add(isbn, this.isbn);
-    }
-
-    /**
-     * Add to the list of isbn operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery isbn(final FieldQuery fieldQuery) {
-        this.isbn = ListUtil.add(fieldQuery, this.isbn);
         return this;
     }
 
     /**
      * Add to the list of isbn operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param isbn {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery isbn(final String extractAs) {
-        this.isbn = ListUtil.add(new FieldQuery().extractAs(extractAs), this.isbn);
+    public ReferenceQuery addIsbn(final FieldQuery isbn) {
+        this.isbn = ListUtil.add(isbn, this.isbn);
         return this;
     }
 
     /**
-     * Add to the list of isbn operations.
+     * Get the length of the isbn queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of isbn queries.
      */
-    @JsonIgnore
-    public ReferenceQuery isbn(final Filter filter) {
-        this.isbn = ListUtil.add(new FieldQuery().filter(filter), this.isbn);
-        return this;
+    public int isbnLength() {
+        return ListUtil.length(this.isbn);
     }
 
     /**
@@ -132,65 +214,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("isbn")
     public Iterable<FieldQuery> isbn() {
         return ListUtil.iterable(this.isbn);
     }
 
     /**
-     * Return whether any isbn operations exist.
+     * Get the isbn query at the input index.
      *
-     * @return True if any isbn operations exist.
+     * @param index Index of the isbn query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasIsbn() {
-        return ListUtil.hasContent(this.isbn);
+    public FieldQuery getIsbn(final int index) {
+        return ListUtil.get(this.isbn, index);
     }
 
     /**
-     * Set the list of issn operations. This adds to any operations that are already saved.
+     * Get the isbn field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getIsbn() {
+        return this.isbn;
+    }
+
+    /**
+     * Set the issn operations. This adds to any operations that are already saved.
      *
      * @param issn List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("issn")
-    private void issn(final List<FieldQuery> issn) {
+    public ReferenceQuery setIssn(final List<FieldQuery> issn) {
+        this.issn = issn;
+        return this;
+    }
+
+    /**
+     * Add to the list of issn operations.
+     *
+     * @param issn {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addIssn(final List<FieldQuery> issn) {
         this.issn = ListUtil.add(issn, this.issn);
-    }
-
-    /**
-     * Add to the list of issn operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery issn(final FieldQuery fieldQuery) {
-        this.issn = ListUtil.add(fieldQuery, this.issn);
         return this;
     }
 
     /**
      * Add to the list of issn operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param issn {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery issn(final String extractAs) {
-        this.issn = ListUtil.add(new FieldQuery().extractAs(extractAs), this.issn);
+    public ReferenceQuery addIssn(final FieldQuery issn) {
+        this.issn = ListUtil.add(issn, this.issn);
         return this;
     }
 
     /**
-     * Add to the list of issn operations.
+     * Get the length of the issn queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of issn queries.
      */
-    @JsonIgnore
-    public ReferenceQuery issn(final Filter filter) {
-        this.issn = ListUtil.add(new FieldQuery().filter(filter), this.issn);
-        return this;
+    public int issnLength() {
+        return ListUtil.length(this.issn);
     }
 
     /**
@@ -198,65 +284,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("issn")
     public Iterable<FieldQuery> issn() {
         return ListUtil.iterable(this.issn);
     }
 
     /**
-     * Return whether any issn operations exist.
+     * Get the issn query at the input index.
      *
-     * @return True if any issn operations exist.
+     * @param index Index of the issn query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasIssn() {
-        return ListUtil.hasContent(this.issn);
+    public FieldQuery getIssn(final int index) {
+        return ListUtil.get(this.issn, index);
     }
 
     /**
-     * Set the list of url operations. This adds to any operations that are already saved.
+     * Get the issn field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getIssn() {
+        return this.issn;
+    }
+
+    /**
+     * Set the url operations. This adds to any operations that are already saved.
      *
      * @param url List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("url")
-    private void url(final List<FieldQuery> url) {
+    public ReferenceQuery setUrl(final List<FieldQuery> url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * Add to the list of url operations.
+     *
+     * @param url {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addUrl(final List<FieldQuery> url) {
         this.url = ListUtil.add(url, this.url);
-    }
-
-    /**
-     * Add to the list of url operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery url(final FieldQuery fieldQuery) {
-        this.url = ListUtil.add(fieldQuery, this.url);
         return this;
     }
 
     /**
      * Add to the list of url operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param url {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery url(final String extractAs) {
-        this.url = ListUtil.add(new FieldQuery().extractAs(extractAs), this.url);
+    public ReferenceQuery addUrl(final FieldQuery url) {
+        this.url = ListUtil.add(url, this.url);
         return this;
     }
 
     /**
-     * Add to the list of url operations.
+     * Get the length of the url queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of url queries.
      */
-    @JsonIgnore
-    public ReferenceQuery url(final Filter filter) {
-        this.url = ListUtil.add(new FieldQuery().filter(filter), this.url);
-        return this;
+    public int urlLength() {
+        return ListUtil.length(this.url);
     }
 
     /**
@@ -264,65 +354,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("url")
     public Iterable<FieldQuery> url() {
         return ListUtil.iterable(this.url);
     }
 
     /**
-     * Return whether any url operations exist.
+     * Get the url query at the input index.
      *
-     * @return True if any url operations exist.
+     * @param index Index of the url query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasUrl() {
-        return ListUtil.hasContent(this.url);
+    public FieldQuery getUrl(final int index) {
+        return ListUtil.get(this.url, index);
     }
 
     /**
-     * Set the list of title operations. This adds to any operations that are already saved.
+     * Get the url field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getUrl() {
+        return this.url;
+    }
+
+    /**
+     * Set the title operations. This adds to any operations that are already saved.
      *
      * @param title List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("title")
-    private void title(final List<FieldQuery> title) {
+    public ReferenceQuery setTitle(final List<FieldQuery> title) {
+        this.title = title;
+        return this;
+    }
+
+    /**
+     * Add to the list of title operations.
+     *
+     * @param title {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addTitle(final List<FieldQuery> title) {
         this.title = ListUtil.add(title, this.title);
-    }
-
-    /**
-     * Add to the list of title operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery title(final FieldQuery fieldQuery) {
-        this.title = ListUtil.add(fieldQuery, this.title);
         return this;
     }
 
     /**
      * Add to the list of title operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param title {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery title(final String extractAs) {
-        this.title = ListUtil.add(new FieldQuery().extractAs(extractAs), this.title);
+    public ReferenceQuery addTitle(final FieldQuery title) {
+        this.title = ListUtil.add(title, this.title);
         return this;
     }
 
     /**
-     * Add to the list of title operations.
+     * Get the length of the title queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of title queries.
      */
-    @JsonIgnore
-    public ReferenceQuery title(final Filter filter) {
-        this.title = ListUtil.add(new FieldQuery().filter(filter), this.title);
-        return this;
+    public int titleLength() {
+        return ListUtil.length(this.title);
     }
 
     /**
@@ -330,65 +424,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("title")
     public Iterable<FieldQuery> title() {
         return ListUtil.iterable(this.title);
     }
 
     /**
-     * Return whether any title operations exist.
+     * Get the title query at the input index.
      *
-     * @return True if any title operations exist.
+     * @param index Index of the title query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasTitle() {
-        return ListUtil.hasContent(this.title);
+    public FieldQuery getTitle(final int index) {
+        return ListUtil.get(this.title, index);
     }
 
     /**
-     * Set the list of publisher operations. This adds to any operations that are already saved.
+     * Get the title field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getTitle() {
+        return this.title;
+    }
+
+    /**
+     * Set the publisher operations. This adds to any operations that are already saved.
      *
      * @param publisher List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("publisher")
-    private void publisher(final List<FieldQuery> publisher) {
+    public ReferenceQuery setPublisher(final List<FieldQuery> publisher) {
+        this.publisher = publisher;
+        return this;
+    }
+
+    /**
+     * Add to the list of publisher operations.
+     *
+     * @param publisher {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addPublisher(final List<FieldQuery> publisher) {
         this.publisher = ListUtil.add(publisher, this.publisher);
-    }
-
-    /**
-     * Add to the list of publisher operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery publisher(final FieldQuery fieldQuery) {
-        this.publisher = ListUtil.add(fieldQuery, this.publisher);
         return this;
     }
 
     /**
      * Add to the list of publisher operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param publisher {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery publisher(final String extractAs) {
-        this.publisher = ListUtil.add(new FieldQuery().extractAs(extractAs), this.publisher);
+    public ReferenceQuery addPublisher(final FieldQuery publisher) {
+        this.publisher = ListUtil.add(publisher, this.publisher);
         return this;
     }
 
     /**
-     * Add to the list of publisher operations.
+     * Get the length of the publisher queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of publisher queries.
      */
-    @JsonIgnore
-    public ReferenceQuery publisher(final Filter filter) {
-        this.publisher = ListUtil.add(new FieldQuery().filter(filter), this.publisher);
-        return this;
+    public int publisherLength() {
+        return ListUtil.length(this.publisher);
     }
 
     /**
@@ -396,65 +494,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("publisher")
     public Iterable<FieldQuery> publisher() {
         return ListUtil.iterable(this.publisher);
     }
 
     /**
-     * Return whether any publisher operations exist.
+     * Get the publisher query at the input index.
      *
-     * @return True if any publisher operations exist.
+     * @param index Index of the publisher query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasPublisher() {
-        return ListUtil.hasContent(this.publisher);
+    public FieldQuery getPublisher(final int index) {
+        return ListUtil.get(this.publisher, index);
     }
 
     /**
-     * Set the list of journal operations. This adds to any operations that are already saved.
+     * Get the publisher field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getPublisher() {
+        return this.publisher;
+    }
+
+    /**
+     * Set the journal operations. This adds to any operations that are already saved.
      *
      * @param journal List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("journal")
-    private void journal(final List<FieldQuery> journal) {
+    public ReferenceQuery setJournal(final List<FieldQuery> journal) {
+        this.journal = journal;
+        return this;
+    }
+
+    /**
+     * Add to the list of journal operations.
+     *
+     * @param journal {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addJournal(final List<FieldQuery> journal) {
         this.journal = ListUtil.add(journal, this.journal);
-    }
-
-    /**
-     * Add to the list of journal operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery journal(final FieldQuery fieldQuery) {
-        this.journal = ListUtil.add(fieldQuery, this.journal);
         return this;
     }
 
     /**
      * Add to the list of journal operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param journal {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery journal(final String extractAs) {
-        this.journal = ListUtil.add(new FieldQuery().extractAs(extractAs), this.journal);
+    public ReferenceQuery addJournal(final FieldQuery journal) {
+        this.journal = ListUtil.add(journal, this.journal);
         return this;
     }
 
     /**
-     * Add to the list of journal operations.
+     * Get the length of the journal queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of journal queries.
      */
-    @JsonIgnore
-    public ReferenceQuery journal(final Filter filter) {
-        this.journal = ListUtil.add(new FieldQuery().filter(filter), this.journal);
-        return this;
+    public int journalLength() {
+        return ListUtil.length(this.journal);
     }
 
     /**
@@ -462,65 +564,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("journal")
     public Iterable<FieldQuery> journal() {
         return ListUtil.iterable(this.journal);
     }
 
     /**
-     * Return whether any journal operations exist.
+     * Get the journal query at the input index.
      *
-     * @return True if any journal operations exist.
+     * @param index Index of the journal query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasJournal() {
-        return ListUtil.hasContent(this.journal);
+    public FieldQuery getJournal(final int index) {
+        return ListUtil.get(this.journal, index);
     }
 
     /**
-     * Set the list of volume operations. This adds to any operations that are already saved.
+     * Get the journal field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getJournal() {
+        return this.journal;
+    }
+
+    /**
+     * Set the volume operations. This adds to any operations that are already saved.
      *
      * @param volume List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("volume")
-    private void volume(final List<FieldQuery> volume) {
+    public ReferenceQuery setVolume(final List<FieldQuery> volume) {
+        this.volume = volume;
+        return this;
+    }
+
+    /**
+     * Add to the list of volume operations.
+     *
+     * @param volume {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addVolume(final List<FieldQuery> volume) {
         this.volume = ListUtil.add(volume, this.volume);
-    }
-
-    /**
-     * Add to the list of volume operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery volume(final FieldQuery fieldQuery) {
-        this.volume = ListUtil.add(fieldQuery, this.volume);
         return this;
     }
 
     /**
      * Add to the list of volume operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param volume {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery volume(final String extractAs) {
-        this.volume = ListUtil.add(new FieldQuery().extractAs(extractAs), this.volume);
+    public ReferenceQuery addVolume(final FieldQuery volume) {
+        this.volume = ListUtil.add(volume, this.volume);
         return this;
     }
 
     /**
-     * Add to the list of volume operations.
+     * Get the length of the volume queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of volume queries.
      */
-    @JsonIgnore
-    public ReferenceQuery volume(final Filter filter) {
-        this.volume = ListUtil.add(new FieldQuery().filter(filter), this.volume);
-        return this;
+    public int volumeLength() {
+        return ListUtil.length(this.volume);
     }
 
     /**
@@ -528,65 +634,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("volume")
     public Iterable<FieldQuery> volume() {
         return ListUtil.iterable(this.volume);
     }
 
     /**
-     * Return whether any volume operations exist.
+     * Get the volume query at the input index.
      *
-     * @return True if any volume operations exist.
+     * @param index Index of the volume query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasVolume() {
-        return ListUtil.hasContent(this.volume);
+    public FieldQuery getVolume(final int index) {
+        return ListUtil.get(this.volume, index);
     }
 
     /**
-     * Set the list of issue operations. This adds to any operations that are already saved.
+     * Get the volume field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getVolume() {
+        return this.volume;
+    }
+
+    /**
+     * Set the issue operations. This adds to any operations that are already saved.
      *
      * @param issue List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("issue")
-    private void issue(final List<FieldQuery> issue) {
+    public ReferenceQuery setIssue(final List<FieldQuery> issue) {
+        this.issue = issue;
+        return this;
+    }
+
+    /**
+     * Add to the list of issue operations.
+     *
+     * @param issue {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addIssue(final List<FieldQuery> issue) {
         this.issue = ListUtil.add(issue, this.issue);
-    }
-
-    /**
-     * Add to the list of issue operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery issue(final FieldQuery fieldQuery) {
-        this.issue = ListUtil.add(fieldQuery, this.issue);
         return this;
     }
 
     /**
      * Add to the list of issue operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param issue {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery issue(final String extractAs) {
-        this.issue = ListUtil.add(new FieldQuery().extractAs(extractAs), this.issue);
+    public ReferenceQuery addIssue(final FieldQuery issue) {
+        this.issue = ListUtil.add(issue, this.issue);
         return this;
     }
 
     /**
-     * Add to the list of issue operations.
+     * Get the length of the issue queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of issue queries.
      */
-    @JsonIgnore
-    public ReferenceQuery issue(final Filter filter) {
-        this.issue = ListUtil.add(new FieldQuery().filter(filter), this.issue);
-        return this;
+    public int issueLength() {
+        return ListUtil.length(this.issue);
     }
 
     /**
@@ -594,65 +704,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("issue")
     public Iterable<FieldQuery> issue() {
         return ListUtil.iterable(this.issue);
     }
 
     /**
-     * Return whether any issue operations exist.
+     * Get the issue query at the input index.
      *
-     * @return True if any issue operations exist.
+     * @param index Index of the issue query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasIssue() {
-        return ListUtil.hasContent(this.issue);
+    public FieldQuery getIssue(final int index) {
+        return ListUtil.get(this.issue, index);
     }
 
     /**
-     * Set the list of year operations. This adds to any operations that are already saved.
+     * Get the issue field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getIssue() {
+        return this.issue;
+    }
+
+    /**
+     * Set the year operations. This adds to any operations that are already saved.
      *
      * @param year List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("year")
-    private void year(final List<FieldQuery> year) {
+    public ReferenceQuery setYear(final List<FieldQuery> year) {
+        this.year = year;
+        return this;
+    }
+
+    /**
+     * Add to the list of year operations.
+     *
+     * @param year {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addYear(final List<FieldQuery> year) {
         this.year = ListUtil.add(year, this.year);
-    }
-
-    /**
-     * Add to the list of year operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery year(final FieldQuery fieldQuery) {
-        this.year = ListUtil.add(fieldQuery, this.year);
         return this;
     }
 
     /**
      * Add to the list of year operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param year {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery year(final String extractAs) {
-        this.year = ListUtil.add(new FieldQuery().extractAs(extractAs), this.year);
+    public ReferenceQuery addYear(final FieldQuery year) {
+        this.year = ListUtil.add(year, this.year);
         return this;
     }
 
     /**
-     * Add to the list of year operations.
+     * Get the length of the year queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of year queries.
      */
-    @JsonIgnore
-    public ReferenceQuery year(final Filter filter) {
-        this.year = ListUtil.add(new FieldQuery().filter(filter), this.year);
-        return this;
+    public int yearLength() {
+        return ListUtil.length(this.year);
     }
 
     /**
@@ -660,191 +774,419 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("year")
     public Iterable<FieldQuery> year() {
         return ListUtil.iterable(this.year);
     }
 
     /**
-     * Return whether any year operations exist.
+     * Get the year query at the input index.
      *
-     * @return True if any year operations exist.
+     * @param index Index of the year query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasYear() {
-        return ListUtil.hasContent(this.year);
+    public FieldQuery getYear(final int index) {
+        return ListUtil.get(this.year, index);
     }
 
     /**
-     * Set the list of page operations. This adds to any operations that are already saved.
+     * Get the year field queries.
      *
-     * @param pages List of {@link PagesQuery} objects.
+     * @return List of {@link FieldQuery} objects.
      */
-    @JsonSetter("pages")
-    private void pages(final List<PagesQuery> pages) {
-        this.pages = ListUtil.add(pages, this.pages);
+    public List<FieldQuery> getYear() {
+        return this.year;
     }
 
     /**
-     * Add to the list of page operations.
+     * Set the figure operations. This adds to any operations that are already saved.
      *
-     * @param page {@link PagesQuery} object to add.
+     * @param figure List of {@link DisplayItemQuery} objects.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery pages(final PagesQuery page) {
-        this.pages = ListUtil.add(page, this.pages);
+    public ReferenceQuery setFigure(final List<DisplayItemQuery> figure) {
+        this.figure = figure;
         return this;
     }
 
     /**
-     * Get an iterable of page operations.
+     * Add to the list of figure operations.
+     *
+     * @param figure {@link DisplayItemQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addFigure(final List<DisplayItemQuery> figure) {
+        this.figure = ListUtil.add(figure, this.figure);
+        return this;
+    }
+
+    /**
+     * Add to the list of figure operations.
+     *
+     * @param figure {@link DisplayItemQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addFigure(final DisplayItemQuery figure) {
+        this.figure = ListUtil.add(figure, this.figure);
+        return this;
+    }
+
+    /**
+     * Get the length of the figure queries.
+     *
+     * @return Number of figure queries.
+     */
+    public int figureLength() {
+        return ListUtil.length(this.figure);
+    }
+
+    /**
+     * Get an iterable over figure operations.
+     *
+     * @return Iterable of {@link DisplayItemQuery} objects.
+     */
+    public Iterable<DisplayItemQuery> figure() {
+        return ListUtil.iterable(this.figure);
+    }
+
+    /**
+     * Get the figure query at the input index.
+     *
+     * @param index Index of the figure query to get.
+     * @return {@link DisplayItemQuery} at the input index.
+     */
+    public DisplayItemQuery getFigure(final int index) {
+        return ListUtil.get(this.figure, index);
+    }
+
+    /**
+     * Get the figure field queries.
+     *
+     * @return List of {@link DisplayItemQuery} objects.
+     */
+    public List<DisplayItemQuery> getFigure() {
+        return this.figure;
+    }
+
+    /**
+     * Set the table operations. This adds to any operations that are already saved.
+     *
+     * @param table List of {@link DisplayItemQuery} objects.
+     * @return This object.
+     */
+    public ReferenceQuery setTable(final List<DisplayItemQuery> table) {
+        this.table = table;
+        return this;
+    }
+
+    /**
+     * Add to the list of table operations.
+     *
+     * @param table {@link DisplayItemQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addTable(final List<DisplayItemQuery> table) {
+        this.table = ListUtil.add(table, this.table);
+        return this;
+    }
+
+    /**
+     * Add to the list of table operations.
+     *
+     * @param table {@link DisplayItemQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addTable(final DisplayItemQuery table) {
+        this.table = ListUtil.add(table, this.table);
+        return this;
+    }
+
+    /**
+     * Get the length of the table queries.
+     *
+     * @return Number of table queries.
+     */
+    public int tableLength() {
+        return ListUtil.length(this.table);
+    }
+
+    /**
+     * Get an iterable over table operations.
+     *
+     * @return Iterable of {@link DisplayItemQuery} objects.
+     */
+    public Iterable<DisplayItemQuery> table() {
+        return ListUtil.iterable(this.table);
+    }
+
+    /**
+     * Get the table query at the input index.
+     *
+     * @param index Index of the table query to get.
+     * @return {@link DisplayItemQuery} at the input index.
+     */
+    public DisplayItemQuery getTable(final int index) {
+        return ListUtil.get(this.table, index);
+    }
+
+    /**
+     * Get the table field queries.
+     *
+     * @return List of {@link DisplayItemQuery} objects.
+     */
+    public List<DisplayItemQuery> getTable() {
+        return this.table;
+    }
+
+    /**
+     * Set the pages operations. This adds to any operations that are already saved.
+     *
+     * @param pages List of {@link PagesQuery} objects.
+     * @return This object.
+     */
+    public ReferenceQuery setPages(final List<PagesQuery> pages) {
+        this.pages = pages;
+        return this;
+    }
+
+    /**
+     * Add to the list of pages operations.
+     *
+     * @param pages {@link PagesQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addPages(final List<PagesQuery> pages) {
+        this.pages = ListUtil.add(pages, this.pages);
+        return this;
+    }
+
+    /**
+     * Add to the list of pages operations.
+     *
+     * @param pages {@link PagesQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addPages(final PagesQuery pages) {
+        this.pages = ListUtil.add(pages, this.pages);
+        return this;
+    }
+
+    /**
+     * Get the length of the pages queries.
+     *
+     * @return Number of pages queries.
+     */
+    public int pagesLength() {
+        return ListUtil.length(this.pages);
+    }
+
+    /**
+     * Get an iterable over pages operations.
      *
      * @return Iterable of {@link PagesQuery} objects.
      */
-    @JsonGetter("pages")
     public Iterable<PagesQuery> pages() {
         return ListUtil.iterable(this.pages);
     }
 
     /**
-     * Get whether an pages queries exist.
+     * Get the pages query at the input index.
      *
-     * @return True if any pages queries exist.
+     * @param index Index of the pages query to get.
+     * @return {@link PagesQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasPages() {
-        return ListUtil.hasContent(this.pages);
+    public PagesQuery getPages(final int index) {
+        return ListUtil.get(this.pages, index);
     }
 
     /**
-     * Set the list of author operations. This adds to any operations that are already saved.
+     * Get the pages field queries.
+     *
+     * @return List of {@link PagesQuery} objects.
+     */
+    public List<PagesQuery> getPages() {
+        return this.pages;
+    }
+
+    /**
+     * Set the authors operations. This adds to any operations that are already saved.
      *
      * @param authors List of {@link NameQuery} objects.
-     */
-    @JsonSetter("authors")
-    private void authors(final List<NameQuery> authors) {
-        this.authors = ListUtil.add(authors, this.authors);
-    }
-
-    /**
-     * Add to the list of author operations.
-     *
-     * @param author {@link NameQuery} object to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery authors(final NameQuery author) {
-        this.authors = ListUtil.add(author, this.authors);
+    public ReferenceQuery setAuthors(final List<NameQuery> authors) {
+        this.authors = authors;
         return this;
     }
 
     /**
-     * Get an iterable of author operations.
+     * Add to the list of authors operations.
+     *
+     * @param authors {@link NameQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addAuthors(final List<NameQuery> authors) {
+        this.authors = ListUtil.add(authors, this.authors);
+        return this;
+    }
+
+    /**
+     * Add to the list of authors operations.
+     *
+     * @param authors {@link NameQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addAuthors(final NameQuery authors) {
+        this.authors = ListUtil.add(authors, this.authors);
+        return this;
+    }
+
+    /**
+     * Get the length of the authors queries.
+     *
+     * @return Number of authors queries.
+     */
+    public int authorsLength() {
+        return ListUtil.length(this.authors);
+    }
+
+    /**
+     * Get an iterable over authors operations.
      *
      * @return Iterable of {@link NameQuery} objects.
      */
-    @JsonGetter("authors")
     public Iterable<NameQuery> authors() {
         return ListUtil.iterable(this.authors);
     }
 
     /**
-     * Get whether an authors queries exist.
+     * Get the authors query at the input index.
      *
-     * @return True if any authors queries exist.
+     * @param index Index of the authors query to get.
+     * @return {@link NameQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasAuthors() {
-        return ListUtil.hasContent(this.authors);
+    public NameQuery getAuthors(final int index) {
+        return ListUtil.get(this.authors, index);
     }
 
     /**
-     * Set the list of author operations. This adds to any operations that are already saved.
+     * Get the authors field queries.
+     *
+     * @return List of {@link NameQuery} objects.
+     */
+    public List<NameQuery> getAuthors() {
+        return this.authors;
+    }
+
+    /**
+     * Set the editors operations. This adds to any operations that are already saved.
      *
      * @param editors List of {@link NameQuery} objects.
-     */
-    @JsonSetter("editors")
-    private void editors(final List<NameQuery> editors) {
-        this.editors = ListUtil.add(editors, this.editors);
-    }
-
-    /**
-     * Add to the list of author operations.
-     *
-     * @param author {@link NameQuery} object to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery editors(final NameQuery author) {
-        this.editors = ListUtil.add(author, this.editors);
+    public ReferenceQuery setEditors(final List<NameQuery> editors) {
+        this.editors = editors;
         return this;
     }
 
     /**
-     * Get an iterable of author operations.
+     * Add to the list of editors operations.
+     *
+     * @param editors {@link NameQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addEditors(final List<NameQuery> editors) {
+        this.editors = ListUtil.add(editors, this.editors);
+        return this;
+    }
+
+    /**
+     * Add to the list of editors operations.
+     *
+     * @param editors {@link NameQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addEditors(final NameQuery editors) {
+        this.editors = ListUtil.add(editors, this.editors);
+        return this;
+    }
+
+    /**
+     * Get the length of the editors queries.
+     *
+     * @return Number of editors queries.
+     */
+    public int editorsLength() {
+        return ListUtil.length(this.editors);
+    }
+
+    /**
+     * Get an iterable over editors operations.
      *
      * @return Iterable of {@link NameQuery} objects.
      */
-    @JsonGetter("editors")
     public Iterable<NameQuery> editors() {
         return ListUtil.iterable(this.editors);
     }
 
     /**
-     * Get whether an editors queries exist.
+     * Get the editors query at the input index.
      *
-     * @return True if any editors queries exist.
+     * @param index Index of the editors query to get.
+     * @return {@link NameQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasEditors() {
-        return ListUtil.hasContent(this.editors);
+    public NameQuery getEditors(final int index) {
+        return ListUtil.get(this.editors, index);
     }
 
     /**
-     * Set the list of affiliations operations. This adds to any operations that are already saved.
+     * Get the editors field queries.
+     *
+     * @return List of {@link NameQuery} objects.
+     */
+    public List<NameQuery> getEditors() {
+        return this.editors;
+    }
+
+    /**
+     * Set the affiliations operations. This adds to any operations that are already saved.
      *
      * @param affiliations List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("affiliations")
-    private void affiliations(final List<FieldQuery> affiliations) {
+    public ReferenceQuery setAffiliations(final List<FieldQuery> affiliations) {
+        this.affiliations = affiliations;
+        return this;
+    }
+
+    /**
+     * Add to the list of affiliations operations.
+     *
+     * @param affiliations {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addAffiliations(final List<FieldQuery> affiliations) {
         this.affiliations = ListUtil.add(affiliations, this.affiliations);
-    }
-
-    /**
-     * Add to the list of affiliations operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery affiliations(final FieldQuery fieldQuery) {
-        this.affiliations = ListUtil.add(fieldQuery, this.affiliations);
         return this;
     }
 
     /**
      * Add to the list of affiliations operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param affiliations {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery affiliations(final String extractAs) {
-        this.affiliations = ListUtil.add(new FieldQuery().extractAs(extractAs), this.affiliations);
+    public ReferenceQuery addAffiliations(final FieldQuery affiliations) {
+        this.affiliations = ListUtil.add(affiliations, this.affiliations);
         return this;
     }
 
     /**
-     * Add to the list of affiliations operations.
+     * Get the length of the affiliations queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of affiliations queries.
      */
-    @JsonIgnore
-    public ReferenceQuery affiliations(final Filter filter) {
-        this.affiliations = ListUtil.add(new FieldQuery().filter(filter), this.affiliations);
-        return this;
+    public int affiliationsLength() {
+        return ListUtil.length(this.affiliations);
     }
 
     /**
@@ -852,65 +1194,69 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("affiliations")
     public Iterable<FieldQuery> affiliations() {
         return ListUtil.iterable(this.affiliations);
     }
 
     /**
-     * Return whether any affiliations operations exist.
+     * Get the affiliations query at the input index.
      *
-     * @return True if any affiliations operations exist.
+     * @param index Index of the affiliations query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasAffiliations() {
-        return ListUtil.hasContent(this.affiliations);
+    public FieldQuery getAffiliations(final int index) {
+        return ListUtil.get(this.affiliations, index);
     }
 
     /**
-     * Set the list of acknowledgements operations. This adds to any operations that are already saved.
+     * Get the affiliations field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getAffiliations() {
+        return this.affiliations;
+    }
+
+    /**
+     * Set the acknowledgements operations. This adds to any operations that are already saved.
      *
      * @param acknowledgements List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("acknowledgements")
-    private void acknowledgements(final List<FieldQuery> acknowledgements) {
+    public ReferenceQuery setAcknowledgements(final List<FieldQuery> acknowledgements) {
+        this.acknowledgements = acknowledgements;
+        return this;
+    }
+
+    /**
+     * Add to the list of acknowledgements operations.
+     *
+     * @param acknowledgements {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addAcknowledgements(final List<FieldQuery> acknowledgements) {
         this.acknowledgements = ListUtil.add(acknowledgements, this.acknowledgements);
-    }
-
-    /**
-     * Add to the list of acknowledgements operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public ReferenceQuery acknowledgements(final FieldQuery fieldQuery) {
-        this.acknowledgements = ListUtil.add(fieldQuery, this.acknowledgements);
         return this;
     }
 
     /**
      * Add to the list of acknowledgements operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param acknowledgements {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery acknowledgements(final String extractAs) {
-        this.acknowledgements = ListUtil.add(new FieldQuery().extractAs(extractAs), this.acknowledgements);
+    public ReferenceQuery addAcknowledgements(final FieldQuery acknowledgements) {
+        this.acknowledgements = ListUtil.add(acknowledgements, this.acknowledgements);
         return this;
     }
 
     /**
-     * Add to the list of acknowledgements operations.
+     * Get the length of the acknowledgements queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of acknowledgements queries.
      */
-    @JsonIgnore
-    public ReferenceQuery acknowledgements(final Filter filter) {
-        this.acknowledgements = ListUtil.add(new FieldQuery().filter(filter), this.acknowledgements);
-        return this;
+    public int acknowledgementsLength() {
+        return ListUtil.length(this.acknowledgements);
     }
 
     /**
@@ -918,152 +1264,198 @@ public class ReferenceQuery extends BaseObjectQuery {
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("acknowledgements")
     public Iterable<FieldQuery> acknowledgements() {
         return ListUtil.iterable(this.acknowledgements);
     }
 
     /**
-     * Return whether any acknowledgements operations exist.
+     * Get the acknowledgements query at the input index.
      *
-     * @return True if any acknowledgements operations exist.
+     * @param index Index of the acknowledgements query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasAcknowledgements() {
-        return ListUtil.hasContent(this.acknowledgements);
+    public FieldQuery getAcknowledgements(final int index) {
+        return ListUtil.get(this.acknowledgements, index);
     }
 
     /**
-     * Set the list of reference operations. This adds to any operations that are already saved.
+     * Get the acknowledgements field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getAcknowledgements() {
+        return this.acknowledgements;
+    }
+
+    /**
+     * Set the references operations. This adds to any operations that are already saved.
      *
      * @param references List of {@link ReferenceQuery} objects.
-     */
-    @JsonSetter("references")
-    private void references(final List<ReferenceQuery> references) {
-        this.references = ListUtil.add(references, this.references);
-    }
-
-    /**
-     * Add to the list of reference operations.
-     *
-     * @param reference {@link ReferenceQuery} object to add.
      * @return This object.
      */
-    @JsonIgnore
-    public ReferenceQuery references(final ReferenceQuery reference) {
-        this.references = ListUtil.add(reference, this.references);
+    public ReferenceQuery setReferences(final List<ReferenceQuery> references) {
+        this.references = references;
         return this;
     }
 
     /**
-     * Get an iterable of reference operations.
+     * Add to the list of references operations.
+     *
+     * @param references {@link ReferenceQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addReferences(final List<ReferenceQuery> references) {
+        this.references = ListUtil.add(references, this.references);
+        return this;
+    }
+
+    /**
+     * Add to the list of references operations.
+     *
+     * @param references {@link ReferenceQuery} to add.
+     * @return This object.
+     */
+    public ReferenceQuery addReferences(final ReferenceQuery references) {
+        this.references = ListUtil.add(references, this.references);
+        return this;
+    }
+
+    /**
+     * Get the length of the references queries.
+     *
+     * @return Number of references queries.
+     */
+    public int referencesLength() {
+        return ListUtil.length(this.references);
+    }
+
+    /**
+     * Get an iterable over references operations.
      *
      * @return Iterable of {@link ReferenceQuery} objects.
      */
-    @JsonGetter("references")
     public Iterable<ReferenceQuery> references() {
         return ListUtil.iterable(this.references);
     }
 
     /**
-     * Get whether an references queries exist.
+     * Get the references query at the input index.
      *
-     * @return True if any references queries exist.
+     * @param index Index of the references query to get.
+     * @return {@link ReferenceQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasReferences() {
-        return ListUtil.hasContent(this.references);
+    public ReferenceQuery getReferences(final int index) {
+        return ListUtil.get(this.references, index);
     }
 
-    @Override
-    @JsonSetter("logic")
-    public ReferenceQuery logic(final Logic logic) {
-        super.logic(logic);
+    /**
+     * Get the references field queries.
+     *
+     * @return List of {@link ReferenceQuery} objects.
+     */
+    public List<ReferenceQuery> getReferences() {
+        return this.references;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link ReferenceQuery} objects.
+     * @return This object.
+     */
+    public ReferenceQuery setQuery(final List<ReferenceQuery> query) {
+        this.query = query;
         return this;
     }
 
-    @Override
-    @JsonSetter("extractAs")
-    public ReferenceQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link ReferenceQuery} objects.
+     * @return This object.
+     */
+    public ReferenceQuery addQuery(final List<ReferenceQuery> query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonSetter("extractAll")
-    public ReferenceQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link ReferenceQuery} object to add.
+     * @return This object.
+     */
+    public ReferenceQuery addQuery(final ReferenceQuery query) {
+        this.query = ListUtil.add(query, this.query);
         return this;
     }
 
-    @Override
-    @JsonSetter("extractWhenMissing")
-    public ReferenceQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
-        return this;
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link ReferenceQuery} objects.
+     */
+    public Iterable<ReferenceQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link ReferenceQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link ReferenceQuery} at the input index.
+     */
+    public ReferenceQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link ReferenceQuery} objects.
+     */
+    public List<ReferenceQuery> getQuery() {
+        return this.query;
     }
 
     @Override
-    @JsonIgnore
-    public ReferenceQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ReferenceQuery tags(final String extractAs) {
-        super.tags(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ReferenceQuery tags(final Filter filter) {
-        super.tags(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ReferenceQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ReferenceQuery length(final String extractAs) {
-        super.length(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ReferenceQuery length(final Filter filter) {
-        super.length(filter);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ReferenceQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ReferenceQuery offset(final String extractAs) {
-        super.offset(extractAs);
-        return this;
-    }
-
-    @Override
-    @JsonIgnore
-    public ReferenceQuery offset(final Filter filter) {
-        super.offset(filter);
-        return this;
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof ReferenceQuery)) {
+            return false;
+        }
+        final ReferenceQuery rhsQuery = (ReferenceQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.doi).equals(Optional.ofNullable(rhsQuery.doi))
+                && Optional.ofNullable(this.isbn).equals(Optional.ofNullable(rhsQuery.isbn))
+                && Optional.ofNullable(this.issn).equals(Optional.ofNullable(rhsQuery.issn))
+                && Optional.ofNullable(this.url).equals(Optional.ofNullable(rhsQuery.url))
+                && Optional.ofNullable(this.title).equals(Optional.ofNullable(rhsQuery.title))
+                && Optional.ofNullable(this.publisher).equals(Optional.ofNullable(rhsQuery.publisher))
+                && Optional.ofNullable(this.journal).equals(Optional.ofNullable(rhsQuery.journal))
+                && Optional.ofNullable(this.volume).equals(Optional.ofNullable(rhsQuery.volume))
+                && Optional.ofNullable(this.issue).equals(Optional.ofNullable(rhsQuery.issue))
+                && Optional.ofNullable(this.year).equals(Optional.ofNullable(rhsQuery.year))
+                && Optional.ofNullable(this.figure).equals(Optional.ofNullable(rhsQuery.figure))
+                && Optional.ofNullable(this.table).equals(Optional.ofNullable(rhsQuery.table))
+                && Optional.ofNullable(this.pages).equals(Optional.ofNullable(rhsQuery.pages))
+                && Optional.ofNullable(this.authors).equals(Optional.ofNullable(rhsQuery.authors))
+                && Optional.ofNullable(this.editors).equals(Optional.ofNullable(rhsQuery.editors))
+                && Optional.ofNullable(this.affiliations).equals(Optional.ofNullable(rhsQuery.affiliations))
+                && Optional.ofNullable(this.acknowledgements).equals(Optional.ofNullable(rhsQuery.acknowledgements))
+                && Optional.ofNullable(this.references).equals(Optional.ofNullable(rhsQuery.references))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** DOI of the reference. */
@@ -1095,6 +1487,12 @@ public class ReferenceQuery extends BaseObjectQuery {
 
     /** Year of the reference. */
     private List<FieldQuery> year;
+    
+    /** Figure for the reference. */
+    private List<DisplayItemQuery> figure;
+
+    /** Table for the reference. */
+    private List<DisplayItemQuery> table;
 
     /** Pages of the reference. */
     private List<PagesQuery> pages;
@@ -1113,4 +1511,7 @@ public class ReferenceQuery extends BaseObjectQuery {
 
     /** Nested reference queries. */
     private List<ReferenceQuery> references;
+    
+    /** Nested list of queries. */
+    private List<ReferenceQuery> query;
 }

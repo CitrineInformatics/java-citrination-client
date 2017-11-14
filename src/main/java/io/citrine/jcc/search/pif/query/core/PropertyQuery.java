@@ -1,12 +1,12 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Class used to match against a property.
@@ -16,279 +16,474 @@ import java.util.List;
 public class PropertyQuery extends ValueQuery {
 
     @Override
-    @JsonSetter("logic")
-    public PropertyQuery logic(final Logic logic) {
-        super.logic(logic);
+    public PropertyQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAs")
-    public PropertyQuery extractAs(final String extractAs) {
-        super.extractAs(extractAs);
+    public PropertyQuery setSimple(final String simple) {
+        super.setSimple(simple);
         return this;
     }
 
     @Override
-    @JsonSetter("extractAll")
-    public PropertyQuery extractAll(final Boolean extractAll) {
-        super.extractAll(extractAll);
+    public PropertyQuery setExtractAs(final String extractAs) {
+        super.setExtractAs(extractAs);
         return this;
     }
 
     @Override
-    @JsonSetter("extractWhenMissing")
-    public PropertyQuery extractWhenMissing(final Object extractWhenMissing) {
-        super.extractWhenMissing(extractWhenMissing);
+    public PropertyQuery setExtractAll(final Boolean extractAll) {
+        super.setExtractAll(extractAll);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery name(final FieldQuery fieldQuery) {
-        super.name(fieldQuery);
+    public PropertyQuery setExtractWhenMissing(final Object extractWhenMissing) {
+        super.setExtractWhenMissing(extractWhenMissing);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery name(final String extractAs) {
-        super.name(extractAs);
+    public PropertyQuery setTags(final List<FieldQuery> tags) {
+        super.setTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery name(final Filter filter) {
-        super.name(filter);
+    public PropertyQuery addTags(final List<FieldQuery> tags) {
+        super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery value(final FieldQuery fieldQuery) {
-        super.value(fieldQuery);
+    public PropertyQuery addTags(final FieldQuery tags) {
+        super.addTags(tags);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery value(final String extractAs) {
-        super.value(extractAs);
+    public PropertyQuery setLength(final List<FieldQuery> length) {
+        super.setLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery value(final Filter filter) {
-        super.value(filter);
+    public PropertyQuery addLength(final List<FieldQuery> length) {
+        super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery units(final FieldQuery fieldQuery) {
-        super.units(fieldQuery);
+    public PropertyQuery addLength(final FieldQuery length) {
+        super.addLength(length);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery units(final String extractAs) {
-        super.units(extractAs);
+    public PropertyQuery setOffset(final List<FieldQuery> offset) {
+        super.setOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery units(final Filter filter) {
-        super.units(filter);
+    public PropertyQuery addOffset(final List<FieldQuery> offset) {
+        super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonSetter("unitsNormalization")
-    public PropertyQuery unitsNormalization(final UnitsNormalization unitsNormalization) {
-        super.unitsNormalization(unitsNormalization);
+    public PropertyQuery addOffset(final FieldQuery offset) {
+        super.addOffset(offset);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery tags(final FieldQuery fieldQuery) {
-        super.tags(fieldQuery);
+    public PropertyQuery setName(final List<FieldQuery> name) {
+        super.setName(name);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery tags(final String extractAs) {
-        super.tags(extractAs);
+    public PropertyQuery addName(final List<FieldQuery> name) {
+        super.addName(name);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery tags(final Filter filter) {
-        super.tags(filter);
+    public PropertyQuery addName(final FieldQuery name) {
+        super.addName(name);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery length(final FieldQuery fieldQuery) {
-        super.length(fieldQuery);
+    public PropertyQuery setValue(final List<FieldQuery> value) {
+        super.setValue(value);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery length(final String extractAs) {
-        super.length(extractAs);
+    public PropertyQuery addValue(final List<FieldQuery> value) {
+        super.addValue(value);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery length(final Filter filter) {
-        super.length(filter);
+    public PropertyQuery addValue(final FieldQuery value) {
+        super.addValue(value);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery offset(final FieldQuery fieldQuery) {
-        super.offset(fieldQuery);
+    public PropertyQuery setFile(final List<FileReferenceQuery> file) {
+        super.setFile(file);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery offset(final String extractAs) {
-        super.offset(extractAs);
+    public PropertyQuery addFile(final List<FileReferenceQuery> file) {
+        super.addFile(file);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery offset(final Filter filter) {
-        super.offset(filter);
+    public PropertyQuery addFile(final FileReferenceQuery file) {
+        super.addFile(file);
         return this;
     }
 
     @Override
-    @JsonIgnore
-    public PropertyQuery file(final FileReferenceQuery file) {
-        super.file(file);
+    public PropertyQuery setUnits(final List<FieldQuery> units) {
+        super.setUnits(units);
+        return this;
+    }
+
+    @Override
+    public PropertyQuery addUnits(final List<FieldQuery> units) {
+        super.addUnits(units);
+        return this;
+    }
+
+    @Override
+    public PropertyQuery addUnits(final FieldQuery units) {
+        super.addUnits(units);
         return this;
     }
 
     /**
-     * Set the list of conditions operations. This adds to any operations that are already saved.
+     * Set the conditions operations. This adds to any operations that are already saved.
      *
      * @param conditions List of {@link ValueQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("conditions")
-    private void conditions(final List<ValueQuery> conditions) {
-        this.conditions = ListUtil.add(conditions, this.conditions);
+    public PropertyQuery setConditions(final List<ValueQuery> conditions) {
+        this.conditions = conditions;
+        return this;
     }
 
     /**
      * Add to the list of conditions operations.
      *
-     * @param conditions {@link ValueQuery} object to add.
+     * @param conditions {@link ValueQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public PropertyQuery conditions(final ValueQuery conditions) {
+    public PropertyQuery addConditions(final List<ValueQuery> conditions) {
         this.conditions = ListUtil.add(conditions, this.conditions);
         return this;
     }
 
     /**
-     * Get an iterable of conditions operations.
+     * Add to the list of conditions operations.
+     *
+     * @param conditions {@link ValueQuery} to add.
+     * @return This object.
+     */
+    public PropertyQuery addConditions(final ValueQuery conditions) {
+        this.conditions = ListUtil.add(conditions, this.conditions);
+        return this;
+    }
+
+    /**
+     * Get the length of the conditions queries.
+     *
+     * @return Number of conditions queries.
+     */
+    public int conditionsLength() {
+        return ListUtil.length(this.conditions);
+    }
+
+    /**
+     * Get an iterable over conditions operations.
      *
      * @return Iterable of {@link ValueQuery} objects.
      */
-    @JsonGetter("conditions")
     public Iterable<ValueQuery> conditions() {
         return ListUtil.iterable(this.conditions);
     }
 
     /**
-     * Get whether an conditions queries exist.
+     * Get the conditions query at the input index.
      *
-     * @return True if any conditions queries exist.
+     * @param index Index of the conditions query to get.
+     * @return {@link ValueQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasConditions() {
-        return ListUtil.hasContent(this.conditions);
+    public ValueQuery getConditions(final int index) {
+        return ListUtil.get(this.conditions, index);
     }
 
     /**
-     * Set the list of data type operations. This adds to any operations that are already saved.
+     * Get the conditions field queries.
+     *
+     * @return List of {@link ValueQuery} objects.
+     */
+    public List<ValueQuery> getConditions() {
+        return this.conditions;
+    }
+
+    /**
+     * Set the dataType operations. This adds to any operations that are already saved.
      *
      * @param dataType List of {@link FieldQuery} objects.
+     * @return This object.
      */
-    @JsonSetter("dataType")
-    private void dataType(final List<FieldQuery> dataType) {
+    public PropertyQuery setDataType(final List<FieldQuery> dataType) {
+        this.dataType = dataType;
+        return this;
+    }
+
+    /**
+     * Add to the list of dataType operations.
+     *
+     * @param dataType {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public PropertyQuery addDataType(final List<FieldQuery> dataType) {
         this.dataType = ListUtil.add(dataType, this.dataType);
-    }
-
-    /**
-     * Add to the list of data type operations.
-     *
-     * @param fieldQuery {@link FieldQuery} to add.
-     * @return This object.
-     */
-    @JsonIgnore
-    public PropertyQuery dataType(final FieldQuery fieldQuery) {
-        this.dataType = ListUtil.add(fieldQuery, this.dataType);
         return this;
     }
 
     /**
-     * Add to the list of data type operations.
+     * Add to the list of dataType operations.
      *
-     * @param extractAs Alias to extract as.
+     * @param dataType {@link FieldQuery} to add.
      * @return This object.
      */
-    @JsonIgnore
-    public PropertyQuery dataType(final String extractAs) {
-        this.dataType = ListUtil.add(new FieldQuery().extractAs(extractAs), this.dataType);
+    public PropertyQuery addDataType(final FieldQuery dataType) {
+        this.dataType = ListUtil.add(dataType, this.dataType);
         return this;
     }
 
     /**
-     * Add to the list of data type operations.
+     * Get the length of the dataType queries.
      *
-     * @param filter {@link Filter} to apply.
-     * @return This object.
+     * @return Number of dataType queries.
      */
-    @JsonIgnore
-    public PropertyQuery dataType(final Filter filter) {
-        this.dataType = ListUtil.add(new FieldQuery().filter(filter), this.dataType);
-        return this;
+    public int dataTypeLength() {
+        return ListUtil.length(this.dataType);
     }
 
     /**
-     * Get an iterable over data type operations.
+     * Get an iterable over dataType operations.
      *
      * @return Iterable of {@link FieldQuery} objects.
      */
-    @JsonGetter("dataType")
     public Iterable<FieldQuery> dataType() {
         return ListUtil.iterable(this.dataType);
     }
 
     /**
-     * Return whether any data type operations exist.
+     * Get the dataType query at the input index.
      *
-     * @return True if any data type operations exist.
+     * @param index Index of the dataType query to get.
+     * @return {@link FieldQuery} at the input index.
      */
-    @JsonIgnore
-    public boolean hasDataType() {
-        return ListUtil.hasContent(this.dataType);
+    public FieldQuery getDataType(final int index) {
+        return ListUtil.get(this.dataType, index);
+    }
+
+    /**
+     * Get the dataType field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getDataType() {
+        return this.dataType;
+    }
+
+    /**
+     * Set the references operations. This adds to any operations that are already saved.
+     *
+     * @param references List of {@link ReferenceQuery} objects.
+     * @return This object.
+     */
+    public PropertyQuery setReferences(final List<ReferenceQuery> references) {
+        this.references = references;
+        return this;
+    }
+
+    /**
+     * Add to the list of references operations.
+     *
+     * @param references {@link ReferenceQuery} to add.
+     * @return This object.
+     */
+    public PropertyQuery addReferences(final List<ReferenceQuery> references) {
+        this.references = ListUtil.add(references, this.references);
+        return this;
+    }
+
+    /**
+     * Add to the list of references operations.
+     *
+     * @param references {@link ReferenceQuery} to add.
+     * @return This object.
+     */
+    public PropertyQuery addReferences(final ReferenceQuery references) {
+        this.references = ListUtil.add(references, this.references);
+        return this;
+    }
+
+    /**
+     * Get the length of the references queries.
+     *
+     * @return Number of references queries.
+     */
+    public int referencesLength() {
+        return ListUtil.length(this.references);
+    }
+
+    /**
+     * Get an iterable over references operations.
+     *
+     * @return Iterable of {@link ReferenceQuery} objects.
+     */
+    public Iterable<ReferenceQuery> references() {
+        return ListUtil.iterable(this.references);
+    }
+
+    /**
+     * Get the references query at the input index.
+     *
+     * @param index Index of the references query to get.
+     * @return {@link ReferenceQuery} at the input index.
+     */
+    public ReferenceQuery getReferences(final int index) {
+        return ListUtil.get(this.references, index);
+    }
+
+    /**
+     * Get the references field queries.
+     *
+     * @return List of {@link ReferenceQuery} objects.
+     */
+    public List<ReferenceQuery> getReferences() {
+        return this.references;
+    }
+
+    /**
+     * Set the list of nested queries. This replaces any filters that are already present.
+     *
+     * @param query List of {@link PropertyQuery} objects.
+     * @return This object.
+     */
+    @Override
+    @JsonDeserialize(contentAs = PropertyQuery.class)
+    public PropertyQuery setQuery(final List<ValueQuery> query) {
+        this.query = (query == null)
+                ? null
+                : query.stream()
+                        .map(i -> (PropertyQuery) i)
+                        .collect(Collectors.toList());
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query List of {@link PropertyQuery} objects.
+     * @return This object.
+     */
+    @Override
+    public PropertyQuery addQuery(final List<ValueQuery> query) {
+        final List<PropertyQuery> propertyQuery = (query == null)
+                ? null
+                : query.stream()
+                        .map(i -> (PropertyQuery) i)
+                        .collect(Collectors.toList());
+        this.query = ListUtil.add(propertyQuery, this.query);
+        return this;
+    }
+
+    /**
+     * Add to the list of nested queries.
+     *
+     * @param query {@link PropertyQuery} object to add.
+     * @return This object.
+     */
+    @Override
+    public PropertyQuery addQuery(final ValueQuery query) {
+        this.query = ListUtil.add((PropertyQuery) query, this.query);
+        return this;
+    }
+
+    /**
+     * Get the number of nested queries.
+     *
+     * @return Number of nested queries.
+     */
+    @Override
+    public int queryLength() {
+        return ListUtil.length(this.query);
+    }
+
+    /**
+     * Get an iterable over the nested queries.
+     *
+     * @return {@link Iterable} of {@link PropertyQuery} objects.
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Iterable<PropertyQuery> query() {
+        return ListUtil.iterable(this.query);
+    }
+
+    /**
+     * Get the nested {@link PropertyQuery} object at the input index.
+     *
+     * @param index Index of the nested query to get.
+     * @return {@link PropertyQuery} at the input index.
+     */
+    @Override
+    public PropertyQuery getQuery(final int index) {
+        return ListUtil.get(this.query, index);
+    }
+
+    /**
+     * Get the list of PIF system queries.
+     *
+     * @return List of {@link PropertyQuery} objects.
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<PropertyQuery> getQuery() {
+        return this.query;
+    }
+
+    @Override
+    public boolean equals(final Object rhs) {
+        if (this == rhs) {
+            return true;
+        }
+        if ((rhs == null) || !(rhs instanceof PropertyQuery)) {
+            return false;
+        }
+        final PropertyQuery rhsQuery = (PropertyQuery) rhs;
+        return super.equals(rhsQuery)
+                && Optional.ofNullable(this.conditions).equals(Optional.ofNullable(rhsQuery.conditions))
+                && Optional.ofNullable(this.dataType).equals(Optional.ofNullable(rhsQuery.dataType))
+                && Optional.ofNullable(this.references).equals(Optional.ofNullable(rhsQuery.references))
+                && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
 
     /** List of conditions queries. */
@@ -296,4 +491,10 @@ public class PropertyQuery extends ValueQuery {
 
     /** List of data type queries. */
     private List<FieldQuery> dataType;
+
+    /** List of reference queries. */
+    private List<ReferenceQuery> references;
+    
+    /** Nested list of queries. */
+    private List<PropertyQuery> query;
 }

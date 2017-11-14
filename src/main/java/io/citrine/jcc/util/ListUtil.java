@@ -57,6 +57,7 @@ public abstract class ListUtil {
      *
      * @param obj Object to get an iterable on.
      * @param <T> Type of the object to get the
+     * @return Iterable of objects.
      */
     public static <T> Iterable<T> singletonIterable(final T obj) {
         return (obj == null) ? Collections.emptyList() : Collections.singletonList(obj);
@@ -99,10 +100,27 @@ public abstract class ListUtil {
     /**
      * Get the length of a list.
      *
+     * @param list List to get the length of.
      * @return Number of elements in a list.
      */
     public static int length(final List<?> list) {
         return (list == null) ? 0 : list.size();
+    }
+
+    /**
+     * Get a value inside of a list.
+     *
+     * @param list List to get the value from.
+     * @param index Index of the value to return.
+     * @param <T> Type of the value in the list.
+     * @return Object in list at the input index.
+     * @throws IllegalArgumentException if the index is out of bounds.
+     */
+    public static <T> T get(final List<T> list, final int index) {
+        if (list == null) {
+            throw new IndexOutOfBoundsException("Index out of range: " + index + " of 0");
+        }
+        return list.get(index);
     }
 
     // Make sure that objects of this class cannot be instantiated
