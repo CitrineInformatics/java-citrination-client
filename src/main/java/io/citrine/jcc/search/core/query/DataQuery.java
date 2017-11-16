@@ -368,7 +368,9 @@ public class DataQuery implements HasLogic, HasWeight {
         }
         final DataQuery rhsQuery = (DataQuery) rhs;
         return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsQuery.weight))
                 && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.simpleWeight).equals(Optional.ofNullable(rhsQuery.simpleWeight))
                 && Optional.ofNullable(this.dataset).equals(Optional.ofNullable(rhsQuery.dataset))
                 && Optional.ofNullable(this.system).equals(Optional.ofNullable(rhsQuery.system))
                 && Optional.ofNullable(this.file).equals(Optional.ofNullable(rhsQuery.file))

@@ -650,7 +650,9 @@ public class DatasetQuery implements HasLogic, HasWeight {
         }
         final DatasetQuery rhsQuery = (DatasetQuery) rhs;
         return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsQuery.weight))
                 && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.simpleWeight).equals(Optional.ofNullable(rhsQuery.simpleWeight))
                 && Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsQuery.id))
                 && Optional.ofNullable(this.isFeatured).equals(Optional.ofNullable(rhsQuery.isFeatured))
                 && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))

@@ -312,7 +312,9 @@ public abstract class BaseFieldQuery implements HasLogic, HasWeight {
         final BaseFieldQuery rhsQuery = (BaseFieldQuery) rhs;
         return Optional.ofNullable(this.sort).equals(Optional.ofNullable(rhsQuery.sort))
                 && Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsQuery.weight))
                 && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.simpleWeight).equals(Optional.ofNullable(rhsQuery.simpleWeight))
                 && Optional.ofNullable(this.extractAs).equals(Optional.ofNullable(rhsQuery.extractAs))
                 && Optional.ofNullable(this.extractAll).equals(Optional.ofNullable(rhsQuery.extractAll))
                 && Optional.ofNullable(this.extractWhenMissing).equals(Optional.ofNullable(rhsQuery.extractWhenMissing))

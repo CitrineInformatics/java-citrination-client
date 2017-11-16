@@ -286,6 +286,7 @@ public class Filter implements HasLogic, HasWeight, HasFilter {
         }
         final Filter rhsFilter = (Filter) rhs;
         return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsFilter.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsFilter.weight))
                 && Optional.ofNullable(this.exists).equals(Optional.ofNullable(rhsFilter.exists))
                 && Optional.ofNullable(this.equal).equals(Optional.ofNullable(rhsFilter.equal))
                 && Optional.ofNullable(this.min).equals(Optional.ofNullable(rhsFilter.min))

@@ -439,7 +439,9 @@ public class FileQuery implements HasLogic, HasWeight {
         }
         final FileQuery rhsQuery = (FileQuery) rhs;
         return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsQuery.weight))
                 && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.simpleWeight).equals(Optional.ofNullable(rhsQuery.simpleWeight))
                 && Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsQuery.id))
                 && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
                 && Optional.ofNullable(this.content).equals(Optional.ofNullable(rhsQuery.content))

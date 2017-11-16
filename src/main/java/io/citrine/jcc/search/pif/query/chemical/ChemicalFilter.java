@@ -186,6 +186,7 @@ public class ChemicalFilter implements HasLogic, HasWeight, HasChemicalFilter {
         }
         final ChemicalFilter rhsFilter = (ChemicalFilter) rhs;
         return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsFilter.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsFilter.weight))
                 && Optional.ofNullable(this.exists).equals(Optional.ofNullable(rhsFilter.exists))
                 && Optional.ofNullable(this.equal).equals(Optional.ofNullable(rhsFilter.equal))
                 && Optional.ofNullable(this.element).equals(Optional.ofNullable(rhsFilter.element))
