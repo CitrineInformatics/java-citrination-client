@@ -6,6 +6,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -55,6 +56,26 @@ public abstract class BaseObjectQuery implements HasLogic, HasWeight {
      */
     public String getSimple() {
         return this.simple;
+    }
+
+    /**
+     * Set the map of relative field paths to their weights for simple queries.
+     *
+     * @param simpleWeight Map of field paths to weights.
+     * @return This object.
+     */
+    public BaseObjectQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = simpleWeight;
+        return this;
+    }
+
+    /**
+     * Get the map of relative field paths to their weights for simple queries.
+     *
+     * @return Map of field paths to weights.
+     */
+    public Map<String, Double> getSimpleWeight() {
+        return this.simpleWeight;
     }
 
     /**
@@ -355,6 +376,9 @@ public abstract class BaseObjectQuery implements HasLogic, HasWeight {
 
     /** String with the simple search to run against all fields. */
     private String simple;
+
+    /** Map of field names to weights for the simple search string. */
+    private Map<String, Double> simpleWeight;
 
     /** Alias to save this field under. */
     private String extractAs;

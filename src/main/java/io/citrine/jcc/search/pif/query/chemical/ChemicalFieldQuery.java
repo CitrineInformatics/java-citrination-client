@@ -8,6 +8,7 @@ import io.citrine.jcc.search.pif.query.core.FieldQuery;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -38,6 +39,12 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     @Override
     public ChemicalFieldQuery setSimple(final String simple) {
         super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.setSimpleWeight(simpleWeight);
         return this;
     }
 

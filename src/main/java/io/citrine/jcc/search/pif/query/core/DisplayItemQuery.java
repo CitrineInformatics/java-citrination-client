@@ -5,6 +5,7 @@ import io.citrine.jcc.util.ListUtil;
 import io.citrine.jpif.obj.common.DisplayItem;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -27,6 +28,12 @@ public class DisplayItemQuery extends BaseObjectQuery {
     @Override
     public DisplayItemQuery setSimple(final String simple) {
         super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public DisplayItemQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.setSimpleWeight(simpleWeight);
         return this;
     }
 
