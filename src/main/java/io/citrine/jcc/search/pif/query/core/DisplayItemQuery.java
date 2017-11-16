@@ -19,6 +19,12 @@ public class DisplayItemQuery extends BaseObjectQuery {
     }
 
     @Override
+    public DisplayItemQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public DisplayItemQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

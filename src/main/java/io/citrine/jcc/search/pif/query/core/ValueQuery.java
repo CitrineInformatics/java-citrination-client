@@ -20,6 +20,12 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ValueQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public ValueQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

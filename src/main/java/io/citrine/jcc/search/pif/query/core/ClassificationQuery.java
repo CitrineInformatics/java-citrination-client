@@ -20,6 +20,12 @@ public class ClassificationQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ClassificationQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public ClassificationQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

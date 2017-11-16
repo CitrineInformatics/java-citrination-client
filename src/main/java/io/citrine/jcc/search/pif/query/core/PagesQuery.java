@@ -20,6 +20,12 @@ public class PagesQuery extends BaseObjectQuery {
     }
 
     @Override
+    public PagesQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public PagesQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

@@ -20,6 +20,12 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ReferenceQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public ReferenceQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

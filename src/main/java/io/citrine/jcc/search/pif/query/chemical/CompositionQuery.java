@@ -22,6 +22,12 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     @Override
+    public CompositionQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public CompositionQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

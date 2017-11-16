@@ -3,6 +3,7 @@ package io.citrine.jcc.search.dataset.query;
 import io.citrine.jcc.search.core.query.BooleanFilter;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
@@ -14,7 +15,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class DatasetQuery implements HasLogic {
+public class DatasetQuery implements HasLogic, HasWeight {
 
     @Override
     public DatasetQuery setLogic(final Logic logic) {
@@ -25,6 +26,17 @@ public class DatasetQuery implements HasLogic {
     @Override
     public Logic getLogic() {
         return this.logic;
+    }
+
+    @Override
+    public DatasetQuery setWeight(final Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
     }
 
     /**
@@ -630,6 +642,9 @@ public class DatasetQuery implements HasLogic {
 
     /** Logic for the query. */
     private Logic logic;
+
+    /** Weight of the query. */
+    private Double weight;
 
     /** String with the simple search to run against all fields. */
     private String simple;

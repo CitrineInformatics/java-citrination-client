@@ -32,6 +32,12 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     @Override
+    public PifSystemQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public PifSystemQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.pif.query.chemical;
 
 import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
  * 
  * @author Kyle Michel
  */
-public class ChemicalFilter implements HasLogic, HasChemicalFilter {
+public class ChemicalFilter implements HasLogic, HasWeight, HasChemicalFilter {
 
     @Override
     public ChemicalFilter setLogic(final Logic logic) {
@@ -23,6 +24,17 @@ public class ChemicalFilter implements HasLogic, HasChemicalFilter {
     @Override
     public Logic getLogic() {
         return this.logic;
+    }
+
+    @Override
+    public ChemicalFilter setWeight(final Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
     }
 
     @Override
@@ -184,6 +196,9 @@ public class ChemicalFilter implements HasLogic, HasChemicalFilter {
 
     /** Logic for applying the filters. */
     private Logic logic;
+
+    /** Weight of the query. */
+    private Double weight;
 
     /** Just check for existence. */
     private Boolean exists;

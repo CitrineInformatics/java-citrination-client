@@ -24,6 +24,12 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     }
 
     @Override
+    public ChemicalFieldQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public ChemicalFieldQuery setSort(final SortOrder sort) {
         super.setSort(sort);
         return this;

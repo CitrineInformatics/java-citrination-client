@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.pif.query.core;
 
 import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.util.ListUtil;
@@ -14,7 +15,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public abstract class BaseFieldQuery implements HasLogic {
+public abstract class BaseFieldQuery implements HasLogic, HasWeight {
 
     @Override
     public BaseFieldQuery setLogic(final Logic logic) {
@@ -25,6 +26,17 @@ public abstract class BaseFieldQuery implements HasLogic {
     @Override
     public Logic getLogic() {
         return this.logic;
+    }
+
+    @Override
+    public BaseFieldQuery setWeight(final Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
     }
 
     /**
@@ -292,6 +304,9 @@ public abstract class BaseFieldQuery implements HasLogic {
 
     /** Logic that applies to the entire query. */
     private Logic logic;
+
+    /** Weight of the query. */
+    private Double weight;
 
     /** String with the simple search to run against all fields. */
     private String simple;

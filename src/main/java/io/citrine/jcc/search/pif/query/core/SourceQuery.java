@@ -20,6 +20,12 @@ public class SourceQuery extends BaseObjectQuery {
     }
 
     @Override
+    public SourceQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public SourceQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

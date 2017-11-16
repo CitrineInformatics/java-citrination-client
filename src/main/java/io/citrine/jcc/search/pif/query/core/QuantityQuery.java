@@ -20,6 +20,12 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     @Override
+    public QuantityQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public QuantityQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

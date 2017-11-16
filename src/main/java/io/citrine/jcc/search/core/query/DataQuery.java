@@ -13,7 +13,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class DataQuery implements HasLogic {
+public class DataQuery implements HasLogic, HasWeight {
 
     @Override
     public DataQuery setLogic(final Logic logic) {
@@ -24,6 +24,17 @@ public class DataQuery implements HasLogic {
     @Override
     public Logic getLogic() {
         return this.logic;
+    }
+
+    @Override
+    public DataQuery setWeight(final Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
     }
 
     /**
@@ -345,6 +356,9 @@ public class DataQuery implements HasLogic {
 
     /** Logic for the query. */
     private Logic logic;
+
+    /** Weight of the query. */
+    private Double weight;
 
     /** String with the simple search to run against all fields. */
     private String simple;

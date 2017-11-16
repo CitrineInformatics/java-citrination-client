@@ -20,6 +20,12 @@ public class FileReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
+    public FileReferenceQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public FileReferenceQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

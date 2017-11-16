@@ -20,6 +20,12 @@ public class NameQuery extends BaseObjectQuery {
     }
 
     @Override
+    public NameQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public NameQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

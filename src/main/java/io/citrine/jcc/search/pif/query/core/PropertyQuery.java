@@ -22,6 +22,12 @@ public class PropertyQuery extends ValueQuery {
     }
 
     @Override
+    public PropertyQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public PropertyQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

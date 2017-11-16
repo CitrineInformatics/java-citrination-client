@@ -24,6 +24,12 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     }
 
     @Override
+    public FieldQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public FieldQuery setSort(final SortOrder sort) {
         super.setSort(sort);
         return this;

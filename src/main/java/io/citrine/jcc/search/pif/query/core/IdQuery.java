@@ -20,6 +20,12 @@ public class IdQuery extends BaseObjectQuery {
     }
 
     @Override
+    public IdQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public IdQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;

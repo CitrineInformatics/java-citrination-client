@@ -20,6 +20,12 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ProcessStepQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public ProcessStepQuery setSimple(final String simple) {
         super.setSimple(simple);
         return this;
