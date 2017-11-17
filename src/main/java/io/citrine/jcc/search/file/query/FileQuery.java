@@ -2,6 +2,7 @@ package io.citrine.jcc.search.file.query;
 
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.HasSimple;
 import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
@@ -15,7 +16,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class FileQuery implements HasLogic, HasWeight {
+public class FileQuery implements HasLogic, HasWeight, HasSimple {
 
     @Override
     public FileQuery setLogic(final Logic logic) {
@@ -39,42 +40,24 @@ public class FileQuery implements HasLogic, HasWeight {
         return this.weight;
     }
 
-    /**
-     * Set the query to run against all fields.
-     *
-     * @param simple String with the query to run against all fields.
-     * @return This object.
-     */
+    @Override
     public FileQuery setSimple(final String simple) {
         this.simple = simple;
         return this;
     }
 
-    /**
-     * Get the query to run against all fields.
-     *
-     * @return String with the query to run against all fields.
-     */
+    @Override
     public String getSimple() {
         return this.simple;
     }
 
-    /**
-     * Set the map of relative field paths to their weights for simple queries.
-     *
-     * @param simpleWeight Map of field paths to weights.
-     * @return This object.
-     */
+    @Override
     public FileQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
         this.simpleWeight = simpleWeight;
         return this;
     }
 
-    /**
-     * Get the map of relative field paths to their weights for simple queries.
-     *
-     * @return Map of field paths to weights.
-     */
+    @Override
     public Map<String, Double> getSimpleWeight() {
         return this.simpleWeight;
     }

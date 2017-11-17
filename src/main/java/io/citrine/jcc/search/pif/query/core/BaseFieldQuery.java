@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.pif.query.core;
 
 import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.HasSimple;
 import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.core.query.SortOrder;
@@ -16,7 +17,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public abstract class BaseFieldQuery implements HasLogic, HasWeight {
+public abstract class BaseFieldQuery implements HasLogic, HasWeight, HasSimple {
 
     @Override
     public BaseFieldQuery setLogic(final Logic logic) {
@@ -40,6 +41,28 @@ public abstract class BaseFieldQuery implements HasLogic, HasWeight {
         return this.weight;
     }
 
+    @Override
+    public BaseFieldQuery setSimple(final String simple) {
+        this.simple = simple;
+        return this;
+    }
+
+    @Override
+    public String getSimple() {
+        return this.simple;
+    }
+
+    @Override
+    public BaseFieldQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = simpleWeight;
+        return this;
+    }
+
+    @Override
+    public Map<String, Double> getSimpleWeight() {
+        return this.simpleWeight;
+    }
+
     /**
      * Set the sort order to use.
      *
@@ -58,46 +81,6 @@ public abstract class BaseFieldQuery implements HasLogic, HasWeight {
      */
     public SortOrder getSort() {
         return this.sort;
-    }
-
-    /**
-     * Set the query to run against all fields.
-     *
-     * @param simple String with the query to run against all fields.
-     * @return This object.
-     */
-    public BaseFieldQuery setSimple(final String simple) {
-        this.simple = simple;
-        return this;
-    }
-
-    /**
-     * Get the query to run against all fields.
-     *
-     * @return String with the query to run against all fields.
-     */
-    public String getSimple() {
-        return this.simple;
-    }
-
-    /**
-     * Set the map of relative field paths to their weights for simple queries.
-     *
-     * @param simpleWeight Map of field paths to weights.
-     * @return This object.
-     */
-    public BaseFieldQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
-        this.simpleWeight = simpleWeight;
-        return this;
-    }
-
-    /**
-     * Get the map of relative field paths to their weights for simple queries.
-     *
-     * @return Map of field paths to weights.
-     */
-    public Map<String, Double> getSimpleWeight() {
-        return this.simpleWeight;
     }
 
     /**
