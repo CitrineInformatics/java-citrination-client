@@ -33,6 +33,23 @@ public interface HasSimple {
     HasSimple setSimpleWeight(final Map<String, Double> simpleWeight);
 
     /**
+     * Add a single weight to simple queries.
+     *
+     * @param field Name of the field.
+     * @param weight Weight for the query on the field.
+     * @return This object.
+     */
+    HasSimple addSimpleWeight(final String field, final Double weight);
+
+    /**
+     * Add all in a map of weights for simple queries.
+     *
+     * @param simpleWeight Map of field names to weights.
+     * @return This object.
+     */
+    HasSimple addSimpleWeight(final Map<String, Double> simpleWeight);
+
+    /**
      * Get the map of relative field paths to their weights for simple queries.
      *
      * @return Map of field paths to weights.

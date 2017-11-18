@@ -39,6 +39,18 @@ public class IdQuery extends BaseObjectQuery {
     }
 
     @Override
+    public IdQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public IdQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public IdQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

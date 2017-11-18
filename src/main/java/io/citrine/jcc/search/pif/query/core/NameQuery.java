@@ -39,6 +39,18 @@ public class NameQuery extends BaseObjectQuery {
     }
 
     @Override
+    public NameQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public NameQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public NameQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

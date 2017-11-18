@@ -39,6 +39,18 @@ public class PagesQuery extends BaseObjectQuery {
     }
 
     @Override
+    public PagesQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public PagesQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public PagesQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

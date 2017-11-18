@@ -39,6 +39,18 @@ public class SourceQuery extends BaseObjectQuery {
     }
 
     @Override
+    public SourceQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public SourceQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public SourceQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

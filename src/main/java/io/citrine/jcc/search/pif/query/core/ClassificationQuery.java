@@ -39,6 +39,18 @@ public class ClassificationQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ClassificationQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public ClassificationQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

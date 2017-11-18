@@ -39,6 +39,18 @@ public class ValueQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ValueQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public ValueQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public ValueQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

@@ -39,6 +39,18 @@ public class ProcessStepQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ProcessStepQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public ProcessStepQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public ProcessStepQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

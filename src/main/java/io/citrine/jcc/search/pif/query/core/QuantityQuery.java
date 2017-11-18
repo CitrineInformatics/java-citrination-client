@@ -39,6 +39,18 @@ public class QuantityQuery extends BaseObjectQuery {
     }
 
     @Override
+    public QuantityQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public QuantityQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public QuantityQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

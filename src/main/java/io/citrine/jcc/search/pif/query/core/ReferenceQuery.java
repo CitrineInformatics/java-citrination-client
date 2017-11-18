@@ -39,6 +39,18 @@ public class ReferenceQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ReferenceQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public ReferenceQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public ReferenceQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

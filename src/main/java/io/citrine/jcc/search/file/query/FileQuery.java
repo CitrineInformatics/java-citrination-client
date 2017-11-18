@@ -6,6 +6,7 @@ import io.citrine.jcc.search.core.query.HasSimple;
 import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.MapUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,18 @@ public class FileQuery implements HasLogic, HasWeight, HasSimple {
     @Override
     public FileQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
         this.simpleWeight = simpleWeight;
+        return this;
+    }
+
+    @Override
+    public FileQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = MapUtil.add(simpleWeight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public FileQuery addSimpleWeight(final String field, final Double weight) {
+        this.simpleWeight = MapUtil.add(field, weight, this.simpleWeight);
         return this;
     }
 

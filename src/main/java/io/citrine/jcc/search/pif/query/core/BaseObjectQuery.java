@@ -5,6 +5,7 @@ import io.citrine.jcc.search.core.query.HasSimple;
 import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.MapUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,18 @@ public abstract class BaseObjectQuery implements HasLogic, HasWeight, HasSimple 
     @Override
     public BaseObjectQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
         this.simpleWeight = simpleWeight;
+        return this;
+    }
+
+    @Override
+    public BaseObjectQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = MapUtil.add(simpleWeight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public BaseObjectQuery addSimpleWeight(final String field, final Double weight) {
+        this.simpleWeight = MapUtil.add(field, weight, this.simpleWeight);
         return this;
     }
 

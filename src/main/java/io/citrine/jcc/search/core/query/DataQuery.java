@@ -4,6 +4,7 @@ import io.citrine.jcc.search.dataset.query.DatasetQuery;
 import io.citrine.jcc.search.file.query.FileQuery;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.MapUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,18 @@ public class DataQuery implements HasLogic, HasWeight, HasSimple {
     @Override
     public DataQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
         this.simpleWeight = simpleWeight;
+        return this;
+    }
+
+    @Override
+    public DataQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = MapUtil.add(simpleWeight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public DataQuery addSimpleWeight(final String field, final Double weight) {
+        this.simpleWeight = MapUtil.add(field, weight, this.simpleWeight);
         return this;
     }
 

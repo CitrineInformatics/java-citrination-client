@@ -38,6 +38,18 @@ public class DisplayItemQuery extends BaseObjectQuery {
     }
 
     @Override
+    public DisplayItemQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public DisplayItemQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public DisplayItemQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

@@ -49,6 +49,18 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     }
 
     @Override
+    public FieldQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public FieldQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public FieldQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

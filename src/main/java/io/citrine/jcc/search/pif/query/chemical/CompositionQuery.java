@@ -41,6 +41,18 @@ public class CompositionQuery extends BaseObjectQuery {
     }
 
     @Override
+    public CompositionQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public CompositionQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public CompositionQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

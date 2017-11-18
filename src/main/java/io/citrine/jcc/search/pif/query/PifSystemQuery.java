@@ -51,6 +51,18 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     @Override
+    public PifSystemQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public PifSystemQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public PifSystemQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;

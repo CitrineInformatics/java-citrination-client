@@ -41,6 +41,18 @@ public class PropertyQuery extends ValueQuery {
     }
 
     @Override
+    public PropertyQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public PropertyQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
+        return this;
+    }
+
+    @Override
     public PropertyQuery setExtractAs(final String extractAs) {
         super.setExtractAs(extractAs);
         return this;
