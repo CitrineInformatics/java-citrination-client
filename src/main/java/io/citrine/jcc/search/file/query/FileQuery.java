@@ -2,10 +2,14 @@ package io.citrine.jcc.search.file.query;
 
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.HasSimple;
+import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.MapUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -13,7 +17,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class FileQuery implements HasLogic {
+public class FileQuery implements HasLogic, HasWeight, HasSimple {
 
     @Override
     public FileQuery setLogic(final Logic logic) {
@@ -26,24 +30,49 @@ public class FileQuery implements HasLogic {
         return this.logic;
     }
 
-    /**
-     * Set the query to run against all fields.
-     *
-     * @param simple String with the query to run against all fields.
-     * @return This object.
-     */
+    @Override
+    public FileQuery setWeight(final Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
+    }
+
+    @Override
     public FileQuery setSimple(final String simple) {
         this.simple = simple;
         return this;
     }
 
-    /**
-     * Get the query to run against all fields.
-     *
-     * @return String with the query to run against all fields.
-     */
+    @Override
     public String getSimple() {
         return this.simple;
+    }
+
+    @Override
+    public FileQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = simpleWeight;
+        return this;
+    }
+
+    @Override
+    public FileQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = MapUtil.add(simpleWeight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public FileQuery addSimpleWeight(final String field, final Double weight) {
+        this.simpleWeight = MapUtil.add(field, weight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public Map<String, Double> getSimpleWeight() {
+        return this.simpleWeight;
     }
 
     /**
@@ -406,7 +435,9 @@ public class FileQuery implements HasLogic {
         }
         final FileQuery rhsQuery = (FileQuery) rhs;
         return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsQuery.weight))
                 && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.simpleWeight).equals(Optional.ofNullable(rhsQuery.simpleWeight))
                 && Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsQuery.id))
                 && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
                 && Optional.ofNullable(this.content).equals(Optional.ofNullable(rhsQuery.content))
@@ -417,8 +448,14 @@ public class FileQuery implements HasLogic {
     /** Logic for the query. */
     private Logic logic;
 
+    /** Weight of the query. */
+    private Double weight;
+
     /** String with the simple search to run against all fields. */
     private String simple;
+
+    /** Map of field names to weights for the simple search string. */
+    private Map<String, Double> simpleWeight;
 
     /** List of filters against the file ID. */
     private List<Filter> id;

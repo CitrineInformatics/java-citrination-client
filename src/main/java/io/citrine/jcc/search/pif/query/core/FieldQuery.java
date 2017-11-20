@@ -8,6 +8,7 @@ import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -24,6 +25,12 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     }
 
     @Override
+    public FieldQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public FieldQuery setSort(final SortOrder sort) {
         super.setSort(sort);
         return this;
@@ -32,6 +39,24 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     @Override
     public FieldQuery setSimple(final String simple) {
         super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public FieldQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.setSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public FieldQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public FieldQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
         return this;
     }
 

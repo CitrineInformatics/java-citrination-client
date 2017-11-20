@@ -1,10 +1,14 @@
 package io.citrine.jcc.search.pif.query.core;
 
 import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.HasSimple;
+import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.MapUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -12,7 +16,7 @@ import java.util.Optional;
  * 
  * @author Kyle Michel
  */
-public abstract class BaseObjectQuery implements HasLogic {
+public abstract class BaseObjectQuery implements HasLogic, HasWeight, HasSimple {
 
     @Override
     public BaseObjectQuery setLogic(final Logic logic) {
@@ -25,24 +29,49 @@ public abstract class BaseObjectQuery implements HasLogic {
         return this.logic;
     }
 
-    /**
-     * Set the query to run against all fields.
-     *
-     * @param simple String with the query to run against all fields.
-     * @return This object.
-     */
+    @Override
+    public BaseObjectQuery setWeight(final Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
+    }
+
+    @Override
     public BaseObjectQuery setSimple(final String simple) {
         this.simple = simple;
         return this;
     }
 
-    /**
-     * Get the query to run against all fields.
-     *
-     * @return String with the query to run against all fields.
-     */
+    @Override
     public String getSimple() {
         return this.simple;
+    }
+
+    @Override
+    public BaseObjectQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = simpleWeight;
+        return this;
+    }
+
+    @Override
+    public BaseObjectQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = MapUtil.add(simpleWeight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public BaseObjectQuery addSimpleWeight(final String field, final Double weight) {
+        this.simpleWeight = MapUtil.add(field, weight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public Map<String, Double> getSimpleWeight() {
+        return this.simpleWeight;
     }
 
     /**
@@ -326,7 +355,9 @@ public abstract class BaseObjectQuery implements HasLogic {
         }
         final BaseObjectQuery rhsQuery = (BaseObjectQuery) rhs;
         return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsQuery.weight))
                 && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.simpleWeight).equals(Optional.ofNullable(rhsQuery.simpleWeight))
                 && Optional.ofNullable(this.extractAs).equals(Optional.ofNullable(rhsQuery.extractAs))
                 && Optional.ofNullable(this.extractAll).equals(Optional.ofNullable(rhsQuery.extractAll))
                 && Optional.ofNullable(this.extractWhenMissing).equals(Optional.ofNullable(rhsQuery.extractWhenMissing))
@@ -338,8 +369,14 @@ public abstract class BaseObjectQuery implements HasLogic {
     /** Logic that applies to the entire query. */
     private Logic logic;
 
+    /** Weight of the query. */
+    private Double weight;
+
     /** String with the simple search to run against all fields. */
     private String simple;
+
+    /** Map of field names to weights for the simple search string. */
+    private Map<String, Double> simpleWeight;
 
     /** Alias to save this field under. */
     private String extractAs;
