@@ -3,10 +3,14 @@ package io.citrine.jcc.search.dataset.query;
 import io.citrine.jcc.search.core.query.BooleanFilter;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasLogic;
+import io.citrine.jcc.search.core.query.HasSimple;
+import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.MapUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -14,7 +18,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class DatasetQuery implements HasLogic {
+public class DatasetQuery implements HasLogic, HasWeight, HasSimple {
 
     @Override
     public DatasetQuery setLogic(final Logic logic) {
@@ -27,24 +31,49 @@ public class DatasetQuery implements HasLogic {
         return this.logic;
     }
 
-    /**
-     * Set the query to run against all fields.
-     *
-     * @param simple String with the query to run against all fields.
-     * @return This object.
-     */
+    @Override
+    public DatasetQuery setWeight(final Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
+    }
+
+    @Override
     public DatasetQuery setSimple(final String simple) {
         this.simple = simple;
         return this;
     }
 
-    /**
-     * Get the query to run against all fields.
-     *
-     * @return String with the query to run against all fields.
-     */
+    @Override
     public String getSimple() {
         return this.simple;
+    }
+
+    @Override
+    public DatasetQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = simpleWeight;
+        return this;
+    }
+
+    @Override
+    public DatasetQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        this.simpleWeight = MapUtil.add(simpleWeight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public DatasetQuery addSimpleWeight(final String field, final Double weight) {
+        this.simpleWeight = MapUtil.add(field, weight, this.simpleWeight);
+        return this;
+    }
+
+    @Override
+    public Map<String, Double> getSimpleWeight() {
+        return this.simpleWeight;
     }
 
     /**
@@ -617,7 +646,9 @@ public class DatasetQuery implements HasLogic {
         }
         final DatasetQuery rhsQuery = (DatasetQuery) rhs;
         return Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
+                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsQuery.weight))
                 && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
+                && Optional.ofNullable(this.simpleWeight).equals(Optional.ofNullable(rhsQuery.simpleWeight))
                 && Optional.ofNullable(this.id).equals(Optional.ofNullable(rhsQuery.id))
                 && Optional.ofNullable(this.isFeatured).equals(Optional.ofNullable(rhsQuery.isFeatured))
                 && Optional.ofNullable(this.name).equals(Optional.ofNullable(rhsQuery.name))
@@ -631,8 +662,14 @@ public class DatasetQuery implements HasLogic {
     /** Logic for the query. */
     private Logic logic;
 
+    /** Weight of the query. */
+    private Double weight;
+
     /** String with the simple search to run against all fields. */
     private String simple;
+
+    /** Map of field names to weights for the simple search string. */
+    private Map<String, Double> simpleWeight;
 
     /** List of filters against the dataset ID. */
     private List<Filter> id;

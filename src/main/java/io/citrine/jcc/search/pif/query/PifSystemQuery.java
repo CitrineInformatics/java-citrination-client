@@ -16,6 +16,7 @@ import io.citrine.jcc.search.pif.query.core.SourceQuery;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -32,8 +33,32 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     @Override
+    public PifSystemQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public PifSystemQuery setSimple(final String simple) {
         super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public PifSystemQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.setSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public PifSystemQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public PifSystemQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
         return this;
     }
 
