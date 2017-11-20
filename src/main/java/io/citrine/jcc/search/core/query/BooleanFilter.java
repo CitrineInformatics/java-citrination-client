@@ -11,7 +11,7 @@ import java.util.Optional;
  * 
  * @author Kyle Michel
  */
-public class BooleanFilter implements HasLogic {
+public class BooleanFilter implements HasLogic, HasWeight {
 
     @Override
     public BooleanFilter setLogic(final Logic logic) {
@@ -22,6 +22,17 @@ public class BooleanFilter implements HasLogic {
     @Override
     public Logic getLogic() {
         return this.logic;
+    }
+
+    @Override
+    public BooleanFilter setWeight(final Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    @Override
+    public Double getWeight() {
+        return this.weight;
     }
 
     /**
@@ -161,6 +172,9 @@ public class BooleanFilter implements HasLogic {
 
     /** Logic for applying the filters. */
     private Logic logic;
+
+    /** Weight of the filter. */
+    private Double weight;
 
     /** Just check for existence. */
     private Boolean exists;

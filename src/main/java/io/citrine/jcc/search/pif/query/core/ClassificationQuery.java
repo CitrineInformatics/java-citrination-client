@@ -4,6 +4,7 @@ import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -20,8 +21,32 @@ public class ClassificationQuery extends BaseObjectQuery {
     }
 
     @Override
+    public ClassificationQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public ClassificationQuery setSimple(final String simple) {
         super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.setSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public ClassificationQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
         return this;
     }
 
