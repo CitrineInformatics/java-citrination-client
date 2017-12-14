@@ -6,8 +6,10 @@ import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.search.pif.query.core.BaseFieldQuery;
 import io.citrine.jcc.search.pif.query.core.FieldQuery;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.MapUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -24,6 +26,12 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     }
 
     @Override
+    public ChemicalFieldQuery setWeight(final Double weight) {
+        super.setWeight(weight);
+        return this;
+    }
+
+    @Override
     public ChemicalFieldQuery setSort(final SortOrder sort) {
         super.setSort(sort);
         return this;
@@ -32,6 +40,24 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements HasChemicalFil
     @Override
     public ChemicalFieldQuery setSimple(final String simple) {
         super.setSimple(simple);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.setSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
+        super.addSimpleWeight(simpleWeight);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addSimpleWeight(final String field, final Double weight) {
+        super.addSimpleWeight(field, weight);
         return this;
     }
 
