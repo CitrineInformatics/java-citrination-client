@@ -1,6 +1,7 @@
 package io.citrine.jcc.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -125,7 +126,7 @@ public class CitrinationClient {
      * @throws IOException if thrown from within this function.
      */
     HttpPost createCommonMultiSearchRequest(final MultiQuery<PifSystemReturningQuery> multiQuery) throws IOException {
-        final HttpPost post = new HttpPost(this.host + "/api/search/pif_multi_search");
+        final HttpPost post = new HttpPost(this.host + "/api/search/pif/multi_pif_search");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
         post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(multiQuery)));
@@ -213,6 +214,7 @@ public class CitrinationClient {
 
     /** ObjectMapper for serializing queries. */
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+            .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
             .configure(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS, true);
