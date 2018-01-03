@@ -105,7 +105,7 @@ public abstract class AnalysisResultWithBuckets<T extends AnalysisResultWithBuck
      *
      * @author Kyle Michel
      */
-    public static abstract class Bucket extends HasAnalysisResult {
+    public abstract static class Bucket extends HasAnalysisResult {
 
         /**
          * Set the count of values in this bucket.

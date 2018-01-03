@@ -1,8 +1,10 @@
 package io.citrine.jcc.search.file.result;
 
+import io.citrine.jcc.search.analysis.result.AnalysisResult;
 import io.citrine.jcc.search.core.result.BaseSearchResult;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class to store all of the results that were returned from a query. This class implements {@link Iterable} so that
@@ -54,6 +56,24 @@ public class FileSearchResult extends BaseSearchResult<FileSearchHit> {
     @Override
     public FileSearchResult addHits(final FileSearchHit hits) {
         super.addHits(hits);
+        return this;
+    }
+
+    @Override
+    public FileSearchResult setAnalysis(final Map<String, AnalysisResult> analysis) {
+        super.setAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public FileSearchResult addAnalysis(final Map<String, AnalysisResult> analysis) {
+        super.addAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public FileSearchResult addAnalysis(final String name, final AnalysisResult analysis) {
+        super.addAnalysis(name, analysis);
         return this;
     }
 

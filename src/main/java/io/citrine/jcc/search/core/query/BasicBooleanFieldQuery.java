@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.citrine.jcc.search.analysis.query.Analysis;
 import io.citrine.jcc.util.ListUtil;
 import io.citrine.jpif.util.PifObjectMapper;
 
@@ -58,6 +59,24 @@ public class BasicBooleanFieldQuery extends AbstractFieldQuery
     @Override
     public List<BooleanFilter> getFilter() {
         return this.filter;
+    }
+
+    @Override
+    public BasicBooleanFieldQuery setAnalysis(final List<Analysis> analysis) {
+        super.setAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public BasicBooleanFieldQuery addAnalysis(final List<Analysis> analysis) {
+        super.addAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public BasicBooleanFieldQuery addAnalysis(final Analysis analysis) {
+        super.addAnalysis(analysis);
+        return this;
     }
 
     @Override

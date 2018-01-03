@@ -1,10 +1,13 @@
 package io.citrine.jcc.search.core.result;
 
+import io.citrine.jcc.search.analysis.result.AnalysisResult;
+import io.citrine.jcc.search.analysis.result.HasAnalysisResult;
 import io.citrine.jcc.util.ListUtil;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -13,7 +16,7 @@ import java.util.Optional;
  * @param <T> Type of the hits.
  * @author Kyle Michel
  */
-public abstract class BaseSearchResult<T> implements Iterable<T>  {
+public abstract class BaseSearchResult<T> extends HasAnalysisResult implements Iterable<T>  {
 
     /**
      * Set the number of milliseconds that the query took to execute.
@@ -140,6 +143,24 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
     }
 
     @Override
+    public BaseSearchResult<T> setAnalysis(final Map<String, AnalysisResult> analysis) {
+        super.setAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public BaseSearchResult<T> addAnalysis(final Map<String, AnalysisResult> analysis) {
+        super.addAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public BaseSearchResult<T> addAnalysis(final String name, final AnalysisResult analysis) {
+        super.addAnalysis(name, analysis);
+        return this;
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return (this.hits == null) ? Collections.emptyIterator() : this.hits.iterator();
     }
@@ -157,7 +178,7 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
         if (this.took == null) {
             this.took = rhs.took;
         }
-        if (rhs.took != null) {
+        else if (rhs.took != null) {
             this.took += rhs.took;
         }
 
@@ -180,7 +201,8 @@ public abstract class BaseSearchResult<T> implements Iterable<T>  {
             return false;
         }
         final BaseSearchResult rhsResult = (BaseSearchResult) rhs;
-        return Optional.ofNullable(this.took).equals(Optional.ofNullable(rhsResult.took))
+        return super.equals(rhsResult)
+                && Optional.ofNullable(this.took).equals(Optional.ofNullable(rhsResult.took))
                 && Optional.ofNullable(this.totalNumHits).equals(Optional.ofNullable(rhsResult.totalNumHits))
                 && Optional.ofNullable(this.maxScore).equals(Optional.ofNullable(rhsResult.maxScore))
                 && Optional.ofNullable(this.hits).equals(Optional.ofNullable(rhsResult.hits));

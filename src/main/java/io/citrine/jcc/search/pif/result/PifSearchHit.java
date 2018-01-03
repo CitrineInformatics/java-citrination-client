@@ -3,6 +3,7 @@ package io.citrine.jcc.search.pif.result;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.MapUtil;
 import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.util.PifObjectMapper;
@@ -146,7 +147,6 @@ public class PifSearchHit {
      * @param extracted Map of extracted value names to values.
      * @return This object.
      */
-    @JsonSetter
     public PifSearchHit setExtracted(final Map<String, Object> extracted) {
         this.extracted = extracted;
         return this;
@@ -159,12 +159,7 @@ public class PifSearchHit {
      * @return This object.
      */
     public PifSearchHit addExtracted(final Map<String, Object> extracted) {
-        if (extracted != null) {
-            if (this.extracted == null) {
-                this.extracted = new HashMap<>();
-            }
-            this.extracted.putAll(extracted);
-        }
+        this.extracted = MapUtil.add(extracted, this.extracted);
         return this;
     }
 
@@ -176,10 +171,7 @@ public class PifSearchHit {
      * @return This object.
      */
     public PifSearchHit addExtracted(final String key, final Object value) {
-        if (this.extracted == null) {
-            this.extracted = new HashMap<>();
-        }
-        this.extracted.put(key, value);
+        this.extracted = MapUtil.add(key, value, this.extracted);
         return this;
     }
 
@@ -188,7 +180,6 @@ public class PifSearchHit {
      *
      * @return Map of extracted field keys to values.
      */
-    @JsonGetter
     protected Map<String, Object> getExtracted() {
         return this.extracted;
     }
@@ -263,7 +254,6 @@ public class PifSearchHit {
      * @param extractedPath Map of extracted value names to paths.
      * @return This object.
      */
-    @JsonSetter
     public PifSearchHit setExtractedPath(final Map<String, String> extractedPath) {
         this.extractedPath = extractedPath;
         return this;
@@ -276,12 +266,7 @@ public class PifSearchHit {
      * @return This object.
      */
     public PifSearchHit addExtractedPath(final Map<String, String> extractedPath) {
-        if (extractedPath != null) {
-            if (this.extractedPath == null) {
-                this.extractedPath = new HashMap<>();
-            }
-            this.extractedPath.putAll(extractedPath);
-        }
+        this.extractedPath = MapUtil.add(extractedPath, this.extractedPath);
         return this;
     }
 
@@ -293,10 +278,7 @@ public class PifSearchHit {
      * @return This object.
      */
     public PifSearchHit addExtractedPath(final String key, final String path) {
-        if (this.extractedPath == null) {
-            this.extractedPath = new HashMap<>();
-        }
-        this.extractedPath.put(key, path);
+        this.extractedPath = MapUtil.add(key, path, this.extractedPath);
         return this;
     }
 
@@ -305,7 +287,6 @@ public class PifSearchHit {
      *
      * @return Map of extracted field keys to paths.
      */
-    @JsonGetter
     protected Map<String, String> getExtractedPath() {
         return this.extractedPath;
     }
@@ -394,5 +375,5 @@ public class PifSearchHit {
     private Map<String, Object> extracted = new HashMap<>();
 
     /** Map of paths to extracted fields. */
-    private Map<String, String> extractedPath = new HashMap<>();
+    private Map<String, String> extractedPath;
 }

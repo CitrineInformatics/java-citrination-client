@@ -1,5 +1,6 @@
 package io.citrine.jcc.search.pif.query.core;
 
+import io.citrine.jcc.search.analysis.query.Analysis;
 import io.citrine.jcc.search.core.query.AbstractFieldQuery;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.core.query.SortOrder;
@@ -55,6 +56,24 @@ public abstract class BaseFieldQuery extends AbstractFieldQuery {
     @Override
     public BaseFieldQuery setSort(final SortOrder sort) {
         super.setSort(sort);
+        return this;
+    }
+
+    @Override
+    public BaseFieldQuery setAnalysis(final List<Analysis> analysis) {
+        super.setAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public BaseFieldQuery addAnalysis(final List<Analysis> analysis) {
+        super.addAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public BaseFieldQuery addAnalysis(final Analysis analysis) {
+        super.addAnalysis(analysis);
         return this;
     }
 

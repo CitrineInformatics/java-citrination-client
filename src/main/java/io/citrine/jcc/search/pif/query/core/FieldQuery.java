@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.pif.query.core;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.search.analysis.query.Analysis;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.HasFilter;
 import io.citrine.jcc.search.core.query.Logic;
@@ -161,6 +162,24 @@ public class FieldQuery extends BaseFieldQuery implements HasFilter {
     @JsonSetter("filterGroup")
     protected void filterGroup(final List<Filter> filter) {
         this.addFilter(filter);
+    }
+
+    @Override
+    public FieldQuery setAnalysis(final List<Analysis> analysis) {
+        super.setAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public FieldQuery addAnalysis(final List<Analysis> analysis) {
+        super.addAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public FieldQuery addAnalysis(final Analysis analysis) {
+        super.addAnalysis(analysis);
+        return this;
     }
 
     @Override
