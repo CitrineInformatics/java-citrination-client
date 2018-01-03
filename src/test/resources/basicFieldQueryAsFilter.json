@@ -1,0 +1,9 @@
+{
+  "query": {
+    "dataset": {
+      "id": {
+        "equal": "A"
+      }
+    }
+  }
+}

@@ -6,7 +6,6 @@ import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.search.pif.query.core.BaseFieldQuery;
 import io.citrine.jcc.search.pif.query.core.FieldQuery;
 import io.citrine.jcc.util.ListUtil;
-import io.citrine.jcc.util.MapUtil;
 
 import java.util.List;
 import java.util.Map;

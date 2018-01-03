@@ -11,7 +11,7 @@ import java.util.Optional;
  * 
  * @author Kyle Michel
  */
-public class BooleanFilter implements HasLogic, HasWeight {
+public class BooleanFilter implements HasLogic, HasWeight, HasBooleanFilter, ConvertsToBasicBooleanFieldQuery {
 
     @Override
     public BooleanFilter setLogic(final Logic logic) {
@@ -85,74 +85,47 @@ public class BooleanFilter implements HasLogic, HasWeight {
         return this.equal;
     }
 
-    /**
-     * Set the list of filters. This overrides any values that are already saved.
-     *
-     * @param filter List of {@link BooleanFilter} objects to save.
-     * @return This object.
-     */
+    @Override
     public BooleanFilter setFilter(final List<BooleanFilter> filter) {
         this.filter = filter;
         return this;
     }
 
-    /**
-     * Add each in a list of filters.
-     *
-     * @param filter List of {@link BooleanFilter} objects to save.
-     * @return This object.
-     */
+    @Override
     public BooleanFilter addFilter(final List<BooleanFilter> filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
-    /**
-     * Add to the list of nested filter.
-     *
-     * @param filter {@link Filter} object to add.
-     * @return This object.
-     */
+    @Override
     public BooleanFilter addFilter(final BooleanFilter filter) {
         this.filter = ListUtil.add(filter, this.filter);
         return this;
     }
 
-    /**
-     * Get the number of nested filters have been applied.
-     *
-     * @return Number of filters.
-     */
+    @Override
     public int filterLength() {
         return ListUtil.length(this.filter);
     }
 
-    /**
-     * Get an iterable over the list of nested filter.
-     *
-     * @return Iterable of {@link Filter} objects.
-     */
+    @Override
     public Iterable<BooleanFilter> filter() {
         return ListUtil.iterable(this.filter);
     }
 
-    /**
-     * Get a single filter.
-     *
-     * @param index Index of the filter to get.
-     * @return Filter at the input index.
-     */
+    @Override
     public BooleanFilter getFilter(final int index) {
         return ListUtil.get(this.filter, index);
     }
 
-    /**
-     * Get the list of filters.
-     *
-     * @return List of {@link BooleanFilter} objects or a null pointer if not set.
-     */
+    @Override
     public List<BooleanFilter> getFilter() {
         return this.filter;
+    }
+
+    @Override
+    public BasicBooleanFieldQuery toBasicBooleanFieldQuery() {
+        return new BasicBooleanFieldQuery().addFilter(this);
     }
 
     @Override

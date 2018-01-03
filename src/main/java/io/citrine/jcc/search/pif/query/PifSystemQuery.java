@@ -1,6 +1,8 @@
 package io.citrine.jcc.search.pif.query;
 
-import io.citrine.jcc.search.core.query.Filter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.citrine.jcc.search.core.query.BasicFieldQuery;
+import io.citrine.jcc.search.core.query.ConvertsToBasicFieldQuery;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.pif.query.chemical.ChemicalFieldQuery;
 import io.citrine.jcc.search.pif.query.chemical.CompositionQuery;
@@ -135,35 +137,36 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     /**
-     * Set the list of PIF system UID queries. This replaces any filters that are already present.
+     * Set the list of PIF system UID queries. This replaces any queries that are already present.
      *
-     * @param uid List of {@link Filter} objects.
+     * @param uid List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public PifSystemQuery setUid(final List<Filter> uid) {
-        this.uid = uid;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public PifSystemQuery setUid(final List<? extends ConvertsToBasicFieldQuery> uid) {
+        this.uid = BasicFieldQuery.fromList(uid);
         return this;
     }
 
     /**
      * Add to the list of PIF system UID queries.
      *
-     * @param uid List of {@link Filter} objects.
+     * @param uid List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public PifSystemQuery addUid(final List<Filter> uid) {
-        this.uid = ListUtil.add(uid, this.uid);
+    public PifSystemQuery addUid(final List<? extends ConvertsToBasicFieldQuery> uid) {
+        this.uid = ListUtil.add(BasicFieldQuery.fromList(uid), this.uid);
         return this;
     }
 
     /**
      * Add to the list of PIF system UID queries.
      *
-     * @param uid {@link Filter} object to add.
+     * @param uid {@link BasicFieldQuery} object to add.
      * @return This object.
      */
-    public PifSystemQuery addUid(final Filter uid) {
-        this.uid = ListUtil.add(uid, this.uid);
+    public PifSystemQuery addUid(final ConvertsToBasicFieldQuery uid) {
+        this.uid = ListUtil.add(BasicFieldQuery.fromObject(uid), this.uid);
         return this;
     }
 
@@ -179,9 +182,9 @@ public class PifSystemQuery extends BaseObjectQuery {
     /**
      * Get an iterable over the PIF system UID queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> uid() {
+    public Iterable<BasicFieldQuery> uid() {
         return ListUtil.iterable(this.uid);
     }
 
@@ -189,51 +192,52 @@ public class PifSystemQuery extends BaseObjectQuery {
      * Get the system UID filter object at the input index.
      *
      * @param index Index of the system UID filter to get.
-     * @return {@link Filter} at the input index.
+     * @return {@link BasicFieldQuery} at the input index.
      */
-    public Filter getUid(final int index) {
+    public BasicFieldQuery getUid(final int index) {
         return ListUtil.get(this.uid, index);
     }
 
     /**
      * Get the list of PIF system UID queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getUid() {
+    public List<BasicFieldQuery> getUid() {
         return this.uid;
     }
 
     /**
-     * Set the list of updatedAt queries. This replaces any filters that are already present.
+     * Set the list of updatedAt queries. This replaces any queries that are already present.
      *
-     * @param updatedAt List of {@link Filter} objects.
+     * @param updatedAt List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public PifSystemQuery setUpdatedAt(final List<Filter> updatedAt) {
-        this.updatedAt = updatedAt;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public PifSystemQuery setUpdatedAt(final List<? extends ConvertsToBasicFieldQuery> updatedAt) {
+        this.updatedAt = BasicFieldQuery.fromList(updatedAt);
         return this;
     }
 
     /**
      * Add to the list of updatedAt queries.
      *
-     * @param updatedAt List of {@link Filter} objects.
+     * @param updatedAt List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public PifSystemQuery addUpdatedAt(final List<Filter> updatedAt) {
-        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+    public PifSystemQuery addUpdatedAt(final List<? extends ConvertsToBasicFieldQuery> updatedAt) {
+        this.updatedAt = ListUtil.add(BasicFieldQuery.fromList(updatedAt), this.updatedAt);
         return this;
     }
 
     /**
      * Add to the list of updatedAt queries.
      *
-     * @param updatedAt {@link Filter} object to add.
+     * @param updatedAt {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public PifSystemQuery addUpdatedAt(final Filter updatedAt) {
-        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+    public PifSystemQuery addUpdatedAt(final ConvertsToBasicFieldQuery updatedAt) {
+        this.updatedAt = ListUtil.add(BasicFieldQuery.fromObject(updatedAt), this.updatedAt);
         return this;
     }
 
@@ -249,9 +253,9 @@ public class PifSystemQuery extends BaseObjectQuery {
     /**
      * Get an iterable over the updatedAt queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> updatedAt() {
+    public Iterable<BasicFieldQuery> updatedAt() {
         return ListUtil.iterable(this.updatedAt);
     }
 
@@ -259,18 +263,18 @@ public class PifSystemQuery extends BaseObjectQuery {
      * Get one in the list of updatedAt queries.
      *
      * @param index Index of the updatedAt query to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getUpdatedAt(final int index) {
+    public BasicFieldQuery getUpdatedAt(final int index) {
         return ListUtil.get(this.updatedAt, index);
     }
 
     /**
      * Get the list of updatedAt queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getUpdatedAt() {
+    public List<BasicFieldQuery> getUpdatedAt() {
         return this.updatedAt;
     }
 
@@ -1141,10 +1145,10 @@ public class PifSystemQuery extends BaseObjectQuery {
     }
 
     /** List of filters against the PIF system UID. */
-    private List<Filter> uid;
+    private List<BasicFieldQuery> uid;
     
     /** List of filters against the last update time. */
-    private List<Filter> updatedAt;
+    private List<BasicFieldQuery> updatedAt;
 
     /** List of names operations. */
     private List<FieldQuery> names;

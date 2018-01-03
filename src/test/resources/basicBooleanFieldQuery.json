@@ -1,0 +1,11 @@
+{
+  "query": {
+    "dataset": {
+      "isFeatured": {
+        "filter": {
+          "equal": true
+        }
+      }
+    }
+  }
+}

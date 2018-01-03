@@ -13,7 +13,7 @@ import java.util.Optional;
  * 
  * @author Kyle Michel
  */
-public class Filter implements HasLogic, HasWeight, HasFilter {
+public class Filter implements HasLogic, HasWeight, HasFilter, ConvertsToBasicFieldQuery {
 
     @Override
     public Filter setLogic(final Logic logic) {
@@ -274,6 +274,11 @@ public class Filter implements HasLogic, HasWeight, HasFilter {
      */
     public Boolean getExact() {
         return this.exact;
+    }
+
+    @Override
+    public BasicFieldQuery toBasicFieldQuery() {
+        return new BasicFieldQuery().addFilter(this);
     }
 
     @Override
