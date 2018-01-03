@@ -79,6 +79,12 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
         return this;
     }
 
+    @Override
+    public PifSystemReturningQuery setReturnAnalysis(final Boolean returnAnalysis) {
+        super.setReturnAnalysis(returnAnalysis);
+        return this;
+    }
+
     /**
      * Whether to return the actual record that was matched. If extractions are being made in the query, then it may
      * not be necessary to actually return the system. Defaults to true.
@@ -118,6 +124,26 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
      */
     public Boolean getAddLatex() {
         return this.addLatex;
+    }
+
+    /**
+     * Set whether to run extractions.
+     *
+     * @param returnExtraction False to turn off extractions.
+     * @return This object.
+     */
+    public PifSystemReturningQuery setReturnExtraction(final Boolean returnExtraction) {
+        this.returnExtraction = returnExtraction;
+        return this;
+    }
+
+    /**
+     * Get whether to run extractions.
+     *
+     * @return False to turn off extractions.
+     */
+    public Boolean getReturnExtraction() {
+        return this.returnExtraction;
     }
 
     /**
@@ -240,6 +266,7 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
         return super.equals(rhsQuery)
                 && Optional.ofNullable(this.returnSystem).equals(Optional.ofNullable(rhsQuery.returnSystem))
                 && Optional.ofNullable(this.addLatex).equals(Optional.ofNullable(rhsQuery.addLatex))
+                && Optional.ofNullable(this.returnExtraction).equals(Optional.ofNullable(rhsQuery.returnExtraction))
                 && Optional.ofNullable(this.returnExtractedPath)
                         .equals(Optional.ofNullable(rhsQuery.returnExtractedPath))
                 && Optional.ofNullable(this.unwrapSingleValueExtractions)
@@ -252,6 +279,9 @@ public class PifSystemReturningQuery extends BaseReturningQuery {
 
     /** Whether to add latex formatting to results. */
     private Boolean addLatex;
+
+    /** Whether to run extractions. */
+    private Boolean returnExtraction;
 
     /** Whether to return the paths to extracted values. */
     private Boolean returnExtractedPath;
