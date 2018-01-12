@@ -7,9 +7,14 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import io.citrine.jcc.search.analysis.query.Analysis;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.SerializationUtil;
 import io.citrine.jpif.util.PifObjectMapper;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -21,7 +26,7 @@ import java.util.stream.Collectors;
  * @author Kyle Michel
  */
 public class BasicBooleanFieldQuery extends AbstractFieldQuery
-        implements HasBooleanFilter, ConvertsToBasicBooleanFieldQuery {
+        implements Serializable, HasBooleanFilter, ConvertsToBasicBooleanFieldQuery {
 
     @Override
     public BasicBooleanFieldQuery setFilter(final List<BooleanFilter> filter) {
@@ -124,6 +129,36 @@ public class BasicBooleanFieldQuery extends AbstractFieldQuery
                 ? null
                 : object.toBasicBooleanFieldQuery();
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -2426084546394350520L;
 
     /** List of filters. */
     private List<BooleanFilter> filter;

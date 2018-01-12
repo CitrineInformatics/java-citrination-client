@@ -1,5 +1,12 @@
 package io.citrine.jcc.search.analysis.query;
 
+import io.citrine.jcc.util.SerializationUtil;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
@@ -7,7 +14,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class StatisticsAnalysis extends Analysis {
+public class StatisticsAnalysis extends Analysis implements Serializable {
 
     @Override
     public StatisticsAnalysis setPath(final String path) {
@@ -68,6 +75,36 @@ public class StatisticsAnalysis extends Analysis {
     public Double getMissing() {
         return this.missing;
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -3092685422872015025L;
 
     /** Whether to get extended statistics. */
     private Boolean extended;

@@ -1,5 +1,12 @@
 package io.citrine.jcc.search.analysis.result;
 
+import io.citrine.jcc.util.SerializationUtil;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,7 +16,8 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class ValuesAnalysisResult extends AnalysisResultWithBuckets<ValuesAnalysisResult.Bucket> {
+public class ValuesAnalysisResult extends AnalysisResultWithBuckets<ValuesAnalysisResult.Bucket>
+        implements Serializable {
 
     @Override
     public ValuesAnalysisResult setBuckets(final List<ValuesAnalysisResult.Bucket> buckets) {
@@ -42,11 +50,41 @@ public class ValuesAnalysisResult extends AnalysisResultWithBuckets<ValuesAnalys
     }
 
     /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 9192683258833156981L;
+
+    /**
      * Bucket to store information from a set of values.
      *
      * @author Kyle Michel
      */
-    public class Bucket extends AnalysisResultWithBuckets.Bucket {
+    public class Bucket extends AnalysisResultWithBuckets.Bucket implements Serializable {
 
         @Override
         public Bucket setCount(final Long count) {
@@ -104,6 +142,36 @@ public class ValuesAnalysisResult extends AnalysisResultWithBuckets<ValuesAnalys
             return super.equals(rhsBucket)
                     && Optional.ofNullable(this.value).equals(Optional.ofNullable(rhsBucket.value));
         }
+
+        /**
+         * Write this object to the output output stream.
+         *
+         * @param out {@link ObjectOutputStream} to write to.
+         * @throws IOException if this object cannot be written.
+         */
+        private void writeObject(ObjectOutputStream out) throws IOException {
+            SerializationUtil.write(out, this);
+        }
+
+        /**
+         * Read into this object from the input stream.
+         *
+         * @param in {@link ObjectInputStream} to read from.
+         * @throws IOException if thrown while reading the stream.
+         * @throws ClassNotFoundException if thrown while reading the stream.
+         */
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            SerializationUtil.read(in, this);
+        }
+
+        /**
+         * Read an object with no data.
+         *
+         * @throws ObjectStreamException if thrown while reading the stream.
+         */
+        private void readObjectNoData() throws ObjectStreamException {}
+
+        private static final long serialVersionUID = -2223328087845209600L;
 
         /** The value of the bucket. */
         private String value;

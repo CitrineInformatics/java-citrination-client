@@ -1,7 +1,13 @@
 package io.citrine.jcc.search.analysis.query;
 
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +16,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class RangesAnalysis extends Analysis {
+public class RangesAnalysis extends Analysis implements Serializable {
 
     /**
      * Set the list of ranges. This replaces any ranges that are already present.
@@ -122,6 +128,36 @@ public class RangesAnalysis extends Analysis {
                 && Optional.ofNullable(this.missing).equals(Optional.ofNullable(rhsAnalysis.missing));
     }
 
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 144877536643249504L;
+
     /** The list of ranges. */
     private List<Range> ranges;
 
@@ -133,7 +169,7 @@ public class RangesAnalysis extends Analysis {
      *
      * @author Kyle Michel
      */
-    public static class Range {
+    public static class Range implements Serializable {
 
         /**
          * Set the minimum value of the range.
@@ -186,6 +222,36 @@ public class RangesAnalysis extends Analysis {
             final Range rhsRange = (Range) rhs;
             return super.equals(rhsRange);
         }
+
+        /**
+         * Write this object to the output output stream.
+         *
+         * @param out {@link ObjectOutputStream} to write to.
+         * @throws IOException if this object cannot be written.
+         */
+        private void writeObject(ObjectOutputStream out) throws IOException {
+            SerializationUtil.write(out, this);
+        }
+
+        /**
+         * Read into this object from the input stream.
+         *
+         * @param in {@link ObjectInputStream} to read from.
+         * @throws IOException if thrown while reading the stream.
+         * @throws ClassNotFoundException if thrown while reading the stream.
+         */
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            SerializationUtil.read(in, this);
+        }
+
+        /**
+         * Read an object with no data.
+         *
+         * @throws ObjectStreamException if thrown while reading the stream.
+         */
+        private void readObjectNoData() throws ObjectStreamException {}
+
+        private static final long serialVersionUID = 3528543096207389776L;
 
         /** The inclusive minimum value of the range. */
         private Double min;

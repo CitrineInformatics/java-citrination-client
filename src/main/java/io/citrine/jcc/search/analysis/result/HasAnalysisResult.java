@@ -2,7 +2,13 @@ package io.citrine.jcc.search.analysis.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.util.MapUtil;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
@@ -13,7 +19,7 @@ import java.util.Set;
  *
  * @author Kyle Michel
  */
-public abstract class HasAnalysisResult {
+public abstract class HasAnalysisResult implements Serializable {
 
     /**
      * Set the map of analysis results.
@@ -90,6 +96,36 @@ public abstract class HasAnalysisResult {
         final HasAnalysisResult rhsHasAnalysis = (HasAnalysisResult) rhs;
         return Optional.ofNullable(this.analysis).equals(Optional.ofNullable(rhsHasAnalysis.analysis));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -7324900451642442303L;
 
     /** The map of analysis results. */
     private Map<String, AnalysisResult> analysis;

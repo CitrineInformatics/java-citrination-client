@@ -1,7 +1,13 @@
 package io.citrine.jcc.search.analysis.result;
 
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -12,7 +18,8 @@ import java.util.Optional;
  * @param <T> Type of the bucket.
  * @author Kyle Michel
  */
-public abstract class AnalysisResultWithBuckets<T extends AnalysisResultWithBuckets.Bucket> extends AnalysisResult {
+public abstract class AnalysisResultWithBuckets<T extends AnalysisResultWithBuckets.Bucket>
+        extends AnalysisResult implements Serializable {
 
     /**
      * Set the list of buckets. This replaces any buckets that are already present.
@@ -97,6 +104,36 @@ public abstract class AnalysisResultWithBuckets<T extends AnalysisResultWithBuck
                 && Optional.ofNullable(this.buckets).equals(Optional.ofNullable(rhsResult.buckets));
     }
 
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 4111298689802825707L;
+
     /** List of buckets. */
     private List<T> buckets;
 
@@ -105,7 +142,7 @@ public abstract class AnalysisResultWithBuckets<T extends AnalysisResultWithBuck
      *
      * @author Kyle Michel
      */
-    public abstract static class Bucket extends HasAnalysisResult {
+    public abstract static class Bucket extends HasAnalysisResult implements Serializable {
 
         /**
          * Set the count of values in this bucket.
@@ -157,6 +194,36 @@ public abstract class AnalysisResultWithBuckets<T extends AnalysisResultWithBuck
             return super.equals(rhsBucket)
                     && Optional.ofNullable(this.count).equals(Optional.ofNullable(rhsBucket.count));
         }
+
+        /**
+         * Write this object to the output output stream.
+         *
+         * @param out {@link ObjectOutputStream} to write to.
+         * @throws IOException if this object cannot be written.
+         */
+        private void writeObject(ObjectOutputStream out) throws IOException {
+            SerializationUtil.write(out, this);
+        }
+
+        /**
+         * Read into this object from the input stream.
+         *
+         * @param in {@link ObjectInputStream} to read from.
+         * @throws IOException if thrown while reading the stream.
+         * @throws ClassNotFoundException if thrown while reading the stream.
+         */
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            SerializationUtil.read(in, this);
+        }
+
+        /**
+         * Read an object with no data.
+         *
+         * @throws ObjectStreamException if thrown while reading the stream.
+         */
+        private void readObjectNoData() throws ObjectStreamException {}
+
+        private static final long serialVersionUID = -626429106573519909L;
 
         /** The count of values in this bucket. */
         private Long count;
