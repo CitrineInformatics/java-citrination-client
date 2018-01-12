@@ -2,7 +2,13 @@ package io.citrine.jcc.search.pif.query.core;
 
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -12,7 +18,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class ReferenceQuery extends BaseObjectQuery {
+public class ReferenceQuery extends BaseObjectQuery implements Serializable {
 
     @Override
     public ReferenceQuery setLogic(final Logic logic) {
@@ -1482,6 +1488,36 @@ public class ReferenceQuery extends BaseObjectQuery {
                 && Optional.ofNullable(this.references).equals(Optional.ofNullable(rhsQuery.references))
                 && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 4145168515528129842L;
 
     /** DOI of the reference. */
     private List<FieldQuery> doi;

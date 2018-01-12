@@ -5,7 +5,13 @@ import io.citrine.jcc.search.file.query.FileQuery;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
 import io.citrine.jcc.util.ListUtil;
 import io.citrine.jcc.util.MapUtil;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -15,7 +21,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class DataQuery implements HasLogic, HasWeight, HasSimple {
+public class DataQuery implements Serializable, HasLogic, HasWeight, HasSimple {
 
     @Override
     public DataQuery setLogic(final Logic logic) {
@@ -371,6 +377,36 @@ public class DataQuery implements HasLogic, HasWeight, HasSimple {
                 && Optional.ofNullable(this.file).equals(Optional.ofNullable(rhsQuery.file))
                 && Optional.ofNullable(this.query).equals(Optional.ofNullable(rhsQuery.query));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -4790955175125268195L;
 
     /** Logic for the query. */
     private Logic logic;
