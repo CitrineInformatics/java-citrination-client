@@ -2,7 +2,13 @@ package io.citrine.jcc.search.core.result;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -13,7 +19,7 @@ import java.util.Optional;
  * @param <T> Type of the result being returned.
  * @author Max Hutchinson
  */
-public class MultiSearchResultElement<T> {
+public class MultiSearchResultElement<T> implements Serializable {
 
     /**
      * Get the result that was returned.
@@ -67,6 +73,36 @@ public class MultiSearchResultElement<T> {
         return Optional.ofNullable(this.result).equals(Optional.ofNullable(rhsResult.result))
                 && Optional.ofNullable(this.status).equals(Optional.ofNullable(rhsResult.status));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 6942793526329691061L;
 
     /** Query result that was generated. */
     private T result;

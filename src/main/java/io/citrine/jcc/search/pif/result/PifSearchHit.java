@@ -3,10 +3,16 @@ package io.citrine.jcc.search.pif.result;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.util.SerializationUtil;
 import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.util.PifObjectMapper;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +24,7 @@ import java.util.Set;
  *
  * @author Kyle Michel
  */
-public class PifSearchHit {
+public class PifSearchHit implements Serializable {
 
     /**
      * Set the id of the record that was matched.
@@ -371,6 +377,36 @@ public class PifSearchHit {
                 && Optional.ofNullable(this.extracted).equals(Optional.ofNullable(rhsHit.extracted))
                 && Optional.ofNullable(this.extractedPath).equals(Optional.ofNullable(rhsHit.extractedPath));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 2284295336853749039L;
 
     /** Id of the record. */
     private String id;
