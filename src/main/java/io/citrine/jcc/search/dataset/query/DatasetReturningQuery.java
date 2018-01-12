@@ -5,7 +5,13 @@ import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.pif.query.PifSystemQuery;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +21,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class DatasetReturningQuery extends BaseReturningQuery {
+public class DatasetReturningQuery extends BaseReturningQuery implements Serializable {
 
     @Override
     public DatasetReturningQuery setFromIndex(final Integer fromIndex) {
@@ -129,6 +135,36 @@ public class DatasetReturningQuery extends BaseReturningQuery {
         return super.equals(rhsQuery)
                 && Optional.ofNullable(this.countPifs).equals(Optional.ofNullable(rhsQuery.countPifs));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 2920827950906251428L;
 
     /** Whether to get the count of PIFs in each dataset. */
     private Boolean countPifs;

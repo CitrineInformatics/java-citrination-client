@@ -1,7 +1,13 @@
 package io.citrine.jcc.search.pif.query;
 
 import io.citrine.jcc.search.core.query.SortOrder;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
@@ -9,7 +15,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class ExtractionSort {
+public class ExtractionSort implements Serializable {
 
     /**
      * Set the key that will be sorted on.
@@ -63,6 +69,36 @@ public class ExtractionSort {
         return Optional.ofNullable(this.key).equals(Optional.ofNullable(rhsSort.key))
                 && Optional.ofNullable(this.order).equals(Optional.ofNullable(rhsSort.order));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -3372153372009813162L;
 
     /** The extractAs key to sort on. */
     private String key;

@@ -3,7 +3,13 @@ package io.citrine.jcc.search.core.result;
 import io.citrine.jcc.search.analysis.result.AnalysisResult;
 import io.citrine.jcc.search.analysis.result.HasAnalysisResult;
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +22,7 @@ import java.util.Optional;
  * @param <T> Type of the hits.
  * @author Kyle Michel
  */
-public abstract class BaseSearchResult<T> extends HasAnalysisResult implements Iterable<T>  {
+public abstract class BaseSearchResult<T> extends HasAnalysisResult implements Serializable, Iterable<T> {
 
     /**
      * Set the number of milliseconds that the query took to execute.
@@ -207,6 +213,36 @@ public abstract class BaseSearchResult<T> extends HasAnalysisResult implements I
                 && Optional.ofNullable(this.maxScore).equals(Optional.ofNullable(rhsResult.maxScore))
                 && Optional.ofNullable(this.hits).equals(Optional.ofNullable(rhsResult.hits));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -2957610080476353296L;
 
     /** Number of milliseconds that the query took to execute. */
     private Long took;
