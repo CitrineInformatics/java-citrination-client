@@ -1,7 +1,13 @@
 package io.citrine.jcc.search.core.query;
 
 import io.citrine.jcc.util.ListUtil;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +17,7 @@ import java.util.Optional;
  * @param <T> Type of the query.
  * @author Kyle Michel
  */
-public class MultiQuery<T> {
+public class MultiQuery<T> implements Serializable {
 
     /**
      * Set the list of queries. This overwrites any queries that are already saved.
@@ -95,6 +101,36 @@ public class MultiQuery<T> {
         final MultiQuery rhsQuery = (MultiQuery) rhs;
         return Optional.ofNullable(this.queries).equals(Optional.ofNullable(rhsQuery.queries));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -1219224930354310715L;
 
     /** List of queries that were generated. */
     private List<T> queries;

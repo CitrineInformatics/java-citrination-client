@@ -2,7 +2,13 @@ package io.citrine.jcc.search.file.query;
 
 import io.citrine.jcc.search.core.query.BaseReturningQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
+import io.citrine.jcc.util.SerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +17,7 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class FileReturningQuery extends BaseReturningQuery {
+public class FileReturningQuery extends BaseReturningQuery implements Serializable {
 
     @Override
     public FileReturningQuery setFromIndex(final Integer fromIndex) {
@@ -148,6 +154,36 @@ public class FileReturningQuery extends BaseReturningQuery {
                 && Optional.ofNullable(this.highlightPreTag).equals(Optional.ofNullable(rhsQuery.highlightPreTag))
                 && Optional.ofNullable(this.highlightPostTag).equals(Optional.ofNullable(rhsQuery.highlightPostTag));
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        SerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        SerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -9193007588381796629L;
 
     /** Maximum number of highlighted results to return. */
     private Integer maxContentHighlights;
