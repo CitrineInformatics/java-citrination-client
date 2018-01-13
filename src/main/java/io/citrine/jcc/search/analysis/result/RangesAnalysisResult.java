@@ -1,6 +1,6 @@
 package io.citrine.jcc.search.analysis.result;
 
-import io.citrine.jcc.util.SerializationUtil;
+import io.citrine.jpif.util.PifSerializationUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -56,7 +56,7 @@ public class RangesAnalysisResult extends AnalysisResultWithBuckets<RangesAnalys
      * @throws IOException if this object cannot be written.
      */
     private void writeObject(ObjectOutputStream out) throws IOException {
-        SerializationUtil.write(out, this);
+        PifSerializationUtil.write(out, this);
     }
 
     /**
@@ -67,7 +67,7 @@ public class RangesAnalysisResult extends AnalysisResultWithBuckets<RangesAnalys
      * @throws ClassNotFoundException if thrown while reading the stream.
      */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        SerializationUtil.read(in, this);
+        PifSerializationUtil.read(in, this);
     }
 
     /**
@@ -171,7 +171,7 @@ public class RangesAnalysisResult extends AnalysisResultWithBuckets<RangesAnalys
          * @throws IOException if this object cannot be written.
          */
         private void writeObject(ObjectOutputStream out) throws IOException {
-            SerializationUtil.write(out, this);
+            PifSerializationUtil.write(out, this);
         }
 
         /**
@@ -182,7 +182,7 @@ public class RangesAnalysisResult extends AnalysisResultWithBuckets<RangesAnalys
          * @throws ClassNotFoundException if thrown while reading the stream.
          */
         private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-            SerializationUtil.read(in, this);
+            PifSerializationUtil.read(in, this);
         }
 
         /**
