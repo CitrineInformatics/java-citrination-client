@@ -7,7 +7,7 @@ import io.citrine.jcc.search.core.query.HasFilter;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.util.ListUtil;
-import io.citrine.jcc.util.SerializationUtil;
+import io.citrine.jpif.util.PifSerializationUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -208,7 +208,7 @@ public class FieldQuery extends BaseFieldQuery implements Serializable, HasFilte
      * @throws IOException if this object cannot be written.
      */
     private void writeObject(ObjectOutputStream out) throws IOException {
-        SerializationUtil.write(out, this);
+        PifSerializationUtil.write(out, this);
     }
 
     /**
@@ -219,7 +219,7 @@ public class FieldQuery extends BaseFieldQuery implements Serializable, HasFilte
      * @throws ClassNotFoundException if thrown while reading the stream.
      */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        SerializationUtil.read(in, this);
+        PifSerializationUtil.read(in, this);
     }
 
     /**
