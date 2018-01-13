@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jcc.util.ListUtil;
-import io.citrine.jcc.util.SerializationUtil;
+import io.citrine.jpif.util.PifSerializationUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -308,7 +308,7 @@ public class Filter implements Serializable, HasLogic, HasWeight, HasFilter {
      * @throws IOException if this object cannot be written.
      */
     private void writeObject(ObjectOutputStream out) throws IOException {
-        SerializationUtil.write(out, this);
+        PifSerializationUtil.write(out, this);
     }
 
     /**
@@ -319,7 +319,7 @@ public class Filter implements Serializable, HasLogic, HasWeight, HasFilter {
      * @throws ClassNotFoundException if thrown while reading the stream.
      */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        SerializationUtil.read(in, this);
+        PifSerializationUtil.read(in, this);
     }
 
     /**
