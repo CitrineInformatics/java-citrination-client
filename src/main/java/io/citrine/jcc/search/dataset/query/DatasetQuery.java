@@ -8,7 +8,7 @@ import io.citrine.jcc.search.core.query.HasWeight;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.util.ListUtil;
 import io.citrine.jcc.util.MapUtil;
-import io.citrine.jcc.util.SerializationUtil;
+import io.citrine.jpif.util.PifSerializationUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -672,7 +672,7 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * @throws IOException if this object cannot be written.
      */
     private void writeObject(ObjectOutputStream out) throws IOException {
-        SerializationUtil.write(out, this);
+        PifSerializationUtil.write(out, this);
     }
 
     /**
@@ -683,7 +683,7 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * @throws ClassNotFoundException if thrown while reading the stream.
      */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        SerializationUtil.read(in, this);
+        PifSerializationUtil.read(in, this);
     }
 
     /**
