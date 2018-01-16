@@ -84,7 +84,7 @@ public class ValuesAnalysisResult extends AnalysisResultWithBuckets<ValuesAnalys
      *
      * @author Kyle Michel
      */
-    public class Bucket extends AnalysisResultWithBuckets.Bucket implements Serializable {
+    public static class Bucket extends AnalysisResultWithBuckets.Bucket implements Serializable {
 
         @Override
         public Bucket setCount(final Long count) {
