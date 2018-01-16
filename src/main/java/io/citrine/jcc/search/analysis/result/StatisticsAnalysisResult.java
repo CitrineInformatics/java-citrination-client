@@ -77,6 +77,26 @@ public class StatisticsAnalysisResult extends AnalysisResult implements Serializ
     }
 
     /**
+     * Set the average of all values.
+     *
+     * @param average Double with the average of all values.
+     * @return This object.
+     */
+    public StatisticsAnalysisResult setAverage(final Double average) {
+        this.average = average;
+        return this;
+    }
+
+    /**
+     * Get the average of all values.
+     *
+     * @return Double with the average of all values.
+     */
+    public Double getAverage() {
+        return this.average;
+    }
+
+    /**
      * Set the sum of all values.
      *
      * @param sum Double with the sum of all values.
@@ -149,6 +169,7 @@ public class StatisticsAnalysisResult extends AnalysisResult implements Serializ
                 && Optional.ofNullable(this.count).equals(Optional.ofNullable(rhsResult.count))
                 && Optional.ofNullable(this.min).equals(Optional.ofNullable(rhsResult.min))
                 && Optional.ofNullable(this.max).equals(Optional.ofNullable(rhsResult.max))
+                && Optional.ofNullable(this.average).equals(Optional.ofNullable(rhsResult.average))
                 && Optional.ofNullable(this.sum).equals(Optional.ofNullable(rhsResult.sum))
                 && Optional.ofNullable(this.sumOfSquares).equals(Optional.ofNullable(rhsResult.sumOfSquares))
                 && Optional.ofNullable(this.variance).equals(Optional.ofNullable(rhsResult.variance));
@@ -192,6 +213,9 @@ public class StatisticsAnalysisResult extends AnalysisResult implements Serializ
 
     /** The maximum of all values. */
     private Double max;
+
+    /** The average of all values. */
+    private Double average;
 
     /** The sum of all values. */
     private Double sum;
