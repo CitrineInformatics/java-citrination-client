@@ -1,5 +1,6 @@
 package io.citrine.jcc.search.core.result;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.search.analysis.result.AnalysisResult;
 import io.citrine.jcc.search.analysis.result.HasAnalysisResult;
 import io.citrine.jcc.util.ListUtil;
@@ -124,6 +125,7 @@ public abstract class BaseSearchResult<T> extends HasAnalysisResult implements S
      *
      * @return Number of hits in the result set.
      */
+    @JsonIgnore
     public int getNumHits() {
         return ListUtil.length(this.hits);
     }
