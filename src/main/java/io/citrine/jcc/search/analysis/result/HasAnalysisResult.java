@@ -1,5 +1,6 @@
 package io.citrine.jcc.search.analysis.result;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.citrine.jcc.util.MapUtil;
 import io.citrine.jpif.util.PifSerializationUtil;
@@ -60,6 +61,7 @@ public abstract class HasAnalysisResult implements Serializable {
      *
      * @return Map of analysis results.
      */
+    @JsonGetter
     protected Map<String, AnalysisResult> getAnalysis() {
         return this.analysis;
     }
