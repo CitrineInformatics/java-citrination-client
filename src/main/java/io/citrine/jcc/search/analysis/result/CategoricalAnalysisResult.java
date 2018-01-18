@@ -16,23 +16,23 @@ import java.util.Optional;
  *
  * @author Kyle Michel
  */
-public class ValuesAnalysisResult extends AnalysisResultWithBuckets<ValuesAnalysisResult.Bucket>
+public class CategoricalAnalysisResult extends AnalysisResultWithBuckets<CategoricalAnalysisResult.Bucket>
         implements Serializable {
 
     @Override
-    public ValuesAnalysisResult setBuckets(final List<ValuesAnalysisResult.Bucket> buckets) {
+    public CategoricalAnalysisResult setBuckets(final List<CategoricalAnalysisResult.Bucket> buckets) {
         super.setBuckets(buckets);
         return this;
     }
 
     @Override
-    public ValuesAnalysisResult addBuckets(final List<ValuesAnalysisResult.Bucket> buckets) {
+    public CategoricalAnalysisResult addBuckets(final List<CategoricalAnalysisResult.Bucket> buckets) {
         super.addBuckets(buckets);
         return this;
     }
 
     @Override
-    public ValuesAnalysisResult addBuckets(final ValuesAnalysisResult.Bucket buckets) {
+    public CategoricalAnalysisResult addBuckets(final CategoricalAnalysisResult.Bucket buckets) {
         super.addBuckets(buckets);
         return this;
     }
@@ -42,10 +42,10 @@ public class ValuesAnalysisResult extends AnalysisResultWithBuckets<ValuesAnalys
         if (this == rhs) {
             return true;
         }
-        if ((rhs == null) || !(rhs instanceof ValuesAnalysisResult)) {
+        if ((rhs == null) || !(rhs instanceof CategoricalAnalysisResult)) {
             return false;
         }
-        final ValuesAnalysisResult rhsResult = (ValuesAnalysisResult) rhs;
+        final CategoricalAnalysisResult rhsResult = (CategoricalAnalysisResult) rhs;
         return super.equals(rhsResult);
     }
 

@@ -10,11 +10,11 @@ import java.io.Serializable;
 import java.util.Optional;
 
 /**
- * Class for running a values analysis.
+ * Class for running a categorical analysis.
  *
  * @author Kyle Michel
  */
-public class ValuesAnalysis extends Analysis implements Serializable {
+public class CategoricalAnalysis extends Analysis implements Serializable {
 
     /**
      * Set the maximum number of buckets to generate.
@@ -22,7 +22,7 @@ public class ValuesAnalysis extends Analysis implements Serializable {
      * @param size Long with the maximum number of buckets to generate.
      * @return This object.
      */
-    public ValuesAnalysis setSize(final Long size) {
+    public CategoricalAnalysis setSize(final Long size) {
         this.size = size;
         return this;
     }
@@ -42,7 +42,7 @@ public class ValuesAnalysis extends Analysis implements Serializable {
      * @param minCount Long with the minimum count of values needed to create a bucket.
      * @return This object.
      */
-    public ValuesAnalysis setMinCount(final Long minCount) {
+    public CategoricalAnalysis setMinCount(final Long minCount) {
         this.minCount = minCount;
         return this;
     }
@@ -62,7 +62,7 @@ public class ValuesAnalysis extends Analysis implements Serializable {
      * @param missing String with the value to use when missing.
      * @return This object.
      */
-    public ValuesAnalysis setMissing(final String missing) {
+    public CategoricalAnalysis setMissing(final String missing) {
         this.missing = missing;
         return this;
     }
@@ -77,7 +77,7 @@ public class ValuesAnalysis extends Analysis implements Serializable {
     }
 
     @Override
-    public ValuesAnalysis setPath(final String path) {
+    public CategoricalAnalysis setPath(final String path) {
         super.setPath(path);
         return this;
     }
@@ -87,10 +87,10 @@ public class ValuesAnalysis extends Analysis implements Serializable {
         if (this == rhs) {
             return true;
         }
-        if ((rhs == null) || !(rhs instanceof ValuesAnalysis)) {
+        if ((rhs == null) || !(rhs instanceof CategoricalAnalysis)) {
             return false;
         }
-        final ValuesAnalysis rhsAnalysis = (ValuesAnalysis) rhs;
+        final CategoricalAnalysis rhsAnalysis = (CategoricalAnalysis) rhs;
         return super.equals(rhsAnalysis)
                 && Optional.ofNullable(this.size).equals(Optional.ofNullable(rhsAnalysis.size))
                 && Optional.ofNullable(this.minCount).equals(Optional.ofNullable(rhsAnalysis.minCount))

@@ -21,7 +21,7 @@ import java.util.Optional;
         @JsonSubTypes.Type(name = "histogram", value = HistogramAnalysis.class),
         @JsonSubTypes.Type(name = "ranges", value = RangesAnalysis.class),
         @JsonSubTypes.Type(name = "statistics", value = StatisticsAnalysis.class),
-        @JsonSubTypes.Type(name = "values", value = ValuesAnalysis.class)})
+        @JsonSubTypes.Type(name = "values", value = CategoricalAnalysis.class)})
 public abstract class Analysis implements Serializable {
 
     /**

@@ -20,7 +20,7 @@ import java.io.Serializable;
         @JsonSubTypes.Type(name = "histogram", value = HistogramAnalysisResult.class),
         @JsonSubTypes.Type(name = "ranges", value = RangesAnalysisResult.class),
         @JsonSubTypes.Type(name = "statistics", value = StatisticsAnalysisResult.class),
-        @JsonSubTypes.Type(name = "values", value = ValuesAnalysisResult.class)})
+        @JsonSubTypes.Type(name = "values", value = CategoricalAnalysisResult.class)})
 public abstract class AnalysisResult implements Serializable {
 
     @Override
