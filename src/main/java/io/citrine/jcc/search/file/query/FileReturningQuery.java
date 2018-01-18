@@ -79,6 +79,12 @@ public class FileReturningQuery extends BaseReturningQuery implements Serializab
         return this;
     }
 
+    @Override
+    public FileReturningQuery setReturnAnalysis(final Boolean returnAnalysis) {
+        super.setReturnAnalysis(returnAnalysis);
+        return this;
+    }
+
     /**
      * Set the maximum number of highlights to return.
      *

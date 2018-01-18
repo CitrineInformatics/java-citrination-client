@@ -182,6 +182,26 @@ public abstract class BaseReturningQuery extends DataScope implements Serializab
         return this.returnMaxScore;
     }
 
+    /**
+     * Set whether to run analysis steps.
+     *
+     * @param returnAnalysis False to turn off analysis.
+     * @return This object.
+     */
+    public BaseReturningQuery setReturnAnalysis(final Boolean returnAnalysis) {
+        this.returnAnalysis = returnAnalysis;
+        return this;
+    }
+
+    /**
+     * Get whether to run analysis steps.
+     *
+     * @return False to turn off analysis.
+     */
+    public Boolean getReturnAnalysis() {
+        return this.returnAnalysis;
+    }
+
     @Override
     public boolean equals(final Object rhs) {
         if (this == rhs) {
@@ -197,7 +217,8 @@ public abstract class BaseReturningQuery extends DataScope implements Serializab
                 && Optional.ofNullable(this.randomResults).equals(Optional.ofNullable(rhsQuery.randomResults))
                 && Optional.ofNullable(this.randomSeed).equals(Optional.ofNullable(rhsQuery.randomSeed))
                 && Optional.ofNullable(this.scoreRelevance).equals(Optional.ofNullable(rhsQuery.scoreRelevance))
-                && Optional.ofNullable(this.returnMaxScore).equals(Optional.ofNullable(rhsQuery.returnMaxScore));
+                && Optional.ofNullable(this.returnMaxScore).equals(Optional.ofNullable(rhsQuery.returnMaxScore))
+                && Optional.ofNullable(this.returnAnalysis).equals(Optional.ofNullable(rhsQuery.returnAnalysis));
     }
 
     /**
@@ -247,4 +268,7 @@ public abstract class BaseReturningQuery extends DataScope implements Serializab
 
     /** Whether to return the maximum score. */
     private Boolean returnMaxScore;
+
+    /** Whether to run analyses. */
+    private Boolean returnAnalysis;
 }

@@ -1,0 +1,9 @@
+{
+  "query": {
+    "dataset": {
+      "isFeatured": {
+        "equal": true
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package io.citrine.jcc.search.pif.query.chemical;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jcc.search.analysis.query.Analysis;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.search.pif.query.core.BaseFieldQuery;
@@ -167,6 +168,24 @@ public class ChemicalFieldQuery extends BaseFieldQuery implements Serializable, 
     @JsonSetter("filterGroup")
     protected void filterGroup(final List<ChemicalFilter> filter) {
         this.addFilter(filter);
+    }
+
+    @Override
+    public ChemicalFieldQuery setAnalysis(final List<Analysis> analysis) {
+        super.setAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addAnalysis(final List<Analysis> analysis) {
+        super.addAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public ChemicalFieldQuery addAnalysis(final Analysis analysis) {
+        super.addAnalysis(analysis);
+        return this;
     }
 
     @Override

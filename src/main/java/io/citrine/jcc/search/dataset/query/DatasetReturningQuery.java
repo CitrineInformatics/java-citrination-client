@@ -83,6 +83,12 @@ public class DatasetReturningQuery extends BaseReturningQuery implements Seriali
         return this;
     }
 
+    @Override
+    public DatasetReturningQuery setReturnAnalysis(final Boolean returnAnalysis) {
+        super.setReturnAnalysis(returnAnalysis);
+        return this;
+    }
+
     /**
      * Set whether the number of PIFs should be counted.
      *
