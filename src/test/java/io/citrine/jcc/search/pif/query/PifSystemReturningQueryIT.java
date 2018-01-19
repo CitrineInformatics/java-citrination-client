@@ -1,6 +1,8 @@
 package io.citrine.jcc.search.pif.query;
 
 import io.citrine.jcc.CitrinationClientITBase;
+import io.citrine.jcc.search.analysis.query.CategoricalAnalysis;
+import io.citrine.jcc.search.analysis.result.CategoricalAnalysisResult;
 import io.citrine.jcc.search.core.query.DataQuery;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.MultiQuery;
@@ -120,5 +122,28 @@ public class PifSystemReturningQueryIT extends CitrinationClientITBase {
 
         // Make sure that the score changed by the correct amount
         Assert.assertTrue(Math.abs(weightedScore - unweightedScore) > 0.01);
+    }
+
+    /**
+     * Simple test that analysis requests are being sent.
+     *
+     * @throws IOException if thrown while making search requests.
+     */
+    @Test
+    public void testAnalysis() throws IOException {
+
+        // Run a query with an analysis
+        final PifSearchResult pifSearchResult = this.client.search(new PifSystemReturningQuery()
+                .setSize(0)
+                .addQuery(new DataQuery()
+                        .addSystem(new PifSystemQuery()
+                                .addNames(new FieldQuery()
+                                        .addAnalysis(new CategoricalAnalysis()
+                                                .setSize(1L)
+                                                .setPath("name"))))));
+
+        // Make sure that an analysis came back
+        Assert.assertNotNull(pifSearchResult.getAnalysis("name"));
+        Assert.assertEquals(1, ((CategoricalAnalysisResult) pifSearchResult.getAnalysis("name")).bucketsLength());
     }
 }
