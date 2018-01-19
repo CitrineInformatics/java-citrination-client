@@ -41,11 +41,11 @@ public class PifSystemReturningQueryTest {
         Assert.assertEquals(3, pifSystemReturningQuery.queryLength());
         Assert.assertEquals(1, pifSystemReturningQuery.getQuery(0).datasetLength());
         Assert.assertEquals(1, pifSystemReturningQuery.getQuery(0).getDataset(0).idLength());
-        Assert.assertEquals("1", pifSystemReturningQuery.getQuery(0).getDataset(0).getId(0).getEqual());
+        Assert.assertEquals("1", pifSystemReturningQuery.getQuery(0).getDataset(0).getId(0).getFilter(0).getEqual());
         Assert.assertEquals(Logic.MUST, pifSystemReturningQuery.getQuery(0).getLogic());
         Assert.assertEquals(1, pifSystemReturningQuery.getQuery(1).datasetLength());
         Assert.assertEquals(1, pifSystemReturningQuery.getQuery(1).getDataset(0).idLength());
-        Assert.assertEquals("2", pifSystemReturningQuery.getQuery(1).getDataset(0).getId(0).getEqual());
+        Assert.assertEquals("2", pifSystemReturningQuery.getQuery(1).getDataset(0).getId(0).getFilter(0).getEqual());
         Assert.assertEquals(Logic.MUST_NOT, pifSystemReturningQuery.getQuery(1).getLogic());
         Assert.assertEquals(2, pifSystemReturningQuery.getQuery(2).systemLength());
         Assert.assertEquals("lithium",

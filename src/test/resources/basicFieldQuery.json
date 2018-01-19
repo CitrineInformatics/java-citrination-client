@@ -1,0 +1,11 @@
+{
+  "query": {
+    "dataset": {
+      "id": {
+        "filter": {
+          "equal": "A"
+        }
+      }
+    }
+  }
+}

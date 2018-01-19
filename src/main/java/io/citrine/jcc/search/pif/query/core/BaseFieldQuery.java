@@ -1,12 +1,10 @@
 package io.citrine.jcc.search.pif.query.core;
 
-import io.citrine.jcc.search.core.query.HasLogic;
-import io.citrine.jcc.search.core.query.HasSimple;
-import io.citrine.jcc.search.core.query.HasWeight;
+import io.citrine.jcc.search.analysis.query.Analysis;
+import io.citrine.jcc.search.core.query.AbstractFieldQuery;
 import io.citrine.jcc.search.core.query.Logic;
 import io.citrine.jcc.search.core.query.SortOrder;
 import io.citrine.jcc.util.ListUtil;
-import io.citrine.jcc.util.MapUtil;
 import io.citrine.jpif.util.PifSerializationUtil;
 
 import java.io.IOException;
@@ -18,88 +16,71 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
 /**
  * Base class for all field queries.
  *
  * @author Kyle Michel
  */
-public abstract class BaseFieldQuery implements Serializable, HasLogic, HasWeight, HasSimple {
+public abstract class BaseFieldQuery extends AbstractFieldQuery implements Serializable {
 
     @Override
     public BaseFieldQuery setLogic(final Logic logic) {
-        this.logic = logic;
+        super.setLogic(logic);
         return this;
-    }
-
-    @Override
-    public Logic getLogic() {
-        return this.logic;
     }
 
     @Override
     public BaseFieldQuery setWeight(final Double weight) {
-        this.weight = weight;
+        super.setWeight(weight);
         return this;
-    }
-
-    @Override
-    public Double getWeight() {
-        return this.weight;
     }
 
     @Override
     public BaseFieldQuery setSimple(final String simple) {
-        this.simple = simple;
+        super.setSimple(simple);
         return this;
     }
 
     @Override
-    public String getSimple() {
-        return this.simple;
-    }
-
-    @Override
     public BaseFieldQuery setSimpleWeight(final Map<String, Double> simpleWeight) {
-        this.simpleWeight = simpleWeight;
+        super.setSimpleWeight(simpleWeight);
         return this;
     }
 
     @Override
     public BaseFieldQuery addSimpleWeight(final Map<String, Double> simpleWeight) {
-        this.simpleWeight = MapUtil.add(simpleWeight, this.simpleWeight);
+        super.addSimpleWeight(simpleWeight);
         return this;
     }
 
     @Override
     public BaseFieldQuery addSimpleWeight(final String field, final Double weight) {
-        this.simpleWeight = MapUtil.add(field, weight, this.simpleWeight);
+        super.addSimpleWeight(field, weight);
         return this;
     }
 
     @Override
-    public Map<String, Double> getSimpleWeight() {
-        return this.simpleWeight;
-    }
-
-    /**
-     * Set the sort order to use.
-     *
-     * @param sort {@link SortOrder} to apply to the field.
-     * @return This object.
-     */
     public BaseFieldQuery setSort(final SortOrder sort) {
-        this.sort = sort;
+        super.setSort(sort);
         return this;
     }
 
-    /**
-     * Get the sort order to use.
-     *
-     * @return {@link SortOrder} to use.
-     */
-    public SortOrder getSort() {
-        return this.sort;
+    @Override
+    public BaseFieldQuery setAnalysis(final List<Analysis> analysis) {
+        super.setAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public BaseFieldQuery addAnalysis(final List<Analysis> analysis) {
+        super.addAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public BaseFieldQuery addAnalysis(final Analysis analysis) {
+        super.addAnalysis(analysis);
+        return this;
     }
 
     /**
@@ -312,11 +293,7 @@ public abstract class BaseFieldQuery implements Serializable, HasLogic, HasWeigh
             return false;
         }
         final BaseFieldQuery rhsQuery = (BaseFieldQuery) rhs;
-        return Optional.ofNullable(this.sort).equals(Optional.ofNullable(rhsQuery.sort))
-                && Optional.ofNullable(this.logic).equals(Optional.ofNullable(rhsQuery.logic))
-                && Optional.ofNullable(this.weight).equals(Optional.ofNullable(rhsQuery.weight))
-                && Optional.ofNullable(this.simple).equals(Optional.ofNullable(rhsQuery.simple))
-                && Optional.ofNullable(this.simpleWeight).equals(Optional.ofNullable(rhsQuery.simpleWeight))
+        return super.equals(rhsQuery)
                 && Optional.ofNullable(this.extractAs).equals(Optional.ofNullable(rhsQuery.extractAs))
                 && Optional.ofNullable(this.extractAll).equals(Optional.ofNullable(rhsQuery.extractAll))
                 && Optional.ofNullable(this.extractWhenMissing).equals(Optional.ofNullable(rhsQuery.extractWhenMissing))
@@ -353,21 +330,6 @@ public abstract class BaseFieldQuery implements Serializable, HasLogic, HasWeigh
     private void readObjectNoData() throws ObjectStreamException {}
 
     private static final long serialVersionUID = -2871528127048887491L;
-
-    /** The sort order to apply to the field. */
-    private SortOrder sort;
-
-    /** Logic that applies to the entire query. */
-    private Logic logic;
-
-    /** Weight of the query. */
-    private Double weight;
-
-    /** String with the simple search to run against all fields. */
-    private String simple;
-
-    /** Map of field names to weights for the simple search string. */
-    private Map<String, Double> simpleWeight;
 
     /** Alias to save this field under. */
     private String extractAs;

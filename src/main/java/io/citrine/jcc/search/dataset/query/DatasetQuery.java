@@ -1,7 +1,10 @@
 package io.citrine.jcc.search.dataset.query;
 
-import io.citrine.jcc.search.core.query.BooleanFilter;
-import io.citrine.jcc.search.core.query.Filter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.citrine.jcc.search.core.query.BasicBooleanFieldQuery;
+import io.citrine.jcc.search.core.query.BasicFieldQuery;
+import io.citrine.jcc.search.core.query.ConvertsToBasicBooleanFieldQuery;
+import io.citrine.jcc.search.core.query.ConvertsToBasicFieldQuery;
 import io.citrine.jcc.search.core.query.HasLogic;
 import io.citrine.jcc.search.core.query.HasSimple;
 import io.citrine.jcc.search.core.query.HasWeight;
@@ -83,42 +86,43 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     }
 
     /**
-     * Set the list of dataset ID queries. This replaces any filters that are already present.
+     * Set the list of dataset ID queries. This replaces any queries that are already present.
      *
-     * @param id List of {@link Filter} objects.
+     * @param id List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery setId(final List<Filter> id) {
-        this.id = id;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public DatasetQuery setId(final List<? extends ConvertsToBasicFieldQuery> id) {
+        this.id = BasicFieldQuery.fromList(id);
         return this;
     }
 
     /**
      * Add to the list of dataset ID queries.
      *
-     * @param id List of {@link Filter} objects.
+     * @param id List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery addId(final List<Filter> id) {
-        this.id = ListUtil.add(id, this.id);
+    public DatasetQuery addId(final List<? extends ConvertsToBasicFieldQuery> id) {
+        this.id = ListUtil.add(BasicFieldQuery.fromList(id), this.id);
         return this;
     }
 
     /**
      * Add to the list of dataset ID queries.
      *
-     * @param id {@link Filter} object to add.
+     * @param id {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public DatasetQuery addId(final Filter id) {
-        this.id = ListUtil.add(id, this.id);
+    public DatasetQuery addId(final ConvertsToBasicFieldQuery id) {
+        this.id = ListUtil.add(BasicFieldQuery.fromObject(id), this.id);
         return this;
     }
 
     /**
      * Get the number of dataset ID queries.
      *
-     * @return Number of queries against the datasetId field.
+     * @return Number of queries against the dataset ID field.
      */
     public int idLength() {
         return ListUtil.length(this.id);
@@ -127,9 +131,9 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     /**
      * Get an iterable over the dataset ID queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> id() {
+    public Iterable<BasicFieldQuery> id() {
         return ListUtil.iterable(this.id);
     }
 
@@ -137,51 +141,52 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * Get the dataset ID filter object at the input index.
      *
      * @param index Index of the dataset ID filter to get.
-     * @return {@link Filter} at the input index.
+     * @return {@link BasicFieldQuery} at the input index.
      */
-    public Filter getId(final int index) {
+    public BasicFieldQuery getId(final int index) {
         return ListUtil.get(this.id, index);
     }
 
     /**
      * Get the list of dataset ID queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getId() {
+    public List<BasicFieldQuery> getId() {
         return this.id;
     }
 
     /**
-     * Set the list of isFeatured queries. This replaces any filters that are already present.
+     * Set the list of isFeatured queries. This replaces any queries that are already present.
      *
-     * @param isFeatured List of {@link BooleanFilter} objects.
+     * @param isFeatured List of {@link ConvertsToBasicBooleanFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery setIsFeatured(final List<BooleanFilter> isFeatured) {
-        this.isFeatured = isFeatured;
+    @JsonDeserialize(contentUsing = BasicBooleanFieldQuery.Deserializer.class)
+    public DatasetQuery setIsFeatured(final List<? extends ConvertsToBasicBooleanFieldQuery> isFeatured) {
+        this.isFeatured = BasicBooleanFieldQuery.fromList(isFeatured);
         return this;
     }
 
     /**
      * Add to the list of isFeatured queries.
      *
-     * @param isFeatured List of {@link BooleanFilter} objects.
+     * @param isFeatured List of {@link ConvertsToBasicBooleanFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery addIsFeatured(final List<BooleanFilter> isFeatured) {
-        this.isFeatured = ListUtil.add(isFeatured, this.isFeatured);
+    public DatasetQuery addIsFeatured(final List<? extends ConvertsToBasicBooleanFieldQuery> isFeatured) {
+        this.isFeatured = ListUtil.add(BasicBooleanFieldQuery.fromList(isFeatured), this.isFeatured);
         return this;
     }
 
     /**
      * Add to the list of isFeatured queries.
      * 
-     * @param isFeatured {@link BooleanFilter} object to add.
+     * @param isFeatured {@link ConvertsToBasicBooleanFieldQuery} object to add.
      * @return This object.
      */
-    public DatasetQuery addIsFeatured(final BooleanFilter isFeatured) {
-        this.isFeatured = ListUtil.add(isFeatured, this.isFeatured);
+    public DatasetQuery addIsFeatured(final ConvertsToBasicBooleanFieldQuery isFeatured) {
+        this.isFeatured = ListUtil.add(BasicBooleanFieldQuery.fromObject(isFeatured), this.isFeatured);
         return this;
     }
 
@@ -197,9 +202,9 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     /**
      * Get an iterable over the isFeatured queries.
      * 
-     * @return {@link Iterable} of {@link BooleanFilter} objects.
+     * @return {@link Iterable} of {@link BasicBooleanFieldQuery} objects.
      */
-    public Iterable<BooleanFilter> isFeatured() {
+    public Iterable<BasicBooleanFieldQuery> isFeatured() {
         return ListUtil.iterable(this.isFeatured);
     }
 
@@ -207,51 +212,52 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * Get one in the list of isFeatured queries.
      *
      * @param index Index of the filter to get.
-     * @return {@link BooleanFilter} object.
+     * @return {@link BasicBooleanFieldQuery} object.
      */
-    public BooleanFilter getIsFeatured(final int index) {
+    public BasicBooleanFieldQuery getIsFeatured(final int index) {
         return ListUtil.get(this.isFeatured, index);
     }
     
     /**
      * Get the list of isFeatured queries.
      * 
-     * @return List of {@link BooleanFilter} objects.
+     * @return List of {@link BasicBooleanFieldQuery} objects.
      */
-    public List<BooleanFilter> getIsFeatured() {
+    public List<BasicBooleanFieldQuery> getIsFeatured() {
         return this.isFeatured;
     }
 
     /**
-     * Set the list of name queries. This replaces any filters that are already present.
+     * Set the list of name queries. This replaces any queries that are already present.
      *
-     * @param name List of {@link Filter} objects.
+     * @param name List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery setName(final List<Filter> name) {
-        this.name = name;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public DatasetQuery setName(final List<? extends ConvertsToBasicFieldQuery> name) {
+        this.name = BasicFieldQuery.fromList(name);
         return this;
     }
 
     /**
      * Add to the list of name queries.
      *
-     * @param name List of {@link Filter} objects.
+     * @param name List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery addName(final List<Filter> name) {
-        this.name = ListUtil.add(name, this.name);
+    public DatasetQuery addName(final List<? extends ConvertsToBasicFieldQuery> name) {
+        this.name = ListUtil.add(BasicFieldQuery.fromList(name), this.name);
         return this;
     }
 
     /**
      * Add to the list of name queries.
      *
-     * @param name {@link Filter} object to add.
+     * @param name {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public DatasetQuery addName(final Filter name) {
-        this.name = ListUtil.add(name, this.name);
+    public DatasetQuery addName(final ConvertsToBasicFieldQuery name) {
+        this.name = ListUtil.add(BasicFieldQuery.fromObject(name), this.name);
         return this;
     }
 
@@ -267,9 +273,9 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     /**
      * Get an iterable over the name queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> name() {
+    public Iterable<BasicFieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
 
@@ -277,51 +283,52 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * Get one in the list of name queries.
      *
      * @param index Index of the filter to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getName(final int index) {
+    public BasicFieldQuery getName(final int index) {
         return ListUtil.get(this.name, index);
     }
 
     /**
      * Get the list of name queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getName() {
+    public List<BasicFieldQuery> getName() {
         return this.name;
     }
 
     /**
-     * Set the list of description queries. This replaces any filters that are already present.
+     * Set the list of description queries. This replaces any queries that are already present.
      *
-     * @param description List of {@link Filter} objects.
+     * @param description List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery setDescription(final List<Filter> description) {
-        this.description = description;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public DatasetQuery setDescription(final List<? extends ConvertsToBasicFieldQuery> description) {
+        this.description = BasicFieldQuery.fromList(description);
         return this;
     }
 
     /**
      * Add to the list of description queries.
      *
-     * @param description List of {@link Filter} objects.
+     * @param description List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery addDescription(final List<Filter> description) {
-        this.description = ListUtil.add(description, this.description);
+    public DatasetQuery addDescription(final List<? extends ConvertsToBasicFieldQuery> description) {
+        this.description = ListUtil.add(BasicFieldQuery.fromList(description), this.description);
         return this;
     }
 
     /**
      * Add to the list of description queries.
      *
-     * @param description {@link Filter} object to add.
+     * @param description {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public DatasetQuery addDescription(final Filter description) {
-        this.description = ListUtil.add(description, this.description);
+    public DatasetQuery addDescription(final ConvertsToBasicFieldQuery description) {
+        this.description = ListUtil.add(BasicFieldQuery.fromObject(description), this.description);
         return this;
     }
 
@@ -337,9 +344,9 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     /**
      * Get an iterable over the description queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> description() {
+    public Iterable<BasicFieldQuery> description() {
         return ListUtil.iterable(this.description);
     }
 
@@ -347,51 +354,52 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * Get one in the list of description queries.
      *
      * @param index Index of the filter to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getDescription(final int index) {
+    public BasicFieldQuery getDescription(final int index) {
         return ListUtil.get(this.description, index);
     }
 
     /**
      * Get the list of description queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getDescription() {
+    public List<BasicFieldQuery> getDescription() {
         return this.description;
     }
 
     /**
-     * Set the list of owner queries. This replaces any filters that are already present.
+     * Set the list of owner queries. This replaces any queries that are already present.
      *
-     * @param owner List of {@link Filter} objects.
+     * @param owner List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery setOwner(final List<Filter> owner) {
-        this.owner = owner;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public DatasetQuery setOwner(final List<? extends ConvertsToBasicFieldQuery> owner) {
+        this.owner = BasicFieldQuery.fromList(owner);
         return this;
     }
 
     /**
      * Add to the list of owner queries.
      *
-     * @param owner List of {@link Filter} objects.
+     * @param owner List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery addOwner(final List<Filter> owner) {
-        this.owner = ListUtil.add(owner, this.owner);
+    public DatasetQuery addOwner(final List<? extends ConvertsToBasicFieldQuery> owner) {
+        this.owner = ListUtil.add(BasicFieldQuery.fromList(owner), this.owner);
         return this;
     }
 
     /**
      * Add to the list of owner queries.
      *
-     * @param owner {@link Filter} object to add.
+     * @param owner {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public DatasetQuery addOwner(final Filter owner) {
-        this.owner = ListUtil.add(owner, this.owner);
+    public DatasetQuery addOwner(final ConvertsToBasicFieldQuery owner) {
+        this.owner = ListUtil.add(BasicFieldQuery.fromObject(owner), this.owner);
         return this;
     }
 
@@ -407,9 +415,9 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     /**
      * Get an iterable over the owner queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> owner() {
+    public Iterable<BasicFieldQuery> owner() {
         return ListUtil.iterable(this.owner);
     }
 
@@ -417,51 +425,52 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * Get one in the list of owner queries.
      *
      * @param index Index of the owner query to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getOwner(final int index) {
+    public BasicFieldQuery getOwner(final int index) {
         return ListUtil.get(this.owner, index);
     }
 
     /**
      * Get the list of owner queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getOwner() {
+    public List<BasicFieldQuery> getOwner() {
         return this.owner;
     }
 
     /**
-     * Set the list of email queries. This replaces any filters that are already present.
+     * Set the list of email queries. This replaces any queries that are already present.
      *
-     * @param email List of {@link Filter} objects.
+     * @param email List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery setEmail(final List<Filter> email) {
-        this.email = email;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public DatasetQuery setEmail(final List<? extends ConvertsToBasicFieldQuery> email) {
+        this.email = BasicFieldQuery.fromList(email);
         return this;
     }
 
     /**
      * Add to the list of email queries.
      *
-     * @param email List of {@link Filter} objects.
+     * @param email List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery addEmail(final List<Filter> email) {
-        this.email = ListUtil.add(email, this.email);
+    public DatasetQuery addEmail(final List<? extends ConvertsToBasicFieldQuery> email) {
+        this.email = ListUtil.add(BasicFieldQuery.fromList(email), this.email);
         return this;
     }
 
     /**
      * Add to the list of email queries.
      *
-     * @param email {@link Filter} object to add.
+     * @param email {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public DatasetQuery addEmail(final Filter email) {
-        this.email = ListUtil.add(email, this.email);
+    public DatasetQuery addEmail(final ConvertsToBasicFieldQuery email) {
+        this.email = ListUtil.add(BasicFieldQuery.fromObject(email), this.email);
         return this;
     }
 
@@ -477,9 +486,9 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     /**
      * Get an iterable over the email queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> email() {
+    public Iterable<BasicFieldQuery> email() {
         return ListUtil.iterable(this.email);
     }
 
@@ -487,51 +496,52 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * Get one in the list of email queries.
      *
      * @param index Index of the email query to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getEmail(final int index) {
+    public BasicFieldQuery getEmail(final int index) {
         return ListUtil.get(this.email, index);
     }
 
     /**
      * Get the list of email queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getEmail() {
+    public List<BasicFieldQuery> getEmail() {
         return this.email;
     }
 
     /**
-     * Set the list of updatedAt queries. This replaces any filters that are already present.
+     * Set the list of updatedAt queries. This replaces any queries that are already present.
      *
-     * @param updatedAt List of {@link Filter} objects.
+     * @param updatedAt List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery setUpdatedAt(final List<Filter> updatedAt) {
-        this.updatedAt = updatedAt;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public DatasetQuery setUpdatedAt(final List<? extends ConvertsToBasicFieldQuery> updatedAt) {
+        this.updatedAt = BasicFieldQuery.fromList(updatedAt);
         return this;
     }
 
     /**
      * Add to the list of updatedAt queries.
      *
-     * @param updatedAt List of {@link Filter} objects.
+     * @param updatedAt List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public DatasetQuery addUpdatedAt(final List<Filter> updatedAt) {
-        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+    public DatasetQuery addUpdatedAt(final List<? extends ConvertsToBasicFieldQuery> updatedAt) {
+        this.updatedAt = ListUtil.add(BasicFieldQuery.fromList(updatedAt), this.updatedAt);
         return this;
     }
 
     /**
      * Add to the list of updatedAt queries.
      *
-     * @param updatedAt {@link Filter} object to add.
+     * @param updatedAt {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public DatasetQuery addUpdatedAt(final Filter updatedAt) {
-        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+    public DatasetQuery addUpdatedAt(final ConvertsToBasicFieldQuery updatedAt) {
+        this.updatedAt = ListUtil.add(BasicFieldQuery.fromObject(updatedAt), this.updatedAt);
         return this;
     }
 
@@ -547,9 +557,9 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     /**
      * Get an iterable over the updatedAt queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> updatedAt() {
+    public Iterable<BasicFieldQuery> updatedAt() {
         return ListUtil.iterable(this.updatedAt);
     }
 
@@ -557,18 +567,18 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
      * Get one in the list of updatedAt queries.
      *
      * @param index Index of the updatedAt query to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getUpdatedAt(final int index) {
+    public BasicFieldQuery getUpdatedAt(final int index) {
         return ListUtil.get(this.updatedAt, index);
     }
 
     /**
      * Get the list of updatedAt queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getUpdatedAt() {
+    public List<BasicFieldQuery> getUpdatedAt() {
         return this.updatedAt;
     }
 
@@ -708,25 +718,25 @@ public class DatasetQuery implements Serializable, HasLogic, HasWeight, HasSimpl
     private Map<String, Double> simpleWeight;
 
     /** List of filters against the dataset ID. */
-    private List<Filter> id;
+    private List<BasicFieldQuery> id;
 
     /** Whether the dataset is featured. */
-    private List<BooleanFilter> isFeatured;
+    private List<BasicBooleanFieldQuery> isFeatured;
     
     /** Name of the dataset. */
-    private List<Filter> name;
+    private List<BasicFieldQuery> name;
 
     /** Description of the dataset. */
-    private List<Filter> description;
+    private List<BasicFieldQuery> description;
 
     /** Owner of the dataset. */
-    private List<Filter> owner;
+    private List<BasicFieldQuery> owner;
 
     /** Email address of the owner of the dataset. */
-    private List<Filter> email;
+    private List<BasicFieldQuery> email;
     
     /** The time that the dataset was last updated. */
-    private List<Filter> updatedAt;
+    private List<BasicFieldQuery> updatedAt;
     
     /** Nested list of queries. */
     private List<DatasetQuery> query;

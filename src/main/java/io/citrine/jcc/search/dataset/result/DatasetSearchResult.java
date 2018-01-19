@@ -1,5 +1,6 @@
 package io.citrine.jcc.search.dataset.result;
 
+import io.citrine.jcc.search.analysis.result.AnalysisResult;
 import io.citrine.jcc.search.core.result.BaseSearchResult;
 import io.citrine.jpif.util.PifSerializationUtil;
 
@@ -9,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class to store all of the results that were returned from a query. This class implements {@link Iterable} so that
@@ -60,6 +62,24 @@ public class DatasetSearchResult extends BaseSearchResult<DatasetSearchHit> impl
     @Override
     public DatasetSearchResult addHits(final DatasetSearchHit hit) {
         super.addHits(hit);
+        return this;
+    }
+
+    @Override
+    public DatasetSearchResult setAnalysis(final Map<String, AnalysisResult> analysis) {
+        super.setAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public DatasetSearchResult addAnalysis(final Map<String, AnalysisResult> analysis) {
+        super.addAnalysis(analysis);
+        return this;
+    }
+
+    @Override
+    public DatasetSearchResult addAnalysis(final String name, final AnalysisResult analysis) {
+        super.addAnalysis(name, analysis);
         return this;
     }
 

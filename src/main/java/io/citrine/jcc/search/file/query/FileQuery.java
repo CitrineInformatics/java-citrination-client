@@ -1,6 +1,8 @@
 package io.citrine.jcc.search.file.query;
 
-import io.citrine.jcc.search.core.query.Filter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.citrine.jcc.search.core.query.BasicFieldQuery;
+import io.citrine.jcc.search.core.query.ConvertsToBasicFieldQuery;
 import io.citrine.jcc.search.core.query.HasLogic;
 import io.citrine.jcc.search.core.query.HasSimple;
 import io.citrine.jcc.search.core.query.HasWeight;
@@ -82,35 +84,36 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
     }
 
     /**
-     * Set the list of file ID queries. This replaces any filters that are already present.
+     * Set the list of file ID queries. This replaces any queries that are already present.
      *
-     * @param id List of {@link Filter} objects.
+     * @param id List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public FileQuery setId(final List<Filter> id) {
-        this.id = id;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public FileQuery setId(final List<? extends ConvertsToBasicFieldQuery> id) {
+        this.id = BasicFieldQuery.fromList(id);
         return this;
     }
 
     /**
      * Add to the list of file ID queries.
      *
-     * @param id List of {@link Filter} objects.
+     * @param id List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public FileQuery addId(final List<Filter> id) {
-        this.id = ListUtil.add(id, this.id);
+    public FileQuery addId(final List<? extends ConvertsToBasicFieldQuery> id) {
+        this.id = ListUtil.add(BasicFieldQuery.fromList(id), this.id);
         return this;
     }
 
     /**
      * Add to the list of file ID queries.
      *
-     * @param id {@link Filter} object to add.
+     * @param id {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public FileQuery addId(final Filter id) {
-        this.id = ListUtil.add(id, this.id);
+    public FileQuery addId(final ConvertsToBasicFieldQuery id) {
+        this.id = ListUtil.add(BasicFieldQuery.fromObject(id), this.id);
         return this;
     }
 
@@ -126,9 +129,9 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
     /**
      * Get an iterable over the file ID queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> id() {
+    public Iterable<BasicFieldQuery> id() {
         return ListUtil.iterable(this.id);
     }
 
@@ -136,51 +139,52 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
      * Get the file ID filter object at the input index.
      *
      * @param index Index of the file ID filter to get.
-     * @return {@link Filter} at the input index.
+     * @return {@link BasicFieldQuery} at the input index.
      */
-    public Filter getId(final int index) {
+    public BasicFieldQuery getId(final int index) {
         return ListUtil.get(this.id, index);
     }
 
     /**
      * Get the list of file ID queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getId() {
+    public List<BasicFieldQuery> getId() {
         return this.id;
     }
 
     /**
-     * Set the list of name queries. This replaces any filters that are already present.
+     * Set the list of name queries. This replaces any queries that are already present.
      *
-     * @param name List of {@link Filter} objects.
+     * @param name List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public FileQuery setName(final List<Filter> name) {
-        this.name = name;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public FileQuery setName(final List<? extends ConvertsToBasicFieldQuery> name) {
+        this.name = BasicFieldQuery.fromList(name);
         return this;
     }
 
     /**
      * Add to the list of name queries.
      *
-     * @param name List of {@link Filter} objects.
+     * @param name List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public FileQuery addName(final List<Filter> name) {
-        this.name = ListUtil.add(name, this.name);
+    public FileQuery addName(final List<? extends ConvertsToBasicFieldQuery> name) {
+        this.name = ListUtil.add(BasicFieldQuery.fromList(name), this.name);
         return this;
     }
 
     /**
      * Add to the list of name queries.
      *
-     * @param name {@link Filter} object to add.
+     * @param name {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public FileQuery addName(final Filter name) {
-        this.name = ListUtil.add(name, this.name);
+    public FileQuery addName(final ConvertsToBasicFieldQuery name) {
+        this.name = ListUtil.add(BasicFieldQuery.fromObject(name), this.name);
         return this;
     }
 
@@ -196,9 +200,9 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
     /**
      * Get an iterable over the name queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> name() {
+    public Iterable<BasicFieldQuery> name() {
         return ListUtil.iterable(this.name);
     }
 
@@ -206,51 +210,52 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
      * Get one in the list of name queries.
      *
      * @param index Index of the filter to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getName(final int index) {
+    public BasicFieldQuery getName(final int index) {
         return ListUtil.get(this.name, index);
     }
 
     /**
      * Get the list of name queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getName() {
+    public List<BasicFieldQuery> getName() {
         return this.name;
     }
 
     /**
-     * Set the list of content queries. This replaces any filters that are already present.
+     * Set the list of content queries. This replaces any queries that are already present.
      *
-     * @param content List of {@link Filter} objects.
+     * @param content List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public FileQuery setContent(final List<Filter> content) {
-        this.content = content;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public FileQuery setContent(final List<? extends ConvertsToBasicFieldQuery> content) {
+        this.content = BasicFieldQuery.fromList(content);
         return this;
     }
 
     /**
      * Add to the list of content queries.
      *
-     * @param content List of {@link Filter} objects.
+     * @param content List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public FileQuery addContent(final List<Filter> content) {
-        this.content = ListUtil.add(content, this.content);
+    public FileQuery addContent(final List<? extends ConvertsToBasicFieldQuery> content) {
+        this.content = ListUtil.add(BasicFieldQuery.fromList(content), this.content);
         return this;
     }
 
     /**
      * Add to the list of content queries.
      *
-     * @param content {@link Filter} object to add.
+     * @param content {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public FileQuery addContent(final Filter content) {
-        this.content = ListUtil.add(content, this.content);
+    public FileQuery addContent(final ConvertsToBasicFieldQuery content) {
+        this.content = ListUtil.add(BasicFieldQuery.fromObject(content), this.content);
         return this;
     }
 
@@ -266,9 +271,9 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
     /**
      * Get an iterable over the content queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> content() {
+    public Iterable<BasicFieldQuery> content() {
         return ListUtil.iterable(this.content);
     }
 
@@ -276,51 +281,52 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
      * Get one in the list of content queries.
      *
      * @param index Index of the filter to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getContent(final int index) {
+    public BasicFieldQuery getContent(final int index) {
         return ListUtil.get(this.content, index);
     }
 
     /**
      * Get the list of content queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getContent() {
+    public List<BasicFieldQuery> getContent() {
         return this.content;
     }
 
     /**
-     * Set the list of updatedAt queries. This replaces any filters that are already present.
+     * Set the list of updatedAt queries. This replaces any queries that are already present.
      *
-     * @param updatedAt List of {@link Filter} objects.
+     * @param updatedAt List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public FileQuery setUpdatedAt(final List<Filter> updatedAt) {
-        this.updatedAt = updatedAt;
+    @JsonDeserialize(contentUsing = BasicFieldQuery.Deserializer.class)
+    public FileQuery setUpdatedAt(final List<? extends ConvertsToBasicFieldQuery> updatedAt) {
+        this.updatedAt = BasicFieldQuery.fromList(updatedAt);
         return this;
     }
 
     /**
      * Add to the list of updatedAt queries.
      *
-     * @param updatedAt List of {@link Filter} objects.
+     * @param updatedAt List of {@link ConvertsToBasicFieldQuery} objects.
      * @return This object.
      */
-    public FileQuery addUpdatedAt(final List<Filter> updatedAt) {
-        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+    public FileQuery addUpdatedAt(final List<? extends ConvertsToBasicFieldQuery> updatedAt) {
+        this.updatedAt = ListUtil.add(BasicFieldQuery.fromList(updatedAt), this.updatedAt);
         return this;
     }
 
     /**
      * Add to the list of updatedAt queries.
      *
-     * @param updatedAt {@link Filter} object to add.
+     * @param updatedAt {@link ConvertsToBasicFieldQuery} object to add.
      * @return This object.
      */
-    public FileQuery addUpdatedAt(final Filter updatedAt) {
-        this.updatedAt = ListUtil.add(updatedAt, this.updatedAt);
+    public FileQuery addUpdatedAt(final ConvertsToBasicFieldQuery updatedAt) {
+        this.updatedAt = ListUtil.add(BasicFieldQuery.fromObject(updatedAt), this.updatedAt);
         return this;
     }
 
@@ -336,9 +342,9 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
     /**
      * Get an iterable over the updatedAt queries.
      *
-     * @return {@link Iterable} of {@link Filter} objects.
+     * @return {@link Iterable} of {@link BasicFieldQuery} objects.
      */
-    public Iterable<Filter> updatedAt() {
+    public Iterable<BasicFieldQuery> updatedAt() {
         return ListUtil.iterable(this.updatedAt);
     }
 
@@ -346,18 +352,18 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
      * Get one in the list of updatedAt queries.
      *
      * @param index Index of the updatedAt query to get.
-     * @return {@link Filter} object.
+     * @return {@link BasicFieldQuery} object.
      */
-    public Filter getUpdatedAt(final int index) {
+    public BasicFieldQuery getUpdatedAt(final int index) {
         return ListUtil.get(this.updatedAt, index);
     }
 
     /**
      * Get the list of updatedAt queries.
      *
-     * @return List of {@link Filter} objects.
+     * @return List of {@link BasicFieldQuery} objects.
      */
-    public List<Filter> getUpdatedAt() {
+    public List<BasicFieldQuery> getUpdatedAt() {
         return this.updatedAt;
     }
 
@@ -494,16 +500,16 @@ public class FileQuery implements Serializable, HasLogic, HasWeight, HasSimple {
     private Map<String, Double> simpleWeight;
 
     /** List of filters against the file ID. */
-    private List<Filter> id;
+    private List<BasicFieldQuery> id;
 
     /** List of filters against the file name. */
-    private List<Filter> name;
+    private List<BasicFieldQuery> name;
 
     /** List of filters against the file content. */
-    private List<Filter> content;
+    private List<BasicFieldQuery> content;
 
     /** List of filters against the last update time. */
-    private List<Filter> updatedAt;
+    private List<BasicFieldQuery> updatedAt;
 
     /** Nested list of queries. */
     private List<FileQuery> query;
