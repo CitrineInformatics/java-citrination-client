@@ -13,7 +13,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.LaxRedirectStrategy;
@@ -103,7 +103,7 @@ public class CitrinationClient {
         final HttpPost post = new HttpPost(this.host + "/api/search/pif_search");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
-        post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(pifQuery)));
+        post.setEntity(new ByteArrayEntity(OBJECT_MAPPER.writeValueAsBytes(pifQuery)));
         return post;
     }
 
@@ -129,7 +129,7 @@ public class CitrinationClient {
         final HttpPost post = new HttpPost(this.host + "/api/search/pif/multi_pif_search");
         post.addHeader("X-API-Key", this.apiKey);
         post.addHeader("Content-type", "application/json");
-        post.setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(multiQuery)));
+        post.setEntity(new ByteArrayEntity(OBJECT_MAPPER.writeValueAsBytes(multiQuery)));
         return post;
     }
 

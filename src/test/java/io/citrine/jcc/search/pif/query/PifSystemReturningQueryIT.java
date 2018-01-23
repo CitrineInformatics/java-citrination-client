@@ -8,6 +8,7 @@ import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.MultiQuery;
 import io.citrine.jcc.search.core.result.MultiSearchResult;
 import io.citrine.jcc.search.pif.query.core.FieldQuery;
+import io.citrine.jcc.search.pif.query.core.PropertyQuery;
 import io.citrine.jcc.search.pif.result.PifSearchHit;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
 import org.junit.Assert;
@@ -145,5 +146,24 @@ public class PifSystemReturningQueryIT extends CitrinationClientITBase {
         // Make sure that an analysis came back
         Assert.assertNotNull(pifSearchResult.getAnalysis("name"));
         Assert.assertEquals(1, ((CategoricalAnalysisResult) pifSearchResult.getAnalysis("name")).bucketsLength());
+    }
+
+    /**
+     * Run a query with a degree unicode character in it. This is a regression test to make sure that we are
+     * serializing in a way that the server will respect.
+     *
+     * @throws IOException if thrown while making search requests. This should be thrown if the degree symbol is not
+     * properly serialized when making the request.
+     */
+    @Test
+    public void testDegreeSymbol() throws IOException {
+        this.client.search(new PifSystemReturningQuery()
+                .setSize(0)
+                .addQuery(new DataQuery()
+                        .addSystem(new PifSystemQuery()
+                                .addProperties(new PropertyQuery()
+                                        .addUnits(new FieldQuery()
+                                                .addFilter(new Filter()
+                                                        .setEqual("°")))))));
     }
 }
