@@ -88,7 +88,7 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
      * @param traversalMode {@link TraversalMode} to use.
      * @return This object.
      */
-    public Analysis setTraversalMode(final TraversalMode traversalMode) {
+    public CategoricalAnalysis setTraversalMode(final TraversalMode traversalMode) {
         this.traversalMode = traversalMode;
         return this;
     }
