@@ -115,12 +115,6 @@ public class RangesAnalysis extends Analysis implements Serializable {
     }
 
     @Override
-    public RangesAnalysis setTraversalMode(final TraversalMode traversalMode) {
-        super.setTraversalMode(traversalMode);
-        return this;
-    }
-
-    @Override
     public boolean equals(final Object rhs) {
         if (this == rhs) {
             return true;

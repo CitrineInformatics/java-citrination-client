@@ -82,10 +82,24 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
         return this;
     }
 
-    @Override
-    public CategoricalAnalysis setTraversalMode(final TraversalMode traversalMode) {
-        super.setTraversalMode(traversalMode);
+    /**
+     * Set the traversal mode.
+     *
+     * @param traversalMode {@link TraversalMode} to use.
+     * @return This object.
+     */
+    public Analysis setTraversalMode(final TraversalMode traversalMode) {
+        this.traversalMode = traversalMode;
         return this;
+    }
+
+    /**
+     * Get the traversal mode.
+     *
+     * @return {@link TraversalMode} to use.
+     */
+    public TraversalMode getTraversalMode() {
+        return this.traversalMode;
     }
 
     @Override
@@ -100,7 +114,8 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
         return super.equals(rhsAnalysis)
                 && Optional.ofNullable(this.size).equals(Optional.ofNullable(rhsAnalysis.size))
                 && Optional.ofNullable(this.minCount).equals(Optional.ofNullable(rhsAnalysis.minCount))
-                && Optional.ofNullable(this.missing).equals(Optional.ofNullable(rhsAnalysis.missing));
+                && Optional.ofNullable(this.missing).equals(Optional.ofNullable(rhsAnalysis.missing))
+                && Optional.ofNullable(this.traversalMode).equals(Optional.ofNullable(rhsAnalysis.traversalMode));
     }
 
     /**
@@ -141,4 +156,7 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
 
     /** The value to use when missing. */
     private String missing;
+
+    /** Traversal mode. */
+    private TraversalMode traversalMode;
 }
