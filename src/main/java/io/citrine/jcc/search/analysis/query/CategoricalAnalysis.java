@@ -83,6 +83,12 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
     }
 
     @Override
+    public CategoricalAnalysis setTraversalMode(final TraversalMode traversalMode) {
+        super.setTraversalMode(traversalMode);
+        return this;
+    }
+
+    @Override
     public boolean equals(final Object rhs) {
         if (this == rhs) {
             return true;

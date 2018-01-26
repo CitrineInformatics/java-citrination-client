@@ -23,6 +23,12 @@ public class StatisticsAnalysis extends Analysis implements Serializable {
     }
 
     @Override
+    public StatisticsAnalysis setTraversalMode(final TraversalMode traversalMode) {
+        super.setTraversalMode(traversalMode);
+        return this;
+    }
+
+    @Override
     public boolean equals(final Object rhs) {
         if (this == rhs) {
             return true;

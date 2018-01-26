@@ -44,6 +44,26 @@ public abstract class Analysis implements Serializable {
         return this.path;
     }
 
+    /**
+     * Set the traversal mode.
+     *
+     * @param traversalMode {@link TraversalMode} to use.
+     * @return This object.
+     */
+    public Analysis setTraversalMode(final TraversalMode traversalMode) {
+        this.traversalMode = traversalMode;
+        return this;
+    }
+
+    /**
+     * Get the traversal mode.
+     *
+     * @return {@link TraversalMode} to use.
+     */
+    public TraversalMode getTraversalMode() {
+        return this.traversalMode;
+    }
+
     @Override
     public boolean equals(final Object rhs) {
         if (this == rhs) {
@@ -53,7 +73,8 @@ public abstract class Analysis implements Serializable {
             return false;
         }
         final Analysis rhsAnalysis = (Analysis) rhs;
-        return Optional.ofNullable(this.path).equals(Optional.ofNullable(rhsAnalysis.path));
+        return Optional.ofNullable(this.path).equals(Optional.ofNullable(rhsAnalysis.path))
+                && Optional.ofNullable(this.traversalMode).equals(Optional.ofNullable(rhsAnalysis.traversalMode));
     }
 
     /**
@@ -88,4 +109,7 @@ public abstract class Analysis implements Serializable {
 
     /** Path to the analysis. */
     private String path;
+
+    /** Traversal mode. */
+    private TraversalMode traversalMode;
 }
