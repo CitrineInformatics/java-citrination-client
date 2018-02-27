@@ -76,6 +76,26 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
         return this.missing;
     }
 
+    /**
+     * Set whether to include numeric values in the analysis.
+     *
+     * @param includeNumeric True to include fields that have numeric interpretations.
+     * @return This object.
+     */
+    public CategoricalAnalysis setIncludeNumeric(final Boolean includeNumeric) {
+        this.includeNumeric = includeNumeric;
+        return this;
+    }
+
+    /**
+     * Get whether to include numeric values in the analysis.
+     *
+     * @return True to include fields that have numeric interpretations.
+     */
+    public Boolean getIncludeNumeric() {
+        return this.includeNumeric;
+    }
+
     @Override
     public CategoricalAnalysis setPath(final String path) {
         super.setPath(path);
@@ -115,6 +135,7 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
                 && Optional.ofNullable(this.size).equals(Optional.ofNullable(rhsAnalysis.size))
                 && Optional.ofNullable(this.minCount).equals(Optional.ofNullable(rhsAnalysis.minCount))
                 && Optional.ofNullable(this.missing).equals(Optional.ofNullable(rhsAnalysis.missing))
+                && Optional.ofNullable(this.includeNumeric).equals(Optional.ofNullable(rhsAnalysis.includeNumeric))
                 && Optional.ofNullable(this.traversalMode).equals(Optional.ofNullable(rhsAnalysis.traversalMode));
     }
 
@@ -156,6 +177,9 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
 
     /** The value to use when missing. */
     private String missing;
+
+    /** Whether to include numeric values in the categories. */
+    private Boolean includeNumeric;
 
     /** Traversal mode. */
     private TraversalMode traversalMode;
