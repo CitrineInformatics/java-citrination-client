@@ -149,6 +149,51 @@ public class PifSystemReturningQueryIT extends CitrinationClientITBase {
     }
 
     /**
+     * Test that the includeNumeric option is used when running an analysis.
+     *
+     * @throws IOException if thrown while making search requests.
+     */
+    @Test
+    public void testIncludeNumeric() throws IOException {
+
+        // To reduce the time that the query is going to run on the server, this test has two parts. First, query
+        // for a PIF from any dataset.
+        final PifSearchResult pifSearchResult = this.client.search(new PifSystemReturningQuery()
+                .setSize(1)
+                .addQuery(new DataQuery()
+                        .addSystem(new PifSystemQuery()
+                                .addUid(new Filter().setExists(true)))));
+        final String uid = pifSearchResult.getHits(0).getId().split("/", 3)[2];
+
+        // Filter on the UID of the PIF that was returned then run a categorical analysis on the length of the
+        // system, which should always be 1. Since numeric values are not included in categorical analyses, this
+        // should not return any buckets.
+        final PifSearchResult withoutNumericResult = this.client.search(new PifSystemReturningQuery()
+                .setSize(0)
+                .addQuery(new DataQuery()
+                        .addSystem(new PifSystemQuery()
+                                .addUid(new Filter()
+                                        .setEqual(uid))
+                                .addLength(new FieldQuery()
+                                        .addAnalysis(new CategoricalAnalysis()
+                                                .setPath("len"))))));
+        Assert.assertEquals(0, ((CategoricalAnalysisResult) withoutNumericResult.getAnalysis("len")).bucketsLength());
+
+        // Run the same analysis but include numeric values and make sure that a bucket was returned
+        final PifSearchResult withNumericResult = this.client.search(new PifSystemReturningQuery()
+                .setSize(0)
+                .addQuery(new DataQuery()
+                        .addSystem(new PifSystemQuery()
+                                .addUid(new Filter()
+                                        .setEqual(uid))
+                                .addLength(new FieldQuery()
+                                        .addAnalysis(new CategoricalAnalysis()
+                                                .setPath("len")
+                                                .setIncludeNumeric(true))))));
+        Assert.assertEquals(1, ((CategoricalAnalysisResult) withNumericResult.getAnalysis("len")).bucketsLength());
+    }
+
+    /**
      * Run a query with a degree unicode character in it. This is a regression test to make sure that we are
      * serializing in a way that the server will respect.
      *
