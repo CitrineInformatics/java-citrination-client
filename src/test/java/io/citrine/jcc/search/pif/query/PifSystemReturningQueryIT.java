@@ -3,14 +3,11 @@ package io.citrine.jcc.search.pif.query;
 import io.citrine.jcc.CitrinationClientITBase;
 import io.citrine.jcc.search.analysis.query.CategoricalAnalysis;
 import io.citrine.jcc.search.analysis.result.CategoricalAnalysisResult;
-import io.citrine.jcc.search.core.query.BasicFieldQuery;
 import io.citrine.jcc.search.core.query.DataQuery;
 import io.citrine.jcc.search.core.query.Filter;
 import io.citrine.jcc.search.core.query.MultiQuery;
 import io.citrine.jcc.search.core.result.MultiSearchResult;
-import io.citrine.jcc.search.dataset.query.DatasetQuery;
 import io.citrine.jcc.search.pif.query.core.FieldQuery;
-import io.citrine.jcc.search.pif.query.core.IdQuery;
 import io.citrine.jcc.search.pif.query.core.PropertyQuery;
 import io.citrine.jcc.search.pif.result.PifSearchHit;
 import io.citrine.jcc.search.pif.result.PifSearchResult;
@@ -159,27 +156,41 @@ public class PifSystemReturningQueryIT extends CitrinationClientITBase {
     @Test
     public void testIncludeNumeric() throws IOException {
 
-        // Run an analysis on dataset IDs that does not include numeric values. This shouldn't hit anything.
+        // To reduce the time that the query is going to run on the server, this test has two parts. First, query
+        // for a PIF from any dataset.
+        final PifSearchResult pifSearchResult = this.client.search(new PifSystemReturningQuery()
+                .setSize(1)
+                .addQuery(new DataQuery()
+                        .addSystem(new PifSystemQuery()
+                                .addUid(new Filter().setExists(true)))));
+        final String uid = pifSearchResult.getHits(0).getId().split("/", 3)[2];
+
+        // Filter on the UID of the PIF that was returned then run a categorical analysis on the length of the
+        // system, which should always be 1. Since numeric values are not included in categorical analyses, this
+        // should not return any buckets.
         final PifSearchResult withoutNumericResult = this.client.search(new PifSystemReturningQuery()
                 .setSize(0)
                 .addQuery(new DataQuery()
-                        .addDataset(new DatasetQuery()
-                                .addId(new BasicFieldQuery()
+                        .addSystem(new PifSystemQuery()
+                                .addUid(new Filter()
+                                        .setEqual(uid))
+                                .addLength(new FieldQuery()
                                         .addAnalysis(new CategoricalAnalysis()
-                                                .setPath("ids"))))));
-        Assert.assertEquals(0, ((CategoricalAnalysisResult) withoutNumericResult.getAnalysis("ids")).bucketsLength());
+                                                .setPath("len"))))));
+        Assert.assertEquals(0, ((CategoricalAnalysisResult) withoutNumericResult.getAnalysis("len")).bucketsLength());
 
-        // Run an analysis on dataset IDs that does include numeric values
+        // Run the same analysis but include numeric values and make sure that a bucket was returned
         final PifSearchResult withNumericResult = this.client.search(new PifSystemReturningQuery()
                 .setSize(0)
                 .addQuery(new DataQuery()
-                        .addDataset(new DatasetQuery()
-                                .addId(new BasicFieldQuery()
+                        .addSystem(new PifSystemQuery()
+                                .addUid(new Filter()
+                                        .setEqual(uid))
+                                .addLength(new FieldQuery()
                                         .addAnalysis(new CategoricalAnalysis()
-                                                .setIncludeNumeric(true)
-                                                .setPath("ids"))))));
-        Assert.assertNotEquals(0,
-                ((CategoricalAnalysisResult) withoutNumericResult.getAnalysis("ids")).bucketsLength());
+                                                .setPath("len")
+                                                .setIncludeNumeric(true))))));
+        Assert.assertEquals(1, ((CategoricalAnalysisResult) withNumericResult.getAnalysis("len")).bucketsLength());
     }
 
     /**

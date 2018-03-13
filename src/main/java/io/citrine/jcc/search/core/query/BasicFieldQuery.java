@@ -28,6 +28,12 @@ import java.util.stream.Collectors;
 public class BasicFieldQuery extends AbstractFieldQuery implements Serializable, HasFilter, ConvertsToBasicFieldQuery {
 
     @Override
+    public BasicFieldQuery setLogic(final Logic logic) {
+        super.setLogic(logic);
+        return this;
+    }
+
+    @Override
     public BasicFieldQuery setFilter(final List<Filter> filter) {
         this.filter = filter;
         return this;
