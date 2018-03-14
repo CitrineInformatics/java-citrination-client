@@ -202,6 +202,26 @@ public abstract class BaseReturningQuery extends DataScope implements Serializab
         return this.returnAnalysis;
     }
 
+    /**
+     * Set the timeout for the query. There is a best effort made to honor this request but it is not guaranteed.
+     *
+     * @param timeout Integer with the query execution timeout in milliseconds.
+     * @return This object.
+     */
+    public BaseReturningQuery setTimeout(final Integer timeout) {
+        this.timeout = timeout;
+        return this;
+    }
+
+    /**
+     * Get the timeout for the query. There is a best effort made to honor this request but it is not guaranteed.
+     *
+     * @return Integer with the query execution timeout in milliseconds.
+     */
+    public Integer getTimeout() {
+        return this.timeout;
+    }
+
     @Override
     public boolean equals(final Object rhs) {
         if (this == rhs) {
@@ -218,7 +238,8 @@ public abstract class BaseReturningQuery extends DataScope implements Serializab
                 && Optional.ofNullable(this.randomSeed).equals(Optional.ofNullable(rhsQuery.randomSeed))
                 && Optional.ofNullable(this.scoreRelevance).equals(Optional.ofNullable(rhsQuery.scoreRelevance))
                 && Optional.ofNullable(this.returnMaxScore).equals(Optional.ofNullable(rhsQuery.returnMaxScore))
-                && Optional.ofNullable(this.returnAnalysis).equals(Optional.ofNullable(rhsQuery.returnAnalysis));
+                && Optional.ofNullable(this.returnAnalysis).equals(Optional.ofNullable(rhsQuery.returnAnalysis))
+                && Optional.ofNullable(this.timeout).equals(Optional.ofNullable(rhsQuery.timeout));
     }
 
     /**
@@ -271,4 +292,7 @@ public abstract class BaseReturningQuery extends DataScope implements Serializab
 
     /** Whether to run analyses. */
     private Boolean returnAnalysis;
+
+    /** The timeout in ms for executing the request. */
+    private Integer timeout;
 }

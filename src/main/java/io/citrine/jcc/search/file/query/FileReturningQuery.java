@@ -85,6 +85,12 @@ public class FileReturningQuery extends BaseReturningQuery implements Serializab
         return this;
     }
 
+    @Override
+    public FileReturningQuery setTimeout(final Integer timeout) {
+        super.setTimeout(timeout);
+        return this;
+    }
+
     /**
      * Set the maximum number of highlights to return.
      *

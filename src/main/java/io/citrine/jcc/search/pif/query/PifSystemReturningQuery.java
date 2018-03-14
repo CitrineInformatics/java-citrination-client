@@ -91,6 +91,12 @@ public class PifSystemReturningQuery extends BaseReturningQuery implements Seria
         return this;
     }
 
+    @Override
+    public PifSystemReturningQuery setTimeout(final Integer timeout) {
+        super.setTimeout(timeout);
+        return this;
+    }
+
     /**
      * Whether to return the actual record that was matched. If extractions are being made in the query, then it may
      * not be necessary to actually return the system. Defaults to true.
