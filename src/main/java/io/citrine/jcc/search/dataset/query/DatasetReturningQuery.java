@@ -89,6 +89,12 @@ public class DatasetReturningQuery extends BaseReturningQuery implements Seriali
         return this;
     }
 
+    @Override
+    public DatasetReturningQuery setTimeout(final Integer timeout) {
+        super.setTimeout(timeout);
+        return this;
+    }
+
     /**
      * Set whether the number of PIFs should be counted.
      *
