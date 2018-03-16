@@ -194,6 +194,21 @@ public class PifSystemReturningQueryIT extends CitrinationClientITBase {
     }
 
     /**
+     * Make sure that timeout requests are honored. By setting the timeout to 0 we guarantee that the server will
+     * fail to finish the request.
+     */
+    @Test
+    public void testTimeout() {
+        try {
+            this.client.search(new PifSystemReturningQuery().setTimeout(0));
+            Assert.fail("Failed to cause timeout");
+        }
+        catch (Exception e) {
+            Assert.assertTrue(e.getMessage().startsWith("Received 524 response"));
+        }
+    }
+
+    /**
      * Run a query with a degree unicode character in it. This is a regression test to make sure that we are
      * serializing in a way that the server will respect.
      *
