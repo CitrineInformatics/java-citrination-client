@@ -598,6 +598,9 @@ public class FileReferenceQuery extends BaseObjectQuery implements Serializable 
     /** Operations against the relative path. */
     private List<FieldQuery> relativePath;
 
+    /** Operations against the url. */
+    private List<FieldQuery> url;
+
     /** Operation against the mimetype. */
     private List<FieldQuery> mimeType;
 
