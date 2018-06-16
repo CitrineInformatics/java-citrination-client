@@ -188,7 +188,7 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
      */
     private void readObjectNoData() throws ObjectStreamException {}
 
-    private static final long serialVersionUID = 6285820138539599732L;
+    private static final long serialVersionUID = 6285820138539599733L;
 
     /** The maximum number of buckets to generate. */
     private Long size;
