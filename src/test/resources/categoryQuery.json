@@ -1,0 +1,14 @@
+{
+  "query": {
+    "system": {
+      "names": {
+        "analysis": {
+          "type": "categorical",
+          "path": "names",
+          "size": 100000,
+          "matchType": "exact"
+        }
+      }
+    }
+  }
+}
