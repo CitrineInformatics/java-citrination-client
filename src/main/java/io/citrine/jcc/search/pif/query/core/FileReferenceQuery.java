@@ -199,6 +199,76 @@ public class FileReferenceQuery extends BaseObjectQuery implements Serializable 
     }
 
     /**
+     * Set the url operations. This adds to any operations that are already saved.
+     *
+     * @param url List of {@link FieldQuery} objects.
+     * @return This object.
+     */
+    public FileReferenceQuery setUrl(final List<FieldQuery> url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * Add to the list of url operations.
+     *
+     * @param url {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public FileReferenceQuery addUrl(final List<FieldQuery> url) {
+        this.url = ListUtil.add(url, this.url);
+        return this;
+    }
+
+    /**
+     * Add to the list of url operations.
+     *
+     * @param url {@link FieldQuery} to add.
+     * @return This object.
+     */
+    public FileReferenceQuery addUrl(final FieldQuery url) {
+        this.url = ListUtil.add(url, this.url);
+        return this;
+    }
+
+    /**
+     * Get the length of the url queries.
+     *
+     * @return Number of url queries.
+     */
+    public int urlLength() {
+        return ListUtil.length(this.url);
+    }
+
+    /**
+     * Get an iterable over url operations.
+     *
+     * @return Iterable of {@link FieldQuery} objects.
+     */
+    public Iterable<FieldQuery> url() {
+        return ListUtil.iterable(this.url);
+    }
+
+    /**
+     * Get the url query at the input index.
+     *
+     * @param index Index of the url query to get.
+     * @return {@link FieldQuery} at the input index.
+     */
+    public FieldQuery getUrl(final int index) {
+        return ListUtil.get(this.url, index);
+    }
+
+    /**
+     * Get the url field queries.
+     *
+     * @return List of {@link FieldQuery} objects.
+     */
+    public List<FieldQuery> getUrl() {
+        return this.url;
+    }
+
+    /**
      * Set the mimeType operations. This adds to any operations that are already saved.
      *
      * @param mimeType List of {@link FieldQuery} objects.
@@ -527,6 +597,9 @@ public class FileReferenceQuery extends BaseObjectQuery implements Serializable 
 
     /** Operations against the relative path. */
     private List<FieldQuery> relativePath;
+
+    /** Operations against the url. */
+    private List<FieldQuery> url;
 
     /** Operation against the mimetype. */
     private List<FieldQuery> mimeType;

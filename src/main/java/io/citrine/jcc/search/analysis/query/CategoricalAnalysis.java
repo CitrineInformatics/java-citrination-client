@@ -122,6 +122,26 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
         return this.traversalMode;
     }
 
+    /**
+     * Set the match type.
+     *
+     * @param matchType {@link MatchType} to use.
+     * @return This object.
+     */
+    public CategoricalAnalysis setMatchType(final MatchType matchType) {
+        this.matchType = matchType;
+        return this;
+    }
+
+    /**
+     * Get the match type.
+     *
+     * @return {@link MatchType} to use.
+     */
+    public MatchType getMatchType() {
+        return this.matchType;
+    }
+
     @Override
     public boolean equals(final Object rhs) {
         if (this == rhs) {
@@ -136,7 +156,8 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
                 && Optional.ofNullable(this.minCount).equals(Optional.ofNullable(rhsAnalysis.minCount))
                 && Optional.ofNullable(this.missing).equals(Optional.ofNullable(rhsAnalysis.missing))
                 && Optional.ofNullable(this.includeNumeric).equals(Optional.ofNullable(rhsAnalysis.includeNumeric))
-                && Optional.ofNullable(this.traversalMode).equals(Optional.ofNullable(rhsAnalysis.traversalMode));
+                && Optional.ofNullable(this.traversalMode).equals(Optional.ofNullable(rhsAnalysis.traversalMode))
+                && Optional.ofNullable(this.matchType).equals(Optional.ofNullable(rhsAnalysis.matchType));
     }
 
     /**
@@ -183,4 +204,7 @@ public class CategoricalAnalysis extends Analysis implements Serializable {
 
     /** Traversal mode. */
     private TraversalMode traversalMode;
+
+    /** Match type. */
+    private MatchType matchType;
 }

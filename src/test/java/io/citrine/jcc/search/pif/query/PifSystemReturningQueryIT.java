@@ -204,7 +204,7 @@ public class PifSystemReturningQueryIT extends CitrinationClientITBase {
             Assert.fail("Failed to cause timeout");
         }
         catch (Exception e) {
-            Assert.assertTrue(e.getMessage().startsWith("Received 524 response"));
+            Assert.assertTrue(e.getMessage().startsWith("Received 204 response"));
         }
     }
 
