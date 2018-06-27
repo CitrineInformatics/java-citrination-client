@@ -284,6 +284,26 @@ public abstract class BaseFieldQuery extends AbstractFieldQuery implements Seria
         return this.offset;
     }
 
+    /**
+     * Set whether identity unit conversions should execute or not.  Identity conversions
+     * will cause floating point normalizations (ie .10 becomes .1).
+     *
+     * @return This object.
+     */
+    public BaseFieldQuery setBypassIdentityConversion(final Boolean bypassFlag) {
+        this.bypassIdentityConversion = bypassFlag;
+        return this;
+    }
+
+    /**
+     * Get flag indicating whether to bypass identity conversions.
+     *
+     * @return True if identity conversions are bypassed.
+     */
+    public Boolean getBypassIdentityConversion() {
+        return this.bypassIdentityConversion;
+    }
+
     @Override
     public boolean equals(final Object rhs) {
         if (this == rhs) {
@@ -298,7 +318,9 @@ public abstract class BaseFieldQuery extends AbstractFieldQuery implements Seria
                 && Optional.ofNullable(this.extractAll).equals(Optional.ofNullable(rhsQuery.extractAll))
                 && Optional.ofNullable(this.extractWhenMissing).equals(Optional.ofNullable(rhsQuery.extractWhenMissing))
                 && Optional.ofNullable(this.length).equals(Optional.ofNullable(rhsQuery.length))
-                && Optional.ofNullable(this.offset).equals(Optional.ofNullable(rhsQuery.offset));
+                && Optional.ofNullable(this.offset).equals(Optional.ofNullable(rhsQuery.offset))
+                && Optional.ofNullable(this.bypassIdentityConversion).equals(Optional.ofNullable(
+                        rhsQuery.bypassIdentityConversion));
     }
 
     /**
@@ -329,7 +351,7 @@ public abstract class BaseFieldQuery extends AbstractFieldQuery implements Seria
      */
     private void readObjectNoData() throws ObjectStreamException {}
 
-    private static final long serialVersionUID = -2871528127048887491L;
+    private static final long serialVersionUID = -2871528127048887493L;
 
     /** Alias to save this field under. */
     private String extractAs;
@@ -339,6 +361,9 @@ public abstract class BaseFieldQuery extends AbstractFieldQuery implements Seria
 
     /** Default value to return if a field is missing and the query part is optional. */
     private Object extractWhenMissing;
+
+    /** Whether to bypass identity conversions. */
+    private Boolean bypassIdentityConversion;
 
     /** Length of that array that this object appears in. */
     private List<FieldQuery> length;
