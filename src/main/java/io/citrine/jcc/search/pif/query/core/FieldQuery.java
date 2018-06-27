@@ -74,6 +74,12 @@ public class FieldQuery extends BaseFieldQuery implements Serializable, HasFilte
     }
 
     @Override
+    public FieldQuery setBypassIdentityConversion(final Boolean bypassFlag) {
+        super.setBypassIdentityConversion(bypassFlag);
+        return this;
+    }
+
+    @Override
     public FieldQuery setExtractAll(final Boolean extractAll) {
         super.setExtractAll(extractAll);
         return this;
