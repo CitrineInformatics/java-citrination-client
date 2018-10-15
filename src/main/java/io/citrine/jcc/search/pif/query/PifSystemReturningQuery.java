@@ -217,7 +217,7 @@ public class PifSystemReturningQuery extends BaseReturningQuery implements Seria
      *
      * @return True to calculate the updateAt timestamp.
      */
-    public Boolean setCalculateUpdateAt() {
+    public Boolean getCalculateUpdateAt() {
         return this.calculateUpdatedAt;
     }
 
