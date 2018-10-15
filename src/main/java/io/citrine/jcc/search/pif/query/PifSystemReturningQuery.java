@@ -201,6 +201,27 @@ public class PifSystemReturningQuery extends BaseReturningQuery implements Seria
     }
 
     /**
+     * Set whether to calculate the updatedAt timestamp.  This requires extra queries to run, so it must
+     * be requested to lookup.
+     *
+     * @param calculateUpdatedAt True to calculate the updateAt timestamp.
+     * @return This object.
+     */
+    public PifSystemReturningQuery setCalculateUpdateAt(final Boolean calculateUpdatedAt) {
+        this.calculateUpdatedAt = calculateUpdatedAt;
+        return this;
+    }
+
+    /**
+     * Get whether to calculate the updatedAt timestamp.
+     *
+     * @return True to calculate the updateAt timestamp.
+     */
+    public Boolean setCalculateUpdateAt() {
+        return this.calculateUpdatedAt;
+    }
+
+    /**
      * Sort to apply on an extracted field.
      *
      * @param extractionSort {@link ExtractionSort} to apply.
@@ -279,6 +300,8 @@ public class PifSystemReturningQuery extends BaseReturningQuery implements Seria
                 && Optional.ofNullable(this.returnSystem).equals(Optional.ofNullable(rhsQuery.returnSystem))
                 && Optional.ofNullable(this.addLatex).equals(Optional.ofNullable(rhsQuery.addLatex))
                 && Optional.ofNullable(this.returnExtraction).equals(Optional.ofNullable(rhsQuery.returnExtraction))
+                && Optional.ofNullable(this.calculateUpdatedAt)
+                        .equals(Optional.ofNullable(rhsQuery.calculateUpdatedAt))
                 && Optional.ofNullable(this.returnExtractedPath)
                         .equals(Optional.ofNullable(rhsQuery.returnExtractedPath))
                 && Optional.ofNullable(this.unwrapSingleValueExtractions)
@@ -330,6 +353,9 @@ public class PifSystemReturningQuery extends BaseReturningQuery implements Seria
 
     /** Whether to unwrap single element arrays that are extracted. */
     private Boolean unwrapSingleValueExtractions;
+
+    /** Whether to calculate the updatedAt field (this requires extra time to calculate). */
+    private Boolean calculateUpdatedAt;
 
     /** Sort to apply on an extracted field. */
     private ExtractionSort extractionSort;

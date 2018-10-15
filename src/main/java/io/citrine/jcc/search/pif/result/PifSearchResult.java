@@ -89,6 +89,26 @@ public class PifSearchResult extends BaseSearchResult<PifSearchHit> implements S
     }
 
     /**
+     * Set the time of the most recent update to any of the datasets in the query.
+     *
+     * @param updatedAt String with the time that the record was updated.
+     * @return This object.
+     */
+    public PifSearchResult setUpdatedAt(final String updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    /**
+     * Get the time that the most recent update time of any datasets in the query.
+     *
+     * @return String with the time that the record was updated.
+     */
+    public String getUpdatedAt() {
+        return this.updatedAt;
+    }
+
+    /**
      * Write this object to the output output stream.
      *
      * @param out {@link ObjectOutputStream} to write to.
@@ -115,6 +135,9 @@ public class PifSearchResult extends BaseSearchResult<PifSearchHit> implements S
      * @throws ObjectStreamException if thrown while reading the stream.
      */
     private void readObjectNoData() throws ObjectStreamException {}
+
+    /** The time that the record was updated. */
+    private String updatedAt;
 
     private static final long serialVersionUID = 1594850668287405017L;
 }
